@@ -11,8 +11,27 @@ On top of that channel, Angelo adds:
 
 > Status: early, used daily in a design studio, APIs may still change. Feedback and issues are welcome.
 
+## Background: from FDSL to Angelo
+
+Angelo started in October 2026 at Microburo, a design studio in Paris, as **FDSL** (*Figma Domain-Specific Language*). The question was simple: how can an AI agent read and change a real Figma file as fluently as it reads and changes code, without screenshots, exports or copy-paste?
+
+The answer was a text format first, and the tooling around it second.
+
+- **A language for designs, not a JSON dump.** Figma's node tree is large and verbose. FDSL writes one line per node, uses layer names instead of opaque ids, refers to variables, styles and components by readable labels listed once in a manifest, leaves out what auto layout already implies, and splits large selections into chunks the agent pulls only when it needs them.
+- **Round trip before writes.** The first milestone was read-only: serialize → parse → serialize again had to give the same text on every fixture before any write was allowed. Typed write operations with undo came next (`set`, `insert`, `clone`, `reorder`, `each`), then the notes panel, then web to Figma.
+- **Every format change measured.** Each change to the grammar was A/B tested on live files with a token estimator and kept only if it paid off. For example, listing only the tokens a scope uses took one manifest from 3,281 to 851 tokens; one line of properties shared by sibling nodes saved 18 % on an icon page; the defaults that auto layout implies saved 13 % on a full website page.
+- **Renamed, not rewritten.** FDSL became Angelo in November 2026, once the format had grown into a full read-and-write channel with a designer-facing panel. The plugin data it stores in Figma files still uses the `fdsl` prefix, so files touched by earlier versions keep working.
+
+### Tested at length
+
+- **128 automated checks** run the bridge, the MCP server and the plugin's write path against a simulated Figma plugin, including the security barriers, multi-agent calls and failure paths.
+- **19 round-trip fixtures**, 17 of them captured from real production files (their text replaced by placeholder words), must survive serialize → parse → serialize unchanged.
+- **Web to Figma was tuned on 49 live websites** (among them Apple, Stripe, Linear, Figma, Vercel, Notion, The New York Times, The Guardian, GOV.UK, Porsche, Duolingo and MoMA), through more than 650 recorded builds and 630 scored comparisons of the Figma result against the live page. The reference pages reach 97 to 99 % on the visual match score. Captures of real sites are not published here for copyright reasons; the repository ships synthetic cases and an offline corpus that CI runs on every change.
+- **Used every day** on client design work in the studio, which is where most of the edge cases came from.
+
 ## Contents
 
+- [Background: from FDSL to Angelo](#background-from-fdsl-to-angelo)
 - [How it works](#how-it-works)
 - [Install](#install)
 - [The Angelo format](#the-angelo-format)
