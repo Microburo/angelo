@@ -1,0 +1,35 @@
+# chunk 14 of read 6 · in #917:307 · 33 nodes
+
+INST#935:109 "Header" at:0,0 wh:430x98 ref(cmp.header-3) size:fill,fixed stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#935:121 "Subheader" at:0,98 wh:430x103 ref(cmp.header) ov{show-link=on, show-title=on, show-subtitle=on, show-bullet=on, show-prevnext=off} size:fill,hug
+FRAME#936:197 "feed" at:0,201 wh:430x1878.33 col gap:2 align:start,center size:fill,hug
+  FRAME#936:182 "img" at:2,0 wh:426x284 clip fill:p.shared.gray-4-40 stroke:1 inside p.shared.gray-6-line
+    GROUP#936:183 "Image" at:0,0 wh:426x284.4
+      RECT#936:184 "Image" at:213,142.2 wh:213x142.2 constr:scale,scale fill:img(fill)
+      RECT#936:185 "Image" at:0,142.2 wh:213x142.2 constr:scale,scale fill:img(fill)
+      RECT#936:186 "Image" at:213,0 wh:213x142.2 constr:scale,scale fill:img(fill)
+      RECT#936:187 "Image" at:0,0 wh:213x142.2 constr:scale,scale fill:img(fill)
+  FRAME#991:221 "infos" at:0,286 wh:430x400 col gap:16 pad:48,8 size:fill,hug
+    TEXT#991:222 "title" at:8,48 wh:414x144 size:fill,hug font:t.paragraph-m lh:130% autosize:height fill:#1A1A1A text:"ANIM ad a Proident aliquip magna minim deserunt est-dolore ante ex Aliqua, irure reprehenderit sit cupidatat veniam sed orci amet velit. Ea cillum non fugiat commodo qui curabitur: e nulla culpa-est-lacus faucibus lorem in sit Ipsum ultrices, dolor consectetur officia sed laborum non vestibulum magna minim. Dictumst irure velit, pretium nulla qui id tincidunt mollit elit enim est quis do potenti, ut nisi culpa nullam duis sit posuere lacus lorem."
+    TEXT#991:223 "title" at:8,208 wh:414x144 size:fill,hug font:t.paragraph-m lh:130% autosize:height fill:#1A1A1A text:"Sed aute ipsum non primis Cubilia dolor, esse sint sunt et eiusmod habitasse qui nostrud magna, est sit Fermentum consequat: anim minim, ullamco sed laboris irure. I luctus aliquip platea ad commodo, ante, velit, orci-nulla culpa non EX adipiscing lacus amet incididunt vestibulum, elit o voluptate enim ea qui pariatur quis. Lorem in a tempor officia, id nisi est DUIS aute esse sit sed suspendisse non excepteur laborum, pretium labore ipsum dolor."
+  FRAME#936:192 "img" at:2,688 wh:426x284 clip
+    GROUP#936:193 "Image" at:0,0 wh:426x284
+      RECT#936:194 "Image" at:213,0 wh:213x284 constr:scale,scale fill:img(fill)
+      RECT#936:195 "Image" at:0,0 wh:213x284 constr:scale,scale fill:img(fill)
+  GROUP#937:284 "Image Gallery" at:2,974 wh:426x284
+    GROUP#937:285 "Image" at:2,974 wh:426x284
+      RECT#937:286 "Image" at:215,1116 wh:213x142 fill:img(fill) r:4
+      RECT#937:287 "Image" at:2,1116 wh:213x142 fill:img(fill) r:4
+      RECT#937:288 "Image" at:215,974 wh:213x142 fill:img(fill) r:4
+      RECT#937:289 "Image" at:2,974 wh:213x142 fill:img(fill) r:4
+  FRAME#1008:209 "Frame 2" at:40,1260 wh:350x618.33 col gap:40 pad:56,0 size:hug,hug
+    FRAME#1008:198 "img" at:0,56 wh:350x233 clip
+      GROUP#1008:199 "Image" at:0,0 wh:350x233
+        RECT#1008:200 "Image" at:175,0 wh:175x233 constr:scale,scale fill:img(fill)
+        RECT#1008:201 "Image" at:0,0 wh:175x233 constr:scale,scale fill:img(fill)
+    GROUP#1008:202 "Image Gallery" at:0,329 wh:350x233.33
+      GROUP#1008:203 "Image" at:0,329 wh:350x233.33
+        RECT#1008:204 "Image" at:175,445.67 wh:175x116.67 fill:img(fill)
+        RECT#1008:205 "Image" at:0,445.67 wh:175x116.67 fill:img(fill)
+        RECT#1008:206 "Image" at:175,329 wh:175x116.67 fill:img(fill)
+        RECT#1008:207 "Image" at:0,329 wh:175x116.67 fill:img(fill)

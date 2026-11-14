@@ -1,0 +1,18 @@
+# chunk 13 of read 6 · in #861:188 · 16 nodes
+
+CMP#935:108 "Header" at:0,0 wh:430x98 row gap:auto pad:16,8 align:between,start size:fill,fixed stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  TEXT#861:196 "Studio" at:8,16 wh:225x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#1A1A1A text:"Excepteur/labore+sint"
+  FRAME#861:200 "Navigation Links" at:310,16 wh:112x65 row gap:16 align:end,end size:hug,fill
+    TEXT#861:201 "Studio" at:0,42 wh:50x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#1A1A1A text:"Sunt"
+    TEXT#861:202 "Studio" at:66,42 wh:46x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#7F7F7F text:"Lorem"
+INST#935:114 "Category Label" at:0,98 wh:430x63 ref(cmp.header) ov{show-link=off, show-title=on, show-subtitle=off, show-bullet=on, show-prevnext=off} size:fill,hug
+FRAME#1017:174 "Frame 3" at:0,161 wh:430x144 row gap:8 pad:56,8,0,8 align:start,center size:fill,hug
+  TEXT#1017:172 "paragraph" at:8,56 wh:369x88 size:hug,hug font:TWK Everett Regular 110 lh:80% talign:center autosize:width_and_height fill:#1A1A1A text:"IPSUM"
+FRAME#935:181 "Page title" at:0,305 wh:430x132 row gap:8 pad:56,8,8,8 align:start,end size:fill,hug
+  TEXT#935:136 "index" at:8,56 wh:143x68 size:hug,hug font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"Dolor"
+INST#935:138 "Featured Project" at:2,437 wh:426x619 ref(cmp.sample-brand-card)
+FRAME#935:180 "Product Showcase" at:0,1056 wh:430x608 row wrap gap:2/48 align:center,start size:fill,fixed
+  INST#935:156 "Sample Brand Card" at:2,0 wh:212x318 ref(cmp.sample-brand-card)
+  INST#935:157 "Sample Brand Card" at:216,0 wh:212x318 ref(cmp.sample-brand-card)
+  INST#935:158 "Sample Brand Card" at:2,366 wh:212x318 ref(cmp.sample-brand-card)
+  INST#935:159 "Sample Brand Card" at:216,366 wh:212x318 ref(cmp.sample-brand-card)

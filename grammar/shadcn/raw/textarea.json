@@ -1,0 +1,430 @@
+{
+ "page": "Textarea •",
+ "sets": [
+  {
+   "name": "Textarea - Nova",
+   "description": "Displays a form textarea or a component that looks like a textarea.",
+   "properties": {
+    "Show resizable#761:0": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Empty",
+     "options": [
+      "Empty",
+      "Placeholder",
+      "Value",
+      "Focus",
+      "Error",
+      "Error Focus",
+      "Disabled"
+     ]
+    }
+   },
+   "defaultVariant": "State=Empty",
+   "variants": [
+    {
+     "name": "State=Empty",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/input"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "shadow-xs",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      }
+     ]
+    },
+    {
+     "name": "State=Placeholder",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/input"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "shadow-xs",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 304,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Type your message here.",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "State=Value",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/input"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "shadow-xs",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 304,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Value",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "State=Focus",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/input"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-15",
+       "opacity": 0.15
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 304,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Value",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 304,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Value",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "State=Error Focus",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "focus ring error",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 304,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Value",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/input"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "effectStyle": "shadow-xs",
+     "bound": {
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Resizable",
+       "type": "VECTOR",
+       "props": {
+        "visible": "Show resizable#761:0"
+       },
+       "w": 7,
+       "h": 7,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1
+      },
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 328,
+       "h": 60,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Value",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

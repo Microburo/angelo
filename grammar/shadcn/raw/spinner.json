@@ -1,0 +1,114 @@
+{
+ "page": "Spinner",
+ "sets": [
+  {
+   "name": "Spinner",
+   "properties": {
+    "Type": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Mirrored"
+     ]
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Default, Size=Default",
+   "variants": [
+    {
+     "name": "Type=Mirrored, Size=Default",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "ELLIPSE",
+       "w": 13,
+       "h": 13,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Mirrored, Size=Small",
+     "type": "COMPONENT",
+     "w": 12,
+     "h": 12,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "ELLIPSE",
+       "w": 9.75,
+       "h": 9.75,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Default, Size=Default",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "ELLIPSE",
+       "w": 13,
+       "h": 13,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Default, Size=Small",
+     "type": "COMPONENT",
+     "w": 12,
+     "h": 12,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "ELLIPSE",
+       "w": 9.75,
+       "h": 9.75,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

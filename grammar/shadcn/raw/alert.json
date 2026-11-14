@@ -1,0 +1,495 @@
+{
+ "page": "Alert •",
+ "sets": [
+  {
+   "name": "Alert - Nova",
+   "description": "Displays a callout for user attention.",
+   "properties": {
+    "Show Description#58:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Show Button#279:1": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "⮑ Icon#1530:0": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25285"
+    },
+    "Title#1530:5": {
+     "type": "TEXT",
+     "default": "Title"
+    },
+    "⮑  Description#1530:10": {
+     "type": "TEXT",
+     "default": "Description"
+    },
+    "Show Title#8104:0": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "Neutral",
+     "options": [
+      "Neutral",
+      "Error"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Neutral",
+   "variants": [
+    {
+     "name": "Type=Neutral",
+     "type": "COMPONENT",
+     "w": 400,
+     "h": 36,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/md",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 16,
+     "pad": [
+      8,
+      12,
+      8,
+      12
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon + Content",
+       "type": "FRAME",
+       "w": 376,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 12,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Icon-aligner",
+         "type": "FRAME",
+         "w": 16,
+         "h": 18,
+         "sizing": "HH",
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingTop": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          2,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "children": [
+          {
+           "name": "Icon",
+           "type": "INSTANCE",
+           "props": {
+            "mainComponent": "⮑ Icon#1530:0"
+           },
+           "w": 16,
+           "h": 16,
+           "sizing": "XX",
+           "bound": {
+            "width": "spacing/md"
+           },
+           "clip": true,
+           "instanceOf": "Lucide / square-dashed",
+           "instancePage": "Icons",
+           "overrides": 2
+          }
+         ]
+        },
+        {
+         "name": "Content",
+         "type": "FRAME",
+         "w": 348,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Title",
+           "type": "TEXT",
+           "props": {
+            "visible": "Show Title#8104:0",
+            "characters": "Title#1530:5"
+           },
+           "w": 348,
+           "h": 20,
+           "sizing": "LH",
+           "fills": [
+            {
+             "token": "shadcn colors/shadcn colors/general/foreground"
+            }
+           ],
+           "text": "Title",
+           "textStyle": "paragraph small/medium",
+           "autoResize": "HEIGHT",
+           "alignH": "LEFT",
+           "alignV": "TOP"
+          },
+          {
+           "name": "Description",
+           "type": "TEXT",
+           "hidden": true,
+           "props": {
+            "visible": "Show Description#58:0",
+            "characters": "⮑  Description#1530:10"
+           },
+           "w": 348,
+           "h": 20,
+           "sizing": "XX",
+           "fills": [
+            {
+             "token": "shadcn colors/shadcn colors/general/muted foreground"
+            }
+           ],
+           "text": "Description",
+           "textStyle": "paragraph small/normal",
+           "autoResize": "HEIGHT",
+           "alignH": "LEFT",
+           "alignV": "TOP"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Button - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Button#279:1"
+       },
+       "w": 48,
+       "h": 22,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 8,
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5",
+        "paddingLeft": "spacing/xs",
+        "paddingTop": "spacing/out-of-scale/0,75",
+        "paddingRight": "spacing/xs",
+        "paddingBottom": "spacing/out-of-scale/0,75",
+        "topLeftRadius": "border radii/radius-md",
+        "topRightRadius": "border radii/radius-md",
+        "bottomLeftRadius": "border radii/radius-md",
+        "bottomRightRadius": "border radii/radius-md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 6,
+       "pad": [
+        3,
+        8,
+        3,
+        8
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "Button - Nova",
+       "variant": "Size=Extra small, Variant=Outline, State=Default",
+       "instancePage": "Button & Icon Button •",
+       "values": {
+        "⮑ Left icon": "1957:25285",
+        "⮑ Right icon": "1957:25285",
+        "Show left icon": false,
+        "Show spinner": false,
+        "Show right icon": false,
+        "Size": "Extra small",
+        "Variant": "Outline",
+        "State": "Default"
+       },
+       "overrides": 5
+      }
+     ]
+    },
+    {
+     "name": "Type=Error",
+     "type": "COMPONENT",
+     "w": 400,
+     "h": 36,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/md",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 16,
+     "pad": [
+      8,
+      12,
+      8,
+      12
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon + Content",
+       "type": "FRAME",
+       "w": 376,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 12,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Icon-aligner",
+         "type": "FRAME",
+         "w": 16,
+         "h": 18,
+         "sizing": "HH",
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingTop": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          2,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "children": [
+          {
+           "name": "Icon",
+           "type": "INSTANCE",
+           "props": {
+            "mainComponent": "⮑ Icon#1530:0"
+           },
+           "w": 16,
+           "h": 16,
+           "sizing": "XX",
+           "bound": {
+            "width": "spacing/md"
+           },
+           "clip": true,
+           "instanceOf": "Lucide / square-dashed",
+           "instancePage": "Icons",
+           "overrides": 2
+          }
+         ]
+        },
+        {
+         "name": "Content",
+         "type": "FRAME",
+         "w": 348,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Title",
+           "type": "TEXT",
+           "props": {
+            "visible": "Show Title#8104:0",
+            "characters": "Title#1530:5"
+           },
+           "w": 348,
+           "h": 20,
+           "sizing": "LH",
+           "fills": [
+            {
+             "token": "shadcn colors/shadcn colors/general/destructive"
+            }
+           ],
+           "text": "Title",
+           "textStyle": "paragraph small/medium",
+           "autoResize": "HEIGHT",
+           "alignH": "LEFT",
+           "alignV": "TOP"
+          },
+          {
+           "name": "Description",
+           "type": "TEXT",
+           "hidden": true,
+           "props": {
+            "visible": "Show Description#58:0",
+            "characters": "⮑  Description#1530:10"
+           },
+           "w": 348,
+           "h": 20,
+           "sizing": "XX",
+           "fills": [
+            {
+             "token": "shadcn colors/shadcn colors/general/destructive"
+            }
+           ],
+           "text": "Description",
+           "textStyle": "paragraph small/normal",
+           "autoResize": "HEIGHT",
+           "alignH": "LEFT",
+           "alignV": "TOP"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Button - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Button#279:1"
+       },
+       "w": 48,
+       "h": 22,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 8,
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5",
+        "paddingLeft": "spacing/xs",
+        "paddingTop": "spacing/out-of-scale/0,75",
+        "paddingRight": "spacing/xs",
+        "paddingBottom": "spacing/out-of-scale/0,75",
+        "topLeftRadius": "border radii/radius-md",
+        "topRightRadius": "border radii/radius-md",
+        "bottomLeftRadius": "border radii/radius-md",
+        "bottomRightRadius": "border radii/radius-md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 6,
+       "pad": [
+        3,
+        8,
+        3,
+        8
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "Button - Nova",
+       "variant": "Size=Extra small, Variant=Outline, State=Default",
+       "instancePage": "Button & Icon Button •",
+       "values": {
+        "⮑ Left icon": "1957:25285",
+        "⮑ Right icon": "1957:25285",
+        "Show left icon": false,
+        "Show spinner": false,
+        "Show right icon": false,
+        "Size": "Extra small",
+        "Variant": "Outline",
+        "State": "Default"
+       },
+       "overrides": 5
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

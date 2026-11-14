@@ -1,0 +1,46 @@
+{
+  "name": "angelo",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Your Figma selection as compact text an AI agent reads and edits: Figma plugin, local bridge and MCP server",
+  "license": "MIT",
+  "author": "Microburo",
+  "homepage": "https://github.com/Microburo/angelo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microburo/angelo.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Microburo/angelo/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node plugin/build.mjs && node extension/build.mjs",
+    "watch": "node plugin/build.mjs --watch",
+    "bridge": "node bridge/src/server.mjs",
+    "mcp": "node bridge/src/mcp.mjs",
+    "notes-watch": "node bridge/src/watch.mjs",
+    "read": "node tools/read.mjs",
+    "roundtrip": "node tools/roundtrip.mjs",
+    "verify": "node verify.mjs",
+    "web-check": "node tools/web-check.mjs",
+    "web-lint": "node tools/web-lint.mjs",
+    "web-to-figma-check": "node tools/web-to-figma-check.mjs",
+    "adapt-check": "node tools/adapt-check.mjs"
+  },
+  "devDependencies": {
+    "@figma/plugin-typings": "^1.109.0",
+    "esbuild": "^0.25.0",
+    "lucide-static": "1.70.0",
+    "typescript": "^5.7.0",
+    "wawoff2": "^2.0.1"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "ws": "^8.18.0",
+    "zod": "^3.25.0"
+  }
+}

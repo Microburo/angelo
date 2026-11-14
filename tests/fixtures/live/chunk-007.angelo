@@ -1,0 +1,14 @@
+# chunk 7 of read 6 · in #1039:546 · 12 nodes
+
+FRAME#1039:547 "Footer Brand" at:0,72 wh:619x199 col gap:36 size:fill,hug
+  TEXT#1039:548 "Studio" at:0,0 wh:59x68 size:hug,hug font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"I"
+  FRAME#1039:559 "Frame 11" at:0,104 wh:619x95 row gap:auto align:between,start size:fixed,hug
+    FRAME#1039:550 "Services" at:0,0 wh:240x95 col gap:13
+      TEXT#1039:551 "title" at:0,0 wh:240x21 size:fill,hug font:TWK Everett Regular 16 lh:130% autosize:height fill:#1A1A1A text:"Pretium sed-nullam"
+      TEXT#1039:552 "title" at:0,34 wh:240x21 size:fill,hug font:TWK Everett Regular 16 lh:130% autosize:height fill:#1A1A1A text:"Primis fermentum"
+      TEXT#1039:553 "title" at:0,68 wh:240x21 size:fill,hug font:TWK Everett Regular 16 lh:130% autosize:height fill:#1A1A1A text:"Occaecat proident"
+    FRAME#1039:554 "Expertise" at:420,0 wh:199x95 col gap:13
+      TEXT#1039:555 "title" at:0,0 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Potenti Luctus"
+      TEXT#1039:556 "title" at:0,36 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Reprehenderit 360°"
+      TEXT#1039:557 "title" at:0,72 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Consectetur consequat"
+TEXT#1039:558 "title" at:0,343 wh:619x23 size:fill,hug font:t.paragraph-l lh:120% deco:underline autosize:height fill:#1A1A1A text:"Duis voluptate"

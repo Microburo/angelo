@@ -1,0 +1,1039 @@
+{
+ "page": "Card •",
+ "sets": [
+  {
+   "name": "Card - Nova",
+   "properties": {
+    "Show header#5841:0": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Show content#5841:1": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Show footer#5841:2": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Slot count": {
+     "type": "VARIANT",
+     "default": "1",
+     "options": [
+      "1",
+      "2",
+      "3"
+     ]
+    }
+   },
+   "defaultVariant": "Slot count=1",
+   "variants": [
+    {
+     "name": "Slot count=1",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 56,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 14,
+     "bound": {
+      "topLeftRadius": "border radii/radius-xl",
+      "topRightRadius": "border radii/radius-xl",
+      "bottomLeftRadius": "border radii/radius-xl",
+      "bottomRightRadius": "border radii/radius-xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Body",
+       "type": "INSTANCE",
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=False",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": false,
+        "Spacing": "Default",
+        "Background": "False"
+       },
+       "overrides": 3
+      }
+     ]
+    },
+    {
+     "name": "Slot count=2",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 112,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 14,
+     "bound": {
+      "topLeftRadius": "border radii/radius-xl",
+      "topRightRadius": "border radii/radius-xl",
+      "bottomLeftRadius": "border radii/radius-xl",
+      "bottomRightRadius": "border radii/radius-xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Header",
+       "type": "INSTANCE",
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=False",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": false,
+        "Spacing": "Default",
+        "Background": "False"
+       },
+       "overrides": 3
+      },
+      {
+       "name": "Body",
+       "type": "INSTANCE",
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=False",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": false,
+        "Spacing": "Default",
+        "Background": "False"
+       },
+       "overrides": 3
+      }
+     ]
+    },
+    {
+     "name": "Slot count=3",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 168,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 14,
+     "bound": {
+      "topLeftRadius": "border radii/radius-xl",
+      "topRightRadius": "border radii/radius-xl",
+      "bottomLeftRadius": "border radii/radius-xl",
+      "bottomRightRadius": "border radii/radius-xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Header",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Show header#5841:0"
+       },
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=False",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": false,
+        "Spacing": "Default",
+        "Background": "False"
+       },
+       "overrides": 3
+      },
+      {
+       "name": "Body",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Show content#5841:1"
+       },
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=False",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": true,
+        "Spacing": "Default",
+        "Background": "False"
+       },
+       "overrides": 3
+      },
+      {
+       "name": "Footer",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Show footer#5841:2"
+       },
+       "w": 380,
+       "h": 56,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/MIN",
+       "clip": true,
+       "instanceOf": ".Card Section - Nova",
+       "variant": "Spacing=Default, Background=True",
+       "instancePage": "Card •",
+       "values": {
+        "Show border": true,
+        "Spacing": "Default",
+        "Background": "True"
+       },
+       "overrides": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": ".Card Section - Nova",
+   "properties": {
+    "Slot#5438:77": {
+     "type": "SLOT"
+    },
+    "Show border#5755:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Spacing": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small",
+      "None"
+     ]
+    },
+    "Background": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    }
+   },
+   "defaultVariant": "Spacing=Default, Background=False",
+   "variants": [
+    {
+     "name": "Spacing=Default, Background=False",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 56,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 348,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 348,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Default, Background=True",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 56,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 348,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 348,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Small, Background=False",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 48,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 356,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/sm"
+       },
+       "layout": "VERTICAL",
+       "gap": 12,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 356,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Small, Background=True",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 48,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 356,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/sm"
+       },
+       "layout": "VERTICAL",
+       "gap": 12,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 356,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=None, Background=False",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 24,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 380,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 380,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=None, Background=True",
+     "type": "COMPONENT",
+     "w": 380,
+     "h": 24,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "CENTER/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5438:77"
+       },
+       "w": 380,
+       "h": 24,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 380,
+         "h": 24,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#5755:0"
+       },
+       "w": 380,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

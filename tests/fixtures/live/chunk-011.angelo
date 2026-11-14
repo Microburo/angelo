@@ -1,0 +1,6 @@
+# chunk 11 of read 6 · in #861:177 · 4 nodes
+
+INST#991:263 "Sample Brand Card" at:2,17 wh:426x619 ref(cmp.sample-brand-card)
+FRAME#861:165 "Header" at:0,0 wh:430x55 row gap:16 pad:16,8 align:end,center size:fixed,hug constr:max,min fill:#FFF
+  TEXT#861:166 "Studio" at:310,16 wh:50x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#1A1A1A text:"Esse"
+  TEXT#861:167 "Studio" at:376,16 wh:46x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#7F7F7F text:"Culpa"

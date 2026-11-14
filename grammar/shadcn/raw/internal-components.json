@@ -1,0 +1,356 @@
+{
+ "page": "Internal Components",
+ "sets": [
+  {
+   "name": ".Slot Default Placeholder",
+   "properties": {
+    "Aspect": {
+     "type": "VARIANT",
+     "default": "Rectangular",
+     "options": [
+      "Rectangular",
+      "Square"
+     ]
+    }
+   },
+   "defaultVariant": "Aspect=Rectangular",
+   "variants": [
+    {
+     "name": "Aspect=Rectangular",
+     "type": "COMPONENT",
+     "w": 84,
+     "h": 24,
+     "sizing": "HH",
+     "strokes": [
+      {
+       "hex": "c89dff"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 6,
+     "bound": {
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Editable slot",
+       "type": "TEXT",
+       "w": 68,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "hex": "c89dff"
+        }
+       ],
+       "text": "Editable slot",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Aspect=Square",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "hex": "c89dff"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 6,
+     "bound": {
+      "paddingLeft": "spacing/3xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/3xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Editable slot",
+       "type": "TEXT",
+       "w": 36,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "hex": "c89dff"
+        }
+       ],
+       "text": "Slot",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": ".Component Page Header",
+   "type": "COMPONENT",
+   "w": 1280,
+   "h": 260,
+   "sizing": "XH",
+   "strokes": [
+    {
+     "token": "shadcn colors/shadcn colors/general/border"
+    }
+   ],
+   "strokeWeight": "mixed",
+   "bound": {
+    "paddingLeft": "spacing/5xl",
+    "paddingTop": "spacing/5xl",
+    "paddingRight": "spacing/5xl",
+    "paddingBottom": "spacing/5xl"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 0,
+   "pad": [
+    64,
+    64,
+    64,
+    64
+   ],
+   "align": "SPACE_BETWEEN/MIN",
+   "children": [
+    {
+     "name": "Text",
+     "type": "FRAME",
+     "w": 982,
+     "h": 132,
+     "sizing": "LH",
+     "bound": {
+      "itemSpacing": "spacing/2xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 32,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Header",
+       "type": "TEXT",
+       "w": 982,
+       "h": 40,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Component Name",
+       "textStyle": "heading 1",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Text",
+       "type": "FRAME",
+       "w": 982,
+       "h": 60,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "w": 982,
+         "h": 24,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Component description.",
+         "textStyle": "paragraph/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Note",
+         "type": "TEXT",
+         "w": 982,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Note.",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Docs Button",
+     "type": "INSTANCE",
+     "props": {
+      "visible": "Show docs button#1957:0"
+     },
+     "w": 170,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      6,
+      16,
+      6,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "instanceOf": "Button - Nova",
+     "variant": "Size=Default, Variant=Link, State=Default",
+     "instancePage": "Button & Icon Button •",
+     "values": {
+      "⮑ Left icon": "1957:25285",
+      "Show spinner": false,
+      "⮑ Right icon": "1957:25285",
+      "Show left icon": false,
+      "Show right icon": false,
+      "Size": "Default",
+      "Variant": "Link",
+      "State": "Default"
+     },
+     "overrides": 7
+    }
+   ],
+   "properties": {
+    "Show docs button#1957:0": {
+     "type": "BOOLEAN",
+     "default": true
+    }
+   }
+  },
+  {
+   "name": ".Component Page Footer",
+   "type": "COMPONENT",
+   "w": 1280,
+   "h": 68,
+   "sizing": "XH",
+   "strokes": [
+    {
+     "token": "shadcn colors/shadcn colors/general/border"
+    }
+   ],
+   "strokeWeight": "mixed",
+   "bound": {
+    "itemSpacing": "spacing/5xl",
+    "paddingLeft": "spacing/5xl",
+    "paddingTop": "spacing/xl",
+    "paddingRight": "spacing/5xl",
+    "paddingBottom": "spacing/xl"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 64,
+   "pad": [
+    24,
+    64,
+    24,
+    64
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "Info",
+     "type": "TEXT",
+     "w": 366,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted foreground"
+      }
+     ],
+     "text": "Component documentation created using Obra Autodocs.",
+     "textStyle": "paragraph small/normal",
+     "autoResize": "WIDTH_AND_HEIGHT",
+     "alignH": "LEFT",
+     "alignV": "TOP"
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

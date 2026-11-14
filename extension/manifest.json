@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Angelo \u2014 page to Figma",
+  "version": "0.1.0",
+  "description": "Detects the logical blocks of a page (header, sections, sub-sections) and sends them to Figma through the Angelo bridge.",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqBXOf/kOr/Sz60wWw/tFqLxClf3PoCD0yYT//X5rQWnp5kTEa8pQQXY8tJegR7c7S05s+YlqJ87FSx1LrmY7PZanaKtbrG2yRMOTPztRA0BwiE3gBy28ksYT2WOT5BLh623cE/zF/jiYpmYXq9wKYh6/JFdUcdC+fJlDKn10FC+c0a6Ldx+zv05KFgYN0kYYmAXG7wD46oxPZ88KDfBYnXPHbbK35Bj2mqRANC/uHLlA3YI+RLyWty1TROr9zYVnvgHNzWprYLzP9ZnHCidGWtoxZSE8zbJY5cqLgjCo91tSZsA+bJGXoJKRkumzEmqlYfylGmFmH3h3q6tArB0z/wIDAQAB",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "debugger"
+  ],
+  "host_permissions": [
+    "http://127.0.0.1/*",
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Angelo: blocks \u2192 Figma",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  }
+}

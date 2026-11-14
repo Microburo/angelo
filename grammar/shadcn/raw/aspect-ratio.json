@@ -1,0 +1,195 @@
+{
+ "page": "Aspect Ratio",
+ "sets": [
+  {
+   "name": "Aspect Ratio",
+   "properties": {
+    "Aspect": {
+     "type": "VARIANT",
+     "default": "16:9",
+     "options": [
+      "16:9",
+      "1:1",
+      "9:16",
+      "21:9"
+     ]
+    }
+   },
+   "defaultVariant": "Aspect=16:9",
+   "variants": [
+    {
+     "name": "Aspect=9:16",
+     "type": "COMPONENT",
+     "w": 225,
+     "h": 400,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 16,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Shade",
+       "type": "RECTANGLE",
+       "w": 225,
+       "h": 400,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Aspect=16:9",
+     "type": "COMPONENT",
+     "w": 400,
+     "h": 225,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 16,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Shade",
+       "type": "RECTANGLE",
+       "w": 400,
+       "h": 225,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Aspect=21:9",
+     "type": "COMPONENT",
+     "w": 211,
+     "h": 90,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 16,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Shade",
+       "type": "RECTANGLE",
+       "w": 211,
+       "h": 90,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Aspect=1:1",
+     "type": "COMPONENT",
+     "w": 200,
+     "h": 200,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 16,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Shade",
+       "type": "RECTANGLE",
+       "w": 200,
+       "h": 200,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

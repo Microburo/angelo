@@ -1,0 +1,36 @@
+{
+ "page": "Backdrop (OC)",
+ "sets": [],
+ "standalone": [
+  {
+   "name": "Backdrop (OC)",
+   "type": "COMPONENT",
+   "w": 100,
+   "h": 100,
+   "sizing": "XX",
+   "strokes": [
+    {
+     "token": "shadcn colors/shadcn colors/general/border"
+    }
+   ],
+   "strokeWeight": "mixed",
+   "children": [
+    {
+     "name": "Backdrop",
+     "type": "RECTANGLE",
+     "w": 100,
+     "h": 100,
+     "opacity": 0.6,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/no-switch/alpha-25",
+       "opacity": 0.25
+      }
+     ]
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

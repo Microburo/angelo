@@ -1,0 +1,741 @@
+{
+ "page": "Breadcrumb",
+ "sets": [
+  {
+   "name": ".Breadcrumb item",
+   "properties": {
+    "⮑ Label#1354:0": {
+     "type": "TEXT",
+     "default": "Label"
+    },
+    "Dropdown Menu#1354:4": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Icon#1512:6": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25302"
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Hover",
+      "Active"
+     ]
+    },
+    "Content": {
+     "type": "VARIANT",
+     "default": "Label",
+     "options": [
+      "Label",
+      "Icon"
+     ]
+    }
+   },
+   "defaultVariant": "State=Default, Content=Label",
+   "variants": [
+    {
+     "name": "State=Hover, Content=Icon",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Lucide / ellipsis",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:6"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / ellipsis",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Default, Content=Icon",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Lucide / ellipsis",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:6"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / ellipsis",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Active, Content=Label",
+     "type": "COMPONENT",
+     "w": 52,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "⮑ Label#1354:0"
+       },
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Lucide / chevron-down",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Dropdown Menu#1354:4"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Hover, Content=Label",
+     "type": "COMPONENT",
+     "w": 52,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "⮑ Label#1354:0"
+       },
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Lucide / chevron-down",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Dropdown Menu#1354:4"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Default, Content=Label",
+     "type": "COMPONENT",
+     "w": 52,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "⮑ Label#1354:0"
+       },
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Lucide / chevron-down",
+       "type": "INSTANCE",
+       "props": {
+        "visible": "Dropdown Menu#1354:4"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": ".Breadcrumb separator",
+   "properties": {
+    "Content": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Custom"
+     ]
+    }
+   },
+   "defaultVariant": "Content=Default",
+   "variants": [
+    {
+     "name": "Content=Default",
+     "type": "COMPONENT",
+     "w": 14,
+     "h": 14,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Lucide / chevron-right",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/out-of-scale/3,5"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-right",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Content=Custom",
+     "type": "COMPONENT",
+     "w": 14,
+     "h": 14,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Lucide / dot",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/out-of-scale/3,5"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / dot",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": "Breadcrumb",
+   "type": "COMPONENT",
+   "w": 386,
+   "h": 20,
+   "sizing": "HH",
+   "bound": {
+    "itemSpacing": "spacing/2xs"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 4,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "Breadcrumb Items",
+     "type": "SLOT",
+     "props": {
+      "slotContentId": "Breadcrumb Items#1962:0"
+     },
+     "w": 386,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Default, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Dropdown Menu": false,
+        "Icon": "1957:25302",
+        "⮑ Label": "Level 1",
+        "State": "Default",
+        "Content": "Label"
+       },
+       "overrides": 4
+      },
+      {
+       "name": ".Breadcrumb separator",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb separator",
+       "variant": "Content=Default",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Content": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Default, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Dropdown Menu": false,
+        "Icon": "1957:25302",
+        "⮑ Label": "Level 2",
+        "State": "Default",
+        "Content": "Label"
+       },
+       "overrides": 4
+      },
+      {
+       "name": ".Breadcrumb separator",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb separator",
+       "variant": "Content=Default",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Content": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Default, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Dropdown Menu": false,
+        "Icon": "1957:25302",
+        "⮑ Label": "Level 3",
+        "State": "Default",
+        "Content": "Label"
+       },
+       "overrides": 4
+      },
+      {
+       "name": ".Breadcrumb separator",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb separator",
+       "variant": "Content=Default",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Content": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Default, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Dropdown Menu": false,
+        "Icon": "1957:25302",
+        "⮑ Label": "Level 4",
+        "State": "Default",
+        "Content": "Label"
+       },
+       "overrides": 4
+      },
+      {
+       "name": ".Breadcrumb separator",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb separator",
+       "variant": "Content=Default",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Content": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Default, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Dropdown Menu": false,
+        "Icon": "1957:25302",
+        "⮑ Label": "Level 5",
+        "State": "Default",
+        "Content": "Label"
+       },
+       "overrides": 4
+      },
+      {
+       "name": ".Breadcrumb separator",
+       "type": "INSTANCE",
+       "w": 14,
+       "h": 14,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb separator",
+       "variant": "Content=Default",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Content": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": ".Breadcrumb item",
+       "type": "INSTANCE",
+       "w": 46,
+       "h": 20,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": ".Breadcrumb item",
+       "variant": "State=Active, Content=Label",
+       "instancePage": "Breadcrumb",
+       "values": {
+        "Icon": "1957:25302",
+        "Dropdown Menu": false,
+        "⮑ Label": "Level 6",
+        "State": "Active",
+        "Content": "Label"
+       },
+       "overrides": 4
+      }
+     ]
+    }
+   ],
+   "properties": {
+    "Breadcrumb Items#1962:0": {
+     "type": "SLOT"
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+# chunk 1 of read 7 · in #1:10 · 5 nodes
+
+FRAME#2:1 "a" at:0,0 wh:100x40 row gap:auto pad:8 size:fill,fixed fill:#FFFFFF80
+  TEXT#2:2 "b, c" at:8,8 wh:84x24 font:SF Pro Text Semibold 13 lh:130% fill:#000 text:"b, c"
+  RECT#2:3 "d \"e\"" at:0,0 wh:8x8 hidden fill:#FF0000 r:4
+  ELL#2:4 "dot" at:0,0 wh:4x4 fill:mixed
+  STAR#2:5 "star" at:0,0 wh:16x16 rot:45 fill:grad.radial(#FFF@0%,#000@50%,#F00@100%) fx:drop(0,1,2,0,#00000033)+bgblur(8)+noise
+
+# styles+
+t.caption = SF Pro Text Semibold 13/130%
+
+# cmp+
+cmp.dot = "Dot"

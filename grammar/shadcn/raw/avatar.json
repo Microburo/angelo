@@ -1,0 +1,2107 @@
+{
+ "page": "Avatar",
+ "sets": [
+  {
+   "name": "Avatar Placeholder",
+   "description": "Fallback for representing the user.",
+   "properties": {
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small",
+      "Large"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Default",
+   "variants": [
+    {
+     "name": "Size=Large",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 24,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "font": "Geist Regular 9",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Avatar With Status Badge",
+   "properties": {
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small",
+      "Large"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Default",
+   "variants": [
+    {
+     "name": "Size=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 32,
+         "h": 32,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 32,
+         "h": 32,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 30,
+       "h": 30,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 30,
+         "h": 30,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "raw tailwind colors/tw-raw/green/600"
+        }
+       ]
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Large",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1.25,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 37.5,
+       "h": 37.5,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 37.5,
+         "h": 37.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 10,
+       "h": 10,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "raw tailwind colors/tw-raw/green/600"
+        }
+       ]
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "font": "Geist Regular 17.5",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 24,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 22,
+       "h": 22,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 22,
+         "h": 22,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 6,
+       "h": 6,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "raw tailwind colors/tw-raw/green/600"
+        }
+       ]
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Avatar With Icon",
+   "properties": {
+    "Icon#6490:0": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25285",
+     "preferred": 1
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small",
+      "Large"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Default",
+   "variants": [
+    {
+     "name": "Size=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 32,
+         "h": 32,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 32,
+         "h": 32,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 30,
+       "h": 30,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 30,
+         "h": 30,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 10,
+         "h": 10,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ]
+      },
+      {
+       "name": "Lucide / square-dashed",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#6490:0"
+       },
+       "w": 6,
+       "h": 6,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Large",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1.25,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 37.5,
+       "h": 37.5,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 37.5,
+         "h": 37.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 12.5,
+         "h": 12.5,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 10,
+       "h": 10,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ]
+      },
+      {
+       "name": "Lucide / square-dashed",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#6490:0"
+       },
+       "w": 7.5,
+       "h": 7.5,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "font": "Geist Regular 17.5",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    },
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 24,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Subtract lvl 3",
+       "type": "BOOLEAN_OPERATION",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "radius": 999,
+       "bound": {
+        "cornerRadius": "border radii/radius-full"
+       },
+       "children": [
+        {
+         "name": "Background",
+         "type": "RECTANGLE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 2",
+       "type": "BOOLEAN_OPERATION",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "children": [
+        {
+         "name": "Rectangle 1",
+         "type": "RECTANGLE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokes": [
+          {
+           "hex": "d9d9d9"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 999,
+         "bound": {
+          "topLeftRadius": "border radii/radius-full",
+          "topRightRadius": "border radii/radius-full",
+          "bottomLeftRadius": "border radii/radius-full",
+          "bottomRightRadius": "border radii/radius-full"
+         }
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Subtract lvl 1",
+       "type": "BOOLEAN_OPERATION",
+       "w": 22,
+       "h": 22,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "children": [
+        {
+         "name": "Ellipse 1",
+         "type": "ELLIPSE",
+         "w": 22,
+         "h": 22,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted"
+          }
+         ]
+        },
+        {
+         "name": "Dot",
+         "type": "ELLIPSE",
+         "w": 8,
+         "h": 8,
+         "sizing": "XX",
+         "fills": [
+          {
+           "hex": "00a521"
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Badge",
+       "type": "ELLIPSE",
+       "w": 6,
+       "h": 6,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ]
+      },
+      {
+       "name": "Lucide / square-dashed",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#6490:0"
+       },
+       "w": 4,
+       "h": 4,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "CN",
+       "type": "TEXT",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "CN",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "NONE",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Avatar With Image",
+   "description": "An image element for representing the user.",
+   "properties": {
+    "Size": {
+     "type": "VARIANT",
+     "default": "Small",
+     "options": [
+      "Default",
+      "Small",
+      "Large"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Small",
+   "variants": [
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 24,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Image",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Image",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Large",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Image",
+       "type": "RECTANGLE",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Avatar Stack",
+   "properties": {
+    "Show 4th#1688:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Show 5th#1688:3": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Show 3th#1688:6": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Small",
+     "options": [
+      "Regular",
+      "Small"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Small",
+   "variants": [
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "layout": "HORIZONTAL",
+     "gap": -8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Small",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Small"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Small",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Small"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "props": {
+        "visible": "Show 3th#1688:6"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Small",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Small"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "hidden": true,
+       "props": {
+        "visible": "Show 4th#1688:0"
+       },
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Small",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Small"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "hidden": true,
+       "props": {
+        "visible": "Show 5th#1688:3"
+       },
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 24,
+         "h": 24,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Small",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Small"
+         },
+         "overrides": 1
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Size=Regular",
+     "type": "COMPONENT",
+     "w": 104,
+     "h": 40,
+     "sizing": "HH",
+     "layout": "HORIZONTAL",
+     "gap": -8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Large",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Large"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Large",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Large"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "props": {
+        "visible": "Show 3th#1688:6"
+       },
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Large",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Large"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "hidden": true,
+       "props": {
+        "visible": "Show 4th#1688:0"
+       },
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Large",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Large"
+         },
+         "overrides": 1
+        }
+       ]
+      },
+      {
+       "name": "Holder",
+       "type": "FRAME",
+       "hidden": true,
+       "props": {
+        "visible": "Show 5th#1688:3"
+       },
+       "w": 40,
+       "h": 40,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       },
+       "clip": true,
+       "children": [
+        {
+         "name": "Avatar With Image",
+         "type": "INSTANCE",
+         "w": 40,
+         "h": 40,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Avatar With Image",
+         "variant": "Size=Large",
+         "instancePage": "Avatar",
+         "values": {
+          "Size": "Large"
+         },
+         "overrides": 1
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": "Avatar Stack With Count",
+   "type": "COMPONENT",
+   "w": 80,
+   "h": 32,
+   "sizing": "HH",
+   "layout": "HORIZONTAL",
+   "gap": -8,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Avatar With Image",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Avatar With Image",
+       "variant": "Size=Small",
+       "instancePage": "Avatar",
+       "values": {
+        "Size": "Small"
+       },
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Avatar With Image",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Avatar With Image",
+       "variant": "Size=Small",
+       "instancePage": "Avatar",
+       "values": {
+        "Size": "Small"
+       },
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Avatar Placeholder",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "instanceOf": "Avatar Placeholder",
+       "variant": "Size=Small",
+       "instancePage": "Avatar",
+       "values": {
+        "Size": "Small"
+       },
+       "overrides": 3
+      }
+     ]
+    }
+   ],
+   "properties": {}
+  },
+  {
+   "name": "Avatar Stack With Icon",
+   "type": "COMPONENT",
+   "w": 80,
+   "h": 32,
+   "sizing": "HH",
+   "layout": "HORIZONTAL",
+   "gap": -8,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Avatar With Image",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Avatar With Image",
+       "variant": "Size=Small",
+       "instancePage": "Avatar",
+       "values": {
+        "Size": "Small"
+       },
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Avatar With Image",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Avatar With Image",
+       "variant": "Size=Small",
+       "instancePage": "Avatar",
+       "values": {
+        "Size": "Small"
+       },
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Holder",
+     "type": "FRAME",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "clip": true,
+     "children": [
+      {
+       "name": "Decorative Icon (OC)",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "Decorative Icon (OC)",
+       "variant": "Variant=Muted, Size=Small, Roundness=Default",
+       "instancePage": "Decorative Icon (OC)",
+       "values": {
+        "Icon": "1957:25263",
+        "Variant": "Muted",
+        "Size": "Small",
+        "Roundness": "Default"
+       },
+       "overrides": 3
+      }
+     ]
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

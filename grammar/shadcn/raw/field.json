@@ -1,0 +1,3274 @@
+{
+ "page": "Field •",
+ "sets": [
+  {
+   "name": "Vertical Field - Nova",
+   "properties": {
+    "Show error#2301:0": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Radio Options#5447:0": {
+     "type": "SLOT",
+     "preferred": 1
+    },
+    "Checkbox Options#5447:7": {
+     "type": "SLOT",
+     "preferred": 1
+    },
+    "Show description#5677:5": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "Text Value",
+     "options": [
+      "Select",
+      "Text Value",
+      "Radio",
+      "Textarea",
+      "Checkbox"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Error"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Text Value, State=Default",
+   "variants": [
+    {
+     "name": "Type=Text Value, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 61,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Default, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Default",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Input - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 32,
+       "sizing": "LH",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/out-of-scale/2,5",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/out-of-scale/2,5",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        6,
+        10,
+        6,
+        10
+       ],
+       "align": "MIN/CENTER",
+       "clip": true,
+       "instanceOf": "Input - Nova",
+       "variant": "Position=Default, Size=Regular, State=Value",
+       "instancePage": "Input & Input Group •",
+       "values": {
+        "Show decoration left": false,
+        "Value": "Value",
+        "Show prepend text": false,
+        "Show append text": false,
+        "Show cursor": false,
+        "Show decoration right": false,
+        "Position": "Default",
+        "Size": "Regular",
+        "State": "Value"
+       },
+       "overrides": 13
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Text Value, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 87,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Error, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Error",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Input - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 32,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-001",
+         "opacity": 0
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/out-of-scale/2,5",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/out-of-scale/2,5",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        6,
+        10,
+        6,
+        10
+       ],
+       "align": "MIN/CENTER",
+       "clip": true,
+       "instanceOf": "Input - Nova",
+       "variant": "Position=Default, Size=Regular, State=Error",
+       "instancePage": "Input & Input Group •",
+       "values": {
+        "Show append text": false,
+        "Show prepend text": false,
+        "Value": "Value",
+        "Show cursor": false,
+        "Show decoration right": false,
+        "Show decoration left": false,
+        "Position": "Default",
+        "Size": "Regular",
+        "State": "Error"
+       },
+       "overrides": 11
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Error message",
+       "type": "TEXT",
+       "props": {
+        "visible": "Show error#2301:0"
+       },
+       "w": 296,
+       "h": 18,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Error message here",
+       "font": "Geist Regular 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Select, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 61,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Default, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Default",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Select & Combobox - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 32,
+       "sizing": "LH",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/sm",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/xs",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        6,
+        8,
+        6,
+        12
+       ],
+       "align": "MIN/CENTER",
+       "instanceOf": "Select & Combobox - Nova",
+       "variant": "Size=Default, State=Default, Lines=1 Line",
+       "instancePage": "Select & Combobox •",
+       "values": {
+        "Show Prepend": false,
+        "Show Decoration": false,
+        "Size": "Default",
+        "State": "Default",
+        "Lines": "1 Line"
+       },
+       "overrides": 8
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Select, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 87,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Error, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Error",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Select & Combobox - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 32,
+       "sizing": "LH",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/sm",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/xs",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        6,
+        8,
+        6,
+        12
+       ],
+       "align": "MIN/CENTER",
+       "clip": true,
+       "instanceOf": "Select & Combobox - Nova",
+       "variant": "Size=Default, State=Error, Lines=1 Line",
+       "instancePage": "Select & Combobox •",
+       "values": {
+        "Show Prepend": false,
+        "Show Decoration": false,
+        "Size": "Default",
+        "State": "Error",
+        "Lines": "1 Line"
+       },
+       "overrides": 7
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Error message",
+       "type": "TEXT",
+       "props": {
+        "visible": "Show error#2301:0"
+       },
+       "w": 296,
+       "h": 18,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Error message here",
+       "font": "Geist Regular 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Textarea, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 105,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Default, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Default",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Textarea - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 76,
+       "sizing": "LX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "effectStyle": "shadow-xs",
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "clip": true,
+       "instanceOf": "Textarea - Nova",
+       "variant": "State=Placeholder",
+       "instancePage": "Textarea •",
+       "values": {
+        "Show resizable": true,
+        "State": "Placeholder"
+       },
+       "overrides": 3
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Textarea, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 131,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Error, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Error",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Textarea - Nova",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 76,
+       "sizing": "LX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "clip": true,
+       "instanceOf": "Textarea - Nova",
+       "variant": "State=Error",
+       "instancePage": "Textarea •",
+       "values": {
+        "Show resizable": true,
+        "State": "Error"
+       },
+       "overrides": 3
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Error message",
+       "type": "TEXT",
+       "props": {
+        "visible": "Show error#2301:0"
+       },
+       "w": 296,
+       "h": 18,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Error message here",
+       "font": "Geist Regular 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Radio, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 75,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Default, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Default",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Radio Options",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Radio Options#5447:0"
+       },
+       "w": 320,
+       "h": 46,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Radio Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 21,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Radio Group - Nova",
+         "variant": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=False",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "Layout": "Inline",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Radio Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 21,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Radio Group - Nova",
+         "variant": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=False",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "Layout": "Inline",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        }
+       ]
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Radio, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 101,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Error, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Error",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Radio Options",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Radio Options#5447:0"
+       },
+       "w": 320,
+       "h": 46,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Radio Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 21,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Radio Group - Nova",
+         "variant": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=False",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "Layout": "Inline",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Radio Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 21,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Radio Group - Nova",
+         "variant": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=False",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "Layout": "Inline",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        }
+       ]
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Error message",
+       "type": "TEXT",
+       "props": {
+        "visible": "Show error#2301:0"
+       },
+       "w": 296,
+       "h": 18,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Error message here",
+       "font": "Geist Regular 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Checkbox, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 109,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Default, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Default",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Checkbox Options",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Checkbox Options#5447:7"
+       },
+       "w": 320,
+       "h": 80,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 24,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=True, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "True",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 24,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "False",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        },
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 81,
+         "h": 24,
+         "sizing": "HX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "False",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        }
+       ]
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=Checkbox, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 135,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "INSTANCE",
+       "w": 320,
+       "h": 21,
+       "sizing": "LX",
+       "instanceOf": "Label",
+       "variant": "Layout=Block, State=Error, Weight=Medium",
+       "instancePage": "Label",
+       "values": {
+        "Layout": "Block",
+        "State": "Error",
+        "Weight": "Medium"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Checkbox Options",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Checkbox Options#5447:7"
+       },
+       "w": 320,
+       "h": 80,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/2xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 4,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 320,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=True, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "True",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 320,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "False",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        },
+        {
+         "name": "Checkbox Group - Nova",
+         "type": "INSTANCE",
+         "w": 320,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Checkbox Group - Nova",
+         "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+         "instancePage": "Checkbox •",
+         "values": {
+          "Layout": "Inline",
+          "Checked?": "False",
+          "Weight": "Normal",
+          "Disabled": "False"
+         },
+         "overrides": 3
+        }
+       ]
+      },
+      {
+       "name": "Description",
+       "type": "TEXT",
+       "hidden": true,
+       "props": {
+        "visible": "Show description#5677:5"
+       },
+       "w": 296,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "Form message here",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Error message",
+       "type": "TEXT",
+       "props": {
+        "visible": "Show error#2301:0"
+       },
+       "w": 296,
+       "h": 18,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Error message here",
+       "font": "Geist Regular 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Horizontal Field - Nova",
+   "properties": {
+    "Show error#2301:13": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Radio options#5677:12": {
+     "type": "SLOT"
+    },
+    "Checkbox options#5677:19": {
+     "type": "SLOT"
+    },
+    "Show description#5677:26": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "Text Value",
+     "options": [
+      "Select",
+      "Text Value",
+      "Radio",
+      "Textarea",
+      "Checkbox"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Error"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Text Value, State=Default",
+   "variants": [
+    {
+     "name": "Type=Text Value, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 36,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "CENTER/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Default, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Default",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 32,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "CENTER/MIN",
+       "children": [
+        {
+         "name": "Input - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 32,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/input"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "MIN/CENTER",
+         "clip": true,
+         "instanceOf": "Input - Nova",
+         "variant": "Position=Default, Size=Regular, State=Value",
+         "instancePage": "Input & Input Group •",
+         "values": {
+          "Show decoration left": false,
+          "Value": "Value",
+          "Show prepend text": false,
+          "Show append text": false,
+          "Show cursor": false,
+          "Show decoration right": false,
+          "Position": "Default",
+          "Size": "Regular",
+          "State": "Value"
+         },
+         "overrides": 13
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Text Value, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 58,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "CENTER/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Error, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Error",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 58,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "CENTER/MIN",
+       "children": [
+        {
+         "name": "Input - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 32,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/alpha/white/switch/alpha-001",
+           "opacity": 0
+          }
+         ],
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "MIN/CENTER",
+         "clip": true,
+         "instanceOf": "Input - Nova",
+         "variant": "Position=Default, Size=Regular, State=Error",
+         "instancePage": "Input & Input Group •",
+         "values": {
+          "Show append text": false,
+          "Show prepend text": false,
+          "Value": "Value",
+          "Show cursor": false,
+          "Show decoration right": false,
+          "Show decoration left": false,
+          "Position": "Default",
+          "Size": "Regular",
+          "State": "Error"
+         },
+         "overrides": 13
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Error message",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show error#2301:13"
+         },
+         "w": 172,
+         "h": 18,
+         "sizing": "XH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "text": "Error message here",
+         "font": "Geist Regular 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Select, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 36,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Default, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Default",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 32,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Select & Combobox - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 32,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/border"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 8,
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/sm",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-md",
+          "topRightRadius": "border radii/radius-md",
+          "bottomLeftRadius": "border radii/radius-md",
+          "bottomRightRadius": "border radii/radius-md"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          6,
+          8,
+          6,
+          12
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Select & Combobox - Nova",
+         "variant": "Size=Default, State=Default, Lines=1 Line",
+         "instancePage": "Select & Combobox •",
+         "values": {
+          "Show Prepend": false,
+          "Show Decoration": false,
+          "Size": "Default",
+          "State": "Default",
+          "Lines": "1 Line"
+         },
+         "overrides": 8
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Select, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 58,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Error, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Error",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 58,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Select & Combobox - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 32,
+         "sizing": "LH",
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 8,
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/sm",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-md",
+          "topRightRadius": "border radii/radius-md",
+          "bottomLeftRadius": "border radii/radius-md",
+          "bottomRightRadius": "border radii/radius-md"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          6,
+          8,
+          6,
+          12
+         ],
+         "align": "MIN/CENTER",
+         "clip": true,
+         "instanceOf": "Select & Combobox - Nova",
+         "variant": "Size=Default, State=Error, Lines=1 Line",
+         "instancePage": "Select & Combobox •",
+         "values": {
+          "Show Prepend": false,
+          "Show Decoration": false,
+          "Size": "Default",
+          "State": "Error",
+          "Lines": "1 Line"
+         },
+         "overrides": 7
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Error message",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show error#2301:13"
+         },
+         "w": 172,
+         "h": 18,
+         "sizing": "XH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "text": "Error message here",
+         "font": "Geist Regular 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Textarea, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 76,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Default, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Default",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 76,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Textarea - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 76,
+         "sizing": "LX",
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/input"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "effectStyle": "shadow-xs",
+         "bound": {
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "clip": true,
+         "instanceOf": "Textarea - Nova",
+         "variant": "State=Placeholder",
+         "instancePage": "Textarea •",
+         "values": {
+          "Show resizable": true,
+          "State": "Placeholder"
+         },
+         "overrides": 3
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Textarea, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 102,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 20,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Error, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Error",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 102,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Textarea - Nova",
+         "type": "INSTANCE",
+         "w": 196,
+         "h": 76,
+         "sizing": "LX",
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "clip": true,
+         "instanceOf": "Textarea - Nova",
+         "variant": "State=Error",
+         "instancePage": "Textarea •",
+         "values": {
+          "Show resizable": true,
+          "State": "Error"
+         },
+         "overrides": 3
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Error message",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show error#2301:13"
+         },
+         "w": 172,
+         "h": 18,
+         "sizing": "XH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "text": "Error message here",
+         "font": "Geist Regular 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Radio, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 46,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Default, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Default",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 46,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Radio options",
+         "type": "SLOT",
+         "props": {
+          "slotContentId": "Radio options#5677:12"
+         },
+         "w": 196,
+         "h": 46,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/2xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 4,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Radio Group - Nova",
+           "type": "INSTANCE",
+           "w": 81,
+           "h": 21,
+           "sizing": "HX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Radio Group - Nova",
+           "variant": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=False",
+           "instancePage": "Radio •",
+           "values": {
+            "Checked?": "True",
+            "Layout": "Inline",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 4
+          },
+          {
+           "name": "Radio Group - Nova",
+           "type": "INSTANCE",
+           "w": 81,
+           "h": 21,
+           "sizing": "HX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Radio Group - Nova",
+           "variant": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=False",
+           "instancePage": "Radio •",
+           "values": {
+            "Checked?": "False",
+            "Layout": "Inline",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          }
+         ]
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Radio, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 72,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Error, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Error",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 72,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Radio options",
+         "type": "SLOT",
+         "props": {
+          "slotContentId": "Radio options#5677:12"
+         },
+         "w": 196,
+         "h": 46,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/2xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 4,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Radio Group - Nova",
+           "type": "INSTANCE",
+           "w": 81,
+           "h": 21,
+           "sizing": "HX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Radio Group - Nova",
+           "variant": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=False",
+           "instancePage": "Radio •",
+           "values": {
+            "Checked?": "True",
+            "Layout": "Inline",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 4
+          },
+          {
+           "name": "Radio Group - Nova",
+           "type": "INSTANCE",
+           "w": 81,
+           "h": 21,
+           "sizing": "HX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Radio Group - Nova",
+           "variant": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=False",
+           "instancePage": "Radio •",
+           "values": {
+            "Checked?": "False",
+            "Layout": "Inline",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          }
+         ]
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Error message",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show error#2301:13"
+         },
+         "w": 172,
+         "h": 18,
+         "sizing": "XH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "text": "Error message here",
+         "font": "Geist Regular 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Checkbox, State=Default",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 80,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Default, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Default",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 80,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Checkbox options",
+         "type": "SLOT",
+         "props": {
+          "slotContentId": "Checkbox options#5677:19"
+         },
+         "w": 196,
+         "h": 80,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/2xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 4,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          },
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          },
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          }
+         ]
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Checkbox, State=Error",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 106,
+     "sizing": "XH",
+     "bound": {
+      "itemSpacing": "spacing/2xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Wrapper",
+       "type": "FRAME",
+       "w": 120,
+       "h": 36,
+       "sizing": "XX",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "INSTANCE",
+         "w": 120,
+         "h": 24,
+         "sizing": "LX",
+         "bound": {
+          "itemSpacing": "spacing/3xs"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 2,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/CENTER",
+         "instanceOf": "Label",
+         "variant": "Layout=Inline, State=Error, Weight=Medium",
+         "instancePage": "Label",
+         "values": {
+          "Layout": "Inline",
+          "State": "Error",
+          "Weight": "Medium"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 196,
+       "h": 106,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Checkbox options",
+         "type": "SLOT",
+         "props": {
+          "slotContentId": "Checkbox options#5677:19"
+         },
+         "w": 196,
+         "h": 80,
+         "sizing": "LH",
+         "bound": {
+          "itemSpacing": "spacing/2xs"
+         },
+         "layout": "VERTICAL",
+         "gap": 4,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "children": [
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          },
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          },
+          {
+           "name": "Checkbox Group - Nova",
+           "type": "INSTANCE",
+           "w": 196,
+           "h": 24,
+           "sizing": "LX",
+           "bound": {
+            "itemSpacing": "spacing/xs"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 8,
+           "pad": [
+            0,
+            0,
+            0,
+            0
+           ],
+           "align": "MIN/CENTER",
+           "instanceOf": "Checkbox Group - Nova",
+           "variant": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+           "instancePage": "Checkbox •",
+           "values": {
+            "Layout": "Inline",
+            "Checked?": "False",
+            "Weight": "Normal",
+            "Disabled": "False"
+           },
+           "overrides": 3
+          }
+         ]
+        },
+        {
+         "name": "Description",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show description#5677:26"
+         },
+         "w": 172,
+         "h": 20,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Form message here",
+         "textStyle": "paragraph small/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Error message",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show error#2301:13"
+         },
+         "w": 172,
+         "h": 18,
+         "sizing": "XH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/destructive"
+          }
+         ],
+         "text": "Error message here",
+         "font": "Geist Regular 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

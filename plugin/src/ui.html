@@ -1,0 +1,3400 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      /* Angelo panel: tokens and spacing of the reference frame (SF Pro 13/130 %, neutral scale, 12 px gutters) */
+      :root {
+        --bg: #fff; /* bg/surface */
+        --bg-subtle: #fafafa; /* bg/subtle */
+        --bg-muted: #f5f5f5; /* bg/muted */
+        --line: #f5f5f5; /* border/default */
+        --line-input: #d4d4d4; /* border/input */
+        --fg: #171717; /* text/primary */
+        --fg2: #737373; /* text/secondary */
+        --fg3: #a3a3a3; /* text/placeholder */
+        --icon: #404040; /* icon/default */
+        --primary: #171717; /* primary/default */
+        --on-primary: #fff;
+        --ok: #16a34a; /* feedback/success */
+        --warn: #d97706;
+        --err: #dc2626;
+        --mark: #f24822;
+        --shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.1); /* elevation.md */
+        --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08); /* elevation.sm */
+        --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23404040' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"); /* icon/default */
+      }
+      .figma-dark {
+        --bg: #2c2c2c;
+        --bg-subtle: #383838;
+        --bg-muted: #383838;
+        --line: #3d3d3d;
+        --line-input: #525252;
+        --fg: #fafafa;
+        --fg2: #a3a3a3;
+        --fg3: #737373;
+        --icon: #d4d4d4;
+        --primary: #fafafa;
+        --on-primary: #171717;
+        --chevron: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4d4d4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      }
+      * {
+        box-sizing: border-box;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      /* scrollbars: thumb only, no track fill, no edge line */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background: transparent;
+      }
+      ::-webkit-scrollbar-track,
+      ::-webkit-scrollbar-corner {
+        background: transparent;
+        border: 0;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--line-input);
+        border: 2px solid transparent;
+        border-radius: 999px;
+        background-clip: padding-box;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: var(--fg3);
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", system-ui, sans-serif;
+        font-size: 13px;
+        line-height: 1.3;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+        user-select: none;
+      }
+      button,
+      input,
+      textarea,
+      select {
+        font: inherit;
+        color: inherit;
+      }
+      b,
+      strong {
+        font-weight: inherit;
+      }
+      code,
+      pre {
+        font: 12px/1.3 ui-monospace, "SF Mono", Menlo, monospace;
+      }
+      .grow {
+        flex: 1;
+      }
+      .muted {
+        color: var(--fg2);
+      }
+      .ellipsis {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* the former bottom bar and its activity list: kept for the scripts, never shown */
+      #bar,
+      #activity {
+        display: none !important;
+      }
+      .dot {
+        width: 5px;
+        height: 5px;
+        flex: none;
+        border-radius: 50%;
+        background: var(--fg3);
+      }
+      .dot.on {
+        background: var(--ok);
+      }
+      .dot.wait {
+        background: var(--warn);
+      }
+      .dot.err {
+        background: var(--err);
+      }
+      @keyframes run {
+        50% {
+          opacity: 0.2;
+        }
+      }
+
+      /* ── controls ── */
+      .ib {
+        width: 16px;
+        height: 16px;
+        flex: none;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--fg2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        position: relative;
+        transition: opacity 0.12s;
+      }
+      .ib svg {
+        width: 16px;
+        height: 16px;
+      }
+      .ib:hover:not(:disabled) {
+        opacity: 0.6;
+      }
+      .ib.on {
+        color: var(--fg2);
+      }
+      .ib:disabled {
+        opacity: 0.3;
+        cursor: default;
+      }
+      .ib .badge {
+        position: absolute;
+        top: -2px;
+        right: -2px;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--primary);
+      }
+      /* minimized: only the input and its send button; the window shrinks to them */
+      #minBtn .max,
+      body.mini #minBtn .min {
+        display: none;
+      }
+      body.mini #minBtn .max {
+        display: contents;
+      }
+      body.mini #scroll,
+      body.mini #batch,
+      body.mini #perms,
+      body.mini #onb,
+      body.mini #opts,
+      body.mini .ctx,
+      body.mini #targets,
+      body.mini #optLine,
+      body.mini #fileHint,
+      body.mini #queue,
+      body.mini #addFile,
+      body.mini #optsBtn {
+        display: none !important;
+      }
+      body.mini #notes {
+        padding-top: 8px;
+      }
+      body.mini .field:not(:hover) #minBtn {
+        display: none;
+      }
+      /* text links: Select, Undo, Copy, Clear */
+      .tl,
+      .link {
+        flex: none;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: var(--fg2);
+        cursor: pointer;
+      }
+      .tl:hover:not(:disabled),
+      .link:hover {
+        color: var(--fg);
+      }
+      .tl:disabled {
+        display: none;
+      }
+      .btn {
+        height: 28px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        flex: none;
+        cursor: pointer;
+        transition: opacity 0.12s;
+      }
+      .btn.primary {
+        background: var(--primary);
+        color: var(--on-primary);
+      }
+      .btn.ghost {
+        background: none;
+        color: var(--fg);
+        box-shadow: inset 0 0 0 1px var(--line-input);
+      }
+      .btn:hover:not(:disabled) {
+        opacity: 0.85;
+      }
+      .btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .btn.sm {
+        height: 24px;
+        padding: 0 10px;
+      }
+      input[type="text"],
+      input[type="password"],
+      select,
+      textarea {
+        background: var(--bg);
+        border: 1px solid var(--line-input);
+        border-radius: 8px;
+        outline: 0;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 8px 12px;
+      }
+      input::placeholder,
+      textarea::placeholder {
+        color: var(--fg2);
+      }
+      input:focus,
+      select:focus {
+        border-color: var(--fg2);
+      }
+      input.bad {
+        border-color: var(--err);
+      }
+      select {
+        height: 28px;
+        padding: 0 28px 0 8px;
+        min-width: 0;
+        max-width: 60%;
+        appearance: none;
+        background: var(--bg) var(--chevron) no-repeat right 8px center / 12px 12px;
+      }
+      .tog {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+      }
+      .tog input {
+        margin: 0;
+        accent-color: var(--primary);
+      }
+
+      /* ── panel ── */
+      #notes {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        padding-top: 12px;
+        position: relative;
+      }
+      #scroll {
+        flex: 1;
+        min-height: 0;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        user-select: text;
+      }
+      #list {
+        display: flex;
+        flex-direction: column;
+      }
+      .empty {
+        padding: 16px 12px;
+        color: var(--fg2);
+      }
+
+      /* Claude at the start of the discussion: what it needs before it listens */
+      .intro {
+        flex: none;
+        padding: 0 12px 16px;
+        border-bottom: 1px solid var(--line);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .intro.ready {
+        border-bottom: 0;
+      }
+      /* the compact header (Connected · Guide) comes back on scroll up, tucks away on scroll down */
+      .intro.ready {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        background: var(--bg);
+        transition: transform 0.18s ease;
+      }
+      .intro.ready.tuck {
+        transform: translateY(-100%);
+      }
+      .intro .lbl {
+        color: var(--fg3);
+      }
+      .intro .row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .intro .row .muted {
+        flex: 1;
+      }
+      .intro .cmd {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .intro code {
+        flex: 1;
+        min-width: 0;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: var(--bg-subtle);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .banner {
+        flex: none;
+        padding: 16px 12px;
+        background: var(--bg-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        color: var(--fg2);
+      }
+
+      /* ── a note ── */
+      .item {
+        display: flex;
+        flex-direction: column;
+        padding: 16px 0;
+        border-bottom: 1px solid var(--line);
+        cursor: pointer;
+      }
+      /* the full-width line above the composer belongs to the selection block */
+      #list > .item:last-child {
+        border-bottom: 0;
+      }
+      #help[hidden] + #setup[hidden] + #list > .item:first-child {
+        padding-top: 0;
+      }
+      .item .head {
+        padding-bottom: 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .item.hit {
+        box-shadow: inset 2px 0 0 var(--primary);
+      }
+      .item .top {
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .item .who {
+        flex: 1;
+        min-width: 0;
+        color: var(--fg3);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .st {
+        flex: none;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        color: var(--fg2);
+      }
+      /* lowercase label: the dot sits on the baseline, then rises to the middle of the x-height */
+      .st::before {
+        content: "";
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--fg3);
+        transform: translateY(calc(2.5px - 0.5ex));
+      }
+      .st.working::before {
+        background: var(--primary);
+        animation: run 0.9s ease-in-out infinite;
+      }
+      .st.question::before {
+        background: var(--warn);
+      }
+      .st.question {
+        color: var(--fg);
+      }
+      .st.done::before {
+        background: var(--ok);
+      }
+      .item .you {
+        padding: 0 12px;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+      .item .meta {
+        padding: 0 12px;
+        color: var(--fg2);
+      }
+      .media,
+      .refs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .media {
+        padding: 0 12px;
+      }
+      .ph {
+        width: 56px;
+        height: 56px;
+        border-radius: 4px;
+        background: var(--bg-subtle) center / cover no-repeat;
+        box-shadow: inset 0 0 0 1px var(--line);
+        flex: none;
+      }
+      .ph.sm {
+        width: 32px;
+        height: 32px;
+      }
+      .ref {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-width: 96px;
+      }
+      .ref .ph {
+        width: 96px;
+        height: 72px;
+      }
+      .ref.linked {
+        cursor: pointer;
+      }
+      .ref small {
+        font-size: inherit;
+        color: var(--fg2);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      /* messages: speaker label, then text */
+      .msg {
+        padding: 0 12px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        word-break: break-word;
+      }
+      .msg > small {
+        font-size: inherit;
+        color: var(--fg3);
+      }
+      .msg.user {
+        white-space: pre-wrap;
+      }
+      .msg.system {
+        color: var(--fg2);
+      }
+      .msg.plan {
+        padding: 16px 12px;
+        border-radius: 4px;
+        background: var(--bg-subtle);
+        color: var(--fg2);
+      }
+      .msg.plan > small {
+        color: var(--fg);
+      }
+      .msg.plan + .msg {
+        padding-top: 8px;
+      }
+      .msg b {
+        font-weight: 500;
+      }
+      .msg p {
+        margin: 0;
+      }
+      .msg p + p,
+      .msg ul,
+      .msg ol {
+        margin: 4px 0 0;
+      }
+      .msg ul,
+      .msg ol {
+        padding-left: 16px;
+      }
+      .msg a,
+      .pplan a {
+        color: inherit;
+        text-decoration: underline;
+        text-decoration-color: var(--line-input);
+        text-underline-offset: 2px;
+        cursor: pointer;
+      }
+      .msg a:hover {
+        text-decoration-color: currentColor;
+      }
+      .prog {
+        padding: 0 12px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        color: var(--fg2);
+      }
+      .prog .now {
+        color: var(--fg);
+      }
+      .cmp {
+        padding: 0 12px 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .cmp figure {
+        margin: 0;
+      }
+      .cmp .img {
+        aspect-ratio: 4 / 3;
+        border-radius: 4px;
+        background: var(--bg-subtle) center / contain no-repeat;
+        box-shadow: inset 0 0 0 1px var(--line);
+        /* the picture never touches the board edges */
+        box-sizing: border-box;
+        padding: 8px 12px;
+        background-origin: content-box;
+      }
+      .cmp figcaption {
+        margin-top: 4px;
+        color: var(--fg2);
+      }
+      .reply {
+        padding: 0 12px 16px;
+      }
+      /* footer: chevron, steps, Select, Undo … reply, delete */
+      .acts {
+        margin-top: -8px;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .acts .grp {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        min-width: 0;
+      }
+      .acts .n {
+        color: var(--fg3);
+        cursor: pointer;
+      }
+      .acts .end {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .chev svg {
+        transition: transform 0.15s;
+      }
+      .chev.on svg {
+        transform: rotate(90deg);
+      }
+      .pa {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      /* ── permissions and questions asked while Claude works ── */
+      #perms {
+        flex: none;
+        max-height: 55%;
+        overflow-y: auto;
+        user-select: text;
+      }
+      .perm {
+        padding: 16px 12px;
+        background: var(--bg-subtle);
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .perm + .perm {
+        border-top: 1px solid var(--line);
+      }
+      .perm .ph2,
+      .perm .sub,
+      .perm summary {
+        display: block;
+        color: var(--fg2);
+        word-break: break-word;
+      }
+      .perm summary {
+        cursor: pointer;
+      }
+      .perm pre {
+        margin: 0;
+        max-height: 160px;
+        overflow: auto;
+        padding: 8px 12px;
+        border-radius: 4px;
+        background: var(--bg);
+        white-space: pre-wrap;
+      }
+      .chip {
+        display: inline-block;
+        margin-right: 6px;
+        color: var(--fg3);
+      }
+      .pchoices {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .pchoice {
+        text-align: left;
+        padding: 8px 12px;
+        border: 0;
+        border-radius: 8px;
+        background: var(--bg);
+        box-shadow: inset 0 0 0 1px var(--line-input);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .pchoice.on {
+        box-shadow: inset 0 0 0 1px var(--fg);
+      }
+      .pchoice small {
+        font-size: inherit;
+        color: var(--fg2);
+      }
+      .pplan p {
+        margin: 0 0 4px;
+      }
+      .pplan ul,
+      .pplan ol {
+        margin: 0 0 4px;
+        padding-left: 16px;
+      }
+
+      /* ── batch ── */
+      #batch {
+        flex: none;
+        padding: 16px 12px 0;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      #batch .head,
+      #batch .actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #batch .head span {
+        flex: 1;
+      }
+      .draft {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .draft .t {
+        flex: 1;
+        min-width: 0;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      /* ── composer: selection, then the input ── */
+      #composer {
+        flex: none;
+        position: relative;
+        padding-bottom: 12px;
+        display: flex;
+        flex-direction: column;
+      }
+      .ctx {
+        border-top: 1px solid var(--line);
+        padding: 8px 12px 16px;
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        color: var(--fg2);
+      }
+      .ctx .txt {
+        flex: 1;
+        min-width: 0;
+      }
+      .ctx .name,
+      .ctx .sub {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+      }
+      #targets {
+        padding: 0 12px 8px;
+      }
+      .tchip,
+      .fchip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        max-width: 100%;
+        height: 24px;
+        padding: 0 4px;
+        border-radius: 4px;
+        background: var(--bg-subtle);
+      }
+      .tchip .tn,
+      .fchip .fn {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 140px;
+      }
+      .fchip .ext {
+        color: var(--fg3);
+      }
+      .athumb {
+        position: relative;
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        background: var(--bg-subtle) center / cover no-repeat;
+        box-shadow: inset 0 0 0 1px var(--line);
+      }
+      .tchip .x,
+      .athumb .x,
+      .fchip .x,
+      .draft .x {
+        width: 16px;
+        height: 16px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: none;
+        color: var(--fg2);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex: none;
+      }
+      .tchip .x:hover,
+      .fchip .x:hover,
+      .draft .x:hover {
+        color: var(--fg);
+      }
+      .athumb .x {
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        background: var(--bg);
+      }
+      .field {
+        position: relative;
+        margin: 0 12px;
+        padding: 8px 12px;
+        border: 1px solid var(--line-input);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      .field .row {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 8px;
+      }
+      #note {
+        flex: 1;
+        min-width: 0;
+        min-height: 28px;
+        max-height: 160px;
+        padding: 6px 0 5px;
+        border: 0;
+        border-radius: 0;
+        resize: none;
+        background: none;
+        field-sizing: content;
+      }
+      .optline {
+        color: var(--fg2);
+      }
+      .tools {
+        flex: none;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      #send {
+        width: 28px;
+        height: 28px;
+        padding: 0;
+        justify-content: center;
+      }
+      #send svg {
+        width: 16px;
+        height: 16px;
+      }
+      /* popovers: options, @mentions */
+      .pop {
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: calc(100% + 4px);
+        z-index: 5;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        box-shadow: var(--shadow);
+        max-height: 60vh;
+        overflow-y: auto;
+      }
+      #mention {
+        left: -1px;
+        right: -1px;
+        padding: 4px;
+        border-radius: 8px;
+      }
+      #mention .opt {
+        display: flex;
+        gap: 8px;
+        align-items: baseline;
+        padding: 6px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #mention .opt b {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      #mention .opt span,
+      #mention .none {
+        color: var(--fg2);
+        white-space: nowrap;
+      }
+      #mention .none {
+        padding: 6px 8px;
+      }
+      #mention .opt.on {
+        background: var(--bg-subtle);
+      }
+      #opts {
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+      /* design: opts frame — label column 84, segmented controls, selects filling the row */
+      .orow {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .orow .lbl {
+        flex: none;
+        width: 84px;
+        color: var(--fg2);
+      }
+      #opts select {
+        flex: 1;
+        max-width: none;
+        height: 32px;
+      }
+      .seg {
+        display: inline-flex;
+        gap: 2px;
+        padding: 2px;
+        border-radius: 8px;
+        background: var(--bg-muted);
+      }
+      .seg button {
+        height: 28px;
+        padding: 0 12px;
+        border: 0;
+        border-radius: 8px;
+        background: none;
+        color: var(--fg2);
+        cursor: pointer;
+      }
+      .seg button.on {
+        background: var(--bg);
+        color: var(--fg);
+        box-shadow: var(--shadow-sm);
+      }
+      .tokenRow input {
+        flex: 1;
+      }
+
+      /* ── resize corner, drop zone ── */
+      #grip {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 6px;
+        color: var(--fg3);
+        cursor: nwse-resize;
+        z-index: 4;
+      }
+      #drop {
+        display: none;
+        position: fixed;
+        inset: 8px;
+        z-index: 30;
+        border: 1px dashed var(--fg2);
+        border-radius: 16px;
+        background: color-mix(in srgb, var(--bg) 90%, transparent);
+        color: var(--fg2);
+        align-items: center;
+        justify-content: center;
+      }
+      body.open.dragging #drop {
+        display: flex;
+      }
+
+      /* ── onboarding: first run, replayed from the Guide link ── */
+      .intro {
+        position: relative;
+      }
+      /* top right of the header: Guide, delete all; the delete asks first, in place */
+      .hacts {
+        position: absolute;
+        top: 0;
+        right: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      #clearMsg {
+        color: var(--fg);
+      }
+      .tl.danger {
+        color: var(--err);
+      }
+      #onb {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+      }
+      #onb .oh {
+        flex: none;
+        padding: 12px 12px 0;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--fg3);
+      }
+      #onb .oh .tl {
+        color: var(--fg2);
+      }
+      /* the footer follows the step, as in the design; a long step scrolls */
+      #onb .ob {
+        flex: 0 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 12px 12px 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        user-select: text;
+      }
+      /* paragraph/large-medium */
+      #onb h2 {
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.3;
+        font-weight: 500;
+        color: var(--fg);
+      }
+      #onb p {
+        margin: 0;
+        color: var(--fg2);
+      }
+      #onb .of {
+        flex: none;
+        padding: 0 12px 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      /* button size sm of the design system: 32 high */
+      #onb .of .btn,
+      #onb .btn.dl {
+        height: 32px;
+      }
+      #onb .of .btn.ghost {
+        padding: 0 8px;
+        box-shadow: none;
+      }
+      #onb .ostat {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--fg);
+      }
+      #onb .dot {
+        width: 6px;
+        height: 6px;
+      }
+      #onb .dot.wait {
+        animation: run 0.9s ease-in-out infinite;
+      }
+      /* the snippet copies itself on click (paragraph/mini) */
+      #onb pre {
+        margin: 0;
+        padding: 8px 10px;
+        border-radius: 6px;
+        background: var(--bg-subtle);
+        color: var(--fg);
+        font-family: inherit;
+        font-size: 11px;
+        line-height: 1.3;
+        white-space: pre-wrap;
+        word-break: break-word;
+        cursor: copy;
+      }
+      #onb pre.copied {
+        color: var(--fg2);
+      }
+      #onb .seg {
+        align-self: flex-start;
+      }
+      /* the live part of a step sits in the step's own 12 px rhythm */
+      #onbLive {
+        display: contents;
+      }
+      /* the three parts, each with its live dot: plugin → bridge → your AI */
+      #onb .oflow {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--fg2);
+      }
+      #onb .oflow span {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+      #onb .oflow svg {
+        width: 14px;
+        height: 14px;
+        color: var(--icon);
+      }
+      #onb .btn.dl {
+        align-self: flex-start;
+        background: var(--bg);
+        color: var(--fg);
+        box-shadow: inset 0 0 0 1px var(--line-input);
+      }
+
+    </style>
+  </head>
+  <body>
+    <div id="drop">Drop files to attach</div>
+
+    <div id="notes">
+      <div id="scroll">
+        <!-- Claude opens the discussion: what it needs before it listens -->
+        <div class="intro" id="help" hidden>
+          <span class="lbl" id="helpLbl">Claude</span>
+          <div id="helpText"></div>
+          <div class="cmd" id="helpCmdRow"><code id="helpCmd"></code><button class="tl" id="helpCopy" type="button">Copy</button></div>
+          <div class="row" id="helpReady" hidden><span class="dot on"></span><span class="muted">Connected</span></div>
+          <span class="hacts" id="hacts"><button class="tl" id="guide" type="button" title="Show the setup guide again">Guide</button><button class="ib" id="clearAll" type="button" title="Delete all notes" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 11v6" /><path d="M14 11v6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg></button></span>
+          <span class="hacts" id="clearAsk" hidden><span id="clearMsg"></span><button class="tl" id="clearNo" type="button">Cancel</button><button class="tl danger" id="clearYes" type="button">Delete</button></span>
+        </div>
+
+        <div class="banner" id="setup" hidden>
+          <div>Optional: this file's link. Adds Figma links to Claude's replies and lets it read the file's comments (Share → Copy link).</div>
+          <input type="text" id="fileUrl" placeholder="https://www.figma.com/design/…" />
+        </div>
+
+        <div id="list"></div>
+      </div>
+
+      <div id="batch" hidden>
+        <div class="head"><span id="batchTitle"></span><button class="link" id="batchClear" type="button">Clear</button></div>
+        <div id="drafts"></div>
+        <div class="actions">
+          <button class="btn primary sm" id="batchSend" type="button">Send all</button>
+          <label class="tog" title="Notes that don't depend on each other are worked on at the same time"><input type="checkbox" id="parallel" /> At the same time</label>
+        </div>
+      </div>
+
+      <div id="perms" hidden aria-live="polite"></div>
+
+      <div id="composer">
+        <div class="pop" id="opts" hidden>
+          <div class="orow">
+            <span class="lbl" title="Whole file: Claude looks at every page, not only the selection or this page">Applies to</span>
+            <div class="seg" id="scope"><button data-v="sel" class="on" type="button">Selection</button><button data-v="file" type="button">Whole file</button></div>
+          </div>
+          <div class="orow">
+            <span class="lbl" title="Claude makes this many different directions side by side and leaves the original as it is">Versions</span>
+            <div class="seg" id="variations"><button data-v="1" class="on" type="button">1</button><button data-v="2" type="button">2</button><button data-v="3" type="button">3</button><button data-v="4" type="button">4</button></div>
+          </div>
+          <div class="orow">
+            <span class="lbl">Build with</span>
+            <select id="library" title="Which design system Claude builds with"><option value="">Any library</option><option value="local">This file only</option></select>
+          </div>
+          <div class="orow">
+            <span class="lbl" title="Apply: Claude makes the changes the open comment threads ask for. Summarize: Claude groups them into themes and proposes a plan, and changes nothing until you approve it. Needs a Figma token.">Comments</span>
+            <div class="seg" id="comments"><button data-v="" class="on" type="button">Off</button><button data-v="apply" type="button">Apply</button><button data-v="summarize" type="button">Summarize</button></div>
+          </div>
+          <div class="orow tokenRow" id="tokenRow" hidden>
+            <input id="figmaToken" type="password" placeholder="Figma token (figd_…)" autocomplete="off" spellcheck="false" title="Figma → Settings → Security → Personal access tokens, scope File comments: read. Stays on this computer." />
+            <button class="btn ghost sm" id="tokenSave" type="button">Save</button>
+          </div>
+          <div class="orow">
+            <span class="lbl" title="Claude first looks for this many matching screens through a references MCP you have connected (Mobbin, for example), puts them next to your selection and shows them here, then makes the change on a copy">References</span>
+            <div class="seg" id="refs"><button data-v="" class="on" type="button">Off</button><button data-v="4" type="button">4</button><button data-v="8" type="button">8</button><button data-v="12" type="button">12</button></div>
+          </div>
+          <div class="orow" id="modelRow" hidden>
+            <span class="lbl" title="Default: the model of the session that is watching. Another model works on this note as a helper agent.">Model</span>
+            <select id="model"><option value="">Session default</option></select>
+          </div>
+          <div class="orow" id="skillRow" hidden>
+            <span class="lbl" title="A skill from the Claude Code session that Claude uses for this note">Skill</span>
+            <select id="skill"><option value="">None</option></select>
+          </div>
+          <label class="tog" title="Claude looks first, then shows a plan here. Nothing changes until you approve it."><input type="checkbox" id="planFirst" /> Show a plan first</label>
+          <label class="tog"><input type="checkbox" id="urgent" /> Urgent</label>
+          <label class="tog"><input type="checkbox" id="markers" checked /> Show markers on canvas</label>
+        </div>
+
+        <div class="ctx">
+          <div class="txt">
+            <div class="name" id="tName">Nothing selected</div>
+            <div class="sub" id="tMeta">Select layers or frames.</div>
+          </div>
+          <button class="ib" id="addSel" type="button" disabled title="Add this selection to the note, then select something else too"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="M12 5v14" /></svg></button>
+        </div>
+
+        <div class="strip" id="targets" hidden></div>
+
+        <div class="field">
+          <div class="pop" id="mention" hidden></div>
+          <div class="strip files" id="files" hidden></div>
+          <div class="optline" id="optLine" hidden></div>
+          <div class="row">
+          <textarea id="note" rows="1" placeholder="What should change?"></textarea>
+          <div class="tools">
+            <button class="ib" id="addFile" type="button" title="Attach photos, PDFs, anything. You can also drop or paste them."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829l8.414-8.586a4 4 0 1 0-5.657-5.657l-8.379 8.551a6 6 0 1 0 8.485 8.485l8.379-8.551" /></svg></button>
+            <button class="ib" id="optsBtn" type="button" aria-expanded="false" title="Options"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 17H5" /><path d="M19 7h-9" /><circle cx="17" cy="17" r="3" /><circle cx="7" cy="7" r="3" /></svg><span class="badge" id="optsBadge" hidden></span></button>
+            <button class="ib" id="minBtn" type="button" title="Minimize to the input"><span class="min"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 14 10 14 10 20" /><polyline points="20 10 14 10 14 4" /><line x1="14" y1="10" x2="21" y2="3" /><line x1="3" y1="21" x2="10" y2="14" /></svg></span><span class="max"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 3 21 3 21 9" /><polyline points="9 21 3 21 3 15" /><line x1="21" y1="3" x2="14" y2="10" /><line x1="3" y1="21" x2="10" y2="14" /></svg></span></button>
+            <span class="muted" id="fileHint"></span>
+            <button class="tl" id="queue" type="button" disabled title="Collect several notes, then send them together (⇧⌘↵)">Batch</button>
+            <button class="btn primary" id="send" type="button" disabled title="Send (↵). New line: ⇧↵" aria-label="Send"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 7-7 7 7" /><path d="M12 19V5" /></svg></button>
+          </div>
+          </div>
+          <input type="file" id="fileInput" multiple hidden />
+        </div>
+      </div>
+
+      <div id="onb" hidden>
+        <div class="oh"><span class="grow" id="onbCount"></span><button class="tl" id="onbSkip" type="button">Skip</button></div>
+        <div class="ob" id="onbBody"></div>
+        <div class="of"><button class="btn ghost" id="onbBack" type="button">Back</button><span class="grow"></span><button class="btn primary" id="onbNext" type="button">Next</button></div>
+      </div>
+
+      <div id="grip" title="Drag to resize"><svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7 1 1 7M7 4.5 4.5 7" /></svg></div>
+    </div>
+
+    <ul id="activity"></ul>
+    <div id="bar">
+    <div class="dot" id="dot"></div>
+    <div id="sel"><span class="muted ellipsis name">paste a URL</span></div>
+    <span class="muted ellipsis" id="state"></span>
+    <button class="device" id="notesBtn" title="Notes for Claude" aria-label="Notes">
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z" /><path d="M7 11h10" /><path d="M7 15h6" /><path d="M7 7h8" /></svg>
+      </span>
+      <span class="badge" id="notesBadge" hidden></span>
+    </button>
+    <button class="device" id="check" title="Check the selected element (fixes what has one answer, lists the rest)" aria-label="Check and fix the selection">
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.914 4a1.5 1.5 0 00-2.474-1.561l-9 9A1.5 1.5 0 005.5 14h4.002a.5.5 0 01.471.666L8.086 20a1.5 1.5 0 002.475 1.56l9-9A1.5 1.5 0 0018.5 10h-3.997a.5.5 0 01-.472-.667z" /></svg>
+      </span>
+    </button>
+    <button class="device" id="stop" title="Stop what is running (the bridge stays up)" aria-label="Stop">
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><rect x="9" y="9" width="6" height="6" rx="1" /></svg>
+      </span>
+    </button>
+    <label class="device" title="Capture a pasted URL as its phone version (430 px)">
+      <input type="checkbox" id="mobile" aria-label="Phone capture" />
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="20" x="5" y="2" rx="2" ry="2" /><path d="M12 18h.01" /></svg>
+      </span>
+    </label>
+    <label class="device" title="Build a capture file saved by the Angelo extension (or drop it here)">
+      <input type="file" id="capture" accept=".json,application/json" aria-label="Build a capture file" />
+      <span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12" /><path d="m17 8-5-5-5 5" /><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /></svg>
+      </span>
+    </label>
+    </div>
+
+    <script>/* web-core */</script>
+    <script>
+      const URLS = ["ws://localhost:8787/plugin"];
+      // stamped by plugin/build.mjs: the bridge compares it with the build on disk
+      const BUILD = "/* angelo-build */".replace(/^\/\*.*\*\/$/, "dev");
+      const dot = document.getElementById("dot");
+      const state = document.getElementById("state");
+      const sel = document.getElementById("sel");
+      const mobile = document.getElementById("mobile");
+
+      let socket = null;
+      let attempt = 0;
+      let lastSelection = null;
+
+      // Activity blink: each request adds energy, a request still running keeps adding, the rest decays.
+      // Saturating curve, close to a vibration: a lone read about 14 Hz, a sustained batch about 30 Hz (one frame off, one frame on).
+      const BLINK_MS = 16;
+      // +/- 20 %: keeps the rhythm from reading as mechanical, too small to be seen as such
+      const jitter = (ms) => ms * (0.8 + Math.random() * 0.4);
+      let energy = 0;
+      let inflight = 0;
+      let decayTimer = null;
+      let blinking = false;
+      function blink() {
+        if (energy === 0) {
+          blinking = false;
+          return;
+        }
+        blinking = true;
+        dot.style.opacity = 0.15;
+        setTimeout(() => {
+          dot.style.opacity = "";
+          const load = 1 - Math.exp(-energy / 5);
+          setTimeout(blink, jitter(Math.max(16, 80 * (1 - load) ** 2)));
+        }, jitter(BLINK_MS));
+      }
+      function pulse(amount) {
+        energy += amount;
+        if (!blinking) blink();
+        if (decayTimer) return;
+        decayTimer = setInterval(() => {
+          energy = energy * 0.9 + (inflight > 0 ? 0.25 : 0);
+          if (energy < 0.3 && inflight === 0) {
+            energy = 0;
+            clearInterval(decayTimer);
+            decayTimer = null;
+          }
+        }, 100);
+      }
+
+      // Activity list: each bridge request and each job step is a row while it runs; a finished row lingers, then goes.
+      // The window grows upwards to show at most 6 rows and shrinks back to the bar once the list is empty.
+      const MAX_ROWS = 6;
+      const ROW = 24;
+      const BAR = 40;
+      const LINGER_MS = 600;
+      const list = document.getElementById("activity");
+      const rows = new Map();
+      const BAR_WIDTH = 272;
+      let sizeSent = BAR;
+      let rowSeq = 0;
+      // the notes panel owns the window size while it is open
+      let notesOpen = false;
+      function fit() {
+        const shown = [...list.children];
+        shown.forEach((li, i) => (li.style.display = i < shown.length - MAX_ROWS ? "none" : ""));
+        if (notesOpen) return;
+        const n = Math.min(shown.length, MAX_ROWS);
+        const h = n ? BAR + 16 + n * ROW + 1 : BAR;
+        if (h === sizeSent) return;
+        sizeSent = h;
+        parent.postMessage({ pluginMessage: { kind: "size", width: BAR_WIDTH, height: h } }, "*");
+      }
+      function track(id, label) {
+        const li = document.createElement("li");
+        const d = document.createElement("span");
+        d.className = "dot on";
+        const l = document.createElement("span");
+        l.className = "ellipsis label";
+        l.textContent = label;
+        l.title = label;
+        const t = document.createElement("span");
+        t.className = "muted time";
+        li.append(d, l, t);
+        list.append(li);
+        const row = { li, t, start: Date.now() };
+        row.tick = setInterval(() => {
+          const s = Math.floor((Date.now() - row.start) / 1000);
+          t.textContent = s ? `${s}s` : "";
+        }, 500);
+        rows.set(id, row);
+        fit();
+      }
+      function finish(id, ok = true) {
+        const row = rows.get(id);
+        if (!row) return;
+        rows.delete(id);
+        clearInterval(row.tick);
+        row.li.classList.add("done");
+        if (!ok) row.li.querySelector(".dot").className = "dot err";
+        setTimeout(() => {
+          row.li.remove();
+          fit();
+        }, LINGER_MS);
+      }
+      // a short label for a bridge request: method, then the target or the code's first meaningful line
+      function describe(frame) {
+        const p = frame.params || {};
+        let hint = "";
+        if (typeof p.label === "string" && p.label) hint = p.label;
+        else if (frame.method === "exec" && typeof p.code === "string") {
+          hint = (p.code.split("\n").map((x) => x.trim()).find((x) => x && !x.startsWith("//")) || "").slice(0, 80);
+        } else if (p.target) hint = String(p.target);
+        else if (Array.isArray(p.ops)) hint = `${p.ops.length} ops`;
+        return hint ? `${frame.method} · ${hint}` : frame.method;
+      }
+      // job steps (bridge status frames, local build lines): each new line closes the previous step
+      let step = null;
+      function jobStep(text, done) {
+        if (step) finish(step, true);
+        step = null;
+        if (done) return;
+        step = `step-${++rowSeq}`;
+        track(step, text);
+      }
+
+      // Activity shows briefly on the right of the line; a connected idle plugin says nothing
+      let sayTimer = null;
+      function say(text) {
+        if (!socket || socket.readyState !== 1) return;
+        state.textContent = text;
+        clearTimeout(sayTimer);
+        sayTimer = setTimeout(() => {
+          if (socket && socket.readyState === 1) state.textContent = "";
+        }, 1500);
+      }
+
+      // Every link as the bridge sees it (hello, then a `links` frame on each change): the dot's
+      // tooltip says which one is down, in the same words as the browser extension's panel.
+      let bridgeInfo = null;
+      let links = null;
+      let downWhy = "no bridge";
+      function linkTitle() {
+        if (!socket || socket.readyState !== 1) return `${downWhy} · ${URLS[0]}`;
+        const l = links || {};
+        return [
+          `bridge: connected${bridgeInfo && bridgeInfo.version ? ` · code ${bridgeInfo.version}` : ""}${bridgeInfo && bridgeInfo.stale ? " · restarting soon (source changed)" : ""}`,
+          `Claude: ${l.claude ? "connected" : "no session seen"}`,
+          `browser extension: ${l.extension ? "panel open" : "no panel open"}`,
+          l.pluginStale ? "plugin: a newer build is on disk, close and reopen the plugin" : "",
+        ].filter(Boolean).join("\n");
+      }
+      function onLinks(frame) {
+        if (frame.bridge) bridgeInfo = frame.bridge;
+        if (frame.links) links = frame.links;
+        dot.title = linkTitle();
+        if (links && links.pluginStale && socket && socket.readyState === 1 && !state.textContent) state.textContent = "new build: reopen plugin";
+      }
+
+      // One socket, reopened by whatever fires first: a timer, a worker's tick (timers of a
+      // window Figma keeps in the background are slowed down, a worker's are not), or the window
+      // coming back to the front. connect() does nothing while a socket is opening or open.
+      let nextTry = 0;
+      function connect() {
+        if (socket && socket.readyState <= 1) return;
+        const url = URLS[attempt % URLS.length];
+        dot.title = url;
+        state.textContent = "connecting…";
+        dot.className = "dot";
+        let ws;
+        try {
+          ws = socket = new WebSocket(url);
+        } catch (error) {
+          retry();
+          return;
+        }
+
+        ws.onopen = () => {
+          attempt = 0;
+          dot.className = "dot on";
+          state.textContent = "";
+          links = null;
+          dot.title = linkTitle();
+          ws.send(JSON.stringify({ type: "hello", role: "plugin", version: BUILD }));
+          if (window.Notes) Notes.connected(true);
+          if (window.Onboarding) Onboarding.bridge();
+          if (lastSelection) {
+            ws.send(
+              JSON.stringify({ type: "event", event: "selection", data: lastSelection })
+            );
+          }
+        };
+
+        ws.onmessage = (message) => {
+          let frame;
+          try {
+            frame = JSON.parse(message.data);
+          } catch (error) {
+            return;
+          }
+          if (frame.type === "hello" || frame.type === "links") return onLinks(frame);
+          if (window.Notes && Notes.frame(frame)) return;
+          if (frame.type === "status") {
+            showStatus(frame.text, frame.done);
+            return;
+          }
+          if (frame.type === "check") {
+            if (!frame.web) checkHere();
+            return;
+          }
+          if (frame.type !== "request") return;
+          if (window.Onboarding) Onboarding.request(frame);
+          inflight += 1;
+          pulse(1);
+          say(`${frame.method} …`);
+          if (frame.method !== "ping" && frame.method !== "selection") track(frame.id, describe(frame));
+          parent.postMessage({ pluginMessage: { kind: "rpc", request: frame } }, "*");
+        };
+
+        ws.onclose = (event) => {
+          if (socket !== ws) return;
+          dot.className = "dot";
+          inflight = 0;
+          for (const id of [...rows.keys()]) finish(id, false);
+          step = null;
+          // which link is down, not one text for every cause: 1013 = the bridge already has a
+          // plugin (Angelo open in another Figma file), 1012 = the bridge is restarting
+          downWhy = event.code === 1013 ? "already open in another file" : event.code === 1012 ? "bridge restarting…" : "no bridge";
+          state.textContent = downWhy;
+          dot.title = linkTitle();
+          if (window.Notes) Notes.connected(false);
+          if (window.Onboarding) Onboarding.bridge();
+          retry(event.code === 1013 ? 3000 : event.code === 1012 ? 200 : 1000);
+        };
+
+        ws.onerror = () => {
+          dot.className = "dot err";
+        };
+      }
+
+      // a retry on a closed local port costs nothing: a session's first read waits 1 s at worst
+      function retry(delay = 1000) {
+        attempt += 1;
+        nextTry = Date.now() + delay;
+        setTimeout(tick, delay);
+      }
+      function tick(now) {
+        if (socket && socket.readyState <= 1) return;
+        if (now === true || Date.now() >= nextTry) connect();
+      }
+      try {
+        const ticker = new Worker(URL.createObjectURL(new Blob(["setInterval(() => postMessage(0), 1000)"], { type: "text/javascript" })));
+        ticker.onmessage = () => tick();
+      } catch (error) {
+        setInterval(tick, 1000);
+      }
+      addEventListener("focus", () => tick(true));
+      document.addEventListener("visibilitychange", () => tick(true));
+
+      function send(frame) {
+        if (socket && socket.readyState === 1) socket.send(JSON.stringify(frame));
+      }
+
+      onmessage = (event) => {
+        const message = event.data && event.data.pluginMessage;
+        if (!message) return;
+
+        if (message.kind === "notes") {
+          if (window.Notes) Notes.main(message);
+          return;
+        }
+
+        if (message.kind === "onboarding") {
+          if (window.Onboarding) Onboarding.main(message);
+          return;
+        }
+
+        if (message.kind === "rpc") {
+          inflight = Math.max(0, inflight - 1);
+          const local = localCalls.get(message.response.id);
+          if (local) {
+            localCalls.delete(message.response.id);
+            local(message.response);
+            return;
+          }
+          if (window.Onboarding) Onboarding.response(message.response);
+          say(`→ ${message.response.ok ? "ok" : "error"}`);
+          finish(message.response.id, message.response.ok && !(message.response.result && message.response.result.error));
+          send({ type: "response", ...message.response });
+          return;
+        }
+
+        if (message.kind === "event" && message.event === "selection") {
+          lastSelection = message.data;
+          if (!busy && !editing()) renderSelection(message.data);
+          send({ type: "event", event: "selection", data: message.data });
+        }
+      };
+
+      function renderSelection(data) {
+        sel.textContent = "";
+        const name = document.createElement("span");
+        name.className = "ellipsis name";
+        const meta = document.createElement("span");
+        meta.className = "muted meta";
+        if (!data || !data.count) {
+          name.className = "muted ellipsis name";
+          name.textContent = "paste a URL or a note";
+        } else if (data.count === 1) {
+          const node = data.nodes[0];
+          name.textContent = node.name;
+          meta.textContent = `${node.width}×${node.height}`;
+        } else {
+          name.textContent = data.nodes.map((node) => node.name).join(", ");
+          meta.textContent = `${data.count}`;
+        }
+        sel.append(name, meta);
+      }
+
+      // Click the line, paste: the bridge routes what was pasted (a URL → web-to-figma)
+      let busy = false;
+      let statusTimer = null;
+      const editing = () => !!sel.querySelector("input");
+
+      function showStatus(text, done, stay = 4000) {
+        busy = !done;
+        document.body.classList.toggle("busy", busy);
+        jobStep(text, done);
+        sel.textContent = "";
+        const line = document.createElement("span");
+        line.className = "muted ellipsis name";
+        line.textContent = text;
+        line.title = text;
+        sel.append(line);
+        clearTimeout(statusTimer);
+        if (done) statusTimer = setTimeout(() => !busy && !editing() && renderSelection(lastSelection), stay);
+      }
+
+      function submit(text) {
+        text = text.trim();
+        if (!text) return;
+        // Without the bridge nothing here can open a page: the extension captures it, the file is dropped on this panel
+        if (!socket || socket.readyState !== 1) return showStatus("no bridge: drop an extension capture here", true);
+        send({ type: "paste", text, mobile: mobile.checked });
+        showStatus("sent…", false);
+      }
+
+      // A URL goes to web-to-figma; any other text becomes a note on the selection
+      const isUrl = (text) => /^https?:\/\/|^[\w-]+\.[a-z]{2,}(\/|$)/i.test(text.trim());
+      sel.onclick = () => {
+        if (busy || editing()) return;
+        sel.textContent = "";
+        const input = document.createElement("input");
+        input.placeholder = "paste a URL or a note";
+        input.onpaste = (event) => {
+          const text = event.clipboardData.getData("text");
+          if (!isUrl(text)) return;
+          event.preventDefault();
+          submit(text);
+        };
+        input.onkeydown = (event) => {
+          if (event.key === "Escape") return input.blur();
+          if (event.key !== "Enter" || event.isComposing) return;
+          const text = input.value.trim();
+          if (!text) return;
+          if (isUrl(text)) return submit(text);
+          input.value = "";
+          input.blur();
+          if (window.Notes) Notes.quick(text);
+        };
+        input.onblur = () => editing() && renderSelection(lastSelection);
+        sel.append(input);
+        input.focus();
+      };
+
+      // A capture file is built here, by the engine inlined above: no bridge, no Node
+      const localCalls = new Map();
+      let localId = 0;
+      // stop asked during a local build: its next exec throws, the cursor release still goes through
+      let localBuild = false;
+      let localStop = false;
+      function localExec(code, force = false) {
+        if (localStop && !force) return Promise.reject(new Error("stopped"));
+        return new Promise((resolve, reject) => {
+          const id = `local-${++localId}`;
+          localCalls.set(id, (response) => {
+            if (!response.ok) return reject(new Error(response.error));
+            const r = response.result;
+            if (r.error) return reject(new Error(r.error + (r.at ? ` (line ${r.at.line}: ${r.at.src})` : "")));
+            resolve(r.value);
+          });
+          inflight += 1;
+          pulse(1);
+          parent.postMessage({ pluginMessage: { kind: "rpc", request: { id, method: "exec", params: { code } } } }, "*");
+        });
+      }
+
+      async function buildFile(file) {
+        if (busy) return;
+        localBuild = true;
+        localStop = false;
+        showStatus(`reading ${file.name}…`, false);
+        try {
+          const cap = JSON.parse(await file.text());
+          if (!Array.isArray(cap.boxes)) throw new Error("not an Angelo capture");
+          const line = (text) => showStatus(String(text).split("\n")[0], false);
+          const r = await WebCore.runBuild({ cap, rpc: localExec, images: WebCore.dataImages, log: line, warn: line });
+          const done = [`${r.nodes} nodes`, `${r.placed}/${r.images} images`];
+          line("icons…");
+          // the components' mains first, so their instances follow; the wrappers left unused go
+          const board = r.cfId ? await localExec(`return (await H.byId(${JSON.stringify(r.cfId)})).name`) : null;
+          const icons = await WebCore.swapIcons({ rpc: localExec, caps: [cap], root: r.rootId, board, clean: !!board });
+          if (icons.total) done.push(`${icons.total} icons`);
+          line("adapting to this file…");
+          const adapted = await WebCore.adaptToFile(localExec, r.rootId);
+          if (adapted.error) done.push(`not adapted: ${adapted.error}`);
+          else if (!adapted.skipped) done.push(`${adapted.bound} bound to the file`);
+          const fonts = await WebCore.missingFamilies(localExec, cap);
+          if (fonts.length) done.push(`fallback for ${fonts.join(", ")}`);
+          // the build's report, cut to the panel's width: long enough to hover for the rest
+          showStatus(done.join(" · "), true, 20000);
+        } catch (error) {
+          showStatus(String(error.message || error).split("\n")[0], true);
+        } finally {
+          await WebCore.releaseCursor((code) => localExec(code, true));
+          localBuild = false;
+          localStop = false;
+        }
+      }
+
+      // Stop: a local build ends at its next exec; a bridge job is killed with its child tools
+      document.getElementById("stop").onclick = () => {
+        if (localBuild) {
+          localStop = true;
+          return showStatus("stopping…", false);
+        }
+        if (!socket || socket.readyState !== 1) return showStatus("no bridge", true);
+        send({ type: "stop" });
+        showStatus("stopping…", false);
+      };
+
+      // Check: reads the selection here (no bridge), applies the `# warn` fixes that name one op on known ids,
+      // leaves the others (font, clip or resize, several token candidates) for review
+      function localRpc(method, params) {
+        return new Promise((resolve, reject) => {
+          const id = `local-${++localId}`;
+          localCalls.set(id, (response) => (response.ok ? resolve(response.result) : reject(new Error(response.error))));
+          inflight += 1;
+          pulse(1);
+          parent.postMessage({ pluginMessage: { kind: "rpc", request: { id, method, params } } }, "*");
+        });
+      }
+      const ID = /\b[A-Z]+#([\w:;-]+)/g;
+      function fixOf(line) {
+        const [head, fix] = line.slice(2).split(" → ");
+        if (!fix || fix.includes(" or ") || fix.includes(" | ") || fix.includes("<")) return null;
+        const [op, group] = fix.split(" · ");
+        const m = op.match(/^(op|regionfill|fill|stroke):(.+)$/);
+        if (!m) return null;
+        const ids = group ? [...group.matchAll(ID)].map((x) => x[1]) : [...head.matchAll(ID)].map((x) => x[1]).slice(-1);
+        return ids.length ? ids.map((id) => ({ op: "set", id, props: { [m[1]]: m[2] } })) : null;
+      }
+      // Contextual: one frame built by web-to-figma → the bridge compares it to its capture and fixes
+      // what it can; anything else (or no bridge) → the checks below, run here
+      function check() {
+        if (busy) return;
+        if (!lastSelection || !lastSelection.count) return showStatus("select something to check", true);
+        const one = lastSelection.count === 1 && lastSelection.nodes[0];
+        if (one && socket && socket.readyState === 1) {
+          send({ type: "check", id: one.id, name: one.name });
+          return showStatus("checking…", false);
+        }
+        checkHere();
+      }
+      async function checkHere() {
+        busy = true;
+        document.body.classList.add("busy");
+        showStatus("checking…", false);
+        try {
+          const read = await localRpc("read", {});
+          const block = (read.angelo.split("\n\n").find((s) => s.startsWith("# warn")) || "").split("\n").slice(1);
+          const warns = block.filter((l) => l.startsWith("! ") && !l.startsWith("! scan stopped"));
+          // the components the selection is or uses: structure, naming, variants (H.lint, same rules as the pipeline)
+          const lint = await localExec("return await H.lint()");
+          const issues = lint.issues.filter((i) => i.severity !== "info");
+          const ops = [];
+          const left = issues.map((i) => `${i.severity} ${i.rule} · ${i.component}${i.at ? ` › ${i.at}` : ""}${i.detail ? ` · ${i.detail}` : ""}`);
+          if (!warns.length && !left.length) return showStatus("clean · nothing to fix", true);
+          for (const l of warns) {
+            const f = fixOf(l);
+            if (f) ops.push(...f);
+            else left.push(l);
+          }
+          const done = [];
+          if (ops.length) {
+            const r = await localRpc("apply", { sid: read.sid, ops });
+            if (r && r.error) throw new Error(r.error);
+            done.push(`${ops.length} fixed`);
+          }
+          // what has no single answer goes to Claude through the bridge, on the one selected node
+          const one = lastSelection.count === 1 && lastSelection.nodes[0];
+          if (left.length && one && socket && socket.readyState === 1) {
+            send({ type: "fix", id: one.id, name: one.name, issues: left });
+            return showStatus(`${done.length ? `${done[0]} · ` : ""}${left.length} sent to Claude…`, false);
+          }
+          if (left.length) done.push(`${left.length} to review`);
+          showStatus(done.join(" · "), true, 20000);
+          if (left.length) sel.firstChild.title = left.join("\n");
+        } catch (error) {
+          const text = String(error.message || error);
+          showStatus(text.split("\n")[0], true, 20000);
+          sel.firstChild.title = text;
+        }
+      }
+      document.getElementById("check").onclick = check;
+
+      const picker = document.getElementById("capture");
+      picker.onchange = () => {
+        const file = picker.files[0];
+        picker.value = "";
+        if (file) buildFile(file);
+      };
+      document.body.ondragover = (event) => event.preventDefault();
+      // One capture file → built here; anything else → attached to a note
+      document.body.ondrop = (event) => {
+        event.preventDefault();
+        const files = [...event.dataTransfer.files];
+        if (!files.length) return;
+        const json = (f) => /\.json$/i.test(f.name) || f.type === "application/json";
+        if (files.length === 1 && json(files[0]) && !notesOpen) return buildFile(files[0]);
+        if (window.Notes) Notes.attach(files);
+      };
+
+      connect();
+    </script>
+    <script>
+      // Notes panel. Feature and UX port of Retoucher (MIT, Copyright (c) 2026 Ali Çorak), see THIRD_PARTY_LICENSES.
+      // It talks to the bridge over the plugin's WebSocket (frames notes-*, note-*), never over HTTP,
+      // and shares the bar's globals: socket, send, fit, sizeSent, notesOpen, showStatus.
+      (() => {
+        const ICON = {
+          hash: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" x2="20" y1="9" y2="9" /><line x1="4" x2="20" y1="15" y2="15" /><line x1="10" x2="8" y1="3" y2="21" /><line x1="16" x2="14" y1="3" y2="21" /></svg>',
+          x: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>',
+          trash: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 11v6" /><path d="M14 11v6" /><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6" /><path d="M3 6h18" /><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" /></svg>',
+          undo: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5" /><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11" /></svg>',
+          reply: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 18v-2a4 4 0 0 0-4-4H4" /><path d="m9 17-5-5 5-5" /></svg>',
+          layers: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg>',
+          chev: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6" /></svg>',
+        };
+        let ctx = { fileKey: null, fileName: "", pageName: "", pageId: null };
+        let sel = { nodes: [], total: 0 };
+        let targets = []; // layers and frames added to the note: { id, name, type, w, h, page, pageId, image, url }
+        let files = []; // attachments: { name, mime, size, data, preview, isImage }
+        let allItems = [];
+        let items = [];
+        let online = false;
+        let claude = false;
+        let drafts = [];
+        let markersOn = true;
+        let lastSig = "";
+        let pendingAdd = null;
+        const replyDrafts = {};
+        const openReplies = new Set();
+        let mentions = []; // picked @mentions: { kind, id, key, name, sub, library }
+        let hitId = null; // the note covering the selected layer
+        let quickPending = null;
+        let shownCount = 0;
+        let normalSize = { w: 360, h: 640 };
+        let ready = false;
+        const imgCache = new Map();
+
+        const $ = (id) => document.getElementById(id);
+        const post = (m) => parent.postMessage({ pluginMessage: { kind: "notes", ...m } }, "*");
+        const notify = (text) => post({ type: "notify", text });
+        const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+        const isOpen = () => socket && socket.readyState === 1;
+
+        // ---------- frames that expect an answer (note-created / note-error with the same ref) ----------
+        let seq = 0;
+        const waits = new Map();
+        function ask(frame) {
+          return new Promise((resolve, reject) => {
+            if (!isOpen()) return reject(new Error("no bridge"));
+            const ref = `n${++seq}`;
+            const timer = setTimeout(() => {
+              waits.delete(ref);
+              reject(new Error("the bridge did not answer"));
+            }, 15000);
+            waits.set(ref, { resolve, reject, timer });
+            send({ ...frame, ref });
+          });
+        }
+        function settle(ref, error, value) {
+          const w = waits.get(ref);
+          if (!w) return false;
+          waits.delete(ref);
+          clearTimeout(w.timer);
+          error ? w.reject(new Error(error)) : w.resolve(value);
+          return true;
+        }
+        function tell(frame) {
+          if (!isOpen()) {
+            notify("No bridge: start Claude Code or npm run bridge");
+            return false;
+          }
+          send(frame);
+          return true;
+        }
+
+        // Claude's replies: paragraphs, "- " lists, **bold**, [label](url) and bare links (opened in the browser).
+        const INLINE = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)|\*\*([^*\n]+)\*\*|((?:https?:\/\/)?(?:[a-z0-9-]+\.)+[a-z]{2,}\/[^\s)]*|https?:\/\/[^\s)]+)/gi;
+        function linkLabel(url) {
+          const u = url.replace(/^https?:\/\//, "").replace(/^www\./, "");
+          const [host, ...path] = u.split("/");
+          return path.join("/").length > 12 ? `${host}/${path[0]}/…` : u;
+        }
+        function inlineText(raw) {
+          let out = "";
+          let last = 0;
+          let m;
+          INLINE.lastIndex = 0;
+          while ((m = INLINE.exec(raw))) {
+            let [all, label, href, bold, bare] = m;
+            let tail = "";
+            if (bare) {
+              const t = bare.match(/[.,;:!?]+$/);
+              if (t) {
+                tail = t[0];
+                bare = bare.slice(0, -tail.length);
+              }
+            }
+            out += esc(raw.slice(last, m.index));
+            if (bold) out += `<b>${esc(bold)}</b>`;
+            else {
+              const url = href || (/^https?:/i.test(bare) ? bare : "https://" + bare);
+              out += `<a data-href="${esc(url)}" title="${esc(url)}">${esc(label || linkLabel(bare))}</a>${esc(tail)}`;
+            }
+            last = m.index + all.length;
+          }
+          return out + esc(raw.slice(last));
+        }
+        function richText(text) {
+          const blocks = [];
+          for (const line of String(text).split("\n")) {
+            const li = line.match(/^\s*([-•*]|\d+[.)])\s+(.*)$/);
+            const kind = li && /\d/.test(li[1]) ? "ol" : "ul";
+            const h = line.match(/^\s*#{1,4}\s+(.*)$/);
+            if (h) {
+              blocks.push({ type: "p", lines: ["**" + h[1].replace(/\*\*/g, "") + "**"] }, { type: "gap" });
+              continue;
+            }
+            const prev = blocks.at(-1);
+            if (li) prev && prev.type === kind ? prev.lines.push(li[2]) : blocks.push({ type: kind, lines: [li[2]] });
+            else if (!line.trim()) blocks.push({ type: "gap" });
+            else prev && prev.type === "p" ? prev.lines.push(line) : blocks.push({ type: "p", lines: [line] });
+          }
+          return blocks
+            .map((b) =>
+              b.type === "ul" || b.type === "ol"
+                ? `<${b.type}>${b.lines.map((l) => `<li>${inlineText(l)}</li>`).join("")}</${b.type}>`
+                : b.type === "p"
+                  ? `<p>${b.lines.map(inlineText).join("<br>")}</p>`
+                  : ""
+            )
+            .join("");
+        }
+
+        function fileKeyFromUrl(u) {
+          const m = /figma\.com\/(?:design|file|board)\/([A-Za-z0-9]+)/.exec(u || "");
+          return m ? m[1] : null;
+        }
+        const effectiveKey = () => ctx.fileKey || fileKeyFromUrl($("fileUrl").value);
+        // off: the welcome screen comes first
+        const showSetup = () => ($("setup").hidden = !!effectiveKey() || connState === "off");
+
+        // ---------- messages from the plugin's main thread ----------
+        function main(m) {
+          if (m.type === "context") {
+            ctx = m;
+            showSetup();
+            updateSend();
+            refilter(true);
+          }
+          if (m.type === "selection") {
+            sel = m;
+            renderTarget();
+            highlightFor(m.path || []);
+          }
+          if (m.type === "quick-note") quick(m.note);
+          if (m.type === "libraries") renderLibraries(m.names || []);
+          if (m.type === "prefs") {
+            if (m.size && m.size.w && m.size.h) normalSize = { w: m.size.w, h: m.size.h };
+            if (m.miniW > 0) miniW = m.miniW;
+            markersOn = m.markers !== false;
+            $("markers").checked = markersOn;
+            ready = true;
+            open(false);
+            if (quickPending) quick(quickPending);
+          }
+          if (m.type === "mention-results") showMentions(m.q, m.results || []);
+          if (m.type === "targets-added") onTargetsAdded(m.targets || []);
+        }
+
+        // ---------- frames from the bridge ----------
+        function frame(f) {
+          if (f.type === "notes") {
+            allItems = Array.isArray(f.items) ? f.items : [];
+            perms = Array.isArray(f.perms) ? f.perms : [];
+            const meta = f.meta || {};
+            renderPerms();
+            setOnline(true, !!meta.claude);
+            hasCommentsToken = !!meta.comments;
+            showTokenRow();
+            loadSkills(meta.skills || []);
+            loadModels(meta.models || []);
+            refilter(false);
+            if (quickPending) quick(quickPending);
+            return true;
+          }
+          // agents waiting for their turn in Figma (the bridge runs one call at a time)
+          if (f.type === "figmaQueue") {
+            figmaWait = new Set(Array.isArray(f.waiting) ? f.waiting : []);
+            if (notesOpen) renderList();
+            return true;
+          }
+          if (f.type === "note-created") return settle(f.ref, null, f.id) || true;
+          if (f.type === "note-error") {
+            if (!settle(f.ref, f.error)) notify(`${f.op}: ${f.error}`);
+            return true;
+          }
+          if (f.type === "note-img") {
+            onImage(f);
+            return true;
+          }
+          return f.type === "notes-comments";
+        }
+
+        function refilter(force) {
+          const key = effectiveKey();
+          items = key ? allItems.filter((i) => i.fileKey === key) : allItems.slice();
+          renderBadge();
+          const sig = JSON.stringify(items);
+          if (force || sig !== lastSig) {
+            lastSig = sig;
+            if (notesOpen) renderList();
+            syncMarkers();
+          }
+        }
+
+        function connected(on) {
+          if (on) send({ type: "notes-get" });
+          else {
+            perms = [];
+            renderPerms();
+            for (const [ref] of waits) settle(ref, "bridge closed");
+            setOnline(false, false);
+          }
+        }
+
+        // ---------- the bar: open, fold, badge ----------
+        function open(save = true) {
+          if (notesOpen) return;
+          notesOpen = true;
+          document.body.classList.add("open");
+          post({ type: "panel", open: true });
+          parent.postMessage({ pluginMessage: { kind: "size", width: normalSize.w, height: normalSize.h, anchor: "top" } }, "*");
+          sizeSent = -1;
+          lastSig = "";
+          refilter(true);
+          if (save) setTimeout(() => $("note").focus(), 50);
+        }
+        function fold() {
+          if (!notesOpen) return;
+          setOpts(false);
+          notesOpen = false;
+          document.body.classList.remove("open");
+          post({ type: "panel", open: false });
+          sizeSent = -1;
+          fit();
+        }
+        $("notesBtn").onclick = () => (notesOpen ? fold() : open(true));
+        // minimize: the window keeps only the input (top edge stays put); the same button restores it
+        let mini = false;
+        let miniW = 360; // the minimized window keeps its own width, dragged from the same corner
+        const miniH = () => Math.ceil(document.querySelector(".field").getBoundingClientRect().height) + 8 + 12;
+        const miniSize = () => {
+          if (!mini) return;
+          const h = miniH();
+          parent.postMessage({ pluginMessage: { kind: "size", width: miniW, height: h, anchor: "top" } }, "*");
+        };
+        function setMini(on) {
+          if (on === mini) return;
+          mini = on;
+          setOpts(false);
+          document.body.classList.toggle("mini", on);
+          if (on) miniSize();
+          else parent.postMessage({ pluginMessage: { kind: "size", width: normalSize.w, height: normalSize.h, anchor: "top" } }, "*");
+        }
+        $("minBtn").onclick = () => setMini(!mini);
+        new ResizeObserver(miniSize).observe(document.querySelector(".field"));
+
+        function renderBadge() {
+          const live = items.filter((i) => !i.reverted);
+          const askN = live.filter((i) => i.status === "question").length + perms.length;
+          const busyN = live.filter((i) => i.status === "working" || i.status === "pending").length;
+          const b = $("notesBadge");
+          const n = askN || busyN;
+          b.hidden = !n;
+          b.textContent = n ? String(n) : "";
+          b.classList.toggle("ask", !!askN);
+          $("notesBtn").title = askN ? `${askN} need${askN > 1 ? "" : "s"} an answer` : busyN ? `${busyN} in progress` : "Notes for Claude";
+        }
+
+        // ---------- a note typed in the bar, or in Figma's quick actions: it goes out with the selection ----------
+        let quickSink = null;
+        async function quick(text) {
+          text = String(text || "").trim();
+          if (!text) return;
+          if (!ready || !isOpen()) {
+            quickPending = text;
+            if (!isOpen()) showStatus("note waits for the bridge…", false);
+            return;
+          }
+          quickPending = null;
+          showStatus("sending note…", false);
+          try {
+            const picked = await new Promise((resolve) => {
+              const timer = setTimeout(() => {
+                quickSink = null;
+                resolve([]);
+              }, 4000);
+              quickSink = (list) => {
+                clearTimeout(timer);
+                quickSink = null;
+                resolve(list);
+              };
+              post({ type: "add-selection" });
+            });
+            const nodes = picked.map(toNode);
+            const id = await ask({ type: "note-create", note: { ...baseDraft(), nodes, note: text } });
+            showStatus(`note #${id} sent to Claude`, true);
+          } catch (error) {
+            showStatus(`note not sent: ${error.message}`, true);
+          }
+        }
+
+        // ---------- the current selection ----------
+        function renderTarget() {
+          // nothing selected and nothing added: the block stays out of the way
+          document.querySelector(".ctx").hidden = !wholeFile() && !sel.nodes.length && !targets.length;
+          if (wholeFile()) {
+            $("tName").textContent = "Whole file";
+            $("tMeta").textContent = `Every page of ${ctx.fileName ? "“" + ctx.fileName + "”" : "this file"}.`;
+          } else if (!sel.nodes.length) {
+            $("tName").textContent = targets.length ? `${targets.length} added` : "Nothing selected";
+            $("tMeta").textContent = targets.length ? "Select more to add them too." : `The note is about the page${ctx.pageName ? " “" + ctx.pageName + "”" : ""}.`;
+          } else {
+            const first = sel.nodes[0];
+            $("tName").textContent = sel.total > 1 ? `${first.name} + ${sel.total - 1} more` : first.name;
+            $("tMeta").textContent = sel.total > 1 ? `${sel.total} layers selected` : `${first.type.toLowerCase()} · ${first.w}×${first.h}`;
+          }
+          updateSend();
+        }
+
+        // ---------- targets ----------
+        function requestTargets() {
+          return new Promise((resolve) => {
+            pendingAdd = resolve;
+            post({ type: "add-selection" });
+          });
+        }
+        function onTargetsAdded(list) {
+          if (quickSink) return quickSink(list);
+          for (const t of list) {
+            if (targets.some((x) => x.id === t.id)) continue;
+            targets.push(t);
+          }
+          renderTargets();
+          if (pendingAdd) {
+            pendingAdd();
+            pendingAdd = null;
+          }
+          renderTarget();
+        }
+        function renderTargets() {
+          $("targets").hidden = !targets.length;
+          $("targets").innerHTML = targets
+            .map((t, i) => {
+              return `<span class="tchip" title="${esc(t.name)}"><span class="tn">${esc(t.name)}</span><button class="x" type="button" data-rm-target="${i}" title="Remove">${ICON.x}</button></span>`;
+            })
+            .join("");
+        }
+        function clearTargets() {
+          targets.forEach((t) => t.url && URL.revokeObjectURL(t.url));
+          targets = [];
+          renderTargets();
+        }
+        $("targets").addEventListener("click", (e) => {
+          const rm = e.target.closest("[data-rm-target]");
+          if (!rm) return;
+          const [gone] = targets.splice(Number(rm.dataset.rmTarget), 1);
+          if (gone && gone.url) URL.revokeObjectURL(gone.url);
+          renderTargets();
+          renderTarget();
+        });
+        $("addSel").onclick = async () => {
+          if (!sel.nodes.length) return;
+          $("addSel").disabled = true;
+          await requestTargets();
+          updateSend();
+        };
+
+        const toBase64 = (bytes) => {
+          let s = "";
+          const CH = 0x8000;
+          for (let i = 0; i < bytes.length; i += CH) s += String.fromCharCode.apply(null, bytes.subarray(i, i + CH));
+          return btoa(s);
+        };
+
+        // ---------- files: photos and anything else ----------
+        const MAX_FILES = 8;
+        const MAX_FILE_MB = 12;
+        const MAX_TOTAL_MB = 40;
+        const MIME = { pdf: "application/pdf", md: "text/markdown", txt: "text/plain", json: "application/json", csv: "text/csv", svg: "image/svg+xml", zip: "application/zip", gif: "image/gif", mp4: "video/mp4", mov: "video/quicktime", fig: "application/octet-stream" };
+        const extOf = (name) => {
+          const m = /\.([A-Za-z0-9]{1,6})$/.exec(name || "");
+          return m ? m[1].toLowerCase() : "";
+        };
+        const fmtSize = (n) => (n < 1024 ? n + " B" : n < 1048576 ? Math.round(n / 1024) + " KB" : (n / 1048576).toFixed(1) + " MB");
+
+        async function addFiles(list) {
+          for (const f of list) await addFile(f);
+        }
+        async function addFile(f) {
+          if (!f) return;
+          if (files.length >= MAX_FILES) return notify(`Up to ${MAX_FILES} files per note`);
+          if (f.size > MAX_FILE_MB * 1048576) return notify(`${f.name || "File"} is over ${MAX_FILE_MB} MB`);
+          if (files.reduce((a, x) => a + x.size, 0) + f.size > MAX_TOTAL_MB * 1048576) return notify(`Over ${MAX_TOTAL_MB} MB in total`);
+          const photo = f.type.startsWith("image/") && !["image/svg+xml", "image/gif"].includes(f.type);
+          if (photo && (await addPhoto(f))) return;
+          await addRaw(f);
+        }
+        // photos are scaled to 1600 px and saved as PNG or JPEG, which Claude and Figma both read
+        async function addPhoto(f) {
+          try {
+            const bmp = await createImageBitmap(f);
+            const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+            const w = Math.max(1, Math.round(bmp.width * scale));
+            const h = Math.max(1, Math.round(bmp.height * scale));
+            const c = document.createElement("canvas");
+            c.width = w;
+            c.height = h;
+            const g = c.getContext("2d");
+            const png = f.type === "image/png";
+            if (!png) {
+              g.fillStyle = "#fff";
+              g.fillRect(0, 0, w, h);
+            }
+            g.drawImage(bmp, 0, 0, w, h);
+            const blob = await new Promise((r) => c.toBlob(r, png ? "image/png" : "image/jpeg", 0.9));
+            const bytes = new Uint8Array(await blob.arrayBuffer());
+            const base = (f.name || "photo").replace(/\.[^.]+$/, "");
+            files.push({ name: `${base}.${png ? "png" : "jpg"}`, mime: blob.type, size: bytes.length, data: toBase64(bytes), preview: URL.createObjectURL(blob), isImage: true });
+            renderFiles();
+            return true;
+          } catch (err) {
+            return false; // e.g. HEIC: fall back to attaching the original
+          }
+        }
+        async function addRaw(f) {
+          try {
+            const bytes = new Uint8Array(await f.arrayBuffer());
+            const mime = f.type || MIME[extOf(f.name)] || "application/octet-stream";
+            const previewable = ["image/svg+xml", "image/gif"].includes(mime);
+            files.push({ name: f.name || "file", mime, size: bytes.length, data: toBase64(bytes), preview: previewable ? URL.createObjectURL(f) : null, isImage: previewable });
+            renderFiles();
+          } catch (err) {
+            notify("Could not read " + (f.name || "that file"));
+          }
+        }
+        function renderFiles() {
+          const box = $("files");
+          box.hidden = !files.length;
+          box.innerHTML = files
+            .map((p, i) =>
+              p.isImage && p.preview
+                ? `<span class="athumb" title="${esc(p.name)} · ${fmtSize(p.size)}" style="background-image:url(${p.preview})"><button class="x" type="button" data-rm-file="${i}" title="Remove">${ICON.x}</button></span>`
+                : `<span class="fchip" title="${esc(p.name)} · ${fmtSize(p.size)}"><span class="ext">${esc((extOf(p.name) || "file").slice(0, 4).toUpperCase())}</span><span class="fn">${esc(p.name)}</span><span class="muted">${fmtSize(p.size)}</span><button class="x" type="button" data-rm-file="${i}" title="Remove">${ICON.x}</button></span>`
+            )
+            .join("");
+          $("addFile").disabled = files.length >= MAX_FILES;
+          $("fileHint").textContent = files.length > 1 ? `${files.length}/${MAX_FILES}` : "";
+        }
+        function clearFiles() {
+          files.forEach((p) => p.preview && URL.revokeObjectURL(p.preview));
+          files = [];
+          renderFiles();
+        }
+        $("addFile").onclick = () => $("fileInput").click();
+        $("fileInput").addEventListener("change", async (e) => {
+          await addFiles([...e.target.files]);
+          e.target.value = "";
+        });
+        $("files").addEventListener("click", (e) => {
+          const rm = e.target.closest("[data-rm-file]");
+          if (!rm) return;
+          const [gone] = files.splice(Number(rm.dataset.rmFile), 1);
+          if (gone && gone.preview) URL.revokeObjectURL(gone.preview);
+          renderFiles();
+        });
+        // files dropped on the bar or pasted while it is folded open the panel
+        async function attach(list) {
+          open(false);
+          await addFiles(list);
+        }
+
+        // drag and drop anywhere on the panel (the drop itself is routed by the bar); paste from the clipboard
+        const hasFiles = (dt) => !!dt && [...(dt.types || [])].includes("Files");
+        const filesFrom = (dt) => {
+          const out = [];
+          if (!dt) return out;
+          if (dt.items && dt.items.length) {
+            for (const it of dt.items) {
+              if (it.kind !== "file") continue;
+              const f = it.getAsFile();
+              if (f) out.push(f);
+            }
+          }
+          if (!out.length && dt.files) out.push(...dt.files);
+          return out;
+        };
+        let dragDepth = 0;
+        document.addEventListener("dragenter", (e) => {
+          if (!hasFiles(e.dataTransfer)) return;
+          e.preventDefault();
+          dragDepth++;
+          document.body.classList.add("dragging");
+        });
+        document.addEventListener("dragover", (e) => {
+          if (!hasFiles(e.dataTransfer)) return;
+          e.preventDefault();
+          e.dataTransfer.dropEffect = "copy";
+        });
+        document.addEventListener("dragleave", (e) => {
+          if (!hasFiles(e.dataTransfer)) return;
+          dragDepth = Math.max(0, dragDepth - 1);
+          if (!dragDepth) document.body.classList.remove("dragging");
+        });
+        document.addEventListener("drop", () => {
+          dragDepth = 0;
+          document.body.classList.remove("dragging");
+        });
+        document.addEventListener("paste", async (e) => {
+          const list = filesFrom(e.clipboardData);
+          if (!list.length) return;
+          e.preventDefault();
+          await attach(list);
+        });
+
+        // ---------- composing and sending ----------
+        // no target is fine: the note is then about the whole page
+        const canCompose = () => $("note").value.trim();
+        function updateSend() {
+          $("send").disabled = !(online && canCompose());
+          $("send").title = !online ? "The bridge isn’t running" : !$("note").value.trim() ? "Write a note first" : "Send (↵). New line: ⇧↵";
+          $("queue").disabled = !canCompose();
+          $("addSel").disabled = !sel.nodes.length;
+          $("batchSend").disabled = !online || !drafts.length;
+        }
+
+        function seg(id) {
+          const root = $(id);
+          root.addEventListener("click", (e) => {
+            const b = e.target.closest("button");
+            if (!b) return;
+            root.querySelectorAll("button").forEach((x) => x.classList.toggle("on", x === b));
+          });
+          return () => root.querySelector(".on").dataset.v;
+        }
+        const getVariations = seg("variations");
+        seg("scope");
+        seg("comments");
+        seg("refs");
+        const getRefs = () => $("refs").querySelector(".on")?.dataset.v || "";
+        const getComments = () => $("comments").querySelector(".on")?.dataset.v || "";
+        // read from the button itself, so it also works for code that runs before this line
+        const wholeFile = () => $("scope").querySelector(".on")?.dataset.v === "file";
+
+        const toNode = (t) => ({ id: t.id, name: t.name, type: t.type, w: t.w, h: t.h, page: t.page, pageId: t.pageId });
+
+        // the targets the designer added; if none, whatever is selected right now
+        async function gatherNodes() {
+          if (wholeFile()) return [];
+          if (targets.length) return targets.map(toNode);
+          return sel.nodes.map((n) => ({ ...n, page: ctx.pageName }));
+        }
+        // a note with every option at its default
+        function baseDraft() {
+          return {
+            fileKey: effectiveKey(), fileName: ctx.fileName, pageName: ctx.pageName, pageId: ctx.pageId,
+            nodes: [], note: "", intent: "change", priority: "normal", mentions: [], library: null, variations: 1,
+            useComments: null, model: null, modelName: null, skill: null, planFirst: false, references: null, scope: null, attachments: [],
+          };
+        }
+        async function currentDraft() {
+          const note = $("note").value.trim();
+          return {
+            ...baseDraft(),
+            nodes: await gatherNodes(),
+            note,
+            priority: $("urgent").checked ? "urgent" : "normal",
+            mentions: mentions.filter((m) => note.includes("@" + m.name)),
+            library: $("library").value || null,
+            variations: Number(getVariations()),
+            useComments: getComments() || null,
+            model: $("model").value || null,
+            modelName: $("model").value ? $("model").selectedOptions[0].textContent : null,
+            skill: $("skill").value || null,
+            planFirst: $("planFirst").checked,
+            references: getRefs() ? { source: "mobbin", count: Number(getRefs()) } : null,
+            scope: wholeFile() ? "file" : null,
+            attachments: files.map((p) => ({ name: p.name, mime: p.mime, data: p.data })),
+          };
+        }
+        const postNote = (note) => ask({ type: "note-create", note });
+
+        // versions and comments are per note; the library choice stays
+        function resetComposer() {
+          $("note").value = "";
+          mentions = [];
+          hideMentions();
+          clearFiles();
+          clearTargets();
+          const reset = (id, v) => $(id).querySelectorAll("button").forEach((b) => b.classList.toggle("on", b.dataset.v === v));
+          reset("variations", "1");
+          reset("scope", "sel");
+          reset("comments", "");
+          reset("refs", "");
+          $("planFirst").checked = false;
+          $("urgent").checked = false;
+          optionsSummary();
+          showTokenRow();
+          renderTarget();
+        }
+
+        // options open over the notes and close when you click elsewhere
+        function setOpts(show) {
+          $("opts").hidden = !show;
+          $("optsBtn").setAttribute("aria-expanded", String(show));
+          $("optsBtn").classList.toggle("on", show);
+        }
+        $("optsBtn").onclick = (e) => {
+          e.stopPropagation();
+          setOpts($("opts").hidden);
+        };
+        document.addEventListener("mousedown", (e) => {
+          if (!$("opts").hidden && !e.target.closest("#opts, #optsBtn")) setOpts(false);
+        });
+        // a non-default option shows under the note, so a closed menu never hides a choice
+        function optionsSummary() {
+          const v = getVariations();
+          const lib = $("library").value;
+          const on = [
+            wholeFile() ? "whole file" : "",
+            v !== "1" ? v + " versions" : "",
+            lib ? (lib === "local" ? "this file only" : lib) : "",
+            getComments() ? (getComments() === "summarize" ? "summarize comments" : "apply comments") : "",
+            $("model").value ? $("model").selectedOptions[0].textContent : "",
+            $("skill").value ? "skill: " + $("skill").value : "",
+            $("planFirst").checked ? "plan first" : "",
+            getRefs() ? getRefs() + " refs" : "",
+            $("urgent").checked ? "urgent" : "",
+          ].filter(Boolean);
+          $("optsBadge").hidden = !on.length;
+          $("optLine").hidden = !on.length;
+          $("optLine").textContent = on.join(" · ");
+          $("optsBtn").title = on.length ? "Options: " + on.join(", ") : "Options";
+        }
+        ["library", "model", "skill", "planFirst", "urgent"].forEach((id) => $(id).addEventListener("change", optionsSummary));
+        $("comments").addEventListener("click", () => setTimeout(() => (optionsSummary(), showTokenRow())));
+        $("refs").addEventListener("click", () => setTimeout(optionsSummary));
+        $("variations").addEventListener("click", () => setTimeout(optionsSummary));
+        $("scope").addEventListener("click", () => setTimeout(() => (optionsSummary(), renderTarget())));
+
+        async function sendNote() {
+          if ($("send").disabled) return;
+          $("send").disabled = true;
+          try {
+            await postNote(await currentDraft());
+            resetComposer();
+            notify("Sent to Claude");
+          } catch (err) {
+            notify("Could not send: " + err.message);
+          }
+          updateSend();
+        }
+
+        // ---------- batch ----------
+        async function addToBatch() {
+          if ($("queue").disabled) return;
+          drafts.push(await currentDraft());
+          resetComposer();
+          renderDrafts();
+          updateSend();
+        }
+        const nodeLabel = (nodes, scope) => {
+          if (scope === "file") return "Whole file";
+          if (!nodes.length) return "Whole page";
+          const names = nodes.slice(0, 2).map((n) => n.name);
+          return names.join(", ") + (nodes.length > 2 ? ` +${nodes.length - 2}` : "");
+        };
+        function renderDrafts() {
+          $("batch").hidden = !drafts.length;
+          $("batchTitle").textContent = `${drafts.length} note${drafts.length === 1 ? "" : "s"} in batch`;
+          $("drafts").innerHTML = drafts
+            .map((d, i) => `<div class="draft"><span class="muted">${i + 1}.</span><span class="t" title="${esc(d.note)}">${esc(nodeLabel(d.nodes, d.scope))}: ${esc(d.note)}${d.attachments.length ? ` (+${d.attachments.length})` : ""}</span><button class="x" type="button" data-rm="${i}" title="Remove">${ICON.x}</button></div>`)
+            .join("");
+        }
+        $("drafts").addEventListener("click", (e) => {
+          const rm = e.target.closest("[data-rm]");
+          if (!rm) return;
+          drafts.splice(Number(rm.dataset.rm), 1);
+          renderDrafts();
+          updateSend();
+        });
+        $("batchClear").onclick = () => {
+          drafts = [];
+          renderDrafts();
+          updateSend();
+        };
+        $("batchSend").onclick = async () => {
+          if (!drafts.length) return;
+          $("batchSend").disabled = true;
+          const batchId = "b" + Date.now().toString(36).slice(-5);
+          const total = drafts.length;
+          try {
+            const batchMode = $("parallel").checked ? "parallel" : "order";
+            while (drafts.length) {
+              await postNote({ ...drafts[0], batchId, batchMode });
+              drafts.shift();
+              renderDrafts();
+            }
+            notify(`Sent ${total} notes to Claude`);
+          } catch (err) {
+            notify(`Sent ${total - drafts.length} of ${total}: ${err.message}`);
+          }
+          updateSend();
+        };
+
+        $("send").onclick = sendNote;
+        $("queue").onclick = addToBatch;
+        $("note").addEventListener("input", () => {
+          updateSend();
+          keepBottom();
+        });
+        $("note").addEventListener("keydown", (e) => {
+          if (mentionKey(e)) return;
+          if (e.key !== "Enter" || e.isComposing || e.keyCode === 229) return; // 229: an input method is still composing
+          // Enter sends, Shift+Enter is a new line, ⌘⇧Enter adds to the batch
+          if ((e.metaKey || e.ctrlKey) && e.shiftKey) {
+            e.preventDefault();
+            addToBatch();
+            return;
+          }
+          if (e.shiftKey) return;
+          e.preventDefault();
+          sendNote();
+        });
+        // when the note box grows, the newest note stays in view
+        let wasAtBottom = true;
+        $("scroll").addEventListener(
+          "scroll",
+          () => {
+            const l = $("scroll");
+            wasAtBottom = l.scrollHeight - l.scrollTop - l.clientHeight < 40;
+          },
+          { passive: true }
+        );
+        function keepBottom() {
+          if (wasAtBottom) requestAnimationFrame(() => ($("scroll").scrollTop = $("scroll").scrollHeight));
+        }
+
+        // ---------- @mentions ----------
+        let mOpts = [];
+        let mIndex = 0;
+        let mQuery = null;
+        function mentionQuery() {
+          const ta = $("note");
+          const m = /(^|\s)@([^\s@]{0,40})$/.exec(ta.value.slice(0, ta.selectionStart));
+          return m ? m[2] : null;
+        }
+        $("note").addEventListener("input", () => {
+          mQuery = mentionQuery();
+          if (mQuery === null) return hideMentions();
+          post({ type: "mention-search", q: mQuery });
+        });
+        $("note").addEventListener("blur", () => setTimeout(hideMentions, 150));
+        function showMentions(q, results) {
+          if (q !== mQuery) return; // an older answer
+          mOpts = results;
+          mIndex = 0;
+          const box = $("mention");
+          box.innerHTML = results.length
+            ? results.map((r, i) => `<div class="opt${i ? "" : " on"}" data-i="${i}"><b>${esc(r.name)}</b><span>${esc(r.sub)}${r.library ? " · " + esc(r.library) : ""}</span></div>`).join("")
+            : `<div class="none">Nothing called “${esc(q)}” in this file or its libraries</div>`;
+          box.hidden = false;
+        }
+        function hideMentions() {
+          $("mention").hidden = true;
+          mOpts = [];
+        }
+        function pickMention(i) {
+          const r = mOpts[i];
+          if (!r) return;
+          const ta = $("note");
+          const pos = ta.selectionStart;
+          const start = ta.value.slice(0, pos).lastIndexOf("@");
+          ta.value = ta.value.slice(0, start) + "@" + r.name + " " + ta.value.slice(pos);
+          const caret = start + r.name.length + 2;
+          ta.setSelectionRange(caret, caret);
+          if (!mentions.some((m) => m.kind === r.kind && (m.key || m.id) === (r.key || r.id))) mentions.push(r);
+          if (r.kind === "library" && [...$("library").options].some((o) => o.value === r.name)) {
+            $("library").value = r.name;
+            optionsSummary();
+          }
+          hideMentions();
+          ta.focus();
+          updateSend();
+        }
+        function mentionKey(e) {
+          if ($("mention").hidden || !mOpts.length) {
+            if (e.key === "Escape") hideMentions();
+            return false;
+          }
+          if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+            mIndex = (mIndex + (e.key === "ArrowDown" ? 1 : mOpts.length - 1)) % mOpts.length;
+            $("mention").querySelectorAll(".opt").forEach((o, i) => o.classList.toggle("on", i === mIndex));
+          } else if ((e.key === "Enter" && !e.metaKey && !e.ctrlKey) || e.key === "Tab") pickMention(mIndex);
+          else if (e.key === "Escape") hideMentions();
+          else return false;
+          e.preventDefault();
+          return true;
+        }
+        $("mention").addEventListener("mousedown", (e) => {
+          const o = e.target.closest(".opt");
+          if (!o) return;
+          e.preventDefault();
+          pickMention(Number(o.dataset.i));
+        });
+
+        function renderLibraries(names) {
+          const keep = $("library").value;
+          $("library").innerHTML = '<option value="">Any library</option><option value="local">This file only</option>' + names.map((n) => `<option value="${esc(n)}">${esc(n)}</option>`).join("");
+          $("library").value = [...$("library").options].some((o) => o.value === keep) ? keep : "";
+        }
+
+        // ---------- selecting a layer on the canvas highlights the note about it ----------
+        const noteCovers = (it, path) => it.nodes.some((n) => path.includes(n.id));
+        function highlightFor(path) {
+          const it = path.length ? items.find((i) => i.status !== "done" && noteCovers(i, path)) || items.find((i) => noteCovers(i, path)) : null;
+          hitId = it ? it.id : null;
+          document.querySelectorAll(".item.hit").forEach((el) => el.classList.remove("hit"));
+          const el = hitId && document.querySelector(`.item[data-id="${hitId}"]`);
+          if (el) {
+            el.classList.add("hit");
+            el.scrollIntoView({ block: "nearest", behavior: "smooth" });
+          }
+        }
+        $("fileUrl").addEventListener("input", () => {
+          const key = fileKeyFromUrl($("fileUrl").value);
+          $("fileUrl").classList.toggle("bad", !!$("fileUrl").value.trim() && !key);
+          if (!key) return updateSend();
+          post({ type: "save-file-key", key });
+          ctx.fileKey = key;
+          $("fileUrl").value = "";
+          showSetup();
+          updateSend();
+          refilter(true);
+        });
+        $("markers").addEventListener("change", (e) => {
+          markersOn = e.target.checked;
+          post({ type: "set-pref", key: "markers", value: markersOn });
+          syncMarkers();
+        });
+
+        // ---------- skills and models the watching Claude Code session offers ----------
+        let skillsSig = null;
+        function loadSkills(list) {
+          const sig = JSON.stringify(list);
+          if (sig === skillsSig) return;
+          skillsSig = sig;
+          const cur = $("skill").value;
+          $("skill").innerHTML = '<option value="">None</option>' + list.map((k) => `<option value="${esc(k.name)}" title="${esc(k.description || "")}">${esc(k.name)}</option>`).join("");
+          $("skill").value = list.some((k) => k.name === cur) ? cur : "";
+          $("skillRow").hidden = !list.length;
+          optionsSummary();
+        }
+        let modelsSig = null;
+        function loadModels(list) {
+          const sig = JSON.stringify(list);
+          if (sig === modelsSig) return;
+          modelsSig = sig;
+          const cur = $("model").value;
+          $("model").innerHTML = '<option value="">Session default</option>' + list.map((m) => `<option value="${esc(m.id)}">${esc(m.name)}</option>`).join("");
+          $("model").value = list.some((m) => m.id === cur) ? cur : "";
+          $("modelRow").hidden = !list.length;
+          optionsSummary();
+        }
+
+        // ---------- Figma token for comments: asked for only when Comments is on and the bridge has none ----------
+        let hasCommentsToken = true;
+        const showTokenRow = () => ($("tokenRow").hidden = hasCommentsToken || !getComments());
+        $("tokenSave").onclick = () => {
+          const token = $("figmaToken").value.trim();
+          if (!token) return $("figmaToken").focus();
+          if (!tell({ type: "note-config", figmaToken: token })) return;
+          $("figmaToken").value = "";
+          notify("Token saved on this computer");
+        };
+
+        // ---------- permission prompts, questions and plans from Claude Code (bridge/hooks) ----------
+        let perms = [];
+        let permSig = "";
+        function permHtml(p) {
+          const bubble = (html) => `<div class="bubble">${html}</div>`;
+          const head = `<span class="ph2">${p.noteId ? `Note #${esc(p.noteId)} · ` : ""}${{ permission: "Asks for permission", question: "Claude asks you", plan: "Claude’s plan" }[p.kind] || ""}</span>`;
+          if (p.kind === "question") {
+            return `${bubble(`${head}
+              ${(p.questions || [])
+                .map(
+                  (q, qi) => `<div class="pq" data-q="${qi}" data-multi="${q.multiSelect ? 1 : 0}">
+                ${q.header ? `<span class="chip">${esc(q.header)}</span>` : ""}<b>${esc(q.question)}</b>
+                <div class="pchoices">${(q.options || []).map((o, oi) => `<button class="pchoice" type="button" data-o="${oi}" title="${esc(o.description || "")}"><span>${esc(o.label)}</span>${o.description ? `<small>${esc(o.description)}</small>` : ""}</button>`).join("")}</div>
+                <input class="pother" type="text" placeholder="Or write your own answer…">
+              </div>`
+                )
+                .join("")}`)}
+              <div class="pa"><button class="btn ghost sm" type="button" data-decide="skip">Skip</button><span class="grow"></span><button class="btn primary sm" type="button" data-decide="answer">Send answers</button></div>`;
+          }
+          if (p.kind === "plan") {
+            return `${bubble(`${head}
+              <div class="pplan">${richText(p.plan || "")}</div>
+              <input class="pfeedback" type="text" placeholder="What should change? (for Change)">`)}
+              <div class="pa"><button class="btn ghost sm" type="button" data-decide="revise">Change</button><span class="grow"></span><button class="btn primary sm" type="button" data-decide="approve">Approve plan</button></div>`;
+          }
+          return `${bubble(`${head}
+            <b>${esc(p.title || "")}</b>
+            ${p.sub ? `<span class="sub">${esc(p.sub)}</span>` : ""}
+            ${p.detail ? `<details><summary>Details</summary><pre>${esc(p.detail)}</pre></details>` : ""}`)}
+            <div class="pa">
+              <button class="btn ghost sm" type="button" data-decide="deny">Decline</button>
+              <span class="grow"></span>
+              <button class="btn ghost sm" type="button" data-decide="always" title="${esc("Don't ask again for " + (p.rule || "this"))}">Always allow</button>
+              <button class="btn primary sm" type="button" data-decide="once">Allow once</button>
+            </div>`;
+        }
+        function renderPerms() {
+          const sig = perms.map((p) => p.id).join();
+          renderBadge();
+          if (sig === permSig) return;
+          const fresh = perms.some((p) => !permSig.split(",").includes(p.id));
+          permSig = sig;
+          const box = $("perms");
+          box.hidden = !perms.length;
+          box.innerHTML = perms.map((p) => `<div class="perm" data-perm="${esc(p.id)}" data-kind="${esc(p.kind || "permission")}">${permHtml(p)}</div>`).join("");
+          if (fresh) {
+            notify({ question: "Claude has a question for you", plan: "Claude made a plan for you to approve" }[perms.at(-1)?.kind] || "Claude needs your permission");
+            if (!notesOpen) open(false);
+          }
+        }
+        $("perms").addEventListener("click", (e) => {
+          const choice = e.target.closest(".pchoice");
+          if (choice) {
+            const q = choice.closest(".pq");
+            if (q.dataset.multi !== "1") q.querySelectorAll(".pchoice").forEach((x) => x !== choice && x.classList.remove("on"));
+            choice.classList.toggle("on");
+            return;
+          }
+          const b = e.target.closest("[data-decide]");
+          if (!b) return;
+          const card = b.closest("[data-perm]");
+          const id = card.dataset.perm;
+          const p = perms.find((x) => x.id === id) || {};
+          const body = { type: "perm-answer", id, decision: b.dataset.decide };
+          if (p.kind === "question" && body.decision === "answer") {
+            body.answers = {};
+            for (const el of card.querySelectorAll(".pq")) {
+              const q = p.questions[Number(el.dataset.q)];
+              const picked = [...el.querySelectorAll(".pchoice.on")].map((x) => q.options[Number(x.dataset.o)].label);
+              const own = el.querySelector(".pother").value.trim();
+              if (own) picked.push(own);
+              if (!picked.length) {
+                notify("Pick an answer for every question, or Skip");
+                el.querySelector(".pother").focus();
+                return;
+              }
+              body.answers[q.question] = picked.join(", ");
+            }
+          }
+          if (p.kind === "plan" && body.decision === "revise") {
+            body.feedback = card.querySelector(".pfeedback").value.trim();
+            if (!body.feedback) {
+              notify("Write what should change");
+              card.querySelector(".pfeedback").focus();
+              return;
+            }
+          }
+          if (!tell(body)) return;
+          card.querySelectorAll("button, input").forEach((x) => (x.disabled = true));
+          perms = perms.filter((x) => x.id !== id);
+          renderPerms();
+        });
+
+        function syncMarkers() {
+          post({ type: "sync-markers", enabled: markersOn, items: items.map((it) => ({ id: it.id, status: it.status, note: it.note, nodeIds: it.nodes.map((n) => n.id) })) });
+        }
+
+        // three states: bridge off / bridge on but no Claude watching / Claude ready
+        let connState = "";
+        function setOnline(v, isClaude) {
+          online = v;
+          claude = v && isClaude;
+          const state = !v ? "off" : claude ? "ready" : "idle";
+          if (state !== connState) {
+            connState = state;
+            renderHelp();
+            showSetup();
+            if (state === "off") renderWelcome();
+            else if (!items.length && notesOpen) renderList();
+          }
+          updateSend();
+        }
+        function renderHelp() {
+          const h = {
+            off: { text: "Nothing connects me to this file yet. Open Claude Code, or in the Angelo folder run:", cmd: "npm run bridge" },
+            idle: { text: "I’m not watching yet. Notes wait here. To start, type in Claude Code:", cmd: "/angelo-notes" },
+            ready: { text: "", cmd: "" },
+          }[connState];
+          if (!h) return;
+          $("help").hidden = false;
+          $("helpText").hidden = !h.text;
+          $("helpText").textContent = h.text;
+          $("helpCmdRow").hidden = !h.cmd;
+          $("helpCmd").textContent = h.cmd;
+          $("helpReady").hidden = connState !== "ready";
+          $("helpLbl").hidden = connState === "ready";
+          $("help").classList.toggle("ready", connState === "ready");
+        }
+        // compact header: sticks over the list, shown again as soon as the list moves up
+        let lastTop = 0;
+        $("scroll").addEventListener(
+          "scroll",
+          () => {
+            const top = $("scroll").scrollTop;
+            const help = $("help");
+            if (top <= 0 || top < lastTop) help.classList.remove("tuck");
+            else if (top > lastTop && top > help.offsetHeight) help.classList.add("tuck");
+            lastTop = top;
+          },
+          { passive: true }
+        );
+        // delete every note of this file, after a confirmation in the header (no browser dialog in a plugin)
+        let clearTimer = 0;
+        function clearAsk(open) {
+          clearTimeout(clearTimer);
+          $("hacts").hidden = open;
+          $("clearAsk").hidden = !open;
+          if (!open) return;
+          $("clearMsg").textContent = `Delete ${items.length} note${items.length > 1 ? "s" : ""}?`;
+          clearTimer = setTimeout(() => clearAsk(false), 5000);
+        }
+        $("clearAll").onclick = () => items.length && clearAsk(true);
+        $("clearNo").onclick = () => clearAsk(false);
+        $("clearYes").onclick = () => {
+          for (const it of items.slice()) {
+            post({ type: "clear-markers", id: it.id, nodeIds: it.nodes.map((n) => n.id) });
+            tell({ type: "note-delete", id: it.id });
+          }
+          clearAsk(false);
+        };
+        $("helpCopy").onclick = () => {
+          const ta = document.createElement("textarea");
+          ta.value = $("helpCmd").textContent;
+          document.body.appendChild(ta);
+          ta.select();
+          let ok = false;
+          try {
+            ok = document.execCommand("copy");
+          } catch {}
+          ta.remove();
+          notify(ok ? "Copied" : "Select the text and copy it");
+        };
+
+        // ---------- the notes ----------
+        const LABEL = { pending: "Waiting", working: "Working", question: "Needs answer", done: "Done" };
+        const staticKind = (kind) => /^(att|t|m)\d+$/.test(kind);
+        const imgKey = (it, kind) => (staticKind(kind) ? `${it.id}:${kind}` : `${it.id}:${kind}:${it.updatedAt}`);
+        const imgStyle = (it, kind) => {
+          const u = imgCache.get(imgKey(it, kind));
+          return u ? `style="background-image:url(${u})"` : "";
+        };
+
+        function mediaHtml(it) {
+          const at = it.attachments || [];
+          const shots =
+            it.nodes.length > 1
+              ? it.nodes.map((n, i) => (n.hasImage ? `<span class="ph sm" title="${esc(n.name)}" data-img="${it.id}:t${i + 1}" ${imgStyle(it, "t" + (i + 1))}></span>` : "")).join("")
+              : "";
+          const fl = at
+            .map((a) =>
+              a.mime.startsWith("image/")
+                ? `<span class="ph" title="${esc(a.name)}" data-img="${it.id}:att${a.n}" ${imgStyle(it, "att" + a.n)}></span>`
+                : `<span class="fchip" title="${esc(a.name)}"><span class="ext">${esc((extOf(a.name) || "file").slice(0, 4).toUpperCase())}</span><span class="fn">${esc(a.name)}</span>${a.size ? `<span class="muted">${fmtSize(a.size)}</span>` : ""}</span>`
+            )
+            .join("");
+          return shots || fl ? `<div class="media">${shots}${fl}</div>` : "";
+        }
+
+        function itemHtml(it) {
+          const lastPlan = it.status === "question" && it.thread.at(-1)?.kind === "plan";
+          const thread = it.thread
+            .map(
+              (t, i) =>
+                `<div class="msg ${t.from}${t.kind === "plan" ? " plan" : ""}">${t.from === "system" ? "" : `<small>${t.from === "claude" ? (t.kind === "plan" ? "Claude plan" : "Claude") : "You"}</small>`}${t.from === "claude" ? richText(t.text) : esc(t.text)}${
+                  (t.images || []).length
+                    ? `<div class="refs">${t.images.map((im) => `<span class="ref${im.link ? " linked" : ""}" ${im.link ? `data-href="${esc(im.link)}"` : ""} title="${esc(im.caption || im.link || "")}"><span class="ph" data-img="${it.id}:m${im.k}" ${imgStyle(it, "m" + im.k)}></span>${im.caption ? `<small>${esc(im.caption)}</small>` : ""}</span>`).join("")}</div>`
+                    : ""
+                }${lastPlan && i === it.thread.length - 1 ? `<div class="pa"><button class="btn ghost sm" type="button" data-plan-change="${it.id}">Change something</button><span class="grow"></span><button class="btn primary sm" type="button" data-plan-ok="${it.id}">Approve plan</button></div>` : ""}</div>`
+            )
+            .join("");
+          const meta = [
+            it.priority === "urgent" ? "urgent" : "",
+            it.variations > 1 ? `${it.variations} versions` : "",
+            it.library ? `library: ${it.library === "local" ? "this file" : it.library}` : "",
+            (it.mentions || []).length ? "@ " + it.mentions.map((m) => m.name).join(", ") : "",
+            it.useComments ? (it.useComments === "summarize" ? "summarize comments" : "apply comments") : "",
+            it.model ? it.modelName || it.model : "",
+            it.skill ? "skill: " + it.skill : "",
+            it.planFirst ? "plan first" : "",
+            it.references ? `${it.references.count} refs` : "",
+            it.batchMode === "parallel" ? "parallel" : "",
+          ]
+            .filter(Boolean)
+            .join(" · ");
+          const showCmp = it.status === "done" && it.hasBefore && it.hasAfter;
+          const canUndo = it.status === "done" && it.hasPatch && !it.reverted;
+          const replyOpen = !it.reverted && (it.status === "question" || openReplies.has(it.id) || replyDrafts[it.id]);
+          const placeholder = { question: "Answer Claude…", done: "Not quite right? Say why…", working: "Add something while Claude works…", pending: "Add to this note…" }[it.status];
+          const st = it.reverted ? "reverted" : it.status;
+          const steps = it.progress || [];
+          const progress = !steps.length
+            ? ""
+            : it.status === "working"
+              ? `<div class="prog">${steps.slice(0, -1).slice(-3).map((p) => `<div class="done">${esc(p.text)}</div>`).join("")}<div class="now">${esc(steps.at(-1).text)}</div></div>`
+              : openSteps.has(it.id)
+                ? `<div class="prog">${steps.map((p) => `<div class="done">${esc(p.text)}</div>`).join("")}</div>`
+                : "";
+          const hasSteps = steps.length && it.status !== "working";
+          const chev = hasSteps ? `<button class="ib chev${openSteps.has(it.id) ? " on" : ""}" type="button" data-steps="${it.id}" title="Steps">${ICON.chev}</button>` : "";
+          const stepsN = hasSteps ? `<span class="n" data-steps="${it.id}">${steps.length} step${steps.length > 1 ? "s" : ""}</span>` : "";
+          return `<article class="item${it.id === hitId ? " hit" : ""}" data-id="${it.id}">
+            <div class="head"><div class="top"><span class="who" title="${esc(nodeLabel(it.nodes, it.scope))}">#${it.id} ${esc(nodeLabel(it.nodes, it.scope))}${it.batchId ? " · batch" : ""}${it.agent ? ` · ${esc([it.agent, ...(it.helpers || [])].join(" + "))}` : ""}</span><span class="st ${st}">${waitsFigma(it) ? "waiting for figma" : (it.reverted ? "Reverted" : LABEL[it.status] || it.status).toLowerCase()}</span></div>
+            <div class="you">${esc(it.note)}</div>
+            ${meta ? `<div class="meta">${esc(meta)}</div>` : ""}${mediaHtml(it)}</div>${thread}${progress}
+            ${showCmp ? `<div class="cmp"><figure><div class="img" data-img="${it.id}:before" ${imgStyle(it, "before")}></div><figcaption>Before</figcaption></figure><figure><div class="img" data-img="${it.id}:after" ${imgStyle(it, "after")}></div><figcaption>After</figcaption></figure></div>` : ""}
+            ${replyOpen ? `<div class="reply"><input class="replyInput" type="text" data-id="${it.id}" value="${esc(replyDrafts[it.id] || "")}" placeholder="${placeholder}"></div>` : ""}
+            <div class="acts">
+              ${chev}<span class="grp">${stepsN}
+              ${it.focus && it.focus.length ? `<button class="tl" type="button" data-select="${it.id}">Select</button>` : ""}
+              ${canUndo ? `<button class="tl" type="button" data-undo="${it.id}">Undo</button>` : ""}</span>
+              <span class="grow"></span>
+              <span class="end">
+              ${!it.reverted && !replyOpen ? `<button class="ib" type="button" data-reply="${it.id}" title="Reply">${ICON.reply}</button>` : ""}
+              <button class="ib" type="button" data-del="${it.id}" title="Delete">${ICON.trash}</button></span>
+            </div>
+          </article>`;
+        }
+
+        const openSteps = new Set();
+        let figmaWait = new Set();
+        const waitsFigma = (it) => it.status === "working" && !!it.agent && figmaWait.has(it.agent);
+        // only the notes that changed are redrawn, so scrolling, typing and pictures stay put
+        const itemSig = (it) => JSON.stringify([it.updatedAt, it.status, it.thread.length, (it.progress || []).length, it.reverted, (it.focus || []).length, !!it.hasPatch, it.hasBefore, it.hasAfter, openReplies.has(it.id), !!replyDrafts[it.id], openSteps.has(it.id), it.agent || "", (it.helpers || []).join(), waitsFigma(it)]);
+        // first run, or no bridge: what the panel needs, so it explains itself
+        const WELCOME = `<div class="empty">Select a layer, write what should change and send. Nothing leaves your computer.</div>`;
+        function renderWelcome() {
+          if (items.length) return;
+          $("list").innerHTML = WELCOME;
+          shownCount = 0;
+        }
+
+        function renderList() {
+          renderBadge();
+          $("clearAll").hidden = !items.length;
+          const list = $("list");
+          if (!items.length && connState === "off") return renderWelcome();
+          if (!items.length) {
+            list.innerHTML = `<div class="empty">Select layers, a frame or nothing for the whole page, then write what should change.</div>`;
+            shownCount = 0;
+            return;
+          }
+          const emptyEl = list.querySelector(".empty");
+          if (emptyEl) emptyEl.remove();
+          const sc = $("scroll");
+          const atBottom = sc.scrollHeight - sc.scrollTop - sc.clientHeight < 40;
+          const grew = items.length > shownCount;
+          shownCount = items.length;
+          const seen = new Set();
+          let prev = null;
+          for (const it of items) {
+            seen.add(it.id);
+            let el = list.querySelector(`.item[data-id="${it.id}"]`);
+            const sig = itemSig(it);
+            const typing = el && document.activeElement && el.contains(document.activeElement);
+            if ((!el || el.dataset.sig !== sig) && !typing) {
+              const tmp = document.createElement("div");
+              tmp.innerHTML = itemHtml(it).trim();
+              const fresh = tmp.firstElementChild;
+              fresh.dataset.sig = sig;
+              if (el) el.replaceWith(fresh);
+              else if (prev) prev.after(fresh);
+              else list.prepend(fresh);
+              el = fresh;
+            }
+            if (prev ? prev.nextElementSibling !== el : list.firstElementChild !== el) {
+              if (prev) prev.after(el);
+              else list.prepend(el);
+            }
+            prev = el;
+          }
+          list.querySelectorAll(".item").forEach((el) => {
+            if (!seen.has(el.dataset.id)) el.remove();
+          });
+          if (grew || atBottom) sc.scrollTop = sc.scrollHeight;
+          loadImages();
+        }
+
+        // pictures come over the socket (note-img, base64) and are kept as blob URLs
+        const imgAsked = new Map(); // "id:kind" → the cache key asked for
+        function loadImages() {
+          for (const it of items) {
+            const kinds = [];
+            if (it.nodes.length > 1) it.nodes.forEach((n, i) => n.hasImage && kinds.push("t" + (i + 1)));
+            (it.attachments || []).forEach((a) => a.mime.startsWith("image/") && kinds.push("att" + a.n));
+            it.thread.forEach((t) => (t.images || []).forEach((im) => kinds.push("m" + im.k)));
+            if (it.status === "done" && it.hasBefore && it.hasAfter) kinds.push("before", "after");
+            for (const kind of kinds) {
+              const key = imgKey(it, kind);
+              if (imgCache.has(key) || imgAsked.get(`${it.id}:${kind}`) === key) continue;
+              imgAsked.set(`${it.id}:${kind}`, key);
+              send({ type: "note-img", id: it.id, kind });
+            }
+          }
+        }
+        function onImage(f) {
+          const key = imgAsked.get(`${f.id}:${f.kind}`);
+          if (!key || f.missing || !f.data) return;
+          const bin = atob(f.data);
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          const old = imgCache.get(key);
+          if (old) URL.revokeObjectURL(old);
+          const url = URL.createObjectURL(new Blob([bytes], { type: f.mime || "image/png" }));
+          imgCache.set(key, url);
+          const el = document.querySelector(`[data-img="${f.id}:${f.kind}"]`);
+          if (el) el.style.backgroundImage = `url(${url})`;
+        }
+
+        // click a note: go to its layers
+        function focusNote(it) {
+          const ids = it.nodes.map((n) => n.id);
+          if (ids.length) post({ type: "focus", ids });
+        }
+        function redrawItem(id) {
+          const el = document.querySelector(`.item[data-id="${id}"]`);
+          if (!el) return;
+          el.dataset.sig = "";
+          renderList();
+        }
+
+        $("list").addEventListener("click", (e) => {
+          const link = e.target.closest("a[data-href], .ref.linked");
+          if (link) {
+            e.preventDefault();
+            e.stopPropagation();
+            post({ type: "open-url", url: link.dataset.href });
+            return;
+          }
+          const planOk = e.target.closest("[data-plan-ok]");
+          if (planOk) {
+            planOk.disabled = true;
+            sendReply(planOk.dataset.planOk, "Plan approved. Go ahead.");
+            return;
+          }
+          const planChange = e.target.closest("[data-plan-change]");
+          if (planChange) {
+            const id = planChange.dataset.planChange;
+            openReplies.add(id);
+            redrawItem(id);
+            const input = document.querySelector(`.replyInput[data-id="${id}"]`);
+            if (input) {
+              input.placeholder = "What should change in the plan?";
+              input.focus();
+            }
+            return;
+          }
+          const stepsBtn = e.target.closest("[data-steps]");
+          if (stepsBtn) {
+            const id = stepsBtn.dataset.steps;
+            if (openSteps.has(id)) openSteps.delete(id);
+            else openSteps.add(id);
+            redrawItem(id);
+            return;
+          }
+          const select = e.target.closest("[data-select]");
+          if (select) {
+            const it = items.find((i) => i.id === select.dataset.select);
+            if (it && it.focus) post({ type: "focus", ids: it.focus });
+            return;
+          }
+          const undo = e.target.closest("[data-undo]");
+          if (undo) {
+            if (tell({ type: "note-undo", id: undo.dataset.undo })) {
+              undo.disabled = true;
+              notify("Reverting…");
+            }
+            return;
+          }
+          const reply = e.target.closest("[data-reply]");
+          if (reply) {
+            const id = reply.dataset.reply;
+            openReplies.add(id);
+            redrawItem(id);
+            const input = document.querySelector(`.replyInput[data-id="${id}"]`);
+            if (input) input.focus();
+            return;
+          }
+          const del = e.target.closest("[data-del]");
+          if (del) {
+            const it = items.find((i) => i.id === del.dataset.del);
+            if (it) post({ type: "clear-markers", id: it.id, nodeIds: it.nodes.map((n) => n.id) });
+            tell({ type: "note-delete", id: del.dataset.del });
+            return;
+          }
+          if (e.target.closest(".reply")) return;
+          const item = e.target.closest(".item");
+          if (item) {
+            const it = items.find((i) => i.id === item.dataset.id);
+            if (it) focusNote(it);
+          }
+        });
+        $("list").addEventListener("input", (e) => {
+          if (e.target.classList.contains("replyInput")) replyDrafts[e.target.dataset.id] = e.target.value;
+        });
+        $("list").addEventListener("focusout", (e) => {
+          if (!e.target.classList.contains("replyInput")) return;
+          const id = e.target.dataset.id;
+          if (!e.target.value.trim()) {
+            delete replyDrafts[id];
+            openReplies.delete(id);
+          }
+          setTimeout(() => renderList()); // anything that changed while typing
+        });
+        $("list").addEventListener("keydown", (e) => {
+          if (!e.target.classList.contains("replyInput")) return;
+          const id = e.target.dataset.id;
+          if (e.key === "Escape") {
+            e.target.value = "";
+            e.target.blur();
+            return;
+          }
+          if (e.key !== "Enter" || e.isComposing) return;
+          const text = e.target.value.trim();
+          if (!text) return;
+          e.target.value = "";
+          e.target.blur();
+          sendReply(id, text);
+        });
+        function sendReply(id, text) {
+          if (!tell({ type: "note-reply", id, text })) return;
+          delete replyDrafts[id];
+          openReplies.delete(id);
+        }
+
+        // ---------- keyboard ----------
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape" && !$("opts").hidden) setOpts(false);
+        });
+
+        // ---------- resizing the panel from its corner (the top edge stays put) ----------
+        (() => {
+          let start = null;
+          let raf = 0;
+          let next = null;
+          const grip = $("grip");
+          grip.addEventListener("pointerdown", (e) => {
+            e.preventDefault();
+            try {
+              grip.setPointerCapture(e.pointerId);
+            } catch (err) {}
+            start = { x: e.screenX, y: e.screenY, w: window.innerWidth || normalSize.w, h: window.innerHeight || normalSize.h };
+            next = null;
+          });
+          grip.addEventListener("pointermove", (e) => {
+            if (!start) return;
+            const w = Math.min(900, Math.max(mini ? 240 : 300, start.w + e.screenX - start.x));
+            next = mini ? { w, h: miniH() } : { w, h: Math.min(1200, Math.max(420, start.h + e.screenY - start.y)) };
+            if (!raf) {
+              raf = requestAnimationFrame(() => {
+                raf = 0;
+                if (next) post({ type: "resize", w: next.w, h: next.h });
+              });
+            }
+          });
+          const end = () => {
+            if (!start) return;
+            start = null;
+            if (!next) return;
+            if (mini) {
+              miniW = next.w;
+              post({ type: "set-pref", key: "miniW", value: miniW });
+              return;
+            }
+            normalSize = next;
+            post({ type: "set-pref", key: "size", value: next });
+          };
+          grip.addEventListener("pointerup", end);
+          grip.addEventListener("pointercancel", end);
+        })();
+
+        window.Notes = { frame, main, connected, quick, attach };
+        post({ type: "ready" });
+        renderTarget();
+        renderFiles();
+        optionsSummary();
+        setOnline(isOpen(), false);
+        if (isOpen()) connected(true);
+      })();
+    </script>
+    <script>
+      // Onboarding: first run, three steps over the panel (welcome, AI client, test).
+      // Completion is kept by the main thread (figma.clientStorage); the Guide link replays it.
+      // It reads the bar's socket and is told of each bridge request and of its answer.
+      (() => {
+        const $ = (id) => document.getElementById(id);
+        const post = (m) => parent.postMessage({ pluginMessage: { kind: "onboarding", ...m } }, "*");
+        const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+        const up = () => !!socket && socket.readyState === 1;
+        const STEPS = ["welcome", "client", "test"];
+        const TEST_PROMPT = "Use Angelo to read my Figma selection";
+        // the Claude Desktop extension ships inside the npm package
+        const DESKTOP_URL = "https://unpkg.com/angelo-mcp/angelo.mcpb";
+        let at = "welcome"; // the step shown, by name
+        let client = "code";
+        let replay = false; // opened from the Guide link: every step is shown
+        let trip = null; // the first bridge request answered while the guide is shown: { method, ms, ok, error }
+        const asked = new Map();
+
+        const NPX = { command: "npx", args: ["-y", "angelo-mcp"] };
+        const CLIENTS = {
+          code: {
+            label: "Claude Code",
+            where: "Paste this in a terminal, then start a new Claude Code session.",
+            snippet: "claude mcp add angelo -s user -- npx -y angelo-mcp",
+          },
+          desktop: {
+            label: "Claude Desktop",
+            where: "Download the extension and double-click it: Claude Desktop installs Angelo.",
+          },
+          other: {
+            label: "Cursor / other",
+            where: "Cursor: ~/.cursor/mcp.json. Any MCP client that runs a stdio server takes the same entry.",
+            snippet: JSON.stringify({ mcpServers: { angelo: NPX } }, null, 2),
+          },
+        };
+
+        const snip = (text) => `<pre title="Click to copy" data-copy="${esc(text)}">${esc(text)}</pre>`;
+        const stat = (cls, text) => `<div class="ostat"><span class="dot ${cls}"></span><span>${text}</span></div>`;
+        const ARROW =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>';
+
+        // plugin → bridge → your AI, each dot following the connection
+        function flow() {
+          const part = (cls, label) => `<span><span class="dot ${cls}"></span>${label}</span>`;
+          return `<div class="oflow">${part("on", "Plugin")}${ARROW}${part(up() ? "on" : "wait", "Bridge")}${ARROW}${part(trip ? "on" : "wait", "Your AI")}</div>`;
+        }
+        function bridgeStat() {
+          return up() ? stat("on", "Bridge connected: your AI is set.") : stat("wait", "Waiting for your AI to start the bridge…");
+        }
+        function tripStat() {
+          if (trip) {
+            const tail = trip.ok ? "" : ` It answered: ${esc(trip.error)}`;
+            return stat("on", `Your AI reached Figma: ${esc(trip.method)} answered in ${trip.ms} ms.${tail}`);
+          }
+          return up() ? stat("wait", "Waiting for a request from your AI…") : stat("err", "The bridge is not connected yet. Your AI client starts it with its first Angelo call.");
+        }
+        function clientHtml() {
+          const c = CLIENTS[client];
+          const action = c.snippet ? snip(c.snippet) : `<button class="btn dl" type="button" data-open="${DESKTOP_URL}">Download for Claude Desktop</button>`;
+          return `<p>${esc(c.where)}</p>${action}${bridgeStat()}`;
+        }
+        function testHtml() {
+          if (!trip) return `${tripStat()}<p>This turns green when a request from your AI comes through the bridge and Figma answers it.</p>`;
+          return `${tripStat()}<p>· Keep this panel open while you work.<br>· Notes written here wait for your AI.</p>`;
+        }
+
+        const BODY = {
+          welcome: () => `<h2>Welcome to Angelo</h2>
+            <p>Angelo turns your Figma selection into compact text your AI can read and edit, with no copy and paste.</p>
+            <div id="onbLive">${flow()}</div>
+            <p>Nothing leaves your computer.</p>`,
+          client: () => `<h2>Connect your AI</h2>
+            <p>Pick the app you use with AI:</p>
+            <div class="seg" id="onbClient">${Object.entries(CLIENTS)
+              .map(([k, c]) => `<button type="button" data-v="${k}"${k === client ? ' class="on"' : ""}>${c.label}</button>`)
+              .join("")}</div>
+            <div id="onbLive">${clientHtml()}</div>`,
+          test: () => `<h2>Test it</h2>
+            <p>Select a frame in Figma, then tell your AI:</p>${snip(TEST_PROMPT)}
+            <div id="onbLive">${testHtml()}</div>`,
+        };
+        // the part of a step that follows the connection
+        function live() {
+          const el = $("onbLive");
+          if (!el || $("onb").hidden) return;
+          if (at === "welcome") el.innerHTML = flow();
+          if (at === "client") el.innerHTML = clientHtml();
+          if (at === "test") render();
+        }
+
+        function render() {
+          const last = at === "test";
+          $("onbCount").textContent = `${STEPS.indexOf(at) + 1} of ${STEPS.length}`;
+          $("onbBody").innerHTML = BODY[at]();
+          $("onbBody").scrollTop = 0;
+          $("onbBack").hidden = at === "welcome";
+          $("onbSkip").hidden = last && !!trip;
+          $("onbNext").textContent = at === "welcome" ? "Get started" : last ? (trip ? "Start using Angelo" : "Finish") : "Next";
+        }
+        function show(fromGuide = false) {
+          replay = fromGuide;
+          at = "welcome";
+          trip = null;
+          asked.clear();
+          render();
+          $("onb").hidden = false;
+        }
+        function close() {
+          $("onb").hidden = true;
+          post({ type: "set", done: true });
+        }
+
+        $("onbSkip").onclick = close;
+        $("onbBack").onclick = () => {
+          at = STEPS[Math.max(0, STEPS.indexOf(at) - 1)];
+          render();
+        };
+        // a connected bridge means an AI client already runs Angelo: its setup step is passed over,
+        // except when the guide is replayed
+        $("onbNext").onclick = () => {
+          if (at === "test") return close();
+          at = at === "welcome" && up() && !replay ? "test" : STEPS[STEPS.indexOf(at) + 1];
+          render();
+        };
+        // Alt-click also forgets the completion: the next launch opens the guide by itself
+        $("guide").onclick = (e) => {
+          if (e.altKey) post({ type: "set", done: false });
+          show(true);
+        };
+        $("onbBody").addEventListener("click", (e) => {
+          const tab = e.target.closest("#onbClient button");
+          if (tab) {
+            client = tab.dataset.v;
+            for (const b of $("onbClient").children) b.classList.toggle("on", b === tab);
+            return live();
+          }
+          const open = e.target.closest("[data-open]");
+          if (open) return post({ type: "open", url: open.dataset.open });
+          const copy = e.target.closest("[data-copy]");
+          if (!copy) return;
+          const ta = document.createElement("textarea");
+          ta.value = copy.dataset.copy;
+          document.body.appendChild(ta);
+          ta.select();
+          let ok = false;
+          try {
+            ok = document.execCommand("copy");
+          } catch {}
+          ta.remove();
+          // brief feedback in place of the text, then the text again
+          if (copy.classList.contains("copied")) return;
+          copy.classList.add("copied");
+          copy.textContent = ok ? "Copied" : "Select the text and copy it";
+          setTimeout(() => {
+            copy.classList.remove("copied");
+            copy.textContent = copy.dataset.copy;
+          }, 1200);
+        });
+
+        window.Onboarding = {
+          // stored state from the main thread: shown by itself until it was finished or skipped once
+          main(m) {
+            if (m.type === "state" && !m.done) show();
+          },
+          bridge: live,
+          request(frame) {
+            if (!$("onb").hidden && !trip) asked.set(frame.id, { method: frame.method, at: Date.now() });
+          },
+          response(r) {
+            const a = asked.get(r.id);
+            if (!a || trip) return;
+            asked.clear();
+            const failed = !r.ok ? r.error : r.result && r.result.error;
+            trip = { method: a.method, ms: Date.now() - a.at, ok: !failed, error: failed ? String(failed).split("\n")[0] : "" };
+            live();
+          },
+        };
+        post({ type: "get" });
+      })();
+    </script>
+  </body>
+</html>

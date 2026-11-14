@@ -1,0 +1,1238 @@
+{
+ "page": "Badge",
+ "sets": [
+  {
+   "name": "Badge",
+   "properties": {
+    "⮑ Icon left#1530:15": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25285"
+    },
+    "Show left icon#1530:36": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Show right icon#1530:57": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "⮑ Icon right#1530:78": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25285"
+    },
+    "Label#1530:99": {
+     "type": "TEXT",
+     "default": "Label"
+    },
+    "Show spinner#5852:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Variant": {
+     "type": "VARIANT",
+     "default": "Primary",
+     "options": [
+      "Primary",
+      "Secondary",
+      "Outline",
+      "Ghost",
+      "Destructive"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Focus"
+     ]
+    }
+   },
+   "defaultVariant": "Variant=Primary, State=Default",
+   "variants": [
+    {
+     "name": "Variant=Primary, State=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Secondary, State=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/secondary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/secondary foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Outline, State=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/outline-bg"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Ghost, State=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, State=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, State=Focus",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Secondary, State=Focus",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/secondary"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-25",
+       "opacity": 0.25
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/secondary foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Outline, State=Focus",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-25",
+       "opacity": 0.25
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Ghost, State=Focus",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-25",
+       "opacity": 0.25
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, State=Focus",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-40",
+       "opacity": 0.4
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 999,
+     "effectStyle": "focus ring error",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      8,
+      2,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Spinner",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show spinner#5852:0"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "instanceOf": "Spinner",
+       "variant": "Type=Default, Size=Small",
+       "instancePage": "Spinner",
+       "values": {
+        "Type": "Default",
+        "Size": "Small"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Left icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show left icon#1530:36",
+        "mainComponent": "⮑ Icon left#1530:15"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "props": {
+        "characters": "Label#1530:99"
+       },
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/bold",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "CENTER",
+       "alignV": "CENTER"
+      },
+      {
+       "name": "Right icon",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show right icon#1530:57",
+        "mainComponent": "⮑ Icon right#1530:78"
+       },
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/sm"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

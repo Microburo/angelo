@@ -1,0 +1,42 @@
+# chunk 1 of read 6 · in #855:172 · 40 nodes
+
+TEXT#855:175 "index" at:16,1052 wh:143x68 font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"Lorem"
+INST#855:176 "Project Card" at:376,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:177 "Project Card" at:736,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:178 "Project Card" at:1096,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:182 "Project Card" at:376,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:183 "Project Card" at:736,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:184 "Project Card" at:1096,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:186 "Project Card" at:1096,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:188 "Project Card" at:736,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#855:189 "Project Card" at:376,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+FRAME#855:191 "Image Gallery" at:16,180 wh:1424x800 clip fill:#FFF r:4
+  TEXT#905:47 "paragraph" at:42,240 wh:1339x320 constr:center,center font:TWK Everett Regular 400 lh:80% talign:center autosize:width_and_height fill:#1A1A1A text:"IPSUM"
+CMP#932:65 "Header" at:0,72 wh:1456x71 row gap:10 pad:20,16 align:start,center size:fixed,hug
+  ELL#866:137 "bullet" at:16,32 wh:7x7 fill:#0ECC00
+  FRAME#991:167 "Section Label" at:33,20 wh:333x31 row gap:8 pad:4,0 align:center,center size:hug,hug
+    TEXT#866:135 "title" at:0,4 wh:333x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#1A1A1A text:"Tempor consequat do reprehenderit"
+  TEXT#934:79 "subtitle" at:326,20.5 wh:318x23 hidden font:t.paragraph-l lh:120% autosize:width_and_height fill:#808080 text:"Labore Eiusmod / dolore sit amet"
+  INST#934:84 "link" at:326,23 wh:18x18 hidden clip ref(cmp.icon.external-link)
+  FRAME#934:95 "spacer" at:376,25.5 wh:1064x20 clip col gap:8 pad:8 size:fill,hug grow:1
+  INST#932:64 "prevnext" at:1376,20 wh:64x24 hidden ref(cmp.prevnext) size:hug,fixed
+CMP#932:54 "Header" at:0,0 wh:1456x72 row gap:auto pad:20,16 align:between,start size:fixed,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  FRAME#991:162 "Brand Header" at:16,20 wh:1288x31 row gap:8 pad:4,0 align:center,center size:fill,hug grow:1
+    TEXT#861:119 "Studio" at:0,4 wh:1288x23 size:fill,hug grow:1 font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Voluptate/aliqua+elit"
+  FRAME#861:158 "Navigation" at:1304,20 wh:136x31 row gap:24 align:end,center size:hug,hug
+    FRAME#991:138 "Work Link" at:0,0 wh:66x31 row gap:8 pad:4,8 align:center,center size:hug,hug r:4
+      TEXT#861:159 "Studio" at:8,4 wh:50x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#1A1A1A text:"Enim"
+    TEXT#861:160 "Studio" at:90,4 wh:46x23 size:hug,hug font:t.paragraph-l lh:120% autosize:width_and_height fill:#7F7F7F text:"Dolor"
+CMP#991:210 "footer" at:16,2592 wh:679x334 col gap:72 pad:72,0 size:hug,hug
+  FRAME#991:199 "Footer Brand" at:0,72 wh:679x95 row gap:auto align:between,center size:fill,hug
+    TEXT#991:225 "Studio" at:0,13.5 wh:59x68 size:hug,hug font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"A"
+    FRAME#991:200 "spacer" at:59,0 wh:181x95 op:0 col gap:13
+    FRAME#991:216 "Services" at:240,0 wh:240x95 col gap:13
+      TEXT#991:217 "title" at:0,0 wh:240x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Nostrud sed-veniam"
+      TEXT#991:218 "title" at:0,36 wh:240x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Cillum excepteur"
+      TEXT#991:219 "title" at:0,72 wh:240x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Pariatur occaecat"
+    FRAME#991:204 "Expertise" at:480,0 wh:199x95 col gap:13
+      TEXT#991:205 "title" at:0,0 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Ullamco Fugiat"
+      TEXT#991:206 "title" at:0,36 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Reprehenderit 360°"
+      TEXT#991:207 "title" at:0,72 wh:199x23 size:fill,hug font:t.paragraph-l lh:120% autosize:height fill:#1A1A1A text:"Consectetur cupidatat"
+  TEXT#991:208 "title" at:0,239 wh:679x23 size:fill,hug font:t.paragraph-l lh:120% deco:underline autosize:height fill:#1A1A1A text:"Quis curabitur"

@@ -1,0 +1,5887 @@
+{
+ "page": "Tabs •",
+ "sets": [
+  {
+   "name": "Tab (segmented) - Nova",
+   "properties": {
+    "Show counter#189:585": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Icon#1512:12": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25285"
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Large",
+      "Small"
+     ]
+    },
+    "Content": {
+     "type": "VARIANT",
+     "default": "Label",
+     "options": [
+      "Label",
+      "Icon",
+      "Icon + Label"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Inactive",
+     "options": [
+      "Inactive",
+      "Inactive Hover",
+      "Inactive Focus",
+      "Active",
+      "Active Focus",
+      "Disabled"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Default, Content=Label, State=Inactive",
+   "variants": [
+    {
+     "name": "Size=Default, Content=Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Inactive",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Label, State=Active",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Active",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Active",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Disabled",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 53,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, Content=Icon + Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 79,
+     "h": 29,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      4,
+      8,
+      4,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 29,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Inactive",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Active",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Active",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Active",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Disabled",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "opacity": 0.5,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 57,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Large, Content=Icon + Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 85,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,375",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,375",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      5.5,
+      10,
+      5.5,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Inactive",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Inactive",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "sizing": "HH",
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Inactive Hover",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Active",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Active",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Active",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "shadow-sm",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Active Focus",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "opacity": 0.3,
+     "sizing": "HH",
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Disabled",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "opacity": 0.3,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Disabled",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "opacity": 0.3,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 44,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, Content=Icon + Label, State=Inactive Focus",
+     "type": "COMPONENT",
+     "w": 64,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 8,
+     "effectStyle": "focus ring",
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-md",
+      "topRightRadius": "border radii/radius-md",
+      "bottomLeftRadius": "border radii/radius-md",
+      "bottomRightRadius": "border radii/radius-md"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      1,
+      6,
+      1,
+      6
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 20,
+     "clip": true,
+     "children": [
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#1512:12"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / square-dashed",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 32,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph mini/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "CENTER"
+      },
+      {
+       "name": ".Tabs Counter - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show counter#189:585"
+       },
+       "w": 16,
+       "h": 16,
+       "sizing": "HX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-5",
+         "opacity": 0.05
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingRight": "spacing/2xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        4,
+        0,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 16,
+       "instanceOf": ".Tabs Counter - Nova",
+       "instancePage": "Tabs •",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Tabs (segmented) - Nova",
+   "properties": {
+    "Slot#5505:1": {
+     "type": "SLOT",
+     "preferred": 1
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Small",
+     "options": [
+      "Default",
+      "Large",
+      "Small"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Small",
+   "variants": [
+    {
+     "name": "Size=Small",
+     "type": "COMPONENT",
+     "w": 90,
+     "h": 24,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "paddingLeft": "spacing/3xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/3xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      2,
+      2,
+      2,
+      2
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5505:1"
+       },
+       "w": 86,
+       "h": 20,
+       "sizing": "HH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 43,
+         "h": 20,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/background"
+          }
+         ],
+         "radius": 8,
+         "effectStyle": "shadow-sm",
+         "bound": {
+          "itemSpacing": "spacing/2xs",
+          "paddingLeft": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-md",
+          "topRightRadius": "border radii/radius-md",
+          "bottomLeftRadius": "border radii/radius-md",
+          "bottomRightRadius": "border radii/radius-md"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 4,
+         "pad": [
+          1,
+          6,
+          1,
+          6
+         ],
+         "align": "CENTER/CENTER",
+         "minW": 20,
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Small, Content=Label, State=Active",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Small",
+          "Content": "Label",
+          "State": "Active"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 43,
+         "h": 20,
+         "sizing": "HH",
+         "radius": 8,
+         "bound": {
+          "itemSpacing": "spacing/2xs",
+          "paddingLeft": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-md",
+          "topRightRadius": "border radii/radius-md",
+          "bottomLeftRadius": "border radii/radius-md",
+          "bottomRightRadius": "border radii/radius-md"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 4,
+         "pad": [
+          1,
+          6,
+          1,
+          6
+         ],
+         "align": "CENTER/CENTER",
+         "minW": 20,
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Small, Content=Label, State=Inactive",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Small",
+          "Content": "Label",
+          "State": "Inactive"
+         },
+         "overrides": 4
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Size=Default",
+     "type": "COMPONENT",
+     "w": 112,
+     "h": 35,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "paddingLeft": "spacing/out-of-scale/0,75",
+      "paddingTop": "spacing/out-of-scale/0,75",
+      "paddingRight": "spacing/out-of-scale/0,75",
+      "paddingBottom": "spacing/out-of-scale/0,75",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      3,
+      3,
+      3,
+      3
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5505:1"
+       },
+       "w": 106,
+       "h": 29,
+       "sizing": "HH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 53,
+         "h": 29,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/background"
+          }
+         ],
+         "radius": 10,
+         "effectStyle": "shadow-sm",
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Default, Content=Label, State=Active",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Default",
+          "Content": "Label",
+          "State": "Active"
+         },
+         "overrides": 3
+        },
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 53,
+         "h": 29,
+         "sizing": "HH",
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Default, Content=Label, State=Inactive",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Default",
+          "Content": "Label",
+          "State": "Inactive"
+         },
+         "overrides": 4
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Size=Large",
+     "type": "COMPONENT",
+     "w": 122,
+     "h": 40,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 14,
+     "bound": {
+      "paddingLeft": "spacing/2xs",
+      "paddingTop": "spacing/2xs",
+      "paddingRight": "spacing/2xs",
+      "paddingBottom": "spacing/2xs",
+      "topLeftRadius": "border radii/radius-xl",
+      "topRightRadius": "border radii/radius-xl",
+      "bottomLeftRadius": "border radii/radius-xl",
+      "bottomRightRadius": "border radii/radius-xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      4,
+      4,
+      4,
+      4
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5505:1"
+       },
+       "w": 114,
+       "h": 32,
+       "sizing": "HH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/background"
+          }
+         ],
+         "radius": 10,
+         "effectStyle": "shadow-sm",
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,375",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,375",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          5.5,
+          10,
+          5.5,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "minW": 32,
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Large, Content=Label, State=Active",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Large",
+          "Content": "Label",
+          "State": "Active"
+         },
+         "overrides": 4
+        },
+        {
+         "name": "Tab (segmented) - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/xs",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,375",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,375",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 8,
+         "pad": [
+          5.5,
+          10,
+          5.5,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "minW": 32,
+         "instanceOf": "Tab (segmented) - Nova",
+         "variant": "Size=Large, Content=Label, State=Inactive",
+         "instancePage": "Tabs •",
+         "values": {
+          "Icon": "1957:25285",
+          "Show counter": false,
+          "Size": "Large",
+          "Content": "Label",
+          "State": "Inactive"
+         },
+         "overrides": 4
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": ".Tabs Counter - Nova",
+   "type": "COMPONENT",
+   "w": 16,
+   "h": 16,
+   "sizing": "HX",
+   "fills": [
+    {
+     "token": "shadcn colors/shadcn colors/general/muted"
+    },
+    {
+     "token": "shadcn colors/alpha/black/switch/alpha-5",
+     "opacity": 0.05
+    }
+   ],
+   "radius": 999,
+   "bound": {
+    "itemSpacing": "spacing/xs",
+    "paddingLeft": "spacing/2xs",
+    "paddingRight": "spacing/2xs",
+    "topLeftRadius": "border radii/radius-full",
+    "topRightRadius": "border radii/radius-full",
+    "bottomLeftRadius": "border radii/radius-full",
+    "bottomRightRadius": "border radii/radius-full"
+   },
+   "layout": "VERTICAL",
+   "gap": 8,
+   "pad": [
+    0,
+    4,
+    0,
+    4
+   ],
+   "align": "CENTER/CENTER",
+   "minW": 16,
+   "children": [
+    {
+     "name": "1",
+     "type": "TEXT",
+     "w": 6,
+     "h": 16,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted foreground"
+      }
+     ],
+     "text": "1",
+     "textStyle": "paragraph mini/bold",
+     "autoResize": "WIDTH_AND_HEIGHT",
+     "alignH": "CENTER",
+     "alignV": "CENTER"
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

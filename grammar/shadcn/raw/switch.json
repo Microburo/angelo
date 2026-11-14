@@ -1,0 +1,2367 @@
+{
+ "page": "Switch •",
+ "sets": [
+  {
+   "name": "Switch - Nova",
+   "properties": {
+    "Size": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Small"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Unchecked",
+     "options": [
+      "Unchecked focus",
+      "Unchecked",
+      "Checked focus",
+      "Checked",
+      "Unchecked disabled",
+      "Checked disabled"
+     ]
+    }
+   },
+   "defaultVariant": "Size=Default, State=Unchecked",
+   "variants": [
+    {
+     "name": "Size=Default, State=Unchecked",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, State=Unchecked focus",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "effectStyle": "focus ring",
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, State=Checked focus",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "radius": 999,
+       "effectStyle": "focus ring",
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, State=Checked",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, State=Unchecked disabled",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Default, State=Checked disabled",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 18,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Unchecked",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Unchecked focus",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "effectStyle": "focus ring",
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Checked focus",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "radius": 999,
+       "effectStyle": "focus ring",
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Checked",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Unchecked disabled",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Size=Small, State=Checked disabled",
+     "type": "COMPONENT",
+     "w": 24,
+     "h": 14,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Background",
+       "type": "RECTANGLE",
+       "w": 24,
+       "h": 14,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      },
+      {
+       "name": "Toggle",
+       "type": "RECTANGLE",
+       "w": 12,
+       "h": 12,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary foreground"
+        }
+       ],
+       "radius": 999,
+       "bound": {
+        "topLeftRadius": "border radii/radius-full",
+        "topRightRadius": "border radii/radius-full",
+        "bottomLeftRadius": "border radii/radius-full",
+        "bottomRightRadius": "border radii/radius-full"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Switch Group - Nova",
+   "properties": {
+    "Layout": {
+     "type": "VARIANT",
+     "default": "Inline",
+     "options": [
+      "Inline",
+      "Block"
+     ]
+    },
+    "Checked?": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "Weight": {
+     "type": "VARIANT",
+     "default": "Medium",
+     "options": [
+      "Medium",
+      "Normal"
+     ]
+    },
+    "Disabled": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    }
+   },
+   "defaultVariant": "Layout=Inline, Checked?=False, Weight=Medium, Disabled=False",
+   "variants": [
+    {
+     "name": "Layout=Inline, Checked?=False, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 77,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=False, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 77,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 76,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=False, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 76,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=True, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 77,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=True, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 77,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=True, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 76,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, Checked?=True, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 76,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=False, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=False, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=False, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=False, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Unchecked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Unchecked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=True, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=True, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=True, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked focus",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked focus"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, Checked?=True, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.53,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Switch - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 18,
+       "sizing": "XX",
+       "instanceOf": "Switch - Nova",
+       "variant": "Size=Default, State=Checked focus",
+       "instancePage": "Switch •",
+       "values": {
+        "Size": "Default",
+        "State": "Checked focus"
+       },
+       "overrides": 1
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 200,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Rich Switch Container - Nova",
+   "properties": {
+    "Show Line 2#761:406": {
+     "type": "BOOLEAN",
+     "default": true
+    },
+    "Show slot#5636:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "⮑ Slot#5637:0": {
+     "type": "SLOT"
+    },
+    "Checked?": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "Flipped": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    }
+   },
+   "defaultVariant": "Checked?=False, Flipped=False",
+   "variants": [
+    {
+     "name": "Checked?=False, Flipped=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 66,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 32,
+       "h": 19.5,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        1.5,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Switch - Nova",
+         "type": "INSTANCE",
+         "w": 32,
+         "h": 18,
+         "sizing": "XX",
+         "instanceOf": "Switch - Nova",
+         "variant": "Size=Default, State=Unchecked",
+         "instancePage": "Switch •",
+         "values": {
+          "Size": "Default",
+          "State": "Unchecked"
+         }
+        }
+       ]
+      },
+      {
+       "name": "Content",
+       "type": "FRAME",
+       "w": 172,
+       "h": 42,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 172,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Secondary text",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show Line 2#761:406"
+         },
+         "w": 172,
+         "h": 16,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Secondary text",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5636:0",
+          "slotContentId": "⮑ Slot#5637:0"
+         },
+         "w": 171,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 171,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Flipped=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 66,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Content",
+       "type": "FRAME",
+       "w": 172,
+       "h": 42,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 172,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Secondary text",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show Line 2#761:406"
+         },
+         "w": 172,
+         "h": 16,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Secondary text",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5636:0",
+          "slotContentId": "⮑ Slot#5637:0"
+         },
+         "w": 171,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 171,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 32,
+       "h": 19.5,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        1.5,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Switch - Nova",
+         "type": "INSTANCE",
+         "w": 32,
+         "h": 18,
+         "sizing": "XX",
+         "instanceOf": "Switch - Nova",
+         "variant": "Size=Default, State=Unchecked",
+         "instancePage": "Switch •",
+         "values": {
+          "Size": "Default",
+          "State": "Unchecked"
+         }
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Flipped=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 66,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 32,
+       "h": 19.5,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        1.5,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Switch - Nova",
+         "type": "INSTANCE",
+         "w": 32,
+         "h": 18,
+         "sizing": "XX",
+         "instanceOf": "Switch - Nova",
+         "variant": "Size=Default, State=Checked",
+         "instancePage": "Switch •",
+         "values": {
+          "Size": "Default",
+          "State": "Checked"
+         }
+        }
+       ]
+      },
+      {
+       "name": "Content",
+       "type": "FRAME",
+       "w": 172,
+       "h": 42,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 172,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Secondary text",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show Line 2#761:406"
+         },
+         "w": 172,
+         "h": 16,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Secondary text",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5636:0",
+          "slotContentId": "⮑ Slot#5637:0"
+         },
+         "w": 171,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 171,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Flipped=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 66,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Content",
+       "type": "FRAME",
+       "w": 172,
+       "h": 42,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 172,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Secondary text",
+         "type": "TEXT",
+         "props": {
+          "visible": "Show Line 2#761:406"
+         },
+         "w": 172,
+         "h": 16,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Secondary text",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5636:0",
+          "slotContentId": "⮑ Slot#5637:0"
+         },
+         "w": 171,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 171,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 32,
+       "h": 19.5,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        1.5,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Switch - Nova",
+         "type": "INSTANCE",
+         "w": 32,
+         "h": 18,
+         "sizing": "XX",
+         "instanceOf": "Switch - Nova",
+         "variant": "Size=Default, State=Checked",
+         "instancePage": "Switch •",
+         "values": {
+          "Size": "Default",
+          "State": "Checked"
+         }
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

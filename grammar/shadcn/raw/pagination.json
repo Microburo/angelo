@@ -1,0 +1,506 @@
+{
+ "page": "Pagination •",
+ "sets": [
+  {
+   "name": "Pagination Number Button - Nova",
+   "properties": {
+    "Active": {
+     "type": "VARIANT",
+     "default": "On",
+     "options": [
+      "On",
+      "Off"
+     ]
+    }
+   },
+   "defaultVariant": "Active=On",
+   "variants": [
+    {
+     "name": "Active=On",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "HH",
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-30",
+         "opacity": 0.3
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5",
+        "paddingLeft": "spacing/out-of-scale/2,5",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/out-of-scale/2,5",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 6,
+       "pad": [
+        6,
+        10,
+        6,
+        10
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "Button - Nova",
+       "variant": "Size=Default, Variant=Outline, State=Default",
+       "instancePage": "Button & Icon Button •",
+       "values": {
+        "⮑ Left icon": "1957:25285",
+        "⮑ Right icon": "1957:25285",
+        "Show spinner": false,
+        "Show left icon": false,
+        "Show right icon": false,
+        "Size": "Default",
+        "Variant": "Outline",
+        "State": "Default"
+       },
+       "overrides": 7
+      }
+     ]
+    },
+    {
+     "name": "Active=Off",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XH",
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button - Nova",
+       "type": "INSTANCE",
+       "w": 34,
+       "h": 32,
+       "sizing": "XH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-001",
+         "opacity": 0
+        }
+       ],
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5",
+        "paddingLeft": "spacing/out-of-scale/2,5",
+        "paddingTop": "spacing/out-of-scale/1,5",
+        "paddingRight": "spacing/out-of-scale/2,5",
+        "paddingBottom": "spacing/out-of-scale/1,5",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 6,
+       "pad": [
+        6,
+        10,
+        6,
+        10
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "Button - Nova",
+       "variant": "Size=Default, Variant=Ghost, State=Default",
+       "instancePage": "Button & Icon Button •",
+       "values": {
+        "⮑ Left icon": "1957:25285",
+        "Show spinner": false,
+        "⮑ Right icon": "1957:25285",
+        "Show left icon": false,
+        "Show right icon": false,
+        "Size": "Default",
+        "Variant": "Ghost",
+        "State": "Default"
+       },
+       "overrides": 7
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": "Pagination",
+   "type": "COMPONENT",
+   "w": 384,
+   "h": 32,
+   "sizing": "HH",
+   "bound": {
+    "itemSpacing": "spacing/xs"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 8,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "Button - Nova",
+     "type": "INSTANCE",
+     "w": 78,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      6,
+      10,
+      6,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "instanceOf": "Button - Nova",
+     "variant": "Size=Default, Variant=Ghost, State=Default",
+     "instancePage": "Button & Icon Button •",
+     "values": {
+      "⮑ Left icon": "1957:25285",
+      "Show spinner": false,
+      "⮑ Right icon": "1957:25285",
+      "Show left icon": false,
+      "Show right icon": false,
+      "Size": "Default",
+      "Variant": "Ghost",
+      "State": "Default"
+     },
+     "overrides": 7
+    },
+    {
+     "name": "Pages",
+     "type": "SLOT",
+     "props": {
+      "slotContentId": "Pages#1962:1"
+     },
+     "w": 238,
+     "h": 32,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "clip": true,
+     "children": [
+      {
+       "name": "Pagination Number Button",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "HH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Number Button - Nova",
+       "variant": "Active=On",
+       "instancePage": "Pagination •",
+       "values": {
+        "Active": "On"
+       },
+       "overrides": 8
+      },
+      {
+       "name": "Pagination Number Button",
+       "type": "INSTANCE",
+       "w": 34,
+       "h": 32,
+       "sizing": "XH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Number Button - Nova",
+       "variant": "Active=Off",
+       "instancePage": "Pagination •",
+       "values": {
+        "Active": "Off"
+       },
+       "overrides": 8
+      },
+      {
+       "name": "Pagination Number Button",
+       "type": "INSTANCE",
+       "w": 34,
+       "h": 32,
+       "sizing": "XH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Number Button - Nova",
+       "variant": "Active=Off",
+       "instancePage": "Pagination •",
+       "values": {
+        "Active": "Off"
+       },
+       "overrides": 8
+      },
+      {
+       "name": "Pagination Number Button",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "XH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Number Button - Nova",
+       "variant": "Active=Off",
+       "instancePage": "Pagination •",
+       "values": {
+        "Active": "Off"
+       },
+       "overrides": 8
+      },
+      {
+       "name": "Pagination Ellipsis",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "HH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Ellipsis",
+       "instancePage": "Pagination •",
+       "overrides": 4
+      },
+      {
+       "name": "Pagination Number Button",
+       "type": "INSTANCE",
+       "w": 34,
+       "h": 32,
+       "sizing": "XH",
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": "Pagination Number Button - Nova",
+       "variant": "Active=Off",
+       "instancePage": "Pagination •",
+       "values": {
+        "Active": "Off"
+       },
+       "overrides": 8
+      }
+     ]
+    },
+    {
+     "name": "Button - Nova",
+     "type": "INSTANCE",
+     "w": 52,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/out-of-scale/1,5",
+      "paddingLeft": "spacing/out-of-scale/2,5",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/out-of-scale/2,5",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 6,
+     "pad": [
+      6,
+      10,
+      6,
+      10
+     ],
+     "align": "CENTER/CENTER",
+     "instanceOf": "Button - Nova",
+     "variant": "Size=Default, Variant=Ghost, State=Default",
+     "instancePage": "Button & Icon Button •",
+     "values": {
+      "⮑ Left icon": "1957:25285",
+      "Show spinner": false,
+      "⮑ Right icon": "1957:25285",
+      "Show left icon": false,
+      "Show right icon": false,
+      "Size": "Default",
+      "Variant": "Ghost",
+      "State": "Default"
+     },
+     "overrides": 7
+    }
+   ],
+   "properties": {
+    "Pages#1962:1": {
+     "type": "SLOT"
+    }
+   }
+  },
+  {
+   "name": "Pagination Ellipsis",
+   "type": "COMPONENT",
+   "w": 32,
+   "h": 32,
+   "sizing": "HH",
+   "layout": "HORIZONTAL",
+   "gap": 0,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/MIN",
+   "children": [
+    {
+     "name": "Icon Button - Nova",
+     "type": "INSTANCE",
+     "w": 32,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-001",
+       "opacity": 0
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "minW": 32,
+     "clip": true,
+     "instanceOf": "Icon Button - Nova",
+     "variant": "Size=Default, Variant=Ghost, State=Default",
+     "instancePage": "Button & Icon Button •",
+     "values": {
+      "Icon": "1957:25302",
+      "Size": "Default",
+      "Variant": "Ghost",
+      "State": "Default"
+     },
+     "overrides": 3
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

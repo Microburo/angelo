@@ -1,0 +1,29 @@
+# chunk 6 of read 6 · in #860:47 · 27 nodes
+
+FRAME#860:60 "Image Gallery" at:16,180 wh:1424x948 clip fill:p.shared.gray-4-40 stroke:1 inside p.shared.gray-6-line r:4
+  GROUP#861:127 "Image" at:0,0 wh:1424x949.33
+    RECT#861:128 "Image" at:712,474.67 wh:712x474.67 fill:img(fill)
+    RECT#861:129 "Image" at:0,474.67 wh:712x474.67 fill:img(fill)
+    RECT#861:130 "Image" at:712,0 wh:712x474.67 fill:img(fill)
+    RECT#861:131 "Image" at:0,0 wh:712x474.67 fill:img(fill)
+FRAME#937:273 "Product Showcase" at:16,1365 wh:1424x948 clip r:4
+  GROUP#937:274 "Image" at:0,0 wh:1424x948
+    RECT#937:275 "Image" at:712,0 wh:712x948 constr:scale,scale fill:img(fill)
+    RECT#937:276 "Image" at:0,0 wh:712x948 constr:scale,scale fill:img(fill)
+INST#932:56 "Header" at:0,0 wh:1456x72 ref(cmp.header-2) size:fixed,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#934:70 "Subheader" at:0,72 wh:1456x71 ref(cmp.header) ov{show-link=on, show-title=on, show-subtitle=on, show-bullet=on, show-prevnext=on} size:fixed,hug
+FRAME#937:270 "infos" at:16,1131 wh:1424x234 row gap:16 pad:72,0 size:fixed,hug
+  TEXT#937:268 "title" at:0,72 wh:704x90 size:fill,hug grow:1 font:t.paragraph-m lh:130% autosize:height fill:#1A1A1A text:"AUTE ut e Proident laboris irure velit deserunt non-nullam esse et Primis, nulla reprehenderit qui habitasse luctus est sint sunt culpa. Ad platea sit tempor aliquip sed fermentum: i lacus lorem-non-ipsum faucibus dolor ex qui Magna ultrices, minim suspendisse commodo est officia sit adipiscing irure velit. Dictumst nulla culpa, laborum lacus sed ea consequat labore anim ante non orci in pretium, id amet lorem dolore elit qui potenti ipsum dolor."
+  TEXT#937:269 "title" at:720,72 wh:704x90 size:fill,hug grow:1 font:t.paragraph-m lh:130% autosize:height fill:#1A1A1A text:"Est enim magna sit aliqua Posuere minim, quis nisi duis do cubilia voluptate sed eiusmod irure, non qui Excepteur cupidatat: aute velit, nostrud est ullamco nulla. O veniam laboris cillum ut aliquip, esse, culpa, sint-lacus lorem sit ET incididunt ipsum sunt vestibulum adipiscing, anim a curabitur ante ad sed pariatur orci. Dolor ex e fugiat commodo, ea amet non ELIT enim quis qui est condimentum sit tincidunt officia, laborum mollit magna minim."
+FRAME#1038:397 "Frame 9" at:16,2329 wh:1424x1022 col gap:8 pad:0,0,72,0 size:fixed,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  GROUP#937:277 "Image Gallery" at:0,0 wh:1423.5x949
+    GROUP#937:278 "Image" at:0,0 wh:1423.5x949
+      RECT#937:279 "Image" at:711.75,474.5 wh:711.75x474.5 fill:img(fill) r:4
+      RECT#937:280 "Image" at:0,474.5 wh:711.75x474.5 fill:img(fill) r:4
+      RECT#937:281 "Image" at:711.75,0 wh:711.75x474.5 fill:img(fill) r:4
+      RECT#937:282 "Image" at:0,0 wh:711.75x474.5 fill:img(fill) r:4
+FRAME#1038:411 "Frame 10" at:16,3457 wh:836x160 row gap:16 align:start,center size:fixed,hug
+  INST#1038:391 "Project Card" at:0,0 wh:116x160 ref(cmp.sample-brand-card)
+  INST#1038:385 "Project Card" at:132,0 wh:116x160 ref(cmp.sample-brand-card)
+TEXT#1038:412 "Title" at:16,3423 wh:103x18 font:t.paragraph-m lh:130% autosize:width_and_height fill:#7F7F7F text:"Nisi habitasse"
+INST#1038:398 "footer" at:16,3630 wh:679x334 ref(cmp.footer) size:hug,hug

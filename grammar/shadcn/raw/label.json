@@ -1,0 +1,294 @@
+{
+ "page": "Label",
+ "sets": [
+  {
+   "name": "Label",
+   "properties": {
+    "Layout": {
+     "type": "VARIANT",
+     "default": "Inline",
+     "options": [
+      "Inline",
+      "Block"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Error"
+     ]
+    },
+    "Weight": {
+     "type": "VARIANT",
+     "default": "Medium",
+     "options": [
+      "Medium",
+      "Normal"
+     ]
+    }
+   },
+   "defaultVariant": "Layout=Inline, State=Default, Weight=Medium",
+   "variants": [
+    {
+     "name": "Layout=Block, State=Default, Weight=Medium",
+     "type": "COMPONENT",
+     "w": 224,
+     "h": 21,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, State=Default, Weight=Normal",
+     "type": "COMPONENT",
+     "w": 224,
+     "h": 21,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, State=Error, Weight=Medium",
+     "type": "COMPONENT",
+     "w": 224,
+     "h": 21,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Block, State=Error, Weight=Normal",
+     "type": "COMPONENT",
+     "w": 224,
+     "h": 21,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, State=Default, Weight=Medium",
+     "type": "COMPONENT",
+     "w": 37,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 2,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, State=Default, Weight=Normal",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 2,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, State=Error, Weight=Medium",
+     "type": "COMPONENT",
+     "w": 37,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 2,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Layout=Inline, State=Error, Weight=Normal",
+     "type": "COMPONENT",
+     "w": 36,
+     "h": 20,
+     "sizing": "HH",
+     "bound": {
+      "itemSpacing": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 2,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

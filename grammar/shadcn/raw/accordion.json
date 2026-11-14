@@ -1,0 +1,2103 @@
+{
+ "page": "Accordion •",
+ "sets": [
+  {
+   "name": "Line Accordion Trigger - Nova",
+   "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+   "properties": {
+    "State": {
+     "type": "VARIANT",
+     "default": "Closed",
+     "options": [
+      "Closed",
+      "Open",
+      "Focus",
+      "Hover",
+      "Disabled"
+     ]
+    }
+   },
+   "defaultVariant": "State=Closed",
+   "variants": [
+    {
+     "name": "State=Open",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "bound": {
+      "paddingTop": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      0,
+      12,
+      0
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 480,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 448,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Icon",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "bound": {
+          "width": "spacing/md"
+         },
+         "clip": true,
+         "instanceOf": "Lucide / chevron-up",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "opacity": 0.5,
+     "sizing": "XH",
+     "bound": {
+      "paddingTop": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      0,
+      12,
+      0
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 480,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 448,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Icon",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "bound": {
+          "width": "spacing/md"
+         },
+         "clip": true,
+         "instanceOf": "Lucide / chevron-up",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Hover",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingTop": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      0,
+      12,
+      0
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 480,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 448,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "font": "Geist Medium 14",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Icon",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "bound": {
+          "width": "spacing/md"
+         },
+         "clip": true,
+         "instanceOf": "Lucide / chevron-down",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Closed",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingTop": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      0,
+      12,
+      0
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 480,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 448,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Icon",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "bound": {
+          "width": "spacing/md"
+         },
+         "clip": true,
+         "instanceOf": "Lucide / chevron-down",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Focus",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "radius": 10,
+     "effectStyle": "focus ring",
+     "bound": {
+      "paddingTop": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      0,
+      12,
+      0
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 480,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 16,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Label",
+         "type": "TEXT",
+         "w": 448,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Label",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Icon",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "bound": {
+          "width": "spacing/md"
+         },
+         "clip": true,
+         "instanceOf": "Lucide / chevron-down",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Bordered Accordion Trigger - Nova",
+   "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+   "properties": {
+    "Show border#1779:0": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Closed",
+     "options": [
+      "Closed",
+      "Open",
+      "Focus",
+      "Hover",
+      "Disabled"
+     ]
+    },
+    "Position": {
+     "type": "VARIANT",
+     "default": "Single",
+     "options": [
+      "First",
+      "Middle",
+      "Last",
+      "Single"
+     ]
+    }
+   },
+   "defaultVariant": "State=Closed, Position=Single",
+   "variants": [
+    {
+     "name": "State=Closed, Position=Single",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Hover, Position=Single",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "font": "Geist Medium 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled, Position=Single",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "opacity": 0.5,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Closed, Position=Middle",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Hover, Position=Middle",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "font": "Geist Medium 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled, Position=Middle",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "opacity": 0.5,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Closed, Position=First",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Hover, Position=First",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "font": "Geist Medium 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled, Position=First",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "opacity": 0.5,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Closed, Position=Last",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Hover, Position=Last",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "font": "Geist Medium 14",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Disabled, Position=Last",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "opacity": 0.5,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Open, Position=Single",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-up",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Open, Position=Middle",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-up",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Open, Position=First",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-up",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Open, Position=Last",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-up",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Focus, Position=Single",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-15",
+       "opacity": 0.15
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "effectStyle": "focus ring",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Focus, Position=Middle",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-15",
+       "opacity": 0.15
+      }
+     ],
+     "strokeWeight": "mixed",
+     "effectStyle": "focus ring",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "State=Focus, Position=First",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-15",
+       "opacity": 0.15
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "effectStyle": "focus ring",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      },
+      {
+       "name": "Border",
+       "type": "RECTANGLE",
+       "hidden": true,
+       "props": {
+        "visible": "Show border#1779:0"
+       },
+       "w": 480,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "State=Focus, Position=Last",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 44,
+     "sizing": "XH",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-15",
+       "opacity": 0.15
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "effectStyle": "focus ring",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "clip": true,
+     "children": [
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 440,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Icon",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "bound": {
+        "width": "spacing/md"
+       },
+       "clip": true,
+       "instanceOf": "Lucide / chevron-down",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Bordered Accordion Content - Nova",
+   "properties": {
+    "Type": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "End"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Default",
+   "variants": [
+    {
+     "name": "Type=Default",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 36,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      12,
+      8,
+      12
+     ],
+     "align": "SPACE_BETWEEN/CENTER",
+     "children": [
+      {
+       "name": "This is the content shown when opening an accordion.",
+       "type": "TEXT",
+       "w": 456,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "This is the content shown when opening an accordion.",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Type=End",
+     "type": "COMPONENT",
+     "w": 480,
+     "h": 36,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": "mixed",
+     "bound": {
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/xs",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      12,
+      8,
+      12
+     ],
+     "align": "SPACE_BETWEEN/CENTER",
+     "children": [
+      {
+       "name": "This is the content shown when opening an accordion.",
+       "type": "TEXT",
+       "w": 456,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "This is the content shown when opening an accordion.",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": "Line Accordion Content - Nova",
+   "type": "COMPONENT",
+   "w": 480,
+   "h": 32,
+   "sizing": "XH",
+   "bound": {
+    "paddingBottom": "spacing/sm"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 0,
+   "pad": [
+    0,
+    0,
+    12,
+    0
+   ],
+   "align": "MIN/MIN",
+   "children": [
+    {
+     "name": "This is the content shown when opening an accordion.",
+     "type": "TEXT",
+     "w": 480,
+     "h": 20,
+     "sizing": "LH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/foreground"
+      }
+     ],
+     "text": "This is the content shown when opening an accordion.",
+     "textStyle": "paragraph small/normal",
+     "autoResize": "HEIGHT",
+     "alignH": "LEFT",
+     "alignV": "TOP"
+    }
+   ],
+   "properties": {}
+  }
+ ]
+}

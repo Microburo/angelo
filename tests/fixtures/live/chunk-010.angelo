@@ -1,0 +1,6 @@
+# chunk 10 of read 6 · in #861:163 · 4 nodes
+
+FRAME#991:254 "Page title" at:0,-115 wh:430x132 row gap:8 pad:56,8,8,8 align:start,end size:fixed,hug grow:1
+  TEXT#991:255 "Studio" at:8,56 wh:143x68 size:hug,hug font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"Nulla"
+INST#991:256 "Product Card" at:2,17 wh:426x619 ref(cmp.sample-brand-card)
+INST#935:128 "Header" at:0,0 wh:430x63 ref(cmp.header) ov{show-link=on, show-title=on, show-subtitle=on, show-bullet=on, show-prevnext=off} size:fixed,hug fill:#FFF

@@ -1,0 +1,36 @@
+{
+  "name": "angelo-mcp",
+  "version": "0.0.0",
+  "description": "Your Figma selection as compact text your AI reads and edits: MCP server and local bridge for the Angelo Figma plugin",
+  "type": "module",
+  "bin": {
+    "angelo-mcp": "mcp.mjs"
+  },
+  "files": [
+    "mcp.mjs",
+    "server.mjs",
+    "*.LEGAL.txt",
+    "angelo.mcpb",
+    "THIRD_PARTY_LICENSES"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "figma",
+    "mcp",
+    "claude",
+    "design"
+  ],
+  "license": "MIT",
+  "author": "Microburo",
+  "homepage": "https://github.com/Microburo/angelo#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Microburo/angelo.git",
+    "directory": "npm"
+  },
+  "bugs": {
+    "url": "https://github.com/Microburo/angelo/issues"
+  }
+}

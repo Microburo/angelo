@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Modern CSS corpus</title>
+<!-- Synthetic case: one block per modern CSS feature (list: GoogleChrome/modern-web-guidance),
+     to see what the capture and the Figma build translate, lose or get wrong. -->
+<style>
+  :root { color-scheme: light; --accent: oklch(62% 0.19 255); font-family: system-ui, sans-serif; }
+  * { box-sizing: border-box; margin: 0; }
+  body { background: #fff; color: #111; padding: 48px; }
+  h1 { font-size: 32px; font-weight: 600; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+  .cell { border: 1px solid #e5e5e5; border-radius: 12px; padding: 20px; min-height: 220px; display: flex; flex-direction: column; gap: 12px; }
+  .cell > h2 { font-size: 13px; font-weight: 600; color: #666; }
+
+  /* 01 gradient interpolated in oklch (computed style keeps "in oklch") */
+  .g-oklch { height: 120px; border-radius: 8px; background: linear-gradient(in oklch 90deg, oklch(70% 0.25 30), oklch(70% 0.25 270)); }
+  /* 02 gradient with a hue interpolation keyword */
+  .g-hue { height: 120px; border-radius: 8px; background: linear-gradient(in oklch longer hue 90deg, oklch(75% 0.2 0), oklch(75% 0.2 0)); }
+  /* 03 color-mix + relative color + light-dark */
+  .mix { display: flex; gap: 8px; }
+  .mix span { flex: 1; height: 80px; border-radius: 8px; }
+  .mix .a { background: color-mix(in oklch, var(--accent) 60%, white); }
+  .mix .b { background: oklch(from var(--accent) calc(l - 0.2) c h); }
+  .mix .c { background: light-dark(oklch(85% 0.1 140), black); }
+  /* 04 text-wrap: balance */
+  .balance { font-size: 22px; line-height: 1.2; text-wrap: balance; }
+  /* 05 text-wrap: pretty */
+  .pretty { font-size: 15px; line-height: 1.4; text-wrap: pretty; }
+  /* 06 text-box trim */
+  .trim { font-size: 40px; line-height: 1.5; background: oklch(95% 0.05 90); text-box: trim-both cap alphabetic; }
+  /* 07 corner-shape squircle (Figma: corner smoothing) */
+  .squircle { width: 120px; height: 120px; border-radius: 40px; corner-shape: squircle; background: var(--accent); }
+  /* 08 backdrop-filter over a picture-like gradient */
+  .glass-wrap { position: relative; height: 140px; border-radius: 8px; background: repeating-linear-gradient(45deg, oklch(70% 0.2 30) 0 12px, oklch(80% 0.15 200) 12px 24px); }
+  .glass { position: absolute; inset: 30px 20px; border-radius: 8px; background: rgb(255 255 255 / 0.3); backdrop-filter: blur(12px); display: grid; place-items: center; font-weight: 600; }
+  /* 09 accent-color on native controls */
+  .controls { accent-color: oklch(60% 0.2 145); display: flex; flex-direction: column; gap: 8px; font-size: 14px; }
+  /* 10 subgrid cards */
+  .sub { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 8px; }
+  .sub article { display: grid; grid-row: span 2; grid-template-rows: subgrid; background: #f4f4f5; border-radius: 6px; padding: 8px; font-size: 13px; }
+  /* 11 container query */
+  .cq { container-type: inline-size; }
+  .cq .card { display: flex; flex-direction: column; gap: 8px; }
+  .cq .thumb { height: 50px; border-radius: 6px; background: var(--accent); }
+  @container (min-width: 250px) { .cq .card { flex-direction: row; } .cq .thumb { width: 80px; flex: none; } }
+  /* 12 anchor positioning (tooltip tied to a button) */
+  .anchor-btn { anchor-name: --tip; align-self: start; padding: 8px 14px; border-radius: 6px; border: 0; background: #111; color: #fff; font: inherit; }
+  .tip { position: absolute; position-anchor: --tip; top: anchor(bottom); left: anchor(left); margin-top: 8px; padding: 6px 10px; border-radius: 6px; background: oklch(30% 0.05 255); color: #fff; font-size: 12px; }
+  /* 13 popover in the top layer */
+  [popover] { inset: auto; top: 0; right: 0; margin: 24px; padding: 16px; border: 0; border-radius: 10px; background: oklch(97% 0.02 255); box-shadow: 0 8px 30px rgb(0 0 0 / 0.15); font-size: 14px; }
+  /* 14 field-sizing */
+  .fs input, .fs textarea { field-sizing: content; min-width: 4ch; font: inherit; font-size: 14px; padding: 6px 8px; border: 1px solid #ccc; border-radius: 6px; }
+  /* 15 mask-image fade */
+  .mask { font-size: 15px; line-height: 1.4; height: 100px; overflow: hidden; mask-image: linear-gradient(to bottom, black 40%, transparent); }
+  /* 16 :has() driven style */
+  .has { padding: 12px; border-radius: 8px; border: 2px solid #ddd; font-size: 14px; }
+  .has:has(input:checked) { border-color: var(--accent); background: oklch(96% 0.03 255); }
+</style>
+</head>
+<body>
+<h1>Modern CSS corpus</h1>
+<div class="grid">
+  <section class="cell"><h2>01 gradient in oklch</h2><div class="g-oklch"></div></section>
+  <section class="cell"><h2>02 longer hue</h2><div class="g-hue"></div></section>
+  <section class="cell"><h2>03 color-mix · relative · light-dark</h2><div class="mix"><span class="a"></span><span class="b"></span><span class="c"></span></div></section>
+  <section class="cell"><h2>04 text-wrap balance</h2><p class="balance">A headline that wraps onto two balanced lines</p></section>
+  <section class="cell"><h2>05 text-wrap pretty</h2><p class="pretty">Body copy set with pretty wrapping avoids a lonely last word on the final line of the paragraph here.</p></section>
+  <section class="cell"><h2>06 text-box trim</h2><p class="trim">Trim</p></section>
+  <section class="cell"><h2>07 corner-shape squircle</h2><div class="squircle"></div></section>
+  <section class="cell"><h2>08 backdrop-filter</h2><div class="glass-wrap"><div class="glass">Glass</div></div></section>
+  <section class="cell"><h2>09 accent-color</h2><div class="controls"><label><input type="checkbox" checked> Checked box</label><label><input type="radio" checked> Radio</label><input type="range" value="70"><progress value="40" max="100"></progress></div></section>
+  <section class="cell"><h2>10 subgrid</h2><div class="sub"><article><b>Short</b><span>Body aligned</span></article><article><b>A much longer title on two lines</b><span>Body aligned</span></article></div></section>
+  <section class="cell"><h2>11 container query</h2><div class="cq"><div class="card"><div class="thumb"></div><p style="font-size:13px">Row layout once the container is wide</p></div></div></section>
+  <section class="cell" style="position:relative"><h2>12 anchor positioning</h2><button class="anchor-btn">Anchor</button><div class="tip">Tooltip under the anchor</div></section>
+  <section class="cell"><h2>13 popover (top layer)</h2><p style="font-size:13px">The popover shows at the top right of the page.</p><div popover="manual" id="pop">Popover in the top layer</div></section>
+  <section class="cell fs"><h2>14 field-sizing</h2><input value="Grows"><textarea>Two
+lines</textarea></section>
+  <section class="cell"><h2>15 mask-image fade</h2><p class="mask">This paragraph fades out at the bottom through a gradient mask, so the last lines dissolve into the page instead of being cut by a hard edge.</p></section>
+  <section class="cell"><h2>16 :has()</h2><label class="has"><input type="checkbox" checked> Selected card</label></section>
+</div>
+<script>document.getElementById("pop").showPopover();</script>
+</body>
+</html>

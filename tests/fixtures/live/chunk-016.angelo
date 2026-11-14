@@ -1,0 +1,43 @@
+# chunk 16 of read 6 · in #1028:168 · 41 nodes
+
+FRAME#1028:179 "Frame 5" at:0,0 wh:316x72 row gap:8 pad:24,8 align:start,center size:fill,fixed stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  INST#1028:176 "Icon / x" at:8,23.5 wh:24x24 clip ref(cmp.icon.x)
+CMP#1028:197 "news-article" at:0,72 wh:316x333 col gap:10 pad:8,0,16,0 size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  FRAME#1028:190 "Frame 8" at:0,8 wh:316x148 clip size:fill,fixed fill:#B8B8B8 r:2
+    INST#1029:764 "Icon / refresh-ccw" at:294,126 wh:18x18 clip ref(cmp.icon.refresh-ccw) constr:max,max
+  FRAME#1028:185 "Frame 6" at:0,166 wh:316x24 row gap:auto pad:8,0,0,0 align:between,center size:fill,hug
+    TEXT#1028:181 "title" at:0,8 wh:250x16 size:fill,hug grow:1 font:TWK Everett Medium 12 lh:130% autosize:height fill:#1A1A1A text:"Magna ad ex sint"
+    TEXT#1028:183 "title" at:250,8 wh:66x16 size:hug,hug font:TWK Everett Regular 12 lh:130% talign:right autosize:width_and_height fill:#7F7F7F text:"8 qui 2026"
+  TEXT#1028:182 "title" at:0,200 wh:316x48 size:fill,hug font:TWK Everett Regular 12 lh:130% autosize:height fill:#7F7F7F text:"SUNT ea e Deserunt posuere minim irure faucibus est-cillum anim in Fugiat, velit reprehenderit sit curabitur mollit sed ante orci nulla..."
+  FRAME#1028:223 "tags" at:0,258 wh:59x24 row gap:4 size:hug,hug
+    INST#1028:531 "tag" at:0,0 wh:59x24 ref(cmp.tag) size:hug,hug fill:#DEDEDE r:2
+  FRAME#1041:582 "Frame 12" at:0,292 wh:316x24 row gap:10 size:fill,hug
+    FRAME#1029:653 "yes-or-no" at:0,0 wh:268x24 row gap:2 size:fill,hug grow:1
+      INST#1029:588 "tag" at:0,0 wh:33x24 ref(cmp.tag) size:hug,hug fill:#46E189 r:2
+      INST#1029:621 "tag" at:35,0 wh:30x24 ref(cmp.tag) size:hug,hug fill:#FF7A7A r:2
+    INST#1041:560 "tag" at:278,0 wh:38x24 op:0.3 ref(cmp.tag) size:hug,fixed stroke:1 inside #00F r:2
+FRAME#1041:663 "news-article" at:0,405 wh:316x299 col gap:10 pad:8,0,16,0 size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+  FRAME#1041:664 "Frame 8" at:0,8 wh:316x148 clip size:fill,fixed fill:#B8B8B8 r:2
+    INST#1041:665 "Icon / refresh-ccw" at:294,126 wh:18x18 clip ref(cmp.icon.refresh-ccw) constr:max,max
+  FRAME#1041:666 "Frame 6" at:0,166 wh:316x24 row gap:auto pad:8,0,0,0 align:between,center size:fill,hug
+    TEXT#1041:667 "title" at:0,8 wh:250x16 size:fill,hug grow:1 font:TWK Everett Medium 12 lh:130% autosize:height fill:#1A1A1A text:"Culpa id do amet"
+    TEXT#1041:668 "title" at:250,8 wh:66x16 size:hug,hug font:TWK Everett Regular 12 lh:130% talign:right autosize:width_and_height fill:#7F7F7F text:"8 non 2026"
+  TEXT#1041:669 "title" at:0,200 wh:316x48 size:fill,hug font:TWK Everett Regular 12 lh:130% autosize:height fill:#7F7F7F text:"ELIT ut i Ultrices cubilia lacus lorem dictumst qui-nullam enim et Primis, ipsum reprehenderit est tincidunt luctus sit quis nisi dolor..."
+  FRAME#1041:682 "Frame 13" at:0,258 wh:316x24 row gap:2 size:fill,hug
+    FRAME#1041:672 "Frame 12" at:0,0 wh:36x24 row gap:10 size:hug,hug
+      INST#1041:676 "tag" at:0,0 wh:36x24 ref(cmp.tag) size:hug,hug fill:#F5F5F5 r:2
+      FRAME#1041:673 "yes-or-no" at:0,0 wh:268x24 hidden row gap:2 size:fixed,hug grow:1
+        INST#1041:674 "tag" at:0,0 wh:33x24 ref(cmp.tag) size:hug,hug fill:#46E189 r:2
+        INST#1041:675 "tag" at:35,0 wh:30x24 ref(cmp.tag) size:hug,hug fill:#FF7A7A r:2
+    FRAME#1041:670 "tags" at:38,0 wh:59x24 row gap:4 size:hug,hug
+      INST#1041:671 "tag" at:0,0 wh:59x24 ref(cmp.tag) size:hug,hug fill:#F5F5F5 r:2
+INST#1028:207 "news-article" at:0,704 wh:316x175 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:234 "news-article" at:0,879 wh:316x333 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:257 "news-article" at:0,1212 wh:316x333 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:269 "news-article" at:0,1545 wh:316x333 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:235 "news-article" at:0,1878 wh:316x175 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:281 "news-article" at:0,2053 wh:316x175 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:293 "news-article" at:0,2228 wh:316x175 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:305 "news-article" at:0,2403 wh:316x333 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:316 "news-article" at:0,2736 wh:316x333 ref(cmp.news-article) size:fill,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+RECT#1030:1012 "Rectangle 1" at:319,80 wh:2x740 abs fill:#BABABA r:100

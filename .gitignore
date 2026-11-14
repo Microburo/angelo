@@ -1,0 +1,38 @@
+node_modules/
+plugin/dist/
+extension/lib/
+npm/dist/
+npm/.mcpb/
+__pycache__/
+*.pyc
+*.log
+.DS_Store
+
+# local working notes (not part of the public repository)
+CLAUDE.md
+.claude/
+docs/reprise-composants.md
+docs/web-sites.md
+docs/web-previews.md
+
+# web-to-figma corpus: only synthetic cases are published; captures of real sites stay local
+tests/web/*
+!tests/web/example/
+!tests/web/example-430/
+!tests/web/example-qc/
+!tests/web/modern-css/
+tests/web/**/img/
+tests/web/**/web-build-img/
+tests/web/**/last/
+tests/web/**/*.jpg
+tests/web/**/*.jpeg
+tests/web/**/*.png
+tests/web/**/*.webp
+tests/web/**/*.gif
+tests/web/**/*.avif
+tests/autofix/
+tests/builds/
+
+# design profiles measured on real sites stay local, with their private review tool
+profiles/
+tools/profile-review.py

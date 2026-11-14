@@ -1,0 +1,44 @@
+angelo/1 units:px file:"Edge \"cases\"" page:"🌞 Design 2026" scope:selection(3) nodes:17 detail:full
+
+# vars
+@ primitives modes[light|dark] lib
+c.surface.default = #FFF | dark:#101010
+c.text.muted = ->c.surface.default | dark:#A1A1A1
+n.space-4 = 16
+s.label = "Caption, long" | dark:"Caption: dark"
+b.compact = false | dark:true
+@ ?
+c.orphan = #FF00FF
+# +12 local variables not listed
+
+# styles
+e.card = drop(0,2,8,#00000026)+blur(4)
+g.page = cols 12 g:16 m:24 + square 8
+p.shared.gray-6-line = #EBEBEB lib
+t.display-l = TWK Everett Regular 56/122% ls:-1.5 case:upper deco:underline pspace:12
+
+# cmp
+cmp.card = "Card" variants[size: s|m|l · tone: light|dark] props[title:TEXT="Title, default", show-icon:BOOLEAN=off, icon:INSTANCE_SWAP] lib
+cmp.header = "Header"
+
+# fonts
+SF Pro Text Semibold, TWK Everett Regular
+
+# tree
+FRAME#1:2 "wh:12 hidden" at:-24,0 wh:1456x3000 rot:-1.5 locked clip op:0.5 blend:multiply col wrap gap:16/8 pad:24,16,24,16 align:between,center size:fill,hug grow:1 abs constr:stretch,max fill:c.surface.default@50%+grad.linear(#FFF@0%,#000@100%) stroke:mixed outside p.shared.gray-6-line strokew:1,0,1,0 dash:4,2 r:8,8,0,0 fx:e.card grid:cols auto g:16 m:24 grid:square 8
+  INST#1:3 "Card" at:0,0 wh:320x200 mask:alpha ref(cmp.card){size:l,tone:dark} ov{title="A, b: c", show-icon=off, icon=swap}
+  TEXT#I1:3;4:5 "label" at:16,16 wh:288x48 size:hug,hug font:t.display-l lh:24 ls:-0.5% talign:right tvalign:center pspace:8 truncate:2 autosize:width_and_height fill:c.text.muted
+    + seg:0-6 font:t.display-l font:TWK Everett Regular 56 fill:#FFF case:upper text:"Hello,\s"
+    + seg:6-12 font:SF Pro Text Semibold 13 fill:c.text.muted deco:underline link:"https://example.com/a,b?c=1" text:"world\n!"
+    + seg:12-14 font:SF Pro Text Semibold 13 link:node text:"\\\"ok\""
+  VEC#1:6 "path" at:0,0 wh:12x12 fill:#000 vec:3paths
+  BOOL#1:7 "mix" at:0,0 wh:24x24 bool:subtract
+  LINE#1:8 "rule" at:0,0 wh:100x0 stroke:1 center #EBEBEB
+  RECT#1:9 "img" at:0,0 wh:64x64 fill:img(fit)
+  GROUP#1:10 "empty group"
+    <chunk 1 · 5 nodes · "a", "b, c", "d \"e\"", …>
+    <chunk 2 · 1 nodes · "solo">
+  CMP#1:11 "Icon / plus" at:0,0 wh:24x24 clip
+    * constr:scale,scale stroke:2 center c.text.muted vec:1paths
+    VEC#1:12 "Vector" at:5,12 wh:14x0
+    VEC#1:13 "Vector" at:12,5 wh:0x14 stroke:1 inside #000

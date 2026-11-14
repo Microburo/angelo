@@ -1,0 +1,275 @@
+{
+ "page": "Kbd •",
+ "sets": [
+  {
+   "name": "kbd - Nova",
+   "properties": {
+    "key#2255:116": {
+     "type": "TEXT",
+     "default": "K"
+    },
+    "Style": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Alt"
+     ]
+    }
+   },
+   "defaultVariant": "Style=Default",
+   "variants": [
+    {
+     "name": "Style=Default",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/2xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/2xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      4,
+      2,
+      4
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "K",
+       "type": "TEXT",
+       "props": {
+        "characters": "key#2255:116"
+       },
+       "w": 8,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "K",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Style=Alt",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/background"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/2xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/2xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      4,
+      2,
+      4
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "K",
+       "type": "TEXT",
+       "props": {
+        "characters": "key#2255:116"
+       },
+       "w": 8,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted foreground"
+        }
+       ],
+       "text": "K",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": [
+  {
+   "name": "kbd combo - Nova",
+   "type": "COMPONENT",
+   "w": 59,
+   "h": 20,
+   "sizing": "HH",
+   "bound": {
+    "itemSpacing": "spacing/2xs"
+   },
+   "layout": "HORIZONTAL",
+   "gap": 4,
+   "pad": [
+    0,
+    0,
+    0,
+    0
+   ],
+   "align": "MIN/CENTER",
+   "children": [
+    {
+     "name": "kbd - Nova",
+     "type": "INSTANCE",
+     "w": 28,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/2xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/2xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      4,
+      2,
+      4
+     ],
+     "align": "CENTER/CENTER",
+     "instanceOf": "kbd - Nova",
+     "variant": "Style=Default",
+     "instancePage": "Kbd •",
+     "values": {
+      "key": "Ctrl",
+      "Style": "Default"
+     },
+     "overrides": 2
+    },
+    {
+     "name": "+",
+     "type": "TEXT",
+     "props": {
+      "visible": "kbd item 2#1957:3"
+     },
+     "w": 7,
+     "h": 20,
+     "sizing": "XL",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/foreground"
+      }
+     ],
+     "text": "+",
+     "textStyle": "paragraph mini/normal",
+     "autoResize": "NONE",
+     "alignH": "LEFT",
+     "alignV": "CENTER"
+    },
+    {
+     "name": "kbd - Nova",
+     "type": "INSTANCE",
+     "props": {
+      "visible": "kbd item 2#1957:3"
+     },
+     "w": 16,
+     "h": 20,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/2xs",
+      "paddingTop": "spacing/3xs",
+      "paddingRight": "spacing/2xs",
+      "paddingBottom": "spacing/3xs",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      2,
+      4,
+      2,
+      4
+     ],
+     "align": "CENTER/CENTER",
+     "instanceOf": "kbd - Nova",
+     "variant": "Style=Default",
+     "instancePage": "Kbd •",
+     "values": {
+      "key": "B",
+      "Style": "Default"
+     },
+     "overrides": 2
+    }
+   ],
+   "properties": {
+    "kbd item 2#1957:3": {
+     "type": "BOOLEAN",
+     "default": true
+    }
+   }
+  }
+ ]
+}

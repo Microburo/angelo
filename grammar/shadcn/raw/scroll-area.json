@@ -1,0 +1,78 @@
+{
+ "page": "Scroll Area",
+ "sets": [
+  {
+   "name": "Scrollbar",
+   "properties": {
+    "Type": {
+     "type": "VARIANT",
+     "default": "Horizontal",
+     "options": [
+      "Vertical",
+      "Horizontal"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Horizontal",
+   "variants": [
+    {
+     "name": "Type=Vertical",
+     "type": "COMPONENT",
+     "w": 6,
+     "h": 48,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Scrollbar",
+       "type": "RECTANGLE",
+       "w": 6,
+       "h": 48,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Type=Horizontal",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 6,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Scrollbar",
+       "type": "RECTANGLE",
+       "w": 48,
+       "h": 6,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

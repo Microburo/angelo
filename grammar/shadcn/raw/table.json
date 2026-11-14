@@ -1,0 +1,305 @@
+{
+ "page": "Table •",
+ "sets": [
+  {
+   "name": "Basic Table Header - Nova",
+   "properties": {
+    "Cell Type": {
+     "type": "VARIANT",
+     "default": "Heading",
+     "options": [
+      "Heading"
+     ]
+    }
+   },
+   "defaultVariant": "Cell Type=Heading",
+   "variants": [
+    {
+     "name": "Cell Type=Heading",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 38,
+     "sizing": "XX",
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 152,
+       "h": 24,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Basic Table Heading",
+       "textStyle": "paragraph/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Basic Table Cell - Nova",
+   "properties": {
+    "Parity": {
+     "type": "VARIANT",
+     "default": "Odd",
+     "options": [
+      "Odd",
+      "Even"
+     ]
+    },
+    "Alignment": {
+     "type": "VARIANT",
+     "default": "Left",
+     "options": [
+      "Right",
+      "Left"
+     ]
+    }
+   },
+   "defaultVariant": "Parity=Odd, Alignment=Left",
+   "variants": [
+    {
+     "name": "Parity=Odd, Alignment=Left",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 38,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 116,
+       "h": 24,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Basic Table Cell",
+       "textStyle": "paragraph/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Parity=Even, Alignment=Left",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 38,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 116,
+       "h": 24,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Basic Table Cell",
+       "textStyle": "paragraph/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Parity=Odd, Alignment=Right",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 38,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "MAX/CENTER",
+     "children": [
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 116,
+       "h": 24,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Basic Table Cell",
+       "textStyle": "paragraph/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Parity=Even, Alignment=Right",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 38,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/xs",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      8,
+      8,
+      8,
+      8
+     ],
+     "align": "MAX/CENTER",
+     "children": [
+      {
+       "name": "Value",
+       "type": "TEXT",
+       "w": 116,
+       "h": 24,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Basic Table Cell",
+       "textStyle": "paragraph/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

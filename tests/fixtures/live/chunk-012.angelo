@@ -1,0 +1,7 @@
+# chunk 12 of read 6 · in #991:270 · 5 nodes
+
+INST#991:280 "Header" at:0,0 wh:430x98 ref(cmp.header-3) grow:1 stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+FRAME#991:286 "Page title" at:0,161 wh:430x132 row gap:8 pad:56,8,8,8 align:start,end size:fixed,hug grow:1
+  TEXT#991:287 "Studio" at:8,56 wh:143x68 size:hug,hug font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"Lacus"
+INST#991:288 "Content Card" at:2,293 wh:426x619 ref(cmp.sample-brand-card)
+INST#991:295 "Subheader" at:0,98 wh:430x63 ref(cmp.header) ov{show-link=off, show-title=on, show-subtitle=off, show-bullet=on, show-prevnext=off} size:fixed,hug grow:1

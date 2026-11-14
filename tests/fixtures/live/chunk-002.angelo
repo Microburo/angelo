@@ -1,0 +1,18 @@
+# chunk 2 of read 6 · in #1028:340 · 16 nodes
+
+TEXT#1028:342 "index" at:16,1052 wh:143x68 font:t.display-l lh:122% ls:-1.5 autosize:width_and_height fill:#1A1A1A text:"Magna"
+INST#1028:343 "Project Card" at:376,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:344 "Project Card" at:736,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:345 "Project Card" at:1096,1052 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:346 "Project Card" at:376,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:347 "Project Card" at:736,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:348 "Project Card" at:1096,1584 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:349 "Project Card" at:1096,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:350 "Project Card" at:736,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+INST#1028:351 "Project Card" at:376,2116 wh:344x476 ref(cmp.sample-brand-card) size:fixed,hug
+FRAME#1028:352 "Image Gallery" at:16,180 wh:1424x800 clip fill:#FFF r:4
+  TEXT#1028:353 "paragraph" at:42,240 wh:1339x320 constr:center,center font:TWK Everett Regular 400 lh:80% talign:center autosize:width_and_height fill:#1A1A1A text:"MINIM"
+INST#1028:354 "Header" at:0,72 wh:1456x71 ref(cmp.header) ov{show-link=off, show-title=on, show-subtitle=off, show-bullet=on, show-prevnext=off} size:fixed,hug
+INST#1028:355 "Header" at:0,0 wh:1456x72 ref(cmp.header-2) size:fixed,hug stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#1028:356 "footer" at:16,2592 wh:679x334 ref(cmp.footer) size:hug,hug
+RECT#1046:423 "Rectangle 2" at:1440,134 wh:8x746 fill:#EBEBEB r:99

@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PermissionRequest": [
+      {
+        "matcher": "",
+        "hooks": [{ "type": "command", "command": "node \"<angelo>/bridge/hooks/permission-hook.mjs\"", "timeout": 120 }]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "AskUserQuestion|ExitPlanMode",
+        "hooks": [{ "type": "command", "command": "node \"<angelo>/bridge/hooks/ask-hook.mjs\"", "timeout": 300 }]
+      }
+    ]
+  }
+}

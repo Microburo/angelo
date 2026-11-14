@@ -1,0 +1,13 @@
+# chunk 9 of read 6 · in #857:349 · 11 nodes
+
+CMP#833:257 "Sample Brand Card" at:84,115 wh:224x326 col gap:10 size:fixed,hug
+  FRAME#831:204 "Img" at:0,0 wh:224x280 clip size:fill,fixed fill:p.shared.gray-4-40 r:4
+    RECT#833:323 "Product Image" at:0,0 wh:224x280 constr:scale,scale fill:img(fill)
+  FRAME#832:237 "Card Details" at:0,290 wh:224x36 col size:fill,hug
+    TEXT#831:192 "Title" at:0,0 wh:224x18 size:fill,hug font:t.paragraph-m lh:130% autosize:height fill:#1A1A1A text:"DUIS Irure"
+    TEXT#831:215 "Studio" at:0,18 wh:224x18 size:fill,hug font:t.paragraph-m lh:130% autosize:height fill:#7F7F7F text:"Laboris tempor+aute"
+CMP#932:52 "prevnext" at:388,115 wh:64x24 row gap:16 align:end,center size:hug,fixed
+  INST#931:14498 "Previous" at:0,0 wh:24x24 clip ref(cmp.icon.arrow-left)
+  INST#932:48 "Next" at:40,0 wh:24x24 clip ref(cmp.icon.arrow-right)
+CMP#1028:530 "tag" at:96,538 wh:59x24 row gap:8 pad:4,6 align:center,center size:hug,hug fill:#E3E3E3 r:2
+  TEXT#1028:529 "title" at:6,4 wh:47x16 size:hug,hug font:TWK Everett Regular 12 lh:130% talign:right autosize:width_and_height fill:#FFF text:"Qui velit"

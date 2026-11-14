@@ -1,0 +1,5243 @@
+{
+ "page": "Radio •",
+ "sets": [
+  {
+   "name": "Radio - Nova",
+   "properties": {
+    "Checked?": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "State": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Focus",
+      "Error Focus",
+      "Disabled"
+     ]
+    }
+   },
+   "defaultVariant": "Checked?=False, State=Default",
+   "variants": [
+    {
+     "name": "Checked?=False, State=Default",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "bound": {
+        "width": "spacing/md"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, State=Default",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "bound": {
+        "width": "spacing/md"
+       }
+      },
+      {
+       "name": "Dot",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, State=Disabled",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "opacity": 0.3,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "bound": {
+        "width": "spacing/md"
+       }
+      },
+      {
+       "name": "Dot",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, State=Focus",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-001",
+         "opacity": 0
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        },
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-20",
+         "opacity": 0.2
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "effectStyle": "focus ring",
+       "bound": {
+        "width": "spacing/md"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, State=Focus",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "effectStyle": "focus ring",
+       "bound": {
+        "width": "spacing/md"
+       }
+      },
+      {
+       "name": "Dot",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, State=Error Focus",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-001",
+         "opacity": 0
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/destructive"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "effectStyle": "focus ring error",
+       "bound": {
+        "width": "spacing/md"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, State=Error Focus",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/primary"
+        }
+       ],
+       "radius": 3,
+       "effectStyle": "focus ring error",
+       "bound": {
+        "width": "spacing/md"
+       }
+      },
+      {
+       "name": "Dot",
+       "type": "ELLIPSE",
+       "w": 8,
+       "h": 8,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, State=Disabled",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 16,
+     "opacity": 0.5,
+     "sizing": "XX",
+     "children": [
+      {
+       "name": "Background",
+       "type": "ELLIPSE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/input"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 3,
+       "bound": {
+        "width": "spacing/md"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Radio Group - Nova",
+   "properties": {
+    "Checked?": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "Layout": {
+     "type": "VARIANT",
+     "default": "Inline",
+     "options": [
+      "Block",
+      "Inline"
+     ]
+    },
+    "Weight": {
+     "type": "VARIANT",
+     "default": "Medium",
+     "options": [
+      "Medium",
+      "Normal"
+     ]
+    },
+    "Disabled": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    }
+   },
+   "defaultVariant": "Checked?=False, Layout=Inline, Weight=Medium, Disabled=False",
+   "variants": [
+    {
+     "name": "Checked?=False, Layout=Inline, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 61,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Inline, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 61,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 60,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Inline, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 60,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Inline, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 61,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Inline, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 61,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 37,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 60,
+     "h": 24,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Inline, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 60,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 36,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Block, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Block, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Block, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=False, Layout=Block, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=False, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "False",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Block, Weight=Medium, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Block, Weight=Medium, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/medium",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Block, Weight=Normal, Disabled=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Checked?=True, Layout=Block, Weight=Normal, Disabled=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 24,
+     "opacity": 0.5,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Radio - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "instanceOf": "Radio - Nova",
+       "variant": "Checked?=True, State=Default",
+       "instancePage": "Radio •",
+       "values": {
+        "Checked?": "True",
+        "State": "Default"
+       }
+      },
+      {
+       "name": "Label",
+       "type": "TEXT",
+       "w": 216,
+       "h": 20,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/foreground"
+        }
+       ],
+       "text": "Label",
+       "textStyle": "paragraph small/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "Rich Radio Container - Nova",
+   "properties": {
+    "Show Line 2#761:403": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Line 1#1542:1104": {
+     "type": "TEXT",
+     "default": "Line 1"
+    },
+    "⮑ Line 2#1542:1109": {
+     "type": "TEXT",
+     "default": "Line 2"
+    },
+    "Show Shortcut#2255:194": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "Show slot#5467:10": {
+     "type": "BOOLEAN",
+     "default": false
+    },
+    "⮑ Slot#5467:15": {
+     "type": "SLOT"
+    },
+    "Checked": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "Flipped": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    },
+    "Hover": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "True",
+      "False"
+     ]
+    },
+    "Error": {
+     "type": "VARIANT",
+     "default": "False",
+     "options": [
+      "False",
+      "True"
+     ]
+    }
+   },
+   "defaultVariant": "Checked=False, Flipped=False, Hover=False, Error=False",
+   "variants": [
+    {
+     "name": "Checked=False, Flipped=False, Hover=False, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "props": {
+          "characters": "Line 1#1542:1104"
+         },
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show Line 2#761:403",
+          "characters": "⮑ Line 2#1542:1109"
+         },
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5467:10",
+          "slotContentId": "⮑ Slot#5467:15"
+         },
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Shortcut#2255:194"
+       },
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=True, Hover=False, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "props": {
+          "characters": "Line 1#1542:1104"
+         },
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show Line 2#761:403",
+          "characters": "⮑ Line 2#1542:1109"
+         },
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5467:10",
+          "slotContentId": "⮑ Slot#5467:15"
+         },
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Shortcut#2255:194"
+       },
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=False, Hover=False, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "props": {
+          "characters": "Line 1#1542:1104"
+         },
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show Line 2#761:403",
+          "characters": "⮑ Line 2#1542:1109"
+         },
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5467:10",
+          "slotContentId": "⮑ Slot#5467:15"
+         },
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Shortcut#2255:194"
+       },
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=True, Hover=False, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "props": {
+          "characters": "Line 1#1542:1104"
+         },
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "props": {
+          "visible": "Show Line 2#761:403",
+          "characters": "⮑ Line 2#1542:1109"
+         },
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "SLOT",
+         "hidden": true,
+         "props": {
+          "visible": "Show slot#5467:10",
+          "slotContentId": "⮑ Slot#5467:15"
+         },
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "props": {
+        "visible": "Show Shortcut#2255:194"
+       },
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=False, Hover=True, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=False, Hover=False, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=False, Hover=True, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=True, Hover=True, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=True, Hover=False, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=False, Flipped=True, Hover=True, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/card"
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=False, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "False",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=False, Hover=True, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=False, Hover=False, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=False, Hover=True, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=True, Hover=True, Error=False",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-70",
+       "opacity": 0.7
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=True, Hover=False, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    },
+    {
+     "name": "Checked=True, Flipped=True, Hover=True, Error=True",
+     "type": "COMPONENT",
+     "w": 240,
+     "h": 44,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-95",
+       "opacity": 0.95
+      },
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-333",
+       "opacity": 0.03
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/sm",
+      "paddingLeft": "spacing/sm",
+      "paddingTop": "spacing/sm",
+      "paddingRight": "spacing/sm",
+      "paddingBottom": "spacing/sm",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 12,
+     "pad": [
+      12,
+      12,
+      12,
+      12
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 188,
+       "h": 20,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/out-of-scale/1,5"
+       },
+       "layout": "VERTICAL",
+       "gap": 6,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MIN",
+       "children": [
+        {
+         "name": "Line 1",
+         "type": "TEXT",
+         "w": 188,
+         "h": 20,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Line 1",
+         "textStyle": "paragraph small/medium",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Line 2",
+         "type": "TEXT",
+         "hidden": true,
+         "w": 188,
+         "h": 16,
+         "sizing": "XX",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/muted foreground"
+          }
+         ],
+         "text": "Line 2",
+         "textStyle": "paragraph mini/normal",
+         "autoResize": "HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "⮑ Slot",
+         "type": "FRAME",
+         "hidden": true,
+         "w": 188,
+         "h": 24,
+         "sizing": "XH",
+         "layout": "VERTICAL",
+         "gap": 0,
+         "pad": [
+          0,
+          0,
+          0,
+          0
+         ],
+         "align": "MIN/MIN",
+         "clip": true,
+         "children": [
+          {
+           "name": ".Slot Default Placeholder",
+           "type": "INSTANCE",
+           "w": 188,
+           "h": 24,
+           "sizing": "LH",
+           "strokes": [
+            {
+             "hex": "c89dff"
+            }
+           ],
+           "strokeWeight": 1,
+           "radius": 6,
+           "bound": {
+            "paddingLeft": "spacing/xs",
+            "paddingTop": "spacing/2xs",
+            "paddingRight": "spacing/xs",
+            "paddingBottom": "spacing/2xs",
+            "topLeftRadius": "border radii/radius-sm",
+            "topRightRadius": "border radii/radius-sm",
+            "bottomLeftRadius": "border radii/radius-sm",
+            "bottomRightRadius": "border radii/radius-sm"
+           },
+           "layout": "HORIZONTAL",
+           "gap": 0,
+           "pad": [
+            4,
+            8,
+            4,
+            8
+           ],
+           "align": "CENTER/CENTER",
+           "instanceOf": ".Slot Default Placeholder",
+           "variant": "Aspect=Rectangular",
+           "instancePage": "Internal Components",
+           "values": {
+            "Aspect": "Rectangular"
+           },
+           "overrides": 2
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "name": "Aligner",
+       "type": "FRAME",
+       "w": 16,
+       "h": 18,
+       "sizing": "HH",
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingTop": "spacing/3xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        2,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Radio - Nova",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "instanceOf": "Radio - Nova",
+         "variant": "Checked?=True, State=Default",
+         "instancePage": "Radio •",
+         "values": {
+          "Checked?": "True",
+          "State": "Default"
+         }
+        }
+       ]
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "hidden": true,
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/background"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": 1,
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Alt",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Alt"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

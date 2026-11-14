@@ -1,0 +1,35 @@
+{
+  "name": "Angelo",
+  "id": "angelo-local-dev",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "editorType": [
+    "figma"
+  ],
+  "capabilities": [],
+  "documentAccess": "dynamic-page",
+  "permissions": [
+    "teamlibrary"
+  ],
+  "parameters": [
+    {
+      "name": "Note",
+      "key": "note",
+      "description": "What should change? Sent with the selection",
+      "allowFreeform": true
+    }
+  ],
+  "parameterOnly": false,
+  "networkAccess": {
+    "allowedDomains": [
+      "none"
+    ],
+    "devAllowedDomains": [
+      "http://localhost:8787",
+      "ws://localhost:8787"
+    ],
+    "reasoning": "Local bridge on this computer: exposes the selection to the Angelo MCP server and carries notes to Claude. Nothing leaves the machine."
+  },
+  "enablePrivatePluginApi": true
+}

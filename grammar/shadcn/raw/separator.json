@@ -1,0 +1,237 @@
+{
+ "page": "Separator",
+ "sets": [
+  {
+   "name": "Separator",
+   "properties": {
+    "Spacing": {
+     "type": "VARIANT",
+     "default": "None",
+     "options": [
+      "Regular",
+      "None",
+      "Spacious"
+     ]
+    },
+    "Direction": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Vertical"
+     ]
+    }
+   },
+   "defaultVariant": "Spacing=None, Direction=Default",
+   "variants": [
+    {
+     "name": "Spacing=Spacious, Direction=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 16,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Divider",
+       "type": "RECTANGLE",
+       "w": 48,
+       "h": 1,
+       "sizing": "LX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Regular, Direction=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 9,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Divider",
+       "type": "RECTANGLE",
+       "w": 48,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=None, Direction=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 1,
+     "sizing": "XX",
+     "layout": "HORIZONTAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/CENTER",
+     "children": [
+      {
+       "name": "Divider",
+       "type": "RECTANGLE",
+       "w": 48,
+       "h": 1,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Spacious, Direction=Vertical",
+     "type": "COMPONENT",
+     "w": 16,
+     "h": 48,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/3xs",
+      "paddingRight": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      2,
+      0,
+      2
+     ],
+     "align": "CENTER/MIN",
+     "children": [
+      {
+       "name": "Separator / Vertical",
+       "type": "RECTANGLE",
+       "w": 1,
+       "h": 48,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=Regular, Direction=Vertical",
+     "type": "COMPONENT",
+     "w": 5,
+     "h": 48,
+     "sizing": "HX",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/3xs",
+      "paddingRight": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      2,
+      0,
+      2
+     ],
+     "align": "CENTER/MIN",
+     "children": [
+      {
+       "name": "Separator / Vertical",
+       "type": "RECTANGLE",
+       "w": 1,
+       "h": 48,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Spacing=None, Direction=Vertical",
+     "type": "COMPONENT",
+     "w": 1,
+     "h": 48,
+     "sizing": "XX",
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/3xs",
+      "paddingRight": "spacing/3xs"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      0,
+      2,
+      0,
+      2
+     ],
+     "align": "CENTER/MIN",
+     "children": [
+      {
+       "name": "Separator / Vertical",
+       "type": "RECTANGLE",
+       "w": 1,
+       "h": 48,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

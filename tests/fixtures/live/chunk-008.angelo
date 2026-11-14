@@ -1,0 +1,19 @@
+# chunk 8 of read 6 · in #937:291 · 13 nodes
+
+INST#937:302 "Header" at:0,0 wh:1456x72 ref(cmp.header-2) size:fill,fixed stroke:mixed inside #F0F0F0 strokew:0,0,1,0
+INST#937:303 "Subheader" at:0,72 wh:1456x71 ref(cmp.header) ov{show-link=off, show-title=on, show-subtitle=off, show-bullet=on, show-prevnext=on} size:fill,fixed
+INST#991:192 "Page title" at:0,143 wh:663x140 ref(cmp.title) size:hug,hug
+FRAME#937:304 "infos" at:0,283 wh:1456x252 row gap:16 pad:72,16 size:fill,hug
+  TEXT#937:305 "title" at:16,72 wh:704x108 size:fill,hug grow:1 font:mixed lh:130% autosize:height fill:#1A1A1A
+    + seg:0-10 font:t.paragraph-m-bold font:TWK Everett Bold 14 fill:#1A1A1A text:"Non platea"
+    + seg:10-461 font:t.paragraph-m font:TWK Everett Regular 14 fill:#1A1A1A text:"\nAUTE in o Deserunt posuere irure velit faucibus qui-tempor esse id Labore, nulla reprehenderit est excepteur dolore sit sint sunt culpa. Do aliqua sed veniam cubilia non cupidatat: a lacus lorem-qui-ipsum ultrices dolor ut est Magna dictumst, minim suspendisse eiusmod sit nostrud sed incididunt irure velit. Pariatur nulla culpa, ullamco lacus non et curabitur cillum anim ante qui orci ad laboris, ex amet lorem fugiat elit est aliquip ipsum dolor."
+  TEXT#937:306 "title" at:736,72 wh:704x108 size:fill,hug grow:1 font:mixed lh:130% autosize:height fill:#1A1A1A
+    + seg:0-8 font:t.paragraph-m-bold font:TWK Everett Bold 14 fill:#1A1A1A text:"Sit enim"
+    + seg:8-459 font:t.paragraph-m font:TWK Everett Regular 14 fill:#1A1A1A text:"\nSed quis magna non mollit Commodo minim, nisi duis aute ea officia tincidunt qui laborum irure, est sit Habitasse fermentum: esse velit, pretium sed potenti nulla. E nullam posuere primis in cubilia, sint, culpa, sunt-lacus lorem non ID vestibulum ipsum anim adipiscing incididunt, ante i consequat orci do qui occaecat amet. Dolor ut o luctus eiusmod, et elit est ENIM quis nisi sit sed condimentum non voluptate nostrud, ullamco platea magna minim."
+FRAME#991:185 "img-full" at:0,535 wh:1456x921 col gap:8 pad:0,16,120,16 size:fill,hug
+  RECT#991:183 "Featured image" at:16,0 wh:1424x801 size:fill,fixed fill:#D9D9D9
+FRAME#991:190 "img-50%" at:0,1456 wh:1456x396 row size:hug,hug
+  FRAME#991:188 "img-full" at:0,0 wh:728x396 col gap:8 pad:0,8,0,16 size:fixed,hug
+    RECT#991:189 "Project image" at:16,0 wh:704x396 size:fill,fixed fill:#D9D9D9
+  FRAME#991:186 "img-full" at:728,0 wh:728x396 col gap:8 pad:0,16,0,8 size:fixed,hug
+    RECT#991:187 "Project image" at:8,0 wh:704x396 size:fill,fixed fill:#D9D9D9

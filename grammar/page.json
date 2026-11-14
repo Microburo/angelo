@@ -1,0 +1,11 @@
+{
+  "note": "Page-level components of a parsed web page (web-to-figma). Not drawn in the kit: found on the page, built from the kit's atoms. Same atomic levels as the kit.",
+  "components": [
+    { "name": "Header", "level": "organism", "when": "once (landmark)", "holds": "instances of Navigation, Menu, Button, Icon button, Search bar", "proof": "header tag or block named header" },
+    { "name": "Footer", "level": "organism", "when": "once (landmark)", "holds": "instances of Link, Text group, Icon", "proof": "footer tag or block named footer" },
+    { "name": "Navigation", "level": "organism", "when": "once (landmark)", "holds": "instances of Nav item, Menu", "proof": "nav tag, or block named nav; top one = Navigation, others Subnav" },
+    { "name": "Menu", "level": "organism", "when": "even met once", "holds": "instances of Menu item (kit Dropdown Menu Item)", "proof": "role menu or menubar, or 4+ leaves in a block named submenu, dropdown or megamenu" },
+    { "name": "Card", "level": "molecule", "when": "even met once", "holds": "instances of Image, Badge, Button, Icon, Text", "proof": "kit Card proof (vertical, painted and rounded, or image first and repeated)" },
+    { "name": "Section heading", "level": "molecule", "when": "only when repeated (one family, whatever its parts: kicker, text, buttons are options)", "holds": "instances of Button, Text", "proof": "unpainted block of 2-6 leaves, texts and buttons only, holding an h1-h6" }
+  ]
+}

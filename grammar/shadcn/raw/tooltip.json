@@ -1,0 +1,1101 @@
+{
+ "page": "Tooltip •",
+ "sets": [
+  {
+   "name": "Tooltip - Nova",
+   "properties": {
+    "Tooltip text#1586:419": {
+     "type": "TEXT",
+     "default": "Tooltip text"
+    },
+    "Side": {
+     "type": "VARIANT",
+     "default": "Top",
+     "options": [
+      "Top",
+      "Bottom",
+      "Left",
+      "Right"
+     ]
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Formatted",
+      "Shortcut"
+     ]
+    }
+   },
+   "defaultVariant": "Side=Top, Type=Default",
+   "variants": [
+    {
+     "name": "Side=Top, Type=Default",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 28,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Bottom, Type=Default",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 28,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Left, Type=Default",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 28,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Right, Type=Default",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 28,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Top, Type=Shortcut",
+     "type": "COMPONENT",
+     "w": 98,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      },
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Default",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Default"
+       },
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Side=Bottom, Type=Shortcut",
+     "type": "COMPONENT",
+     "w": 98,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Default",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Left, Type=Shortcut",
+     "type": "COMPONENT",
+     "w": 98,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Default",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Right, Type=Shortcut",
+     "type": "COMPONENT",
+     "w": 98,
+     "h": 32,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/2xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 4,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "WIDTH_AND_HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "kbd - Nova",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 20,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "radius": 6,
+       "bound": {
+        "itemSpacing": "spacing/2xs",
+        "paddingLeft": "spacing/2xs",
+        "paddingTop": "spacing/3xs",
+        "paddingRight": "spacing/2xs",
+        "paddingBottom": "spacing/3xs",
+        "topLeftRadius": "border radii/radius-sm",
+        "topRightRadius": "border radii/radius-sm",
+        "bottomLeftRadius": "border radii/radius-sm",
+        "bottomRightRadius": "border radii/radius-sm"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 4,
+       "pad": [
+        2,
+        4,
+        2,
+        4
+       ],
+       "align": "CENTER/CENTER",
+       "instanceOf": "kbd - Nova",
+       "variant": "Style=Default",
+       "instancePage": "Kbd •",
+       "values": {
+        "key": "K",
+        "Style": "Default"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Top, Type=Formatted",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 46,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/3xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "VERTICAL",
+     "gap": 2,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Line 2",
+       "type": "TEXT",
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-75",
+         "opacity": 0.75
+        }
+       ],
+       "text": "Line 2",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Bottom, Type=Formatted",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 46,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/3xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "VERTICAL",
+     "gap": 2,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      },
+      {
+       "name": "Line 2",
+       "type": "TEXT",
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-75",
+         "opacity": 0.75
+        }
+       ],
+       "text": "Line 2",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    },
+    {
+     "name": "Side=Left, Type=Formatted",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 46,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/3xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "VERTICAL",
+     "gap": 2,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Line 2",
+       "type": "TEXT",
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-75",
+         "opacity": 0.75
+        }
+       ],
+       "text": "Line 2",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      }
+     ]
+    },
+    {
+     "name": "Side=Right, Type=Formatted",
+     "type": "COMPONENT",
+     "w": 78,
+     "h": 46,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/alpha/black/switch/alpha-100"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/3xs",
+      "paddingLeft": "spacing/xs",
+      "paddingTop": "spacing/out-of-scale/1,5",
+      "paddingRight": "spacing/xs",
+      "paddingBottom": "spacing/out-of-scale/1,5",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "VERTICAL",
+     "gap": 2,
+     "pad": [
+      6,
+      8,
+      6,
+      8
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Tooltip text",
+       "type": "TEXT",
+       "props": {
+        "characters": "Tooltip text#1586:419"
+       },
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-100"
+        }
+       ],
+       "text": "Tooltip text",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      },
+      {
+       "name": "Arrow",
+       "type": "VECTOR",
+       "w": 11.5,
+       "h": 5,
+       "absolute": true,
+       "sizing": "XX",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/black/switch/alpha-100"
+        }
+       ],
+       "radius": "mixed"
+      },
+      {
+       "name": "Line 2",
+       "type": "TEXT",
+       "w": 62,
+       "h": 16,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-75",
+         "opacity": 0.75
+        }
+       ],
+       "text": "Line 2",
+       "textStyle": "paragraph mini/normal",
+       "autoResize": "HEIGHT",
+       "alignH": "LEFT",
+       "alignV": "TOP"
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

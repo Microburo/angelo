@@ -1,0 +1,1521 @@
+{
+ "page": "Dialog •",
+ "sets": [
+  {
+   "name": "Dialog - Nova",
+   "properties": {
+    "Slot#5563:20": {
+     "type": "SLOT"
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "Desktop scrollable",
+     "options": [
+      "Desktop scrollable",
+      "Desktop",
+      "Mobile",
+      "Mobile full Screen scrollable"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Desktop scrollable",
+   "variants": [
+    {
+     "name": "Type=Desktop",
+     "type": "COMPONENT",
+     "w": 390,
+     "h": 480,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/popover"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "effectStyle": "shadow-lg",
+     "bound": {
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MAX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5563:20"
+       },
+       "w": 390,
+       "h": 480,
+       "sizing": "LX",
+       "bound": {
+        "itemSpacing": "spacing/xl",
+        "paddingLeft": "spacing/xl",
+        "paddingTop": "spacing/xl",
+        "paddingRight": "spacing/xl",
+        "paddingBottom": "spacing/xl"
+       },
+       "layout": "VERTICAL",
+       "gap": 24,
+       "pad": [
+        24,
+        24,
+        24,
+        24
+       ],
+       "align": "MIN/MIN",
+       "clip": true,
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 342,
+         "h": 432,
+         "sizing": "LL",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Lucide / x",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "absolute": true,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / x",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Type=Desktop scrollable",
+     "type": "COMPONENT",
+     "w": 390,
+     "h": 480,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/popover"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "effectStyle": "shadow-lg",
+     "bound": {
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MAX",
+     "clip": true,
+     "children": [
+      {
+       "name": ".Dialog Header - Nova",
+       "type": "INSTANCE",
+       "w": 390,
+       "h": 48,
+       "sizing": "LH",
+       "bound": {
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 0,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MAX",
+       "minW": 320,
+       "instanceOf": ".Dialog Header - Nova",
+       "variant": "Type=Close only",
+       "instancePage": "Dialog •",
+       "values": {
+        "Type": "Close only"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5563:20"
+       },
+       "w": 390,
+       "h": 368,
+       "sizing": "LL",
+       "bound": {
+        "itemSpacing": "spacing/md",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 16,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MIN",
+       "clip": true,
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 358,
+         "h": 336,
+         "sizing": "LL",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": ".Dialog Footer - Nova",
+       "type": "INSTANCE",
+       "w": 390,
+       "h": 64,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": "mixed",
+       "radius": 12,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md",
+        "topLeftRadius": "border radii/out-of-scale/12",
+        "topRightRadius": "border radii/out-of-scale/12",
+        "bottomLeftRadius": "border radii/out-of-scale/12",
+        "bottomRightRadius": "border radii/out-of-scale/12"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": ".Dialog Footer - Nova",
+       "variant": "Type=2 buttons right",
+       "instancePage": "Dialog •",
+       "values": {
+        "Type": "2 buttons right"
+       },
+       "overrides": 3
+      }
+     ]
+    },
+    {
+     "name": "Type=Mobile",
+     "type": "COMPONENT",
+     "w": 390,
+     "h": 288,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/popover"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": 1,
+     "radius": 16,
+     "effectStyle": "shadow-lg",
+     "bound": {
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MAX",
+     "clip": true,
+     "children": [
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5563:20"
+       },
+       "w": 390,
+       "h": 288,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xl",
+        "paddingLeft": "spacing/xl",
+        "paddingTop": "spacing/xl",
+        "paddingRight": "spacing/xl",
+        "paddingBottom": "spacing/xl"
+       },
+       "layout": "VERTICAL",
+       "gap": 24,
+       "pad": [
+        24,
+        24,
+        24,
+        24
+       ],
+       "align": "MIN/MIN",
+       "clip": true,
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 342,
+         "h": 240,
+         "sizing": "XX",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": "Lucide / x",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "absolute": true,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / x",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Type=Mobile full Screen scrollable",
+     "type": "COMPONENT",
+     "w": 390,
+     "h": 844,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/popover"
+      }
+     ],
+     "radius": 16,
+     "effectStyle": "shadow-lg",
+     "bound": {
+      "topLeftRadius": "border radii/radius-2xl",
+      "topRightRadius": "border radii/radius-2xl",
+      "bottomLeftRadius": "border radii/radius-2xl",
+      "bottomRightRadius": "border radii/radius-2xl"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      0,
+      0,
+      0,
+      0
+     ],
+     "align": "MIN/MAX",
+     "clip": true,
+     "children": [
+      {
+       "name": ".Dialog Header - Nova",
+       "type": "INSTANCE",
+       "w": 390,
+       "h": 48,
+       "sizing": "LH",
+       "bound": {
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 0,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MAX",
+       "instanceOf": ".Dialog Header - Nova",
+       "variant": "Type=Close only",
+       "instancePage": "Dialog •",
+       "values": {
+        "Type": "Close only"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Slot",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Slot#5563:20"
+       },
+       "w": 390,
+       "h": 732,
+       "sizing": "XL",
+       "bound": {
+        "itemSpacing": "spacing/md",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md"
+       },
+       "layout": "VERTICAL",
+       "gap": 16,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MIN",
+       "clip": true,
+       "children": [
+        {
+         "name": ".Slot Default Placeholder",
+         "type": "INSTANCE",
+         "w": 358,
+         "h": 700,
+         "sizing": "LL",
+         "strokes": [
+          {
+           "hex": "c89dff"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 6,
+         "bound": {
+          "paddingLeft": "spacing/xs",
+          "paddingTop": "spacing/2xs",
+          "paddingRight": "spacing/xs",
+          "paddingBottom": "spacing/2xs",
+          "topLeftRadius": "border radii/radius-sm",
+          "topRightRadius": "border radii/radius-sm",
+          "bottomLeftRadius": "border radii/radius-sm",
+          "bottomRightRadius": "border radii/radius-sm"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 0,
+         "pad": [
+          4,
+          8,
+          4,
+          8
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": ".Slot Default Placeholder",
+         "variant": "Aspect=Rectangular",
+         "instancePage": "Internal Components",
+         "values": {
+          "Aspect": "Rectangular"
+         },
+         "overrides": 2
+        }
+       ]
+      },
+      {
+       "name": ".Dialog Footer - Nova",
+       "type": "INSTANCE",
+       "w": 390,
+       "h": 64,
+       "sizing": "LH",
+       "fills": [
+        {
+         "token": "shadcn colors/shadcn colors/general/muted"
+        }
+       ],
+       "strokes": [
+        {
+         "token": "shadcn colors/shadcn colors/general/border"
+        }
+       ],
+       "strokeWeight": "mixed",
+       "radius": 12,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "paddingLeft": "spacing/md",
+        "paddingTop": "spacing/md",
+        "paddingRight": "spacing/md",
+        "paddingBottom": "spacing/md",
+        "topLeftRadius": "border radii/out-of-scale/12",
+        "topRightRadius": "border radii/out-of-scale/12",
+        "bottomLeftRadius": "border radii/out-of-scale/12",
+        "bottomRightRadius": "border radii/out-of-scale/12"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        16,
+        16,
+        16,
+        16
+       ],
+       "align": "MIN/MIN",
+       "instanceOf": ".Dialog Footer - Nova",
+       "variant": "Type=2 full-width buttons",
+       "instancePage": "Dialog •",
+       "values": {
+        "Type": "2 full-width buttons"
+       },
+       "overrides": 2
+      },
+      {
+       "name": "Lucide / x",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "absolute": true,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / x",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": ".Dialog Header - Nova",
+   "properties": {
+    "Type": {
+     "type": "VARIANT",
+     "default": "Header",
+     "options": [
+      "Header",
+      "Close only",
+      "Icon button close"
+     ]
+    }
+   },
+   "defaultVariant": "Type=Header",
+   "variants": [
+    {
+     "name": "Type=Header",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 52,
+     "sizing": "XX",
+     "bound": {
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "SPACE_BETWEEN/MIN",
+     "children": [
+      {
+       "name": "AL",
+       "type": "FRAME",
+       "w": 288,
+       "h": 22,
+       "sizing": "LH",
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "SPACE_BETWEEN/CENTER",
+       "children": [
+        {
+         "name": "Title",
+         "type": "TEXT",
+         "w": 37,
+         "h": 22,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/foreground"
+          }
+         ],
+         "text": "Title",
+         "textStyle": "heading 4",
+         "autoResize": "WIDTH_AND_HEIGHT",
+         "alignH": "LEFT",
+         "alignV": "TOP"
+        },
+        {
+         "name": "Lucide / x",
+         "type": "INSTANCE",
+         "w": 16,
+         "h": 16,
+         "sizing": "XX",
+         "clip": true,
+         "instanceOf": "Lucide / x",
+         "instancePage": "Icons",
+         "overrides": 2
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=Close only",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 52,
+     "sizing": "XX",
+     "bound": {
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "MIN/MAX",
+     "children": [
+      {
+       "name": "Lucide / x",
+       "type": "INSTANCE",
+       "w": 16,
+       "h": 16,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / x",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Type=Icon button close",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 52,
+     "sizing": "XX",
+     "bound": {
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingBottom": "spacing/md"
+     },
+     "layout": "VERTICAL",
+     "gap": 0,
+     "pad": [
+      16,
+      0,
+      16,
+      16
+     ],
+     "align": "CENTER/MAX",
+     "children": [
+      {
+       "name": "Icon Button - Nova",
+       "type": "INSTANCE",
+       "w": 32,
+       "h": 32,
+       "sizing": "HH",
+       "fills": [
+        {
+         "token": "shadcn colors/alpha/white/switch/alpha-001",
+         "opacity": 0
+        }
+       ],
+       "radius": 8,
+       "bound": {
+        "paddingLeft": "spacing/xs",
+        "paddingTop": "spacing/xs",
+        "paddingRight": "spacing/xs",
+        "paddingBottom": "spacing/xs",
+        "topLeftRadius": "border radii/radius-md",
+        "topRightRadius": "border radii/radius-md",
+        "bottomLeftRadius": "border radii/radius-md",
+        "bottomRightRadius": "border radii/radius-md"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 0,
+       "pad": [
+        8,
+        8,
+        8,
+        8
+       ],
+       "align": "CENTER/CENTER",
+       "minW": 32,
+       "clip": true,
+       "instanceOf": "Icon Button - Nova",
+       "variant": "Size=Default, Variant=Ghost, State=Default",
+       "instancePage": "Button & Icon Button •",
+       "values": {
+        "Icon": "1957:25273",
+        "Size": "Default",
+        "Variant": "Ghost",
+        "State": "Default"
+       },
+       "overrides": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": ".Dialog Footer - Nova",
+   "properties": {
+    "Button group#6036:12": {
+     "type": "SLOT"
+    },
+    "Type": {
+     "type": "VARIANT",
+     "default": "2 buttons right",
+     "options": [
+      "2 buttons right",
+      "2 full-width buttons",
+      "2 buttons left",
+      "2 buttons mobile"
+     ]
+    }
+   },
+   "defaultVariant": "Type=2 buttons right",
+   "variants": [
+    {
+     "name": "Type=2 buttons right",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 64,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": 12,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/out-of-scale/12",
+      "topRightRadius": "border radii/out-of-scale/12",
+      "bottomLeftRadius": "border radii/out-of-scale/12",
+      "bottomRightRadius": "border radii/out-of-scale/12"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button group",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Button group#6036:12"
+       },
+       "w": 288,
+       "h": 32,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MAX/CENTER",
+       "children": [
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/alpha/white/switch/alpha-30",
+           "opacity": 0.3
+          }
+         ],
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/border"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Outline, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Left icon": "1957:25285",
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Outline",
+          "State": "Default"
+         },
+         "overrides": 7
+        },
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/primary"
+          }
+         ],
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Primary, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "⮑ Left icon": "1957:25285",
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Primary",
+          "State": "Default"
+         },
+         "overrides": 7
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=2 buttons left",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 64,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": 12,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/out-of-scale/12",
+      "topRightRadius": "border radii/out-of-scale/12",
+      "bottomLeftRadius": "border radii/out-of-scale/12",
+      "bottomRightRadius": "border radii/out-of-scale/12"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button group",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Button group#6036:12"
+       },
+       "w": 288,
+       "h": 32,
+       "sizing": "LH",
+       "bound": {
+        "itemSpacing": "spacing/xs"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/CENTER",
+       "children": [
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/alpha/white/switch/alpha-30",
+           "opacity": 0.3
+          }
+         ],
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/border"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Outline, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Left icon": "1957:25285",
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Outline",
+          "State": "Default"
+         },
+         "overrides": 7
+        },
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 57,
+         "h": 32,
+         "sizing": "HH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/primary"
+          }
+         ],
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Primary, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "⮑ Left icon": "1957:25285",
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Primary",
+          "State": "Default"
+         },
+         "overrides": 7
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=2 full-width buttons",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 64,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": 12,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/out-of-scale/12",
+      "topRightRadius": "border radii/out-of-scale/12",
+      "bottomLeftRadius": "border radii/out-of-scale/12",
+      "bottomRightRadius": "border radii/out-of-scale/12"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button group",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Button group#6036:12"
+       },
+       "w": 288,
+       "h": 32,
+       "sizing": "LH",
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "HORIZONTAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MAX/MIN",
+       "children": [
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 140,
+         "h": 32,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/alpha/white/switch/alpha-30",
+           "opacity": 0.3
+          }
+         ],
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/border"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Outline, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Left icon": "1957:25285",
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Outline",
+          "State": "Default"
+         },
+         "overrides": 7
+        },
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 140,
+         "h": 32,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/primary"
+          }
+         ],
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Primary, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "⮑ Left icon": "1957:25285",
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Primary",
+          "State": "Default"
+         },
+         "overrides": 7
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "name": "Type=2 buttons mobile",
+     "type": "COMPONENT",
+     "w": 320,
+     "h": 104,
+     "sizing": "XH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "strokes": [
+      {
+       "token": "shadcn colors/shadcn colors/general/border"
+      }
+     ],
+     "strokeWeight": "mixed",
+     "radius": 12,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/out-of-scale/12",
+      "topRightRadius": "border radii/out-of-scale/12",
+      "bottomLeftRadius": "border radii/out-of-scale/12",
+      "bottomRightRadius": "border radii/out-of-scale/12"
+     },
+     "layout": "VERTICAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "MIN/MIN",
+     "children": [
+      {
+       "name": "Button group",
+       "type": "SLOT",
+       "props": {
+        "slotContentId": "Button group#6036:12"
+       },
+       "w": 288,
+       "h": 72,
+       "sizing": "LH",
+       "radius": 10,
+       "bound": {
+        "itemSpacing": "spacing/xs",
+        "topLeftRadius": "border radii/radius-lg (radius)",
+        "topRightRadius": "border radii/radius-lg (radius)",
+        "bottomLeftRadius": "border radii/radius-lg (radius)",
+        "bottomRightRadius": "border radii/radius-lg (radius)"
+       },
+       "layout": "VERTICAL",
+       "gap": 8,
+       "pad": [
+        0,
+        0,
+        0,
+        0
+       ],
+       "align": "MIN/MAX",
+       "children": [
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 288,
+         "h": 32,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/alpha/white/switch/alpha-30",
+           "opacity": 0.3
+          }
+         ],
+         "strokes": [
+          {
+           "token": "shadcn colors/shadcn colors/general/border"
+          }
+         ],
+         "strokeWeight": 1,
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Outline, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Left icon": "1957:25285",
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Outline",
+          "State": "Default"
+         },
+         "overrides": 7
+        },
+        {
+         "name": "Button - Nova",
+         "type": "INSTANCE",
+         "w": 288,
+         "h": 32,
+         "sizing": "LH",
+         "fills": [
+          {
+           "token": "shadcn colors/shadcn colors/general/primary"
+          }
+         ],
+         "radius": 10,
+         "bound": {
+          "itemSpacing": "spacing/out-of-scale/1,5",
+          "paddingLeft": "spacing/out-of-scale/2,5",
+          "paddingTop": "spacing/out-of-scale/1,5",
+          "paddingRight": "spacing/out-of-scale/2,5",
+          "paddingBottom": "spacing/out-of-scale/1,5",
+          "topLeftRadius": "border radii/radius-lg (radius)",
+          "topRightRadius": "border radii/radius-lg (radius)",
+          "bottomLeftRadius": "border radii/radius-lg (radius)",
+          "bottomRightRadius": "border radii/radius-lg (radius)"
+         },
+         "layout": "HORIZONTAL",
+         "gap": 6,
+         "pad": [
+          6,
+          10,
+          6,
+          10
+         ],
+         "align": "CENTER/CENTER",
+         "instanceOf": "Button - Nova",
+         "variant": "Size=Default, Variant=Primary, State=Default",
+         "instancePage": "Button & Icon Button •",
+         "values": {
+          "⮑ Right icon": "1957:25285",
+          "Show spinner": false,
+          "⮑ Left icon": "1957:25285",
+          "Show left icon": false,
+          "Show right icon": false,
+          "Size": "Default",
+          "Variant": "Primary",
+          "State": "Default"
+         },
+         "overrides": 7
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

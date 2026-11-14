@@ -1,0 +1,32 @@
+{
+  "url": "tests/web/modern-css/index.html (served locally)",
+  "kind": "synthetic: one cell per modern CSS feature (list: GoogleChrome/modern-web-guidance), to see what the capture and the build translate, lose or get wrong",
+  "capture": "web-capture.mjs, full page (2026-11-14)",
+  "images": 0,
+  "texts": [
+    "Modern CSS corpus",
+    "A headline that wraps",
+    "Glass",
+    "Tooltip under the anchor",
+    "Popover in the top layer",
+    "Selected card"
+  ],
+  "boxes": {
+    "g-oklch": 1,
+    "g-hue": 1,
+    "squircle": 1,
+    "glass": 2,
+    "thumb": 1
+  },
+  "todo": [
+    "run line height"
+  ],
+  "notes": [
+    "01-02 gradients in oklch: stops resampled in that space (web-items resample), sRGB blend kept the browser's curve within 1/255",
+    "03 color-mix, relative color, light-dark: computed by the browser, read as sRGB by __angeloSrgb",
+    "06 text-box trim: the box is trimmed (28 px) but its line rect keeps the full line height (47 px, starts 11 px above the box)",
+    "07 corner-shape squircle: not read by the capture, built as a plain 40 px radius (Figma has cornerSmoothing)",
+    "09 accent-color: checkbox and radio read as checked without their color; range and progress lose their track and bar",
+    "10 subgrid, 11 container query, 12 anchor positioning, 13 popover: resolved boxes, nothing specific to translate"
+  ]
+}

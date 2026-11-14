@@ -1,0 +1,1249 @@
+{
+ "page": "Decorative Icon (OC)",
+ "sets": [
+  {
+   "name": "Decorative Icon (OC)",
+   "properties": {
+    "Icon#3020:0": {
+     "type": "INSTANCE_SWAP",
+     "default": "1957:25313",
+     "preferred": 1
+    },
+    "Variant": {
+     "type": "VARIANT",
+     "default": "Muted",
+     "options": [
+      "Muted",
+      "Primary",
+      "Destructive"
+     ]
+    },
+    "Size": {
+     "type": "VARIANT",
+     "default": "Small",
+     "options": [
+      "Small",
+      "Regular",
+      "Large",
+      "Extra large"
+     ]
+    },
+    "Roundness": {
+     "type": "VARIANT",
+     "default": "Default",
+     "options": [
+      "Default",
+      "Round"
+     ]
+    }
+   },
+   "defaultVariant": "Variant=Muted, Size=Small, Roundness=Default",
+   "variants": [
+    {
+     "name": "Variant=Muted, Size=Extra large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons"
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Extra large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Extra large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Extra large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons"
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Extra large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Extra large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 56,
+     "h": 56,
+     "sizing": "HH",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons"
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Large, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons"
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Regular, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons"
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Regular, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Large, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 48,
+     "h": 48,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Regular, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 10,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-lg (radius)",
+      "topRightRadius": "border radii/radius-lg (radius)",
+      "bottomLeftRadius": "border radii/radius-lg (radius)",
+      "bottomRightRadius": "border radii/radius-lg (radius)"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 24,
+       "h": 24,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Small, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Small, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Regular, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Regular, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Small, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Regular, Roundness=Round",
+     "type": "COMPONENT",
+     "w": 40,
+     "h": 40,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 999,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-full",
+      "topRightRadius": "border radii/radius-full",
+      "bottomLeftRadius": "border radii/radius-full",
+      "bottomRightRadius": "border radii/radius-full"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Muted, Size=Small, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/muted"
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 1
+      }
+     ]
+    },
+    {
+     "name": "Variant=Destructive, Size=Small, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/destructive"
+      },
+      {
+       "token": "shadcn colors/alpha/white/switch/alpha-85",
+       "opacity": 0.85
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    },
+    {
+     "name": "Variant=Primary, Size=Small, Roundness=Default",
+     "type": "COMPONENT",
+     "w": 32,
+     "h": 32,
+     "sizing": "XX",
+     "fills": [
+      {
+       "token": "shadcn colors/shadcn colors/general/primary"
+      }
+     ],
+     "radius": 6,
+     "bound": {
+      "itemSpacing": "spacing/xs",
+      "paddingLeft": "spacing/md",
+      "paddingTop": "spacing/md",
+      "paddingRight": "spacing/md",
+      "paddingBottom": "spacing/md",
+      "topLeftRadius": "border radii/radius-sm",
+      "topRightRadius": "border radii/radius-sm",
+      "bottomLeftRadius": "border radii/radius-sm",
+      "bottomRightRadius": "border radii/radius-sm"
+     },
+     "layout": "HORIZONTAL",
+     "gap": 8,
+     "pad": [
+      16,
+      16,
+      16,
+      16
+     ],
+     "align": "CENTER/CENTER",
+     "children": [
+      {
+       "name": "Lucide / info",
+       "type": "INSTANCE",
+       "props": {
+        "mainComponent": "Icon#3020:0"
+       },
+       "w": 20,
+       "h": 20,
+       "sizing": "XX",
+       "clip": true,
+       "instanceOf": "Lucide / info",
+       "instancePage": "Icons",
+       "overrides": 2
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "standalone": []
+}

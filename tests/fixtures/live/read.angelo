@@ -1,0 +1,69 @@
+angelo/1 units:px file:"Sample site" page:"🌞 Design 2026" scope:page:"🌞 Design 2026" nodes:253 chunks:16
+
+# styles
+p.shared.gray-4-40 = #999 lib
+p.shared.gray-6-line = #EBEBEB lib
+t.display-l = TWK Everett Regular 56/122% ls:-1.5
+t.paragraph-l = TWK Everett Regular 19/120%
+t.paragraph-m = TWK Everett Regular 14/130%
+t.paragraph-m-bold = TWK Everett Bold 14/130%
+
+# cmp
+cmp.footer = "footer"
+cmp.header = "Header" props[show-prevnext:BOOLEAN=off, show-bullet:BOOLEAN=on, show-title:BOOLEAN=on, show-subtitle:BOOLEAN=off, show-link:BOOLEAN=off]
+cmp.header-2 = "Header"
+cmp.header-3 = "Header"
+cmp.icon.arrow-left = "Icon / arrow-left"
+cmp.icon.arrow-right = "Icon / arrow-right"
+cmp.icon.external-link = "Icon / external-link"
+cmp.icon.refresh-ccw = "Icon / refresh-ccw"
+cmp.icon.x = "Icon / x"
+cmp.news-article = "news-article"
+cmp.prevnext = "prevnext"
+cmp.sample-brand-card = "Sample Brand Card"
+cmp.tag = "tag"
+cmp.title = "title"
+
+# fonts
+TWK Everett Bold, TWK Everett Medium, TWK Everett Regular
+
+# tree
+FRAME#855:172 "01-news" 1456x3000
+  <chunk 1 · 40 nodes · "index", "Project Card", "Project Card", …>
+FRAME#1028:340 "01" 1456x3000
+  <chunk 2 · 16 nodes · "index", "Project Card", "Project Card", …>
+TEXT#1017:168 "paragraph" 1205x320
+TEXT#1017:176 "paragraph" 354x320
+TEXT#1017:177 "paragraph" 1083x320
+TEXT#1017:178 "paragraph" 1243x320
+TEXT#1017:169 "paragraph" 1259x320
+TEXT#1017:175 "paragraph" 696x320
+FRAME#1004:172 "info-img" 1424x800
+  <chunk 3 · 1 nodes · "paragraph">
+FRAME#1020:182 "share" 1121x630
+  <chunk 4 · 1 nodes · "paragraph">
+FRAME#1019:179 "favicon" 1024x1024
+  <chunk 5 · 1 nodes · "paragraph">
+RECT#998:171 "Product Image" 400x500
+FRAME#860:47 "02" 1456x3964
+  <chunk 6 · 27 nodes · "Image Gallery", "Product Showcase", "Header", …>
+FRAME#1039:546 "footer" 619x438 col gap:72 pad:72,0
+  <chunk 7 · 12 nodes · "Footer Brand", "title">
+FRAME#937:291 "03" 1456x1972 col pad:0,0,120,0
+  <chunk 8 · 13 nodes · "Header", "Subheader", "Page title", …>
+FRAME#857:349 "Components" 1440x800
+  <chunk 9 · 11 nodes · "Sample Brand Card", "prevnext", "tag">
+FRAME#861:163 "06 scroll down" 430x665
+  <chunk 10 · 4 nodes · "Page title", "Product Card", "Header">
+FRAME#861:177 "07 scroll up" 430x665
+  <chunk 11 · 4 nodes · "Sample Brand Card", "Header">
+FRAME#991:270 "08 on top" 430x665
+  <chunk 12 · 5 nodes · "Header", "Page title", "Content Card", …>
+FRAME#861:188 "04" 430x1764 col pad:0,0,100,0 align:start,center
+  <chunk 13 · 16 nodes · "Header", "Category Label", "Frame 3", …>
+FRAME#917:307 "05" 430x2179.33 col pad:0,0,100,0
+  <chunk 14 · 33 nodes · "Header", "Subheader", "feed">
+FRAME#1006:196 "Frame 1" 772x544
+  <chunk 15 · 5 nodes · "title", "title", "title", …>
+FRAME#1028:168 "news" 324x3069 col pad:0,8,0,0 align:start,center
+  <chunk 16 · 41 nodes · "Frame 5", "news-article", "news-article", …>
