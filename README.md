@@ -15,6 +15,8 @@ On top of that channel, Angelo adds:
 
 Angelo started in October 2026 at Microburo, a design studio in Paris, as **FDSL** (*Figma Domain-Specific Language*). The question was simple: how can an AI agent read and change a real Figma file as fluently as it reads and changes code, without screenshots, exports or copy-paste?
 
+The first goal was speed: an agent that needs dozens of calls to build a screen spends most of its time waiting on each one. A local channel, a Figma plugin talking to the agent over a WebSocket on the same machine, brings the round trip down to 56 ms. FDSL grew on top of that channel, so the agent also reads less and writes in fewer calls. The cloud Figma MCP server, much slower when the project started, has since been fixed: in November 2026 an empty call takes 0.4 to 1.6 s. That is still 7 to 30 times the local round trip, and the gap grows with the size of what is read or written (see below).
+
 The answer was a text format first, and the tooling around it second.
 
 - **A language for designs, not a JSON dump.** Figma's node tree is large and verbose. FDSL writes one line per node, uses layer names instead of opaque ids, refers to variables, styles and components by readable labels listed once in a manifest, leaves out what auto layout already implies, and splits large selections into chunks the agent pulls only when it needs them.
@@ -27,6 +29,7 @@ The answer was a text format first, and the tooling around it second.
 - **128 automated checks** run the bridge, the MCP server and the plugin's write path against a simulated Figma plugin, including the security barriers, multi-agent calls and failure paths.
 - **19 round-trip fixtures**, 17 of them captured from real production files (their text replaced by placeholder words), must survive serialize → parse → serialize unchanged.
 - **Web to Figma was tuned on 49 live websites** (among them Apple, Stripe, Linear, Figma, Vercel, Notion, The New York Times, The Guardian, GOV.UK, Porsche, Duolingo and MoMA), through more than 650 recorded builds and 630 scored comparisons of the Figma result against the live page. The reference pages reach 97 to 99 % on the visual match score. Captures of real sites are not published here for copyright reasons; the repository ships synthetic cases and an offline corpus that CI runs on every change.
+- **Compared with the official Figma MCP server** (November 2026, same tasks on three boards of 13 to 1,917 layers): an Angelo read takes 0.1 to 0.5 s against 0.9 to 5.1 s on the remote server; on a 386-layer board it returns 3,300 tokens, where the remote design context returns 36,500 and goes over the reply limit; a font installed on the computer but missing from Figma's catalog applies through Angelo and fails remotely.
 - **Used every day** on client design work in the studio, which is where most of the edge cases came from.
 
 ## Contents
