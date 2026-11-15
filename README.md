@@ -184,9 +184,11 @@ Several agents can share one bridge: each tool takes an `agent` parameter, and e
 
 The plugin panel doubles as a note board. The designer selects layers, writes a note, can attach files, mention layers or components, and pick a skill or a model for it. The agent:
 
-1. watches for notes (`node bridge/src/watch.mjs` emits one JSON line per event), claims one, and the panel shows it as Working;
-2. reads only the targeted layers, makes the change, and records a reverse patch for every write;
+1. watches for notes: `node bridge/src/watch.mjs`, run under Claude Code's Monitor, emits one JSON line per event;
+2. makes the change from what the event already carries, and records a reverse patch for every write;
 3. replies in the panel with a short summary and an after picture.
+
+The watcher does the groundwork before the agent wakes up. The bridge holds a long poll, so a note arrives as soon as it is posted, with no polling loop. The watcher claims the note (the panel shows Working), stores the before picture, and puts the Angelo read of the target in the event: the target's tree inline when it is short, the path of the full read otherwise. A simple note (rename, recolor, duplicate, resize, rebind) then takes a single tool call, with no separate read. That matters because the designer waits on every tool call (about 3 s each), while the Figma side takes under 100 ms. Notes already reported are stored on disk, so re-arming the watcher never reports them twice.
 
 The designer can undo a note in one click, answer questions the agent asks, and approve or reject a plan before larger changes. Permission prompts and questions from Claude Code show in the panel through hooks (`bridge/hooks/`). Up to five agents can work on notes at once.
 
