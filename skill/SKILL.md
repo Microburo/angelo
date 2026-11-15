@@ -56,7 +56,7 @@ Absent = default:
 
 ## Live cursor — automatic
 
-Every write (`local_figma_use` or `angelo_apply`) shows the agent's cursor (labelled with the agent name, `main` by default) and its gradient ring on the nodes it touches, with no code in the script; read-only execs show nothing. Up to 12 nodes the cursor stops on each one; beyond, it hops quickly with the ring following. Changes reach the cursor when the script yields (any `await`): a fully synchronous script only shows the closing pass (~1 s). Call `H.cursor()` to drive it finely (staged builds, reveals): the automatic cursor then steps aside for that exec.
+Every write (`local_figma_use` or `angelo_apply`) shows the agent's cursor (labelled with the agent name, `main` by default) and its gradient ring on the nodes it touches, with no code in the script; read-only execs show nothing. Up to 12 nodes the cursor stops on each one; beyond, it hops quickly with the ring following. Changes reach the cursor when the script yields (any `await`): a fully synchronous script only shows the closing pass (~1 s). Figma throttles plugin timers in the background, so a big write is slower there (500-target `each`: 1 s with Figma in front, up to 22 s behind; the bridge's `quiet: true`, used by benches, skips the cursor: 0.6 s). Call `H.cursor()` to drive it finely (staged builds, reveals): the automatic cursor then steps aside for that exec.
 
 ## Live builds
 
