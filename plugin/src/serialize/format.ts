@@ -18,15 +18,16 @@ function channel(value: number): string {
   return hex.length === 1 ? "0" + hex : hex;
 }
 
-/** #RGB when it collapses, #RRGGBB otherwise, #RRGGBBAA when opacity < 1. */
+/** #RGB when it collapses, #RRGGBB otherwise, #RRGGBBAA when opacity < 1 (never 5 digits: the writer refuses them). */
 export function hex(color: RGB | RGBA, opacity?: number): string {
   const r = channel(color.r);
   const g = channel(color.g);
   const b = channel(color.b);
   const a = opacity === undefined ? ("a" in color ? color.a : 1) : opacity;
+  const translucent = a < 0.999;
   let out = r + g + b;
-  if (r[0] === r[1] && g[0] === g[1] && b[0] === b[1]) out = r[0] + g[0] + b[0];
-  if (a < 0.999) out += channel(a);
+  if (!translucent && r[0] === r[1] && g[0] === g[1] && b[0] === b[1]) out = r[0] + g[0] + b[0];
+  if (translucent) out += channel(a);
   return "#" + out.toUpperCase();
 }
 

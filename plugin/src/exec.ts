@@ -71,7 +71,7 @@ const makeH = (
   // getNodeByIdAsync shorthand (the sync one is deprecated)
   byId: async (id: string) => {
     const node = await figma.getNodeByIdAsync(id);
-    log?.keep(node);
+    log?.keepTree(node, KEEP_DEEP);
     return node;
   },
 
@@ -268,7 +268,7 @@ const recording = (log: RevertLog): PluginAPI => {
           name === "getNodeByIdAsync"
             ? async (id: string) => {
                 const n = await figma.getNodeByIdAsync(id);
-                log.keep(n);
+                log.keepTree(n, KEEP_DEEP);
                 return n;
               }
             : /^(create|group$|flatten$|union$|subtract$|intersect$|exclude$)/.test(name)
@@ -280,6 +280,17 @@ const recording = (log: RevertLog): PluginAPI => {
     },
   });
 };
+
+// A note's Undo covers what a script fetched and, below it, up to this many layers in all:
+// edits reached through `.children` are covered without an H.keep
+const KEEP_DEEP = 400;
+// Roots whose layers were not all kept: said in the reply, the agent can H.keep the rest
+const gap = (log: RevertLog): { undoGap?: string } =>
+  log.partial.length
+    ? {
+        undoGap: `layers below #${log.partial.slice(0, 3).join(", #")}${log.partial.length > 3 ? " …" : ""} past the first ${KEEP_DEEP} are not covered — H.keep(node) the ones the script changed`,
+      }
+    : {};
 
 // Closing pass of the last exec; any request touching the document awaits it first
 let closing: Promise<void> = Promise.resolve();
@@ -318,7 +329,7 @@ export async function runExec(code: string, file?: unknown, quiet = false, rever
     } catch {}
   };
   const log = revert ? new RevertLog() : null;
-  if (log) figma.currentPage.selection.slice(0, 50).forEach((n) => log.keep(n));
+  if (log) figma.currentPage.selection.slice(0, 50).forEach((n) => log.keepTree(n, KEEP_DEEP));
   figma.commitUndo();
   // The cursor's closing pass, the drop of script cursors and the undo commit run
   // after the reply: a read-only script no longer waits for the nodechange settle.
@@ -331,12 +342,12 @@ export async function runExec(code: string, file?: unknown, quiet = false, rever
   try {
     const fn = new Function("figma", "H", `return (async () => {\n${code}\n})()`);
     const value = await fn(log ? recording(log) : figma, makeH(images, cursors, auto, log, agent));
-    const back = log ? { revert: await log.patch() } : {};
+    const back = log ? { revert: await log.patch(), ...gap(log) } : {};
     close();
     return { ...context(), value: toJSONSafe(value), images, ...back };
   } catch (err: any) {
     // What ran before the throw is still in the file: its revert stays usable
-    const back = log ? { revert: await log.patch().catch(() => null) } : {};
+    const back = log ? { revert: await log.patch().catch(() => null), ...gap(log) } : {};
     close();
     return {
       ...context(),

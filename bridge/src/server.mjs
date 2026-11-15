@@ -294,13 +294,21 @@ const handle = async (request, response) => {
   const readJson = async (limit) => {
     let body = "";
     request.setEncoding("utf8");
+    // An oversized body is read to its end and dropped: leaving the loop early destroys the
+    // request, and the next call on the same kept-alive connection then waits 6 s and fails.
+    let tooLarge = false;
     for await (const chunk of request) {
+      if (tooLarge) continue;
       body += chunk;
       if (body.length > limit) {
-        log(`${url.pathname}: body too large (> ${limit} bytes)`);
-        json(413, { error: "body too large" });
-        return null;
+        tooLarge = true;
+        body = "";
       }
+    }
+    if (tooLarge) {
+      log(`${url.pathname}: body too large (> ${limit} bytes)`);
+      json(413, { error: `body too large (over ${Math.round(limit / 1000)} KB) — split the call` });
+      return null;
     }
     try {
       return JSON.parse(body || "{}");
@@ -397,6 +405,8 @@ const handle = async (request, response) => {
     // a note id on a write: the plugin captures a revert, stored behind the note's Undo
     let params = payload.params;
     const noteId = params && typeof params === "object" && (method === "apply" || method === "exec" || method === "text") && params.note != null ? String(params.note) : null;
+    // `revert: true` with no note: the caller keeps the patch itself (tools/stress, scripts)
+    const ownRevert = !noteId && params && typeof params === "object" && params.revert === true;
     if (params && typeof params === "object" && "note" in params) {
       const { note, ...rest } = params;
       params = noteId ? { ...rest, revert: true } : rest;
@@ -414,9 +424,22 @@ const handle = async (request, response) => {
         ? await callPlugin(method, params, timeout)
         : await inTurn(agent, () => callPlugin(method, params, timeout));
       if (result && typeof result === "object" && "revert" in result) {
-        if (noteId && result.revert) notes.addRevert(noteId, result.revert);
-        delete result.revert;
-        if (noteId) result.undo = `kept on note #${noteId}`;
+        if (noteId) {
+          // Say what really happened: an agent told "kept" stops worrying about Undo
+          const kept = notes.addRevert(noteId, result.revert);
+          result.undo =
+            kept === "kept"
+              ? `kept on note #${noteId}`
+              : kept === "missing"
+              ? `not kept: note #${noteId} not found — the change is in the file, Cmd+Z in Figma undoes it`
+              : `nothing to keep on note #${noteId}: no revertible change`;
+          // A script reached past what the log kept: the agent must hear it where it reads Undo
+          if (result.undoGap) {
+            result.undo += ` — ${result.undoGap}`;
+            delete result.undoGap;
+          }
+        }
+        if (!ownRevert) delete result.revert;
       }
       json(200, { result });
     } catch (error) {

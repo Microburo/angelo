@@ -107,7 +107,7 @@ function checkToken(token: Token, where: string, out: Problem[]): void {
       if (!value.split(",").every((part) => NUM.test(part))) bad("numbers expected");
       return;
     case "strokew":
-      if (!nums(value, [4])) bad("four numbers expected");
+      if (!nums(value, [1, 4])) bad("1 or 4 numbers expected");
       return;
     case "align":
       if (!pairOf(value, ALIGNS)) bad("primary,counter expected");

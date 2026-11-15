@@ -14,16 +14,22 @@
 //   variables [{id, name, description, valuesByMode}]
 //   remove [id]                                    nodes the write created
 
+// Fonts go through the per-run cache: with Figma in the background a chain of loadFontAsync
+// calls stalls from the 7th on (about 9 s each), a text job over 8 layers then hits the 30 s timeout
+import { loadFont } from "../fonts";
+
 export const SIMPLE_PROPS = [
-  "name", "visible", "locked", "opacity", "rotation", "clipsContent",
+  "name", "visible", "locked", "opacity", "blendMode", "rotation", "clipsContent", "constraints",
   "cornerRadius", "topLeftRadius", "topRightRadius", "bottomLeftRadius", "bottomRightRadius",
   "layoutMode", "layoutWrap", "primaryAxisSizingMode", "counterAxisSizingMode",
   "primaryAxisAlignItems", "counterAxisAlignItems", "itemSpacing", "counterAxisSpacing",
   "paddingLeft", "paddingRight", "paddingTop", "paddingBottom",
   "layoutSizingHorizontal", "layoutSizingVertical", "layoutPositioning", "layoutAlign", "layoutGrow",
-  "strokeWeight", "strokeAlign", "fills", "strokes", "effects",
+  "strokeWeight", "strokeTopWeight", "strokeRightWeight", "strokeBottomWeight", "strokeLeftWeight",
+  "strokeAlign", "dashPattern", "fills", "strokes", "effects",
   "fontName", "fontSize", "textAlignHorizontal", "textAlignVertical", "textAutoResize", "characters",
   "description", "letterSpacing", "lineHeight", "textCase", "textDecoration",
+  "paragraphSpacing", "textTruncation", "maxLines",
   "minWidth", "maxWidth", "minHeight", "maxHeight",
 ];
 // Style ids have async setters; '' detaches the style
@@ -72,12 +78,55 @@ function stateOf(node: any): Record<string, unknown> {
   return props;
 }
 
+/** Scalar variable bindings, `{ field: variableId }`. Paint bindings travel inside `fills` / `strokes`. */
+function bindingsOf(node: any): Record<string, string> {
+  const out: Record<string, string> = {};
+  let bound: Record<string, any> | undefined;
+  try {
+    bound = node.boundVariables;
+  } catch {
+    return out;
+  }
+  for (const [field, alias] of Object.entries(bound || {})) {
+    if (alias && !Array.isArray(alias) && typeof alias.id === "string") out[field] = alias.id;
+  }
+  return out;
+}
+
+/** Instance props other than variants (those come back with the swap), `{ name: value }`. */
+function instancePropsOf(node: any): Record<string, unknown> {
+  const out: Record<string, unknown> = {};
+  if (node.type !== "INSTANCE") return out;
+  try {
+    for (const [name, prop] of Object.entries(node.componentProperties as Record<string, any>)) {
+      if (prop.type !== "VARIANT") out[name] = prop.value;
+    }
+  } catch {
+    // unreadable instance: nothing to restore
+  }
+  return out;
+}
+
 interface Kept {
   node: SceneNode;
   props: Record<string, unknown>;
+  bound: Record<string, string>;
+  instanceProps: Record<string, unknown>;
   parentId: string | null;
   index: number;
   main: Promise<ComponentNode | null> | null;
+  // Free-positioned children of a frame without auto-layout: turning auto-layout on moves them
+  // all, and turning it back off leaves them where the flow put them
+  kids: Array<{ node: SceneNode; x: number; y: number; width: number; height: number }> | null;
+}
+
+function freeKidsOf(node: any): Kept["kids"] {
+  try {
+    if (node.type === "INSTANCE" || node.layoutMode !== "NONE" || !Array.isArray(node.children)) return null;
+    return node.children.map((c: SceneNode) => ({ node: c, x: c.x, y: c.y, width: c.width, height: c.height }));
+  } catch {
+    return null;
+  }
 }
 
 /** Records before-states and created nodes during one write, then emits the patch. */
@@ -93,10 +142,40 @@ export class RevertLog {
     this.kept.set(scene.id, {
       node: scene,
       props: stateOf(scene),
+      bound: bindingsOf(scene),
+      instanceProps: instancePropsOf(scene),
       parentId: parent ? parent.id : null,
       index: parent && "children" in parent ? (parent as any).children.indexOf(scene) : -1,
       main: scene.type === "INSTANCE" ? scene.getMainComponentAsync().catch(() => null) : null,
+      kids: freeKidsOf(scene),
     });
+  }
+
+  // Layers kept by keepTree across the whole write, and the roots whose layers were not all kept
+  private deep = 0;
+  readonly partial: string[] = [];
+
+  /**
+   * A node and its layers, for a script that may reach them through `.children`: up to `max`
+   * layers per write in all. A root left partly kept is listed in `partial`.
+   */
+  keepTree(node: BaseNode | null | undefined, max: number): void {
+    this.keep(node);
+    if (!node || !("children" in node) || node.type === "PAGE" || node.type === "DOCUMENT") return;
+    const stack: SceneNode[] = (node as any).children.slice().reverse();
+    while (stack.length) {
+      if (this.deep >= max) {
+        if (this.partial.indexOf(node.id) < 0) this.partial.push(node.id);
+        return;
+      }
+      const layer = stack.pop() as SceneNode;
+      if (!this.kept.has(layer.id)) {
+        this.keep(layer);
+        this.deep += 1;
+      }
+      const kids = (layer as any).children;
+      if (Array.isArray(kids)) for (let i = kids.length - 1; i >= 0; i--) stack.push(kids[i]);
+    }
   }
 
   created(node: BaseNode | null | undefined): void {
@@ -142,7 +221,32 @@ export class RevertLog {
           out.swap.push({ id, componentId: before.id, componentKey: before.remote ? before.key : undefined });
         }
       }
+      // Instance props the write changed (text, boolean, swap slot)
+      const propsNow = instancePropsOf(node);
+      const instanceProps: Record<string, unknown> = {};
+      for (const [name, value] of Object.entries(k.instanceProps)) {
+        if (name in propsNow && propsNow[name] !== value) instanceProps[name] = value;
+      }
+      if (Object.keys(instanceProps).length) props.componentProperties = instanceProps;
       if (Object.keys(props).length) out.set.push({ id, props });
+      // Auto-layout turned on by the write: once `layoutMode` is back to NONE (entry above),
+      // the children go back to where they were
+      if (k.kids && node.layoutMode && node.layoutMode !== "NONE") {
+        for (const kid of k.kids) {
+          if (kid.node.removed || kid.node.parent !== node) continue;
+          const at: Record<string, unknown> = { x: kid.x, y: kid.y };
+          if (kid.node.width !== kid.width || kid.node.height !== kid.height) {
+            at.width = kid.width;
+            at.height = kid.height;
+          }
+          out.set.push({ id: kid.node.id, props: at });
+        }
+      }
+      // Bindings the write dropped or replaced: `set` puts the value back, `bind` the variable
+      const boundNow = bindingsOf(node);
+      for (const field of new Set(Object.keys(k.bound).concat(Object.keys(boundNow)))) {
+        if (k.bound[field] !== boundNow[field]) out.bind.push({ id, field, variableId: k.bound[field] || null });
+      }
     }
     // Ascending index per parent, so earlier slots are filled before later ones
     out.move.sort((a, b) => a.index - b.index);
@@ -168,9 +272,9 @@ async function componentFrom(ref: { componentId?: string; componentKey?: string 
 export async function loadTextFonts(node: BaseNode): Promise<void> {
   if (node.type !== "TEXT") return;
   if (node.fontName === figma.mixed) {
-    for (const s of node.getStyledTextSegments(["fontName"])) await figma.loadFontAsync(s.fontName);
+    for (const s of node.getStyledTextSegments(["fontName"])) await loadFont(s.fontName);
   } else {
-    await figma.loadFontAsync(node.fontName as FontName);
+    await loadFont(node.fontName as FontName);
   }
 }
 
@@ -187,11 +291,12 @@ async function revertText(entries: Patch["text"], result: PatchResult): Promise<
       for (const s of t.segments || []) {
         const end = Math.min(s.end, node.characters.length);
         if (s.start >= end) continue;
-        await figma.loadFontAsync(s.fontName);
+        await loadFont(s.fontName);
         node.setRangeFontName(s.start, end, s.fontName);
         if (s.fontSize) node.setRangeFontSize(s.start, end, s.fontSize);
         if (s.letterSpacing) node.setRangeLetterSpacing(s.start, end, s.letterSpacing);
         if (s.lineHeight) node.setRangeLineHeight(s.start, end, s.lineHeight);
+        if (s.textStyleId) await node.setRangeTextStyleIdAsync(s.start, end, s.textStyleId);
       }
       result.restored++;
     } catch (e: any) {
@@ -201,10 +306,11 @@ async function revertText(entries: Patch["text"], result: PatchResult): Promise<
 }
 
 /** Applies a revert patch as one undo step. */
-export async function applyPatch(patch: Patch): Promise<PatchResult> {
+/** `sameStep`: the revert joins the undo step in progress (a batch rolling itself back). */
+export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchResult> {
   const result: PatchResult = { restored: 0, removed: 0, missing: [], errors: [] };
   if (!patch || typeof patch !== "object") throw new Error("patch: object expected");
-  figma.commitUndo();
+  if (!sameStep) figma.commitUndo();
   // Moves first: a layer goes back into its old parent before the layers that held it are removed
   for (const m of patch.move || []) {
     const node = (await figma.getNodeByIdAsync(m.id)) as any;
@@ -214,7 +320,12 @@ export async function applyPatch(patch: Patch): Promise<PatchResult> {
       continue;
     }
     try {
-      parent.insertChild(typeof m.index === "number" && m.index >= 0 ? Math.min(m.index, parent.children.length) : parent.children.length, node);
+      let index = typeof m.index === "number" && m.index >= 0 ? Math.min(m.index, parent.children.length) : parent.children.length;
+      // Within the same parent Figma counts the index before taking the node out:
+      // moving a layer towards the end needs one slot more, or it stays where it is
+      const current = parent.children.indexOf(node);
+      if (current >= 0 && current < index) index += 1;
+      parent.insertChild(Math.min(index, parent.children.length), node);
       if (m.width && m.height && "resize" in node) node.resize(m.width, m.height);
       result.restored++;
     } catch (e: any) {
@@ -250,7 +361,7 @@ export async function applyPatch(patch: Patch): Promise<PatchResult> {
     try {
       await loadTextFonts(node);
       const props = entry.props || {};
-      if (props.fontName) await figma.loadFontAsync(props.fontName as FontName);
+      if (props.fontName) await loadFont(props.fontName as FontName);
       // Layout mode first, size last: order matters in auto layout
       for (const key of SIMPLE_PROPS) {
         if (!(key in props) || !(key in node)) continue;
@@ -338,6 +449,6 @@ export async function applyPatch(patch: Patch): Promise<PatchResult> {
       result.errors.push(`${id}: ${e.message}`);
     }
   }
-  figma.commitUndo();
+  if (!sameStep) figma.commitUndo();
   return result;
 }

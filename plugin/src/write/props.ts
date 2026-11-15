@@ -104,7 +104,9 @@ function flag(value: string, key: string): boolean {
 
 function pick(map: Record<string, string>, value: string, key: string): string {
   const found = map[value];
-  if (!found) throw new Error(`${key}: "${value}" is not in the vocabulary`);
+  if (!found) {
+    throw new Error(`${key}: "${value}" is not in the vocabulary (${Object.keys(map).join(", ")})`);
+  }
   return found;
 }
 
@@ -135,6 +137,32 @@ function labelled<T extends { label: string; id: string }>(
  * A paint, from the same text the read showed: a hex, `none`, a paint style
  * (`p.*`) or a colour variable (`c.*`) — the label, never an opaque id.
  */
+/** What `setPaints` would refuse, without writing. */
+function checkPaint(node: any, field: "fills" | "strokes", value: string, ctx: WriteCtx): void {
+  const key = field === "fills" ? "fill" : "stroke";
+  must(node, field, key);
+  if (value === "none" || HEX_PAINT.test(value)) return;
+  const style = labelled(ctx.legend.styles.values(), value);
+  if (style) {
+    if (style.style.type !== "PAINT") {
+      throw new Error(`${key}: ${value} is a ${style.style.type.toLowerCase()} style, a paint style or a colour variable is expected`);
+    }
+    return;
+  }
+  const variable = labelled(ctx.legend.vars.values(), value);
+  if (variable) {
+    if (variable.variable.resolvedType !== "COLOR") {
+      throw new Error(`${key}: variable ${value} has type ${variable.variable.resolvedType}, a colour is expected`);
+    }
+    return;
+  }
+  throw new Error(
+    `paint "${value}" is not supported for writing (gradient, image, or label outside the last read) — use local_figma_use`
+  );
+}
+
+const HEX_PAINT = /^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3}([0-9A-Fa-f]{2})?)?$/;
+
 async function setPaints(
   node: any,
   field: "fills" | "strokes",
@@ -146,10 +174,11 @@ async function setPaints(
     node[field] = [];
     return;
   }
-  if (/^#[0-9A-Fa-f]{3}([0-9A-Fa-f]{3}([0-9A-Fa-f]{2})?)?$/.test(value)) {
+  if (HEX_PAINT.test(value)) {
     node[field] = [{ type: "SOLID", color: rgb(value), opacity: alpha(value) }];
     return;
   }
+  checkPaint(node, field, value, ctx);
   const style = labelled(ctx.legend.styles.values(), value);
   if (style) {
     if (field === "fills") await node.setFillStyleIdAsync(style.id);
@@ -158,7 +187,16 @@ async function setPaints(
   }
   const variable = labelled(ctx.legend.vars.values(), value);
   if (variable) {
-    const solid: SolidPaint = { type: "SOLID", color: { r: 0, g: 0, b: 0 } };
+    // The paint keeps a colour of its own under the binding: give it the variable's
+    // current value, as Figma does, so detaching later leaves the same colour (not black)
+    let color: RGB = { r: 0, g: 0, b: 0 };
+    try {
+      const resolved: any = variable.variable.resolveForConsumer(node).value;
+      if (resolved && typeof resolved.r === "number") color = { r: resolved.r, g: resolved.g, b: resolved.b };
+    } catch {
+      // unresolved alias or remote mode: the binding still drives the render
+    }
+    const solid: SolidPaint = { type: "SOLID", color };
     node[field] = [
       figma.variables.setBoundVariableForPaint(solid, "color", variable.variable),
     ];
@@ -318,7 +356,9 @@ function componentFor(
 ): ComponentNode | ComponentSetNode {
   const entry = labelled(ctx.legend.components.values(), label);
   if (!entry) {
-    throw new Error(`${key}: component "${label}" missing from the last read`);
+    throw new Error(
+      `${key}: component "${label}" is not in the last read (only the components its scope uses are known) — read a scope that uses it, or swap with local_figma_use`
+    );
   }
   return entry.owner as ComponentNode | ComponentSetNode;
 }
@@ -392,7 +432,7 @@ async function setProperties(node: any, values: Record<string, any>): Promise<vo
  * the shape the read showed them. Variants of the set already in place go through
  * setProperties, which keeps the overrides; another component is swapped in.
  */
-async function setRef(node: any, value: string, ctx: WriteCtx): Promise<void> {
+async function resolveRef(node: any, value: string, ctx: WriteCtx): Promise<() => Promise<void>> {
   if (node.type !== "INSTANCE") throw new Error("ref: INST node expected");
   const match = REF.exec(value);
   if (!match) throw new Error("ref: ref(cmp.x){variant:value} expected");
@@ -404,15 +444,17 @@ async function setRef(node: any, value: string, ctx: WriteCtx): Promise<void> {
     if (Object.keys(given).length) {
       throw new Error(`ref: ${match[1]} has no variants`);
     }
-    if (!current || current.id !== owner.id) node.swapComponent(owner);
-    return;
+    return async () => {
+      if (!current || current.id !== owner.id) node.swapComponent(owner);
+    };
   }
 
   const names = variantNames(owner, given, "ref");
   const from = current && current.parent;
   if (from && from.type === "COMPONENT_SET" && from.id === owner.id) {
-    if (Object.keys(names).length) await setProperties(node, names);
-    return;
+    return async () => {
+      if (Object.keys(names).length) await setProperties(node, names);
+    };
   }
   // Another set, or no main component at all: swap to the variant that matches,
   // the set's default standing in for whatever the op did not name.
@@ -430,7 +472,9 @@ async function setRef(node: any, value: string, ctx: WriteCtx): Promise<void> {
         .join(", ")}`
     );
   }
-  node.swapComponent(target as ComponentNode);
+  return async () => {
+    node.swapComponent(target as ComponentNode);
+  };
 }
 
 /**
@@ -438,7 +482,7 @@ async function setRef(node: any, value: string, ctx: WriteCtx): Promise<void> {
  * slugs their names and drops Figma's `#1:2` suffix; the write looks the real
  * keys back up on the instance itself.
  */
-async function setOverrides(node: any, value: string, ctx: WriteCtx): Promise<void> {
+async function resolveOverrides(node: any, value: string, ctx: WriteCtx): Promise<() => Promise<void>> {
   if (node.type !== "INSTANCE") throw new Error("ov: INST node expected");
   const match = OV.exec(value);
   if (!match) throw new Error("ov: ov{name=value} expected");
@@ -461,7 +505,10 @@ async function setOverrides(node: any, value: string, ctx: WriteCtx): Promise<vo
         out[key] = unquote(raw, "ov");
         break;
       case "BOOLEAN":
-        out[key] = flag(raw, "ov");
+        if (raw !== "on" && raw !== "off") {
+          throw new Error(`ov: ${name} is a boolean — ${name}=on or ${name}=off expected`);
+        }
+        out[key] = raw === "on";
         break;
       case "INSTANCE_SWAP": {
         if (raw === "swap") {
@@ -477,7 +524,7 @@ async function setOverrides(node: any, value: string, ctx: WriteCtx): Promise<vo
         throw new Error(`ov: ${name} is a variant — use ref(cmp.x){${name}:…}`);
     }
   }
-  await setProperties(node, out);
+  return () => setProperties(node, out);
 }
 
 export const WRITABLE: Record<string, Applier> = {
@@ -626,8 +673,8 @@ export const WRITABLE: Record<string, Applier> = {
     node.strokeAlign = parts[1].toUpperCase();
     return setPaints(node, "strokes", parts.slice(2).join(" "), ctx);
   },
-  ref: (node, value, ctx) => setRef(node, value, ctx),
-  ov: (node, value, ctx) => setOverrides(node, value, ctx),
+  ref: async (node, value, ctx) => (await resolveRef(node, value, ctx))(),
+  ov: async (node, value, ctx) => (await resolveOverrides(node, value, ctx))(),
   font: (node, value, ctx) => setFont(node, value, ctx),
   text: (node, value) => setCharacters(node, value),
   lh: (node, value) => {
@@ -660,13 +707,255 @@ export const WRITABLE: Record<string, Applier> = {
   },
   truncate: (node, value) => {
     must(node, "maxLines", "truncate");
-    node.maxLines = Number(value);
+    // maxLines is ignored (reads back null) while truncation is off
+    const lines = Number(value);
+    node.textTruncation = lines > 0 ? "ENDING" : "DISABLED";
+    if (lines > 0) node.maxLines = lines;
   },
   autosize: (node, value) => {
     must(node, "textAutoResize", "autosize");
     node.textAutoResize = pick(AUTOSIZE, value, "autosize");
   },
 };
+
+const BLENDS = [
+  "PASS_THROUGH", "NORMAL", "DARKEN", "MULTIPLY", "LINEAR_BURN", "COLOR_BURN", "LIGHTEN", "SCREEN",
+  "LINEAR_DODGE", "COLOR_DODGE", "OVERLAY", "SOFT_LIGHT", "HARD_LIGHT", "DIFFERENCE", "EXCLUSION",
+  "HUE", "SATURATION", "COLOR", "LUMINOSITY",
+];
+
+/** Layout mode a node will have at this point of the batch, by node id (pass 1 only). */
+export type LayoutSim = Map<string, string>;
+
+/**
+ * What `applyProps` would refuse on this node, found without writing anything.
+ *
+ * The grammar check sees a token alone; this one sees the node: a key the node type
+ * does not carry, a value outside the vocabulary, a label the read does not know,
+ * `gap` on a frame with no autolayout. Pass 1 runs it so those refusals leave the
+ * file untouched instead of failing in pass 2 with earlier ops already applied.
+ * `sim` carries `row` / `col` set earlier in the batch, so "set row:on first in the
+ * same batch" keeps working across ops.
+ */
+export async function preflight(
+  node: any,
+  props: Record<string, string>,
+  ctx: WriteCtx,
+  sim: LayoutSim
+): Promise<string[]> {
+  const out: string[] = [];
+  const modeOf = (n: any): string =>
+    sim.get(n.id) ?? (n && "layoutMode" in n ? n.layoutMode : "NONE");
+  const laidOut = (key: string): void => {
+    must(node, "layoutMode", key);
+    if (modeOf(node) === "NONE") {
+      throw new Error(`${key}: #${node.id} has no autolayout — set row:on or col:on first in the same batch`);
+    }
+  };
+  const inFlow = (key: string, what: string): void => {
+    const parent = node.parent;
+    if (!parent || modeOf(parent) === "NONE") {
+      throw new Error(
+        `${key}: ${what} needs an autolayout parent — set row:on or col:on on #${parent ? parent.id : "?"} first in the same batch`
+      );
+    }
+  };
+  const numberOrVar = (field: string, value: string, key: string): void => {
+    must(node, field, key);
+    if (NUMBER.test(value)) return;
+    if (typeof node.setBoundVariable !== "function") {
+      throw new Error(`${key}: this node (${node.type}) carries no variable`);
+    }
+    floatVar(value, ctx, key);
+  };
+  const textOnly = (field: string, key: string): void => {
+    if (node.type !== "TEXT") throw new Error(`${key}: TEXT node expected`);
+    must(node, field, key);
+  };
+
+  for (const key of Object.keys(props)) {
+    const value = props[key];
+    try {
+      switch (key) {
+        case "wh": {
+          if (typeof node.resize !== "function") throw new Error("wh: this node cannot be resized");
+          if (value.split("x").some((part) => Number(part) < 0)) throw new Error("wh: sizes cannot be negative");
+          break;
+        }
+        case "rot":
+          must(node, "rotation", key);
+          break;
+        case "op":
+          must(node, "opacity", key);
+          break;
+        case "blend":
+          must(node, "blendMode", key);
+          if (BLENDS.indexOf(value.toUpperCase().replace(/-/g, "_")) < 0) {
+            throw new Error(`blend: "${value}" is not in the vocabulary (${BLENDS.map((b) => b.toLowerCase().replace(/_/g, "-")).join(", ")})`);
+          }
+          break;
+        case "row":
+        case "col":
+          must(node, "layoutMode", key);
+          sim.set(node.id, flag(value, key) ? (key === "row" ? "HORIZONTAL" : "VERTICAL") : "NONE");
+          break;
+        case "wrap":
+          must(node, "layoutWrap", key);
+          if (flag(value, key)) laidOut(key);
+          break;
+        case "clip":
+          must(node, "clipsContent", key);
+          break;
+        case "gap": {
+          laidOut(key);
+          if (value === "auto") break;
+          const [main, counter] = value.split("/");
+          numberOrVar("itemSpacing", main, key);
+          if (counter !== undefined) numberOrVar("counterAxisSpacing", counter, key);
+          break;
+        }
+        case "pad":
+          laidOut(key);
+          for (const part of value.split(",")) numberOrVar("paddingLeft", part, key);
+          break;
+        case "align": {
+          laidOut(key);
+          const [primary, counter] = value.split(",");
+          pick(ALIGN, primary, key);
+          pick(ALIGN, counter, key);
+          break;
+        }
+        case "size": {
+          must(node, "layoutSizingHorizontal", key);
+          const own = "layoutMode" in node && modeOf(node) !== "NONE";
+          const parent = node.parent;
+          const flow = !!parent && modeOf(parent) !== "NONE";
+          for (const axis of value.split(",")) {
+            if (axis === "-") continue;
+            pick(SIZING, axis, key);
+            if (axis === "fill") inFlow(key, "fill");
+            else if (axis === "hug" && !own && !(node.type === "TEXT" && flow)) {
+              throw new Error(`size: hug needs an autolayout on #${node.id} (set row:on or col:on first in the same batch), or a text inside an autolayout parent`);
+            }
+          }
+          break;
+        }
+        case "grow":
+          // Outside an autolayout parent Figma stores the value with no effect: left as is
+          must(node, "layoutGrow", key);
+          break;
+        case "constr": {
+          must(node, "constraints", key);
+          const [horizontal, vertical] = value.split(",");
+          pick(CONSTRAINT, horizontal, key);
+          pick(CONSTRAINT, vertical, key);
+          break;
+        }
+        case "r": {
+          const parts = value.split(",");
+          if (parts.length === 1 && !("topLeftRadius" in node)) {
+            must(node, "cornerRadius", key);
+            if (!NUMBER.test(parts[0])) throw new Error(`r: this node (${node.type}) only accepts a number`);
+            break;
+          }
+          for (const part of parts) numberOrVar("topLeftRadius", part, key);
+          break;
+        }
+        case "strokew":
+          must(node, "strokeWeight", key);
+          if (value.split(",").length === 4) must(node, "strokeTopWeight", key);
+          break;
+        case "dash":
+          must(node, "dashPattern", key);
+          break;
+        case "fill":
+          checkPaint(node, "fills", value, ctx);
+          break;
+        case "regionfill":
+          if (node.type !== "VECTOR") throw new Error("regionfill: VEC node expected");
+          if (value !== "inherit") throw new Error("regionfill: only the value \"inherit\" can be written");
+          break;
+        case "stroke": {
+          const parts = value.split(" ");
+          must(node, "strokeWeight", key);
+          if (parts[0].split(",").length === 4) must(node, "strokeTopWeight", key);
+          checkPaint(node, "strokes", parts.slice(2).join(" "), ctx);
+          break;
+        }
+        case "ref":
+          await resolveRef(node, value, ctx);
+          break;
+        case "ov":
+          await resolveOverrides(node, value, ctx);
+          break;
+        case "font": {
+          if (node.type !== "TEXT") throw new Error("font: TEXT node expected");
+          const style = labelled(ctx.legend.styles.values(), value);
+          if (style) {
+            if (style.style.type !== "TEXT") throw new Error(`font: ${value} is a ${style.style.type.toLowerCase()} style, a text style is expected`);
+            break;
+          }
+          const parts = value.split(" ");
+          const size = Number(parts[parts.length - 1]);
+          if (parts.length < 3 || !isFinite(size)) {
+            throw new Error(`font: "${value}" is neither "Family Style Size" nor a text style of the read (t.*) — angelo_read with manifest:"full" lists them`);
+          }
+          const fontName: FontName = { family: parts.slice(0, -2).join(" "), style: parts[parts.length - 2] };
+          try {
+            await loadFont(fontName);
+          } catch {
+            throw new Error(`font: "${fontName.family} ${fontName.style}" is not available — use a font already in the read`);
+          }
+          break;
+        }
+        case "text":
+          if (node.type !== "TEXT") throw new Error("text: TEXT node expected");
+          if (typeof node.fontName === "symbol") {
+            throw new Error("text: this text has several fonts (mixed) — use local_figma_use");
+          }
+          unquote(value, key);
+          break;
+        case "lh":
+          textOnly("lineHeight", key);
+          break;
+        case "ls":
+          textOnly("letterSpacing", key);
+          break;
+        case "pspace":
+          textOnly("paragraphSpacing", key);
+          break;
+        case "truncate":
+          textOnly("maxLines", key);
+          break;
+        case "case":
+          textOnly("textCase", key);
+          pick(CASE, value, key);
+          break;
+        case "deco":
+          textOnly("textDecoration", key);
+          pick(DECO, value, key);
+          break;
+        case "talign":
+          textOnly("textAlignHorizontal", key);
+          pick(TALIGN, value, key);
+          break;
+        case "tvalign":
+          textOnly("textAlignVertical", key);
+          pick(TVALIGN, value, key);
+          break;
+        case "autosize":
+          textOnly("textAutoResize", key);
+          pick(AUTOSIZE, value, key);
+          break;
+        default:
+          break;
+      }
+    } catch (error: any) {
+      out.push(String((error && error.message) || error));
+    }
+  }
+  return out;
+}
 
 export const WRITABLE_KEYS = new Set(Object.keys(WRITABLE));
 

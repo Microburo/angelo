@@ -48,8 +48,10 @@ Absent = default:
 - `gap` / `pad` / `align` need autolayout (`row` / `col`); without it the op is refused.
 - `size:fill,…` needs an autolayout parent.
 - Instances: `ref:(cmp.x){size:l}` switches variant (overrides survive), `ov:{label="…", icon=on}` sets instance props; INSTANCE_SWAP takes a `cmp.*` label.
-- Mass edit: `{op:"each", match:{in|type|ref|name}, props}` — filters the last read only, at least one filter, 500 targets max.
-- One batch = one undo step. Any invalid op ⇒ nothing is written; fix and resend the whole batch.
+- Mass edit: `{op:"each", match:{in|type|ref|name}, props}` — filters the last read only (closed chunks included, no expand needed), at least one filter, 500 targets max.
+- One batch = one undo step. Any invalid op ⇒ nothing is written; fix and resend the whole batch. An op Figma refuses mid-batch rolls the batch back (`rolled back: nothing changed`).
+- Reply header `# applied N ops · M nodes` counts the nodes really changed; `· K unchanged (already as asked)` / `no change` means the props were already there. The diff is capped (≈ 60 lines, ≈ 1.3k tokens), the rest counted on `# N more node(s), not detailed`.
+- Children, siblings and ancestors a write moves (gap, resize in auto-layout) stay writable with no new read; past 300 of them the reply says `angelo_read before writing on them`.
 - Never fetch an id you did not read (`0:1` loads the whole file).
 
 ## Live cursor — automatic
@@ -80,3 +82,4 @@ Web page from a URL → skill `web-to-figma` (`web-to-figma/SKILL.md`).
 
 - "plugin disconnected" → ask the user to open Plugins → Development → Angelo; do not fall back to another Figma MCP silently.
 - Batch refused "changed since read" → re-read the node, recompute, resend.
+- Note's Undo after `local_figma_use`: fetched nodes and up to 400 layers below them are covered; past that, `undo` in the reply names the roots left out → `H.keep(node)` the layers the script changes.

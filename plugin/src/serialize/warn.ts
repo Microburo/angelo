@@ -176,7 +176,7 @@ async function ownNodeChecks(
   while (stack.length) {
     const { node, opacity, root } = stack.pop()!;
     if (++visited > MAX_NODES) {
-      lines.push(`! scan stopped (${MAX_NODES} nodes)`);
+      lines.push(`! scan stopped (${MAX_NODES} nodes) — warnings incomplete, read a smaller scope for the rest`);
       break;
     }
     if (node.removed || !node.visible) continue;
@@ -318,7 +318,9 @@ async function regionFillChecks(
     }
   }
   if (vectors > MAX_VECTORS || components > MAX_COMPONENTS) {
-    lines.push(`! scan stopped (${MAX_COMPONENTS} components / ${MAX_VECTORS} vectors)`);
+    lines.push(
+      `! scan stopped (${MAX_COMPONENTS} components / ${MAX_VECTORS} vectors) — warnings incomplete, read a smaller scope for the rest`
+    );
   }
   return lines;
 }

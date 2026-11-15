@@ -726,9 +726,10 @@ export function createNotes({ send, call, panelOpen, log = () => {} }) {
 
   // a revert captured by apply/exec on a note's behalf
   function addRevert(noteId, revert) {
+    // "kept" | "missing" (no such note) | "empty" (nothing revertible in the patch)
     const it = find(noteId);
-    if (!it || !revert) return false;
-    return addPatch(it, revert);
+    if (!it) return "missing";
+    return revert && addPatch(it, revert) ? "kept" : "empty";
   }
 
   return { http, frame, push, addRevert, listening };

@@ -80,12 +80,39 @@ function selectionSummary(): Record<string, unknown> {
   };
 }
 
+const NODE_ID = /^I?\d+:\d+(;\d+:\d+)*$/;
+
+/**
+ * A node by id, for ids that come from the caller. A malformed id is refused at once:
+ * Figma would otherwise wait 10 s and answer "Unable to establish connection to Figma".
+ * A well-formed id the file does not hold still costs that wait; the message then says
+ * what happened instead of blaming the network.
+ */
+async function nodeOf(id: string): Promise<BaseNode> {
+  if (!NODE_ID.test(id)) {
+    throw new Error(
+      `invalid target "${id}" — use "selection", "page" or a node id such as 1:234 (ids come from angelo_read or angelo_status)`,
+    );
+  }
+  let node: BaseNode | null = null;
+  try {
+    node = await figma.getNodeByIdAsync(id);
+  } catch (error) {
+    throw new Error(
+      `node ${id} not found in this file (Figma gave up loading it) — use an id from angelo_read or angelo_status`,
+    );
+  }
+  if (!node || !("type" in node)) {
+    throw new Error(`unknown node: ${id} — use an id from angelo_read or angelo_status`);
+  }
+  return node;
+}
+
 async function resolveRoots(
   target: unknown
 ): Promise<{ roots: SceneNode[]; label: string }> {
   if (typeof target === "string" && target !== "selection" && target !== "page") {
-    const node = await figma.getNodeByIdAsync(target);
-    if (!node || !("type" in node)) throw new Error(`unknown node: ${target}`);
+    const node = await nodeOf(target);
     if (node.type === "PAGE") {
       const page = node as PageNode;
       return { roots: page.children.slice(), label: `page:${quote(page.name)}` };
@@ -144,8 +171,7 @@ async function handleExpand(params: Record<string, unknown>): Promise<unknown> {
   if (!active) throw new Error("no read in progress — run read first");
 
   if (typeof params.id === "string") {
-    const node = await figma.getNodeByIdAsync(params.id);
-    if (!node || !("type" in node)) throw new Error(`unknown node: ${params.id}`);
+    const node = await nodeOf(params.id);
     const before = snapshot(active.legend);
     const result = await readRoots([node as SceneNode], active);
     const addendum = await renderAddendum(active.legend, before);
@@ -206,8 +232,18 @@ async function dispatch(request: Request): Promise<unknown> {
       // turned into an RPC rejection here.
       if (typeof params.code !== "string") throw new Error("exec: `code` missing");
       return runExec(params.code, params.file, params.quiet === true, params.revert === true, agentOf(params));
-    case "apply":
-      return applyOps(params, sessions.get(agentOf(params)) ?? null);
+    case "apply": {
+      // A sid held by another agent: say so, "replaced by read N" would send the agent the wrong way
+      const mine = sessions.get(agentOf(params)) ?? null;
+      if (params.sid !== undefined && (!mine || Number(params.sid) !== mine.sid)) {
+        for (const [owner, other] of sessions) {
+          if (other !== mine && other.sid === Number(params.sid)) {
+            throw new Error(`read ${params.sid} belongs to agent "${owner}", not "${agentOf(params)}" — run angelo_read as "${agentOf(params)}"`);
+          }
+        }
+      }
+      return applyOps(params, mine);
+    }
     // Notes: a note's Undo, local fonts, text jobs, pictures for the note
     case "patch":
       return applyPatch(params as any);

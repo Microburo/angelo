@@ -435,6 +435,33 @@ if (reconnected) {
       lastNotes()?.items.find((i) => i.id === created.id)?.hasPatch === true,
     applied.content[0].text.split("\n")[0]
   );
+  // a note that is not there: the change is in the file, and the reply must say its Undo was not kept
+  const rpc = (method, params) =>
+    fetch(`http://127.0.0.1:${PORT}/rpc`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ method, params }) })
+      .then((r) => r.json())
+      .catch(() => ({}));
+  const orphan = await rpc("apply", { ops: [{ op: "set", id: "1:2", props: "op:0.5" }], note: 987654 });
+  check(
+    "15e2. apply on a missing note says the Undo was not kept",
+    /not kept: note #987654 not found/.test(orphan.result?.undo || "") && orphan.result?.revert === undefined,
+    JSON.stringify(orphan.result?.undo)
+  );
+  const own = await rpc("apply", { ops: [{ op: "set", id: "1:2", props: "op:0.5" }], revert: true });
+  check(
+    "15e3. revert:true without a note hands the patch back to the caller",
+    Array.isArray(own.result?.revert?.set) && own.result.undo === undefined,
+    JSON.stringify(own.result?.revert)
+  );
+  const plain = await rpc("apply", { ops: [{ op: "set", id: "1:2", props: "op:0.5" }] });
+  check("15e4. no note, no revert asked: neither field in the reply", Boolean(plain.result) && plain.result.revert === undefined && plain.result.undo === undefined);
+  // an oversized body is refused and the kept-alive connection still serves the next calls
+  const big = await fetch(`${B}/rpc`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ method: "exec", params: { code: "x".repeat(1_100_000) } }) });
+  const bigBody = await big.json().catch(() => ({}));
+  const afterBig = [];
+  for (let i = 0; i < 3; i++) {
+    afterBig.push(await fetch(`${B}/rpc`, { method: "POST", headers: { "content-type": "application/json" }, body: "{not json", signal: AbortSignal.timeout(3000) }).then((r) => r.status, (e) => String(e.cause?.code || e.message)));
+  }
+  check("15e5. body over 1 MB: 413 with the way out, next calls on the connection answer", big.status === 413 && /split/.test(bigBody.error || "") && afterBig.every((x) => x === 400), `${big.status} ${bigBody.error} · ${afterBig.join()}`);
   const perm = await post("/permissions", { kind: "plan", plan: "1. Blue", noteId: created.id });
   await wait(100);
   check("15f. pending plan pushed to the panel", lastNotes()?.perms.some((p) => p.id === perm.id));
@@ -641,6 +668,11 @@ if (!grammar) {
   const props = (values) => checkProps(values, "1:2", WRITABLE);
 
   check("13. valid props accepted", props({ at: "10,20", gap: "16", fill: "#FFF" }).length === 0);
+  check(
+    "13a2. strokew takes one weight or four",
+    props({ strokew: "2" }).length === 0 && props({ strokew: "0,0,1,0" }).length === 0 && props({ strokew: "1,2" }).length === 1,
+    props({ strokew: "2" }).concat(props({ strokew: "1,2" })).map((problem) => problem.message).join(" | ")
+  );
   const notWritable = props({ vec: "3paths" });
   check(
     "13b. out-of-scope prop refused by name",

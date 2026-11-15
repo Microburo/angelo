@@ -120,7 +120,7 @@ server.registerTool(
     inputSchema: {
       code: z.any().optional().describe("Plugin API JS (`figma`, `H` in scope), top-level await + return"),
       file: z.any().optional().describe("Expected figma.root.name — refused in any other file"),
-      note: z.any().optional().describe("Note id being worked on: the change is recorded behind the note's Undo button (create nodes with H.frame/H.text or call H.keep(node) before changing a node)"),
+      note: z.any().optional().describe("Note id being worked on: the change is recorded behind the note's Undo button (fetched nodes and up to 400 layers below are kept; create nodes with H.frame/H.text, H.keep(node) anything else, `undo` names what is not covered)"),
       finish: z.any().optional().describe("with note: reply text — on success the note is marked done (simple note = this one call, no note_finish)"),
       focus: z.any().optional().describe("with finish: changed layer ids (default: the note's targets)"),
       agent: AGENT_ARG,
@@ -267,9 +267,10 @@ server.registerTool(
       "type:FRAME|RECT|ELL|TEXT|LINE|STAR|POLY|INST, ref (cmp.* if INST), index?, name?, props?} · " +
       "{op:\"clone\", id, count?, parent?, index?, props?} (outside auto-layout, without at:, copies land beside the source) · {op:\"reorder\", parent, order:[ids]} · " +
       "{op:\"each\", match:{in?:ancestor id, type?:Angelo tag, ref?:cmp.*, name?:exact or glob \"Label*\"}, " +
-      "props} (same props on every matching node of the read; 500 max, one filter minimum). Everything is " +
+      "props} (same props on every matching node of the read, closed chunks included; 500 max, one filter minimum). Everything is " +
       "checked before any write: an unread node, a node changed since the read or an invalid prop refuses the " +
-      "whole batch. One batch = one undo step; the reply is the real diff. Not expressible (gradient, image, " +
+      "whole batch; an op Figma refuses mid-batch rolls it back. One batch = one undo step; the reply is the real " +
+      "diff (header counts nodes really changed, `unchanged` = already as asked). Not expressible (gradient, image, " +
       "mixed text, vectors) → local_figma_use.",
     inputSchema: {
       ops: z.any().describe("ops list (see description), 200 max per batch"),

@@ -2,6 +2,7 @@
 // installed on this computer (the plugin runs inside the designer's Figma, so
 // local fonts load here). Each job returns what changed plus a revert patch.
 
+import { loadFont } from "../fonts";
 import { loadTextFonts } from "./patch";
 
 export interface FontFamily {
@@ -82,12 +83,15 @@ async function textNodesIn(op: TextOp): Promise<TextNode[]> {
   return Array.from(new Map(out.map((n) => [n.id, n])).values());
 }
 
-const SEG_FIELDS: Array<"fontName" | "fontSize" | "letterSpacing" | "lineHeight"> = ["fontName", "fontSize", "letterSpacing", "lineHeight"];
+// `textStyleId` rides along: a range edit detaches the text style, Undo links it again
+const SEG_FIELDS: Array<"fontName" | "fontSize" | "letterSpacing" | "lineHeight" | "textStyleId"> = ["fontName", "fontSize", "letterSpacing", "lineHeight", "textStyleId"];
 
 export async function runTextOps(ops: unknown, revert: boolean): Promise<Record<string, unknown>> {
   if (!Array.isArray(ops) || !ops.length) throw new Error("text: non-empty `ops` list expected");
   const result = { changedLayers: 0, changedRanges: 0, skipped: [] as Array<Record<string, unknown>> };
   const back: Array<{ id: string; segments: any[] }> = [];
+  // a layer touched by several ops counts once
+  const layers = new Set<string>();
   const families = new Map<string, string[]>();
   const stylesOf = async (family: string) => {
     if (!families.has(family)) {
@@ -123,11 +127,12 @@ export async function runTextOps(ops: unknown, revert: boolean): Promise<Record<
             fontSize: seg.fontSize,
             letterSpacing: seg.letterSpacing,
             lineHeight: seg.lineHeight,
+            ...(seg.textStyleId ? { textStyleId: seg.textStyleId } : {}),
           });
           if (op.family || op.style) {
             const family = op.family || seg.fontName.family;
             const style = op.style || closestStyle(seg.fontName.style, await stylesOf(family)) || seg.fontName.style;
-            await figma.loadFontAsync({ family, style });
+            await loadFont({ family, style });
             node.setRangeFontName(seg.start, seg.end, { family, style });
           }
           if (typeof op.fontSize === "number") node.setRangeFontSize(seg.start, seg.end, op.fontSize);
@@ -144,7 +149,8 @@ export async function runTextOps(ops: unknown, revert: boolean): Promise<Record<
       }
       // Newest first, like the note's patch: a layer touched by several ops ends on its earliest state
       if (touched) {
-        result.changedLayers++;
+        layers.add(node.id);
+        result.changedLayers = layers.size;
         back.unshift({ id: node.id, segments: before });
       }
     }
