@@ -15,7 +15,7 @@ On top of that channel, Angelo adds:
 
 Angelo started in October 2026 at Microburo, a design studio in Paris, as **FDSL** (*Figma Domain-Specific Language*). The question was simple: how can an AI agent read and change a real Figma file as fluently as it reads and changes code, without screenshots, exports or copy-paste?
 
-The first goal was speed: an agent that needs dozens of calls to build a screen spends most of its time waiting on each one. A local channel, a Figma plugin talking to the agent over a WebSocket on the same machine, brings the round trip down to 56 ms. FDSL grew on top of that channel, so the agent also reads less and writes in fewer calls. The cloud Figma MCP server, much slower when the project started, has since been fixed: in November 2026 an empty call takes 0.4 to 1.6 s. That is still 7 to 30 times the local round trip, and the gap grows with the size of what is read or written (see below).
+The first goal was speed: an agent that needs dozens of calls to build a screen spends most of its time waiting on each one. A local channel, a Figma plugin talking to the agent over a WebSocket on the same machine, brings the round trip down to 56 ms. FDSL grew on top of that channel, so the agent also reads less and writes in fewer calls. The cloud Figma MCP server, much slower when the project started, has since been fixed: in November 2026 an empty call takes about 0.5 s once warm (2 s for the first one). Measured the same way, end to end from the agent, Angelo answers in 0.08 s: about 6 times faster, and the gap grows with the size of what is read or written (see below).
 
 The answer was a text format first, and the tooling around it second.
 
