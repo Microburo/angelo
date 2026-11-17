@@ -6,6 +6,10 @@
   if (globalThis.__angeloOverlay) return globalThis.__angeloOverlay.toggle();
   // an overlay left by an earlier load of the extension (reloaded since): its world is orphaned,
   // its Go would run stale code → removed, this injection takes over
+  // the DOM is shared by every world: the old script hears this and tears itself down (listeners,
+  // timers), which removing its host alone would not do
+  const HANDOFF = "angelo-handoff";
+  document.dispatchEvent(new CustomEvent(HANDOFF));
   for (const old of document.querySelectorAll("angelo-overlay")) old.remove();
 
   // one orange, fading with depth: section opaque, then more transparent per level
@@ -136,6 +140,7 @@
 
   const scan = () => {
     blocks = globalThis.__angeloBlocks();
+    invalidate();
     picked = new Set();
     render();
   };
@@ -143,34 +148,59 @@
   let busy = false;
   let listKey = "";
   let query = "";
+  // Boxes are kept between renders: only the ones whose look changed are touched. Rects are read
+  // once per 300 ms (and again after a scroll, a resize or a scan), in document coordinates.
+  const nodes = [];
+  const rects = new Map();
+  let rectsAt = 0;
+  const rectOf = (el) => {
+    if (performance.now() - rectsAt > 300) { rects.clear(); rectsAt = performance.now(); }
+    let r = rects.get(el);
+    if (!r) {
+      const q = el.getBoundingClientRect();
+      r = { left: q.left + scrollX, top: q.top + scrollY, width: q.width, height: q.height, right: q.right + scrollX, bottom: q.bottom + scrollY };
+      rects.set(el, r);
+    }
+    return r;
+  };
+  const invalidate = () => { rects.clear(); rectsAt = performance.now(); };
+  const clearBoxes = () => { nodes.length = 0; $(".boxes").textContent = ""; };
   const render = () => {
     if (busy) return;
     const boxes = $(".boxes");
-    boxes.textContent = "";
+    let used = 0;
     // a hovered sub-element (not a block) is cut out of the fills it lies on: black 0 % there
-    const hole = sub && sub.el.getBoundingClientRect();
+    const hole = sub && (() => { const q = sub.el.getBoundingClientRect(); return { left: q.left + scrollX, top: q.top + scrollY, right: q.right + scrollX, bottom: q.bottom + scrollY }; })();
     const box = (b, cls, tag) => {
-      const r = b.el.getBoundingClientRect();
-      const d = document.createElement("div");
-      d.className = "box" + cls;
-      d.style.cssText = `--c:${color(b.level)};left:${r.left + scrollX}px;top:${r.top + scrollY}px;width:${r.width}px;height:${r.height}px;`;
+      const r = rectOf(b.el);
+      let css = `--c:${color(b.level)};left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;`;
       if (hole && cls.includes(" fill")) {
         const x0 = Math.max(hole.left, r.left) - r.left, y0 = Math.max(hole.top, r.top) - r.top;
         const x1 = Math.min(hole.right, r.right) - r.left, y1 = Math.min(hole.bottom, r.bottom) - r.top;
-        if (x1 > x0 && y1 > y0) d.style.clipPath = `polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${x0}px ${y0}px, ${x1}px ${y0}px, ${x1}px ${y1}px, ${x0}px ${y1}px, ${x0}px ${y0}px)`;
+        if (x1 > x0 && y1 > y0) css += `clip-path:polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, ${x0}px ${y0}px, ${x1}px ${y0}px, ${x1}px ${y1}px, ${x0}px ${y1}px, ${x0}px ${y0}px);`;
       }
+      const size = `${Math.round(r.width)}×${Math.round(r.height)}`;
+      const sig = `${cls}|${css}|${tag ? b.name + size : ""}`;
+      let d = nodes[used];
+      if (!d) { d = nodes[used] = document.createElement("div"); boxes.appendChild(d); }
+      used++;
+      if (d.sig === sig) return;
+      d.sig = sig;
+      d.className = "box" + cls;
+      d.style.cssText = css;
+      d.textContent = "";
       if (tag) {
         d.innerHTML = `<div class="tag"><span class="n"></span><span class="d"></span></div>`;
         d.querySelector(".n").textContent = b.name;
-        d.querySelector(".d").textContent = `${Math.round(r.width)}×${Math.round(r.height)}`;
+        d.querySelector(".d").textContent = size;
       }
-      boxes.appendChild(d);
     };
     // only the innermost blocks are filled: nested fills would stack (20 % over 20 %)
     const parents = new Set(blocks.map((b) => b.parent));
     const lit = (i) => hover >= 0 && !sub && (i === hover || isUnder(i, hover));
     blocks.forEach((b, i) => box(b, (parents.has(i) ? "" : " fill" + (lit(i) ? " lit" : "")) + (picked.has(i) ? " on" : "") + (hover === i && !sub ? " hov" : ""), picked.has(i) || (hover === i && !sub) || b.level === 1));
     if (sub) box(sub, " hov", true);
+    while (nodes.length > used) nodes.pop().remove();
     const list = $(".list");
     // the row of the hovered block lit too (no rebuild: only its class moves)
     const mark = () => list.querySelectorAll(".row").forEach((r) => r.classList.toggle("hov", +r.dataset.i === hover));
@@ -183,7 +213,7 @@
     list.textContent = "";
     blocks.forEach((b, i) => {
       if (query && !b.name.toLowerCase().includes(query)) return;
-      const r = b.el.getBoundingClientRect();
+      const r = rectOf(b.el);
       const row = document.createElement("div");
       row.className = "row" + (picked.has(i) ? " on" : "");
       row.dataset.i = i;
@@ -225,12 +255,15 @@
   };
   const inPanel = (e) => e.composedPath().includes(host);
   const onMove = (e) => {
+    if (!chrome.runtime?.id) return destroy();
     if (inPanel(e)) return;
     const i = blockAt(e.target);
     const s = subAt(i, e.target);
     if (i !== hover || s?.el !== sub?.el) { hover = i; sub = s; render(); }
   };
   const onClick = (e) => {
+    // an overlay orphaned by an extension reload must not keep swallowing the page's clicks
+    if (!chrome.runtime?.id) return destroy();
     if (inPanel(e)) return;
     let i = blockAt(e.target);
     if (i < 0) return;
@@ -244,12 +277,13 @@
       blocks.splice(i, 0, s);
       blocks.forEach((b) => { if (b.parent >= i) b.parent++; });
       picked = new Set([...picked].map((j) => (j >= i ? j + 1 : j)));
+      if (hover >= i) hover++;
       sub = null;
     }
     toggle(i);
   };
   let frame = 0;
-  const onScroll = () => { cancelAnimationFrame(frame); frame = requestAnimationFrame(render); };
+  const onScroll = () => { invalidate(); cancelAnimationFrame(frame); frame = requestAnimationFrame(render); };
 
   const listen = (on) => {
     const f = on ? addEventListener : removeEventListener;
@@ -273,7 +307,7 @@
   // the frame staged at Go keeps its cursor held until told otherwise; sendMessage throws at
   // once (not a rejection) when the extension was reloaded under this tab
   // capture running: outlines gone, the panel collapsed to a notice (kept on screen, the page stays as is)
-  const wait = () => { busy = true; $(".boxes").textContent = ""; $(".panel").classList.add("busy"); host.style.display = ""; };
+  const wait = () => { busy = true; clearBoxes(); $(".panel").classList.add("busy"); host.style.display = ""; };
   const idle = () => { busy = false; $(".panel").classList.remove("busy"); host.style.display = ""; render(); };
   // a pixel shot of the page: the notice is off for it (and only it), back right after
   const unseen = async (fn) => {
@@ -286,10 +320,14 @@
   // each shows once. Returns the undo.
   const pinFixed = () => {
     const kept = [];
+    // every position read first, then the writes: a read after each write forces a reflow per element
+    const pinned = [];
     for (const el of document.querySelectorAll("*")) {
       if (el === host) continue;
       const pos = getComputedStyle(el).position;
-      if (pos !== "fixed" && pos !== "sticky") continue;
+      if (pos === "fixed" || pos === "sticky") pinned.push([el, pos]);
+    }
+    for (const [el, pos] of pinned) {
       kept.push([el, el.getAttribute("style")]);
       if (pos === "sticky") { el.style.cssText += ";position:relative !important;top:auto !important;bottom:auto !important"; continue; }
       const r = el.getBoundingClientRect();
@@ -302,8 +340,11 @@
   };
   // The reference shot, taken like GoFullPage: scrolled one viewport at a time, each visible tab
   // stitched by the worker. Throws when the document does not scroll (the caller shoots it whole).
-  const stripShot = async (height, vw, vh) => {
+  const MAX_STRIP = 30000; // css px, as the worker's MAX_SHOT: a taller canvas fails after the whole scroll
+  const stripShot = async (full, vw, vh) => {
+    const height = Math.min(full, MAX_STRIP);
     const root = document.documentElement;
+    let done = false;
     // the debugger shots before it leave their infobar up for a moment (-40 px of viewport: a 100vh
     // hero is shot 40 px shorter than captured, the page below shifts up): wait for the capture's height
     for (let t = Date.now(); innerHeight < vh && Date.now() - t < 6000; ) await globalThis.__angeloSleep(150);
@@ -348,8 +389,12 @@
         if (t.error) throw new Error(t.error);
         if (y >= last) break;
       }
-      return await ask({ type: "strip" });
+      const out = await ask({ type: "strip" });
+      done = true;
+      return out;
     } finally {
+      // given up on the way: the worker's canvas for this tab is freed
+      if (!done) ask({ type: "strip", abort: true }).catch(() => {});
       unpin();
       root.style.scrollBehavior = smooth;
       window.scrollTo(x0, y0);
@@ -419,6 +464,8 @@
       go.disabled = false;
     } finally {
       clearInterval(watch);
+      // whatever the outcome: the pictures put back for the capture come out, the scroller is relocked
+      globalThis.__angeloUnkeep?.();
       globalThis.__angeloRelock?.();
     }
   };
@@ -536,8 +583,33 @@
       go.disabled = false;
       return;
     }
+    // the bridge refuses a body past 50 MB: measured here, the reference shot (only a check) goes
+    // first, then the send is refused with the size
+    const payload = { width: vw, prep, ...capture };
+    const MB = 1e6, LIMIT = 45 * MB;
+    const size = (o) => new Blob([JSON.stringify(o)]).size;
+    const body = size(payload);
+    if (shot.data && body + shot.data.length > LIMIT) {
+      shot = { error: `reference shot left out, payload too large (${Math.round((body + shot.data.length) / MB)} MB)` };
+    }
+    if (body > LIMIT) {
+      unstage(); idle();
+      say(`capture too large to send: ${Math.round(body / MB)} MB, limit ${LIMIT / MB} MB. Pick a smaller block`);
+      go.disabled = false;
+      return;
+    }
     say(`${capture.boxes.length} boxes captured in ${Date.now() - t0} ms, sending…${shot.error ? ` (${shot.error}, no check)` : ""}`);
-    const res = await ask({ type: "send", url: location.href, part, capture: { width: vw, prep, ...capture }, shot: shot.data, shotError: shot.error, mobile: device === "both" });
+    const res = await ask({ type: "send", url: location.href, part, capture: payload, shot: shot.data, shotError: shot.error, mobile: device === "both" });
+    if (res.error && res.pending) {
+      // the bridge may have the capture and be building: the frame is not cancelled blindly
+      say(res.error);
+      const j = await ask({ type: "job" });
+      if (j.job) await follow();
+      else if (!j.error) unstage();
+      idle();
+      go.disabled = false;
+      return;
+    }
     if (res.error) { unstage(); idle(); say(res.error); go.disabled = false; return; }
     await follow();
     idle();
@@ -547,11 +619,21 @@
   // the build runs in the bridge: its last line until done (a desktop + phone run goes on
   // through both jobs). A loop, not a timer chain: a throw on a later poll (extension reloaded,
   // worker gone) lands in send's catch instead of leaving the button disabled for good
+  const FOLLOW_MAX = 15 * 60 * 1000; // ms
   const follow = async () => {
     let boot = null;
+    let errors = 0;
+    const t0 = Date.now();
     for (;;) {
+      if (Date.now() - t0 > FOLLOW_MAX) { say("still running after 15 min: check Figma"); break; }
       const j = await ask({ type: "job" });
-      if (j.error) { say(j.error); break; }
+      // the worker already retried a poll: three in a row is the bridge gone
+      if (j.error) {
+        if (++errors >= 3) { say(j.error); break; }
+        await new Promise((r) => setTimeout(r, 1000));
+        continue;
+      }
+      errors = 0;
       // another bridge process answers: the one that ran the build is gone, and the build with it
       if (boot && j.boot && j.boot !== boot && !j.job) { say("bridge restarted during the build: send again (failed)"); break; }
       boot = j.boot || boot;
@@ -588,10 +670,20 @@
       if (st) showLinks(st);
     } catch {
       clearInterval(linkTimer);
+      if (!chrome.runtime?.id) destroy();
     }
   };
   const linkTimer = setInterval(poll, LINK_MS);
   setTimeout(poll, 0);
+  // gone for good: this world is orphaned (extension reloaded) or a newer script took over
+  function destroy() {
+    clearInterval(linkTimer);
+    cancelAnimationFrame(frame);
+    listen(false);
+    document.removeEventListener(HANDOFF, destroy);
+    host.remove();
+  }
+  document.addEventListener(HANDOFF, destroy);
 
   // phone only: nothing captured in this tab, the bridge captures the URL at 430 headless
   const sendMobile = async (go) => {

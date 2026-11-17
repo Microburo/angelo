@@ -366,6 +366,26 @@ let data = await page.evaluate((picked) => {
   if (!picked.length) return globalThis.__angeloCapture({ names: new Map(globalThis.__angeloOnly || blocks.map((b) => [b.el, b.name])) });
   const ancestorsOf = (i) => { const a = []; for (let p = blocks[i].parent; p >= 0; p = blocks[p].parent) a.push(p); return a; };
   const isUnder = (i, top) => ancestorsOf(i).includes(top);
+  // a block picked in the extension by drilling down (the element one level below a listed block,
+  // again from there) is not in the page's list: looked up the same way, level by level
+  for (const p of picked) {
+    const name = /^(.*?)(?:#\d+)?$/.exec(p)[1];
+    let layer = blocks.map((_, i) => i);
+    for (let depth = 0; depth < 3 && !blocks.some((b) => b.name === p || b.name === name); depth++) {
+      const from = blocks.length;
+      for (const i of layer) for (const s of globalThis.__angeloSubs(blocks[i].el)) if (!blocks.some((b) => b.el === s.el)) blocks.push({ ...s, level: blocks[i].level + 1, parent: i, kind: "sub-section", drilled: true });
+      layer = blocks.map((_, i) => i).slice(from);
+    }
+    // only the drilled element that answers the name stays a block, with the chain down to it
+    const hit = blocks.findIndex((b) => b.drilled && (b.name === p || b.name === name));
+    const chain = new Set();
+    for (let k = hit; k >= 0; k = blocks[k].parent) chain.add(k);
+    const gone = blocks.map((b, i) => b.drilled && !chain.has(i));
+    const moved = blocks.map((_, i) => i - gone.slice(0, i).filter(Boolean).length);
+    const left = blocks.filter((_, i) => !gone[i]);
+    for (const b of left) { if (b.parent >= 0) b.parent = moved[b.parent]; delete b.drilled; }
+    blocks.splice(0, blocks.length, ...left);
+  }
   const at = picked.map((p) => {
     const [, name, n] = /^(.*?)(?:#(\d+))?$/.exec(p);
     const hits = blocks.map((b, i) => (b.name === p || (n && b.name === name) ? i : -1)).filter((i) => i >= 0);

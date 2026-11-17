@@ -5,6 +5,8 @@
 //
 // Messages: UI → main {kind:"notes", type, ...} · main → UI {kind:"notes", type, ...}
 
+import { nodeOrNull } from "./lookup";
+
 const MAX_NODES = 12;
 const MAX_TARGETS = 6;
 const STATUS_LABEL: Record<string, string> = {
@@ -51,7 +53,7 @@ export async function exportNode(node: BaseNode, maxPx: number): Promise<Uint8Ar
 export async function exportForRpc(params: Record<string, unknown>): Promise<unknown> {
   const id = String(params.id || "");
   if (!id) throw new Error("export: `id` missing");
-  const node = await figma.getNodeByIdAsync(id);
+  const node = await nodeOrNull(id);
   if (!node || !("exportAsync" in node)) throw new Error(`export: unknown or non-exportable node #${id}`);
   const bytes = await exportNode(node, Number(params.maxPx) || 1600);
   if (!bytes) throw new Error(`export: failed on #${id}`);
@@ -130,7 +132,7 @@ const markerId = (a: Annotation) => MARKER.exec(a.labelMarkdown || a.label || ""
 const isMine = (a: Annotation, id: string) => markerId(a) === id;
 
 async function setMarker(nodeId: string, id: string, markdown: string | null): Promise<void> {
-  const node = await figma.getNodeByIdAsync(nodeId);
+  const node = await nodeOrNull(nodeId);
   if (!node || !("annotations" in node)) return;
   const target = node as SceneNode & AnnotationsMixin;
   const others = (target.annotations || []).filter((a) => !isMine(a, id));
@@ -279,7 +281,7 @@ function pageOf(node: BaseNode): PageNode | null {
 async function focus(ids: string[]): Promise<void> {
   const found: SceneNode[] = [];
   for (const id of ids || []) {
-    const n = await figma.getNodeByIdAsync(String(id));
+    const n = await nodeOrNull(id);
     if (n && n.type !== "DOCUMENT" && n.type !== "PAGE") found.push(n as SceneNode);
   }
   if (!found.length) {

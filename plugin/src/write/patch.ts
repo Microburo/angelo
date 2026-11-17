@@ -17,6 +17,7 @@
 // Fonts go through the per-run cache: with Figma in the background a chain of loadFontAsync
 // calls stalls from the 7th on (about 9 s each), a text job over 8 layers then hits the 30 s timeout
 import { loadFont } from "../fonts";
+import { nodeOrNull } from "../lookup";
 
 export const SIMPLE_PROPS = [
   "name", "visible", "locked", "opacity", "blendMode", "rotation", "clipsContent", "constraints",
@@ -262,7 +263,7 @@ export class RevertLog {
 
 async function componentFrom(ref: { componentId?: string; componentKey?: string }): Promise<ComponentNode | null> {
   if (ref.componentId) {
-    const c = await figma.getNodeByIdAsync(ref.componentId);
+    const c = await nodeOrNull(ref.componentId);
     if (c && c.type === "COMPONENT") return c;
   }
   if (ref.componentKey) return figma.importComponentByKeyAsync(ref.componentKey);
@@ -281,7 +282,7 @@ export async function loadTextFonts(node: BaseNode): Promise<void> {
 /** Puts text ranges back as they were (the revert of a text job). */
 async function revertText(entries: Patch["text"], result: PatchResult): Promise<void> {
   for (const t of entries || []) {
-    const node = await figma.getNodeByIdAsync(t.id);
+    const node = await nodeOrNull(t.id);
     if (!node || node.type !== "TEXT") {
       result.missing.push(t.id);
       continue;
@@ -313,8 +314,8 @@ export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchR
   if (!sameStep) figma.commitUndo();
   // Moves first: a layer goes back into its old parent before the layers that held it are removed
   for (const m of patch.move || []) {
-    const node = (await figma.getNodeByIdAsync(m.id)) as any;
-    const parent = (await figma.getNodeByIdAsync(m.parentId)) as any;
+    const node = (await nodeOrNull(m.id)) as any;
+    const parent = (await nodeOrNull(m.parentId)) as any;
     if (!node || !parent || !("insertChild" in parent)) {
       result.missing.push(m.id);
       continue;
@@ -334,7 +335,7 @@ export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchR
   }
   // Swaps next: an instance gets its old main component back before its properties are restored
   for (const sw of patch.swap || []) {
-    const node = await figma.getNodeByIdAsync(sw.id);
+    const node = await nodeOrNull(sw.id);
     if (!node || node.type !== "INSTANCE") {
       result.missing.push(sw.id);
       continue;
@@ -353,7 +354,7 @@ export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchR
   }
   await revertText(patch.text, result);
   for (const entry of patch.set || []) {
-    const node = (await figma.getNodeByIdAsync(entry.id)) as any;
+    const node = (await nodeOrNull(entry.id)) as any;
     if (!node) {
       result.missing.push(entry.id);
       continue;
@@ -408,7 +409,7 @@ export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchR
     }
   }
   for (const b of patch.bind || []) {
-    const node = (await figma.getNodeByIdAsync(b.id)) as any;
+    const node = (await nodeOrNull(b.id)) as any;
     if (!node || !("setBoundVariable" in node)) {
       result.missing.push(b.id);
       continue;
@@ -437,7 +438,7 @@ export async function applyPatch(patch: Patch, sameStep = false): Promise<PatchR
     }
   }
   for (const id of patch.remove || []) {
-    const node = await figma.getNodeByIdAsync(id);
+    const node = await nodeOrNull(id);
     if (!node) {
       result.missing.push(id);
       continue;

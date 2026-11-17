@@ -64,6 +64,9 @@ const items = selectItems(cap, { height, exclude, drop }).map((i) => ({
 const COMPS = !flatMode;
 
 const t0 = Date.now();
+// faces Figma could not load, replaced during an exec (see load): each swap said once
+const told = new Set();
+const missed = (r) => { for (const m of r?.fontMiss || []) if (!told.has(m)) { told.add(m); log(`font not loaded, nearest face used: ${m}`); } };
 const flat = items.map(({ src, ...o }) => (src ? { ...o, img: true } : o));
 // images start downloading now (reading order; beyond --max-img, slots stay grey placeholders)
 // and ride along with the lot that creates their slot when ready by then
@@ -117,6 +120,9 @@ const styleOf = (fam, wt, it, size, opsz, stretch = 100, text = "") => {
   const fb = SCRIPTS.find(([re]) => re.test(text))?.[1].find((n) => fonts.some((x) => x.fontName.family === n));
   return fb ? styleOf0(fb, wt, it, size, opsz, stretch) : f;
 };
+const norm = (s) => s.replace(/\\s/g, "").toLowerCase();
+const WEIGHTS = { thin: 100, hairline: 100, ultralight: 200, extralight: 200, light: 300, regular: 400, book: 400, medium: 500, semibold: 600, demibold: 600, bold: 700, extrabold: 800, ultrabold: 800, black: 900, heavy: 900 };
+const faceWeight = (s) => { const k = Object.keys(WEIGHTS).filter((w) => norm(s).includes(w)).sort((a, b) => b.length - a.length)[0]; return k ? WEIGHTS[k] : 400; };
 const styleOf0 = (fam, wt, it, size, opsz, stretch = 100) => {
   // activated site font: nearest weight on the same slant, from the faces Figma reported
   let site = FACES[fam.toLowerCase()];
@@ -140,7 +146,11 @@ const styleOf0 = (fam, wt, it, size, opsz, stretch = 100) => {
       const pf = o.fams[v];
       if (pf && fonts.some((f) => f.fontName.family === pf && f.fontName.style === pick.style)) return { family: pf, style: pick.style };
     }
-    return { family: pick.family || site.family, style: pick.style };
+    // the agent's style name may differ from the one Figma lists ("SemiBold" vs "Semi Bold" when Figma's bundled
+    // family shadows the activated file): the listed spelling, else the generic path below
+    const pf = pick.family || site.family, sq = (s) => s.replace(/\\s/g, "").toLowerCase();
+    const listed = fonts.find((f) => f.fontName.family === pf && sq(f.fontName.style) === sq(pick.style));
+    if (listed) return { family: pf, style: listed.fontName.style };
   }
   const names = { 100: "Thin", 200: "ExtraLight", 300: "Light", 400: "Regular", 500: "Medium", 600: "SemiBold", 700: "Bold", 800: "ExtraBold", 900: "Black" };
   const want = names[Math.round(wt / 100) * 100] || "Regular";
@@ -148,12 +158,9 @@ const styleOf0 = (fam, wt, it, size, opsz, stretch = 100) => {
   if (mapped && !fonts.some((f) => f.fontName.family.toLowerCase() === fam.toLowerCase())) fam = fonts.find((f) => f.fontName.family.toLowerCase() === mapped)?.fontName.family || fam;
   const fam2 = fonts.some((f) => f.fontName.family.toLowerCase() === fam.toLowerCase()) ? fonts.find((f) => f.fontName.family.toLowerCase() === fam.toLowerCase()).fontName.family : FALLBACK;
   const styles = fonts.filter((f) => f.fontName.family === fam2).map((f) => f.fontName.style);
-  const norm = (s) => s.replace(/\\s/g, "").toLowerCase();
   const exact = stretch === 100 && styles.find((s) => norm(s) === norm(want));
   if (exact) return { family: fam2, style: exact };
   // no face of that exact name (800 in a family without ExtraBold, font-stretch: condensed): the nearest width, then weight
-  const WEIGHTS = { thin: 100, hairline: 100, ultralight: 200, extralight: 200, light: 300, regular: 400, book: 400, medium: 500, semibold: 600, demibold: 600, bold: 700, extrabold: 800, ultrabold: 800, black: 900, heavy: 900 };
-  const faceWeight = (s) => { const k = Object.keys(WEIGHTS).filter((w) => norm(s).includes(w)).sort((a, b) => b.length - a.length)[0]; return k ? WEIGHTS[k] : 400; };
   const upright = styles.filter((s) => !/italic|oblique/i.test(s));
   const near = upright.slice().sort((a, b) => Math.abs(widthOf(a) - stretch) - Math.abs(widthOf(b) - stretch) || Math.abs(faceWeight(a) - wt) - Math.abs(faceWeight(b) - wt))[0];
   return { family: fam2, style: near || styles[0] };
@@ -217,7 +224,33 @@ const reveal = async (m, key) => {
 };
 // a font loaded once stays loaded for the plugin session: not again at every lot
 const loaded = globalThis.__webLoaded || (globalThis.__webLoaded = new Set());
-const load = async (f) => { const k = f.family + "|" + f.style; if (!loaded.has(k)) { await figma.loadFontAsync(f); loaded.add(k); } };
+// a face that will not load (a style Figma lists under another spelling, a file gone since the listing) must
+// not stop the build: the nearest face that does load takes its place (same family: same name, same slant,
+// nearest weight; then the fallback font), f becomes that face for the caller, and the swap is told to the host
+const fontMiss = [];
+const alts = new Map();
+const load = async (f) => {
+  const k = f.family + "|" + f.style;
+  if (alts.has(k)) return Object.assign(f, alts.get(k));
+  if (loaded.has(k)) return f;
+  try { await figma.loadFontAsync(f); loaded.add(k); return f; } catch (e) {}
+  const slant = (x) => /italic|oblique/i.test(x), wt = faceWeight(f.style);
+  for (const fam of [...new Set([f.family, FALLBACK, "Inter"])]) {
+    const near = fonts.map((x) => x.fontName).filter((x) => x.family === fam && x.family + "|" + x.style !== k)
+      .sort((a, b) => (norm(b.style) === norm(f.style)) - (norm(a.style) === norm(f.style)) || (slant(a.style) !== slant(f.style)) - (slant(b.style) !== slant(f.style)) || Math.abs(faceWeight(a.style) - wt) - Math.abs(faceWeight(b.style) - wt));
+    for (const a of near.slice(0, 4)) {
+      try { await figma.loadFontAsync(a); } catch (e) { continue; }
+      loaded.add(a.family + "|" + a.style);
+      alts.set(k, { family: a.family, style: a.style });
+      fontMiss.push('"' + f.family + " " + f.style + '" → "' + a.family + " " + a.style + '"');
+      return Object.assign(f, alts.get(k));
+    }
+  }
+  throw new Error('The font "' + f.family + " " + f.style + '" could not be loaded, nor a face in its place');
+};
+// a CSS line height is a ratio of the font size (1.15 → 13.8 px at 12, 55.2 px at 48): when a whole percent
+// gives the captured px back, that percent, exact at every size; else the px as captured, never rounded
+const lhOf = (lh, size) => { const pct = Math.round(lh / size * 100); return size && Math.abs(pct * size / 100 - lh) < 0.006 ? { unit: "PERCENT", value: pct } : { unit: "PIXELS", value: lh }; };
 // arrows and other symbols the fallback font may lack → Inter
 const symbols = async (t) => {
   for (const m of t.characters.matchAll(/[←-⇿↖-↙]/g)) {
@@ -298,8 +331,7 @@ const makeItem = async (s, parent, ox, oy) => {
       t.characters = str;
       axed(t, s.font.axes);
       t.fontSize = s.font.size;
-      // (Figma's hug rounds a fractional line up: 22.4 gives 23, and a single line is a whole pixel taller than its source)
-      if (s.font.lh) t.lineHeight = { unit: "PIXELS", value: s.lines?.length === 1 ? Math.round(s.font.lh) : s.font.lh };
+      if (s.font.lh) t.lineHeight = lhOf(s.font.lh, s.font.size);
       if (s.font.ls) t.letterSpacing = { unit: "PIXELS", value: s.font.ls };
       t.fills = s.font.grad?.length ? grads(s.font.grad) : [solid(s.font.color)];
       t.textAlignHorizontal = align;
@@ -351,7 +383,7 @@ let n = 0;
 for (const s of S) for (const m of await makeItem(s, root, 0, 0)) { n++; await reveal(m); }
 await flush();
 c.done();
-return { ST, nodes: root.children.length };
+return { ST, nodes: root.children.length, fontMiss };
 `;
 
 // Tree pass (components mode): ops in preorder, each one node under its parent op (u → node id
@@ -389,7 +421,8 @@ const setRuns = async (t, all) => {
       // an inline run at line-height 0 (sup reset, circle's footnote figures) adds no height to its line in CSS:
       // it takes the paragraph's, Figma's AUTO would grow the line (2 lines 67 px instead of 61.6)
       const lh = r.font.lh === 0 ? baseLh : r.font.lh;
-      t.setRangeLineHeight(i, j, lh ? { unit: "PIXELS", value: lh } : { unit: "AUTO" });
+      // (a percent is of the range's own size: a shrunk footnote figure or a line height taken from the paragraph stays in px)
+      t.setRangeLineHeight(i, j, !lh ? { unit: "AUTO" } : r.font.sup || r.font.lh === 0 ? { unit: "PIXELS", value: lh } : lhOf(lh, r.font.size));
       t.setRangeLetterSpacing(i, j, { unit: "PIXELS", value: r.font.ls || 0 });
       t.setRangeTextDecoration(i, j, r.font.deco || "NONE");
       if (r.font.decoW) t.setRangeTextDecorationThickness(i, j, { unit: "PIXELS", value: r.font.decoW });
@@ -449,7 +482,9 @@ const create = async (s) => {
   if (s.k === "frame") { n = figma.createFrame(); frameProps(n, s); }
   else if (s.k === "text") {
     n = figma.createText();
-    await setRuns(n, s.runs);
+    // a text whose runs fail (font not loadable) is not placed yet: left there, it stays on the page
+    // as an empty "Text" beside the frame
+    try { await setRuns(n, s.runs); } catch (e) { n.remove(); throw e; }
     n.textAlignHorizontal = s.align;
     if (s.indent) n.paragraphIndent = s.indent;
     // an opening quote hung outside the text (negative text-indent): Figma hangs it too
@@ -863,7 +898,7 @@ await flush();
 // the board packed with the new mains / sets; the boards to the right shift if it widened
 if (dirty) { const cf = await H.byId(ST.cf); boardLayout(cf); boardsRow(cf.parent); }
 c.done();
-return { ST, nodes: n, errors: errors.slice(0, 10), nerr: errors.length };
+return { ST, nodes: n, errors: errors.slice(0, 10), nerr: errors.length, fontMiss };
 `;
 
 // a lot closes at LOT items, NODE_BUDGET nodes or IMG_BUDGET of image file bytes (decoded in the exec);
@@ -1125,6 +1160,7 @@ return out;`);
     if (trace && r.nerr) for (const op of B) warn(`  ${op.inst || op.s.k} ${op.s.name || ""} fams ${(op.fams || []).map((f) => f.name + ":" + f.vars.length).join(",")} ov ${JSON.stringify(op.ov || []).slice(0, 1500)}`);
     ST = r.ST;
     nodes += r.nodes;
+    missed(r);
     // a node that fails takes its whole subtree with it (parent missing in every later lot): stop
     if (r.nerr) {
       throw Object.assign(new Error(`batch ${k + 1}: ${r.nerr} error(s): ${r.errors.join(" · ")}\nbuild stopped: ${nodes} nodes placed in ${ST.root}`), { stopped: true });
@@ -1179,6 +1215,7 @@ return out;`);
       S.push(withImage(s));
     }
     r1 = await rpc(pass1(S, ST));
+    missed(r1);
     ST = r1.ST;
     if (!lots++) log(`first batch: ${r1.nodes} nodes in ${ST.root}, ${Date.now() - t0} ms`);
   }

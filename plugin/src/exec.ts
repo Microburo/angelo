@@ -333,21 +333,27 @@ export async function runExec(code: string, file?: unknown, quiet = false, rever
   figma.commitUndo();
   // The cursor's closing pass, the drop of script cursors and the undo commit run
   // after the reply: a read-only script no longer waits for the nodechange settle.
+  let closed = false;
   const close = () => {
+    if (closed) return;
+    closed = true;
     closing = settle().then(() => {
       dropCursors();
       figma.commitUndo();
     }).catch(() => {});
   };
+  // the revert is taken once: a result that fails to serialize must not patch the log twice
+  let back: { revert?: Patch | null; undoGap?: string } | null = null;
   try {
     const fn = new Function("figma", "H", `return (async () => {\n${code}\n})()`);
     const value = await fn(log ? recording(log) : figma, makeH(images, cursors, auto, log, agent));
-    const back = log ? { revert: await log.patch(), ...gap(log) } : {};
+    back = log ? { revert: await log.patch(), ...gap(log) } : {};
+    const safe = toJSONSafe(value);
     close();
-    return { ...context(), value: toJSONSafe(value), images, ...back };
+    return { ...context(), value: safe, images, ...back };
   } catch (err: any) {
     // What ran before the throw is still in the file: its revert stays usable
-    const back = log ? { revert: await log.patch().catch(() => null), ...gap(log) } : {};
+    if (!back) back = log ? { revert: await log.patch().catch(() => null), ...gap(log) } : {};
     close();
     return {
       ...context(),

@@ -4,6 +4,7 @@
 
 import { loadFont } from "../fonts";
 import { loadTextFonts } from "./patch";
+import { nodeOrNull } from "../lookup";
 
 export interface FontFamily {
   family: string;
@@ -72,7 +73,7 @@ export interface TextOp {
 async function textNodesIn(op: TextOp): Promise<TextNode[]> {
   const out: TextNode[] = [];
   for (const id of [...(op.nodeIds || []), ...(op.within ? [op.within] : [])]) {
-    const node = await figma.getNodeByIdAsync(String(id));
+    const node = await nodeOrNull(id);
     if (!node) continue;
     let page: BaseNode | null = node;
     while (page && page.type !== "PAGE") page = page.parent;

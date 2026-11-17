@@ -47,7 +47,7 @@ globalThis.__angeloTop = async () => {
 // scroll down the page on real time so what loads on intersection (lazy pictures, sections a
 // script injects) is requested, then the images and the network waited out (bounded), back to
 // the top. A page that locks its own scroll (a modal, a paywall) is unlocked for the pass only
-globalThis.__angeloPrepare = async (opts = {}) => {
+globalThis.__angeloPrepareRun = async (opts, held) => {
   const budget = opts.budget ?? 12000;
   const now = globalThis.__angeloNow;
   const t0 = now();
@@ -96,6 +96,7 @@ globalThis.__angeloPrepare = async (opts = {}) => {
     unlock = document.createElement("style");
     unlock.textContent = "html, body { overflow: visible !important; }";
     document.head.append(unlock);
+    held.unlock = unlock;
   }
   // 3/4 of a window per step, 120 ms each: an IntersectionObserver fires on the next frame and
   // its loader sets the src; a page that grows as it is scrolled (endless feed) stops at half
@@ -113,6 +114,7 @@ globalThis.__angeloPrepare = async (opts = {}) => {
     }
   });
   watch.observe(document.body, { childList: true, subtree: true });
+  held.watch = watch;
   // a real scroll, frame by frame (a fifth of a window each, ~12000 px/s), not jumps: every scroll
   // event and observer the page listens to fires as it would under a hand, a short dwell every
   // window for the loaders it sets off
@@ -180,6 +182,17 @@ globalThis.__angeloPrepare = async (opts = {}) => {
   for (const t1 = now(); kept && pending().length && now() - t1 < 4000; ) await globalThis.__angeloSleep(100);
   await globalThis.__angeloLottieSample();
   return { lazy: lazy.length, steps, locked, inner: inner ? `${inner.tagName.toLowerCase()}${inner.className && typeof inner.className === "string" ? "." + inner.className.trim().split(/\s+/)[0] : ""}` : null, gone: gone.length, kept, skip, pending: pending().length, ms: Math.round(now() - t0) };
+};
+// an interrupted pass (a throw, the page navigating) must not leave its observer or the unlock style behind
+globalThis.__angeloPrepare = async (opts = {}) => {
+  const held = {};
+  try {
+    return await globalThis.__angeloPrepareRun(opts, held);
+  } catch (error) {
+    held.watch?.disconnect();
+    held.unlock?.remove();
+    throw error;
+  }
 };
 // A node the capture owns (put back by __angeloPrepare) painted visible: every img in it and the
 // chain up to the node, where the page left opacity 0 or visibility hidden. Overlays off that
@@ -1869,7 +1882,7 @@ globalThis.__angeloDataPic = (el) => {
 globalThis.__angeloFrameShots = async (cap, shot, { max = 40, wait = 1800, budget = 60000 } = {}) => {
   const leaf = (b) => !!(b.text || b.img || b.svg || b.canvas || b.tag === "iframe" || /url\(|gradient\(/.test((b.bgImg || "") + (typeof b.bg === "string" ? b.bg : "")));
   const kids = new Map();
-  for (const b of cap.boxes) kids.set(b.p, [...(kids.get(b.p) || []), b]);
+  for (const b of cap.boxes) { const list = kids.get(b.p); if (list) list.push(b); else kids.set(b.p, [b]); }
   const full = new Map();
   const inked = (b) => { if (!full.has(b.id)) full.set(b.id, leaf(b) || (kids.get(b.id) || []).some(inked)); return full.get(b.id); };
   const byId = new Map(cap.boxes.map((b) => [b.id, b]));
@@ -1878,9 +1891,13 @@ globalThis.__angeloFrameShots = async (cap, shot, { max = 40, wait = 1800, budge
   // texts over more than 2 % of the box, or leaves adding up to a tenth of it (a stretched link over
   // a card of texts and thumbnails): the shot would paint what the capture already holds. A badge
   // over a picture stays under that (cos: a vertical "New" tag, 1.5 % of the card)
-  const blind = cap.boxes.filter((b) => b.w >= 120 && b.h >= 100 && b.h <= innerHeight - 40 && globalThis.__angeloEls?.get(b.id)?.isConnected && !inked(b)
-    && byId.get(b.p) && inked(byId.get(b.p)) && leaves.reduce((a, l) => a + (l.text ? over(l, b) : 0), 0) <= b.w * b.h * 0.02
-    && leaves.reduce((a, l) => a + over(l, b), 0) <= b.w * b.h * 0.1);
+  // (one pass over the leaves for both sums, added in the same order as before)
+  const covered = (b) => { let text = 0, all = 0; for (const l of leaves) { const o = over(l, b); all += o; if (l.text) text += o; } return [text, all]; };
+  const blind = cap.boxes.filter((b) => {
+    if (!(b.w >= 120 && b.h >= 100 && b.h <= innerHeight - 40 && globalThis.__angeloEls?.get(b.id)?.isConnected && !inked(b) && byId.get(b.p) && inked(byId.get(b.p)))) return false;
+    const [text, all] = covered(b);
+    return text <= b.w * b.h * 0.02 && all <= b.w * b.h * 0.1;
+  });
   const frames = cap.boxes.filter((b) => b.tag === "iframe" && !b.img && document.querySelector(`[data-angelo-frame="${b.id}"]`)).concat(blind).slice(0, max);
   let got = 0;
   const via = { dom: 0, mount: 0, data: 0, shot: 0 };
@@ -2183,14 +2200,15 @@ globalThis.__angeloBlocks = () => {
   }
   // the element under the pointer one level below a block: the child of its unwrapped box
   // holding the pointer, so hovering drills down the page one level at a time
-  globalThis.__angeloSub = (block, target) => {
-    const inner = unwrap(block);
-    const el = kids(inner).find((c) => c.contains(target));
-    if (!el) return null;
-    const tag = el.tagName.toLowerCase();
-    const lab = label(el) || (LEAF.test(tag) ? clip(el.innerText || el.getAttribute("alt") || "") : "");
-    return { el, name: lab ? `Sub-section — ${lab}` : `Sub-section ${tag}` };
-  };
+  // every element one level below a block, named as a pick names it: what a headless run looks a
+  // picked name up in when the page's own list does not hold it (web-capture.mjs --part)
+  globalThis.__angeloSubs = (block) =>
+    kids(unwrap(block)).map((el) => {
+      const tag = el.tagName.toLowerCase();
+      const lab = label(el) || (LEAF.test(tag) ? clip(el.innerText || el.getAttribute("alt") || "") : "");
+      return { el, name: lab ? `Sub-section — ${lab}` : `Sub-section ${tag}` };
+    });
+  globalThis.__angeloSub = (block, target) => globalThis.__angeloSubs(block).find((s) => s.el.contains(target)) || null;
   // skip links and other small pinned leaves are not blocks
   add(top.filter((el) => height(el) >= 24 && !(LEAF.test(el.tagName.toLowerCase()) && height(el) < 200)), 1, -1);
   // fixed layers nested off the spine (cookie banners, chat widgets in an app shell): overlays,

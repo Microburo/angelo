@@ -27,6 +27,7 @@
 - `Origin` check: the plugin iframe is sandboxed, Origin is absent or `null` · a browser always sends its real Origin, which JS cannot forge · a web Origin = a third party, refused with 403
 - **A single client**: a 2nd connection is refused, close 1013 · a stolen slot would let a third party receive what the agent sends and answer with fake Figma results, consumed as truth
 - HTTP `/rpc` is deliberately unrestricted: several local clients (MCP, `tools/read.mjs`) share the socket without competing for it
+- `Host` header checked on HTTP and on the upgrade (127.0.0.1, localhost, [::1] only, else 403): blocks DNS rebinding · a non-loopback `ANGELO_HOST` is refused unless `ANGELO_ALLOW_LAN=1`
 - `local_figma_use`: `file` is optional, refused if `figma.root.name` differs
 
 ## Execution gotchas
@@ -42,8 +43,12 @@
 - Figma reloads the dev plugin by itself when `plugin/dist` changes (~1 s) · the first calls after a build fail with "no read in progress" until a new `angelo_read` · there is no cancel op: stopping a build = `figma.closePlugin()` through exec, then relaunch the plugin
 - Plugin panel = an activity list (≤ 6 rows, 24 px) above the 40 px bar: one row per bridge request (except `ping` / `selection`) and per job step (`status`), the window grows upward through `kind: "size"` → `resizeUpwards` (`plugin/src/code.ts`), collapsed when the list is empty · an `exec`'s label = `params.label` (`makeRpc(file)(code, label)`, `run.mjs` passes the step name), otherwise the first useful line of the code
 - The panel's lightning button = contextual check of the selection: a web-to-figma frame, or a node inside one (the bridge climbs to the top-level ancestor, the selection becomes `--focus <id> --box x,y,w,h`: only that node is corrected against the same region of `page.jpg`) (name `host[/path][ · 430][ · part]` + `tests/web/<case>/capture.json` and `page.jpg`) → `check` message → bridge `webCaseOf` → `tools/web-fix.mjs` (deterministic, in-place patch) then, if gaps remain, `tools/autofix.mjs --case --issues` (headless Claude, only the `rest`, report `<case>/autofix.md`); otherwise → inside the plugin: `read` (`# warn`, single-answer fixes applied by `apply`) + `H.lint()`; the leftovers, with a single selection + bridge → `fix` message → `tools/autofix.mjs --issues` (report `tests/autofix/<id>.md`), without a bridge → listed for review (hover the status)
-- `makeRpc` replays a failed request once: if the plugin is reloaded in the middle of a build, the step restarts entirely and leaves orphan nodes (empty frames at (0,0) of the board) · do not reload the plugin during a build · read-only access to a page with instances: `findAll` crashes (`get_name` on an unreachable instance sublayer), use `findAllWithCriteria` + try around `name`
-- `npm run web-to-figma-check` passes 7/10 on the fake plugin before and after the panel work (Lucide icon step, adaptation to the file): this is the reference baseline, not a regression
+- A call never runs twice: `/rpc` takes a `rid` (`makeRpc` sends one, its single replay reuses it) → a resend while it runs waits for the same outcome, a later one (10 min) gets it back with `replay: true` · the MCP retries only when the connection was refused before sending · a caller that hangs up while queued is never run · queue wait capped at `ANGELO_QUEUE_MAX` (150 s)
+- Exec timeout (`ANGELO_EXEC_TIMEOUT`, 30 s): the caller is answered at once "may still be running there: read before retrying", but the turn stays held until Figma answers (≤ `ANGELO_LATE_HOLD`, 120 s), so the next call never lands on top · the plugin also serializes its own work (mutex in `code.ts`, except `ping` / `selection`)
+- Socket drop mid-call: pending calls wait 8 s for the panel to come back · same panel (`instance` in its `hello`) → it sends the answers it kept (60 s, 50 max) · reloaded panel → the calls fail at once "plugin reloaded during the call"
+- Node ids from a caller go through `plugin/src/lookup.ts` (`nodeOf` / `nodeOrNull`): malformed id refused at once (Figma would wait 10 s), document root never returned
+- If the plugin is reloaded in the middle of a build, the step's replay restarts it entirely and leaves orphan nodes (empty frames at (0,0) of the board) · do not reload the plugin during a build · read-only access to a page with instances: `findAll` crashes (`get_name` on an unreachable instance sublayer), use `findAllWithCriteria` + try around `name`
+- `npm run web-to-figma-check` passes 10/10 on the fake plugin: any failure is a regression
 
 ## Panel onboarding
 

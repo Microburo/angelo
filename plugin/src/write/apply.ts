@@ -7,6 +7,7 @@
 // silently overwritten. Nothing is written until every op has passed.
 
 import { autoCursor } from "../autocursor";
+import type { AutoCursor } from "../autocursor";
 import { checkProps } from "../angelo/validate";
 import { Mains, childrenOf, detailLine, mainOf, typeTag } from "../serialize/node";
 import { revOf } from "../serialize/rev";
@@ -135,6 +136,9 @@ export async function applyOps(
   // op halfway, and make a note's Undo when the bridge asks for the patch
   const log = new RevertLog();
   const wantRevert = params.revert === true;
+  // The cursor is created once pass 1 has counted its plans; the plans' closures
+  // call it later, so it is declared here, before them
+  let auto: Pick<AutoCursor, "visit" | "finish"> = { visit: async () => {}, finish: async () => {} };
 
   // `row` / `col` written earlier in the batch, for the checks of later ops
   const sim: LayoutSim = new Map();
@@ -187,6 +191,17 @@ export async function applyOps(
     );
   };
 
+  // Nodes of closed chunks registered by `matching`: they count as read only if
+  // the batch lands, so a refused or rolled-back one takes them back.
+  const registered: string[] = [];
+  const unregister = (): void => {
+    for (const id of registered) {
+      session.revs.delete(id);
+      session.nodes.delete(id);
+    }
+    registered.length = 0;
+  };
+
   // Matches an `each` found inside chunks the caller never expanded, for the reply.
   const unexpanded = { nodes: 0, chunks: 0 };
 
@@ -210,19 +225,21 @@ export async function applyOps(
         `#${want.in} never read in read ${session.sid} — run angelo_read or angelo_expand`,
       );
     }
-    const accepts = async (candidate: SceneNode): Promise<boolean> => {
+    // Synchronous filters first: most candidates fall here, without an await each
+    const quick = (candidate: SceneNode): boolean => {
       if (want.type && typeTag(candidate) !== want.type) return false;
       if (want.name && !globbed(want.name, candidate.name)) return false;
       if (want.in && !inside(candidate, want.in)) return false;
-      if (owner) {
-        if (candidate.type !== "INSTANCE") return false;
-        const main = await mainOf(candidate, mains);
-        if (!main) return false;
-        const from =
-          main.parent && main.parent.type === "COMPONENT_SET" ? main.parent.id : main.id;
-        if (from !== owner.id) return false;
-      }
+      if (owner && candidate.type !== "INSTANCE") return false;
       return true;
+    };
+    // Only `ref` needs the main component, an async lookup
+    const fromOwner = async (candidate: SceneNode): Promise<boolean> => {
+      if (!owner) return true;
+      const main = await mainOf(candidate as InstanceNode, mains);
+      if (!main) return false;
+      const from = main.parent && main.parent.type === "COMPONENT_SET" ? main.parent.id : main.id;
+      return from === owner.id;
     };
     const out: SceneNode[] = [];
     const seen = new Set<string>();
@@ -233,7 +250,9 @@ export async function applyOps(
       const found = cached && !cached.removed ? cached : await figma.getNodeByIdAsync(id);
       if (!found || !("type" in found)) continue;
       const candidate = found as SceneNode;
-      if (await accepts(candidate)) out.push(candidate);
+      if (!quick(candidate)) continue;
+      if (owner && !(await fromOwner(candidate))) continue;
+      out.push(candidate);
     }
 
     // Closed chunks: same depth as an expand (childrenOf stops at instances).
@@ -262,9 +281,10 @@ export async function applyOps(
         for (let k = kids.length - 1; k >= 0; k--) stack.push(kids[k]);
         if (seen.has(candidate.id)) continue;
         seen.add(candidate.id);
-        if (!(await accepts(candidate))) continue;
+        if (!quick(candidate) || !(await fromOwner(candidate))) continue;
         session.revs.set(candidate.id, await revOf(candidate, mains));
         session.nodes.set(candidate.id, candidate);
+        registered.push(candidate.id);
         out.push(candidate);
         found += 1;
       }
@@ -548,6 +568,7 @@ export async function applyOps(
   }
 
   if (problems.length) {
+    unregister();
     const shown = problems.slice(0, MAX_PROBLEMS);
     throw new Error(
       `no change applied — ${problems.length} problem(s):\n` +
@@ -564,10 +585,9 @@ export async function applyOps(
   // step: a batch lands whole or not at all.
   // The cursor visits each target before its change lands
   // `quiet`: no cursor (harnesses and benches; Figma throttles its timers in the background)
-  const auto =
-    params.quiet === true
-      ? { visit: async (_node: BaseNode) => {}, finish: async () => {} }
-      : autoCursor(false, plans.reduce((sum, plan) => sum + (plan.weight ?? 1), 0), typeof params.agent === "string" ? params.agent : "main");
+  if (params.quiet !== true) {
+    auto = autoCursor(false, plans.reduce((sum, plan) => sum + (plan.weight ?? 1), 0), typeof params.agent === "string" ? params.agent : "main");
+  }
   const settle = async () => {
     try {
       await auto.finish();
@@ -625,6 +645,7 @@ export async function applyOps(
     }
   } catch (error: any) {
     await settle();
+    unregister();
     let back = "rolled back: nothing changed";
     try {
       const patch = await log.patch();

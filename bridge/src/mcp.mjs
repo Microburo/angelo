@@ -45,6 +45,12 @@ client.hello().catch(() => {});
 // The bridge is assumed up: a call costs one round trip, not a health probe
 // plus a call. Only a refused connection starts the bridge and retries. A
 // closed plugin is reported by the bridge itself (503 "plugin disconnected").
+// Any other failure (reset, socket closed, undici's 300 s header timeout) may come after the
+// bridge took the call: a write sent again would run twice, so it is reported, never replayed.
+const refusedBeforeSend = (error) => {
+  const code = error?.cause?.code ?? error?.code;
+  return code === "ECONNREFUSED" || code === "ENOENT" || code === "EADDRNOTAVAIL";
+};
 async function bridgeFetch(path, method, body, timeout) {
   const call = () =>
     fetch(BASE + path, {
@@ -57,6 +63,10 @@ async function bridgeFetch(path, method, body, timeout) {
     return await call();
   } catch (error) {
     if (error.name === "TimeoutError") throw error;
+    if (!refusedBeforeSend(error)) {
+      const why = error?.cause?.code || error?.cause?.message || error.message;
+      throw new Error(`bridge connection lost during the call (${why}) — the call may have run in Figma: read before retrying`);
+    }
     if (!(await ensureBridge())) throw new Error(`bridge unreachable on ${BASE} (npm run bridge)`);
     return call();
   }
@@ -163,6 +173,7 @@ server.registerTool(
       if (result.at || result.images) {
         lines.push("Changes made before the error are kept — one Cmd+Z undoes the whole script.");
       }
+      if (result.undo) lines.push(`(undo ${result.undo})`);
       return { content: [{ type: "text", text: lines.join("\n") }, ...images], isError: true };
     }
 

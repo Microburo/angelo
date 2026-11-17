@@ -34,7 +34,7 @@ const ORIGIN = "chrome-extension://" + [...hex].map((c) => String.fromCharCode(9
 const bridgeUrl = /const BRIDGE = "([^"]+)"/.exec(worker)?.[1];
 check("worker targets the bridge's default address", bridgeUrl === "http://127.0.0.1:8787", bridgeUrl);
 check("manifest allows that host", manifest.host_permissions.some((p) => p === "<all_urls>" || p.startsWith("http://127.0.0.1")));
-for (const path of ["/stage", "/capture", "/mobile", "/job"]) check(`worker calls ${path}`, worker.includes(`call("${path}"`));
+for (const path of ["/stage", "/capture", "/mobile", "/job"]) check(`worker calls ${path}`, worker.includes(`call("${path}"`) || worker.includes(`post("${path}"`));
 check("capture script copied (node extension/build.mjs)", existsSync(join(repo, "extension/lib/capture.js")) && readFileSync(join(repo, "extension/lib/capture.js"), "utf8") === readFileSync(join(repo, "tools/web-capture-page.js"), "utf8"));
 const page = readFileSync(join(repo, "tools/web-capture-page.js"), "utf8");
 const used = [...new Set(readFileSync(join(repo, "extension/content.js"), "utf8").match(/__angelo[A-Za-z]+/g))].filter((g) => !["__angeloOverlay", "__angeloVhShot"].includes(g));

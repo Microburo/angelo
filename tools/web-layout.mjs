@@ -159,9 +159,8 @@ const textNode = (s0) => {
     const strut = !trim && s.font.lh;
     runs = s.runs.map((r) => ({ ...r, text: [...r.text].map((c) => (at.has(p++) && c === " " ? "\u2028" : c)).join(""), ...(strut && r.font?.lh && r.font.lh < strut ? { font: { ...r.font, lh: strut } } : {}) }));
   }
-  // the runs carry the line height Figma draws: a single line takes the whole pixel computed above
-  // (a raw 16.25 hugs at 17, one pixel per card down a list)
-  if (n === 1 && lh) runs = runs.map((r) => (r.font?.lh && r.font.lh % 1 ? { ...r, font: { ...r.font, lh: Math.round(r.font.lh) } } : r));
+  // the runs keep the captured line height, unrounded: the build writes it as the ratio the page set
+  // (115 % of every size), Figma hugs a single line at the whole pixel computed above
   // a first-line offset is an indent only in a left-aligned text (centred lines all start inside)
   return { k: "text", id: s.id, x, y, w, h, n, br, trim, align, lx: l0 ? l0.x : x, indent: l0 && align === "LEFT" && !s.font.hang ? Math.max(0, Math.round(l0.x - x)) : 0, hang: s.font.hang, runs, op: s.op, blend: s.blend, trunc: s.trunc, inField: !!s.inField && align === "LEFT" };
 };

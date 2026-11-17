@@ -36,9 +36,10 @@ const cap = JSON.parse(readFileSync(join(dir, "capture.json"), "utf8"));
 
 // the captured leaves, in capture coordinates
 const norm = (s) => String(s || "").replace(/[\s­​-]+/g, "").toLowerCase();
-// a flex box's own text beside text boxes is an anonymous flex item: its box is its lines, not the container
+// a flex box's own text beside other boxes (texts, an icon, a ::before bar and the flex gap ahead of the
+// glyphs) is an anonymous flex item: its box is its lines, not the container
 const anonBox = (b) => {
-  if (!b.text || !b.flex || !b.lines?.length || !cap.boxes.some((k) => k.p === b.id && k.text)) return {};
+  if (!b.text || !b.flex || !b.lines?.length || !cap.boxes.some((k) => k.p === b.id)) return {};
   const x = Math.min(...b.lines.map((l) => l.x)), r = Math.max(...b.lines.map((l) => l.x + l.w));
   const y = Math.min(...b.lines.map((l) => l.y)), btm = Math.max(...b.lines.map((l) => l.y + l.h));
   return { x, y, w: r - x, h: btm - y, tw: r - x };
@@ -84,7 +85,7 @@ const walk = (n, chain) => {
   if (!b) return;
   const box = { x: b.x - R.x, y: b.y - R.y, w: b.width, h: b.height };
   if (n.type === "TEXT") {
-    const lh = n.lineHeight !== figma.mixed && n.lineHeight.unit === "PIXELS" ? n.lineHeight.value : (n.fontSize !== figma.mixed ? n.fontSize * 1.2 : 0);
+    const lh = n.lineHeight !== figma.mixed && n.lineHeight.unit === "PIXELS" ? n.lineHeight.value : (n.fontSize !== figma.mixed ? n.fontSize * (n.lineHeight !== figma.mixed && n.lineHeight.unit === "PERCENT" ? n.lineHeight.value / 100 : 1.2) : 0);
     out.leaves.push({ kind: "text", id: n.id, chain, ...box, text: n.characters, lh, align: n.textAlignHorizontal, sizing: n.layoutSizingHorizontal, resize: n.textAutoResize, ls: n.letterSpacing !== figma.mixed && n.letterSpacing.unit === "PIXELS" ? n.letterSpacing.value : null });
     return;
   }
@@ -472,7 +473,7 @@ for (const { c, f } of pairs) {
   const rdx = dxOf(c, f) - o.x, rdy = f.y - c.y - o.y;
   const dx = Math.round(rdx), dy = Math.round(rdy);
   const what = c.kind === "text" ? `"${f.text.replace(/\s+/g, " ").slice(0, 30)}"` : c.kind;
-  if (Math.abs(rdx) >= TOL || Math.abs(rdy) >= TOL) rest.push(`${what} #${f.id} off by ${dx},${dy} px (capture x ${c.x} y ${c.y} ${c.w}×${c.h})`);
+  if (Math.abs(rdx) >= TOL || Math.abs(rdy) >= TOL) rest.push(`${what} #${f.id} off by x ${dx} y ${dy} px (capture x ${c.x} y ${c.y} ${c.w}×${c.h})`);
   if (c.kind === "text" && capLines(c) && f.lh && linesOf(f) !== capLines(c)) rest.push(`${what} #${f.id} ${linesOf(f)} lines instead of ${capLines(c)}`);
 }
 const paired = new Set(pairs.map((p) => p.c.id));

@@ -27,7 +27,7 @@ const DATA = mkdtempSync(join(tmpdir(), "angelo-notes-"));
 const LOG = join(DATA, "bridge.log");
 const EXTRA = join(DATA, "version-extra.txt");
 writeFileSync(EXTRA, "1");
-const env = { ...process.env, ANGELO_PORT: PORT, ANGELO_DATA: DATA, ANGELO_LOG: LOG, ANGELO_VERSION_EXTRA: EXTRA, ANGELO_HEARTBEAT: "400" };
+const env = { ...process.env, ANGELO_PORT: PORT, ANGELO_DATA: DATA, ANGELO_LOG: LOG, ANGELO_VERSION_EXTRA: EXTRA, ANGELO_HEARTBEAT: "400", ANGELO_EXEC_TIMEOUT: "1500" };
 
 const results = [];
 const check = (name, pass, detail) => {
@@ -134,6 +134,11 @@ const PNG_1PX =
 
 const execs = [];
 const execAgents = [];
+// section 17: when the late exec answered, when the call queued behind it reached the plugin,
+// and the hook that plays a socket drop in the middle of a call
+let lateAnsweredAt = 0;
+let afterLateAt = 0;
+let onDrop = null;
 let inFlight = 0;
 let maxInFlight = 0;
 function attach(socket) {
@@ -149,6 +154,15 @@ function attach(socket) {
       const { code, file } = params;
       execs.push(code);
       execAgents.push(params.agent ?? null);
+      if (code === "after-late") afterLateAt = Date.now();
+      // "late": answers past the bridge's exec timeout (1.5 s here)
+      if (code === "late") {
+        return setTimeout(() => {
+          lateAnsweredAt = Date.now();
+          reply({ ...ctx, value: "late", images: [] });
+        }, 2500);
+      }
+      if (code === "drop-answer" && onDrop) return onDrop(frame);
       // "slow": stays in the plugin 250 ms, to see whether two calls ever overlap
       if (code === "slow") {
         inFlight++;
@@ -392,7 +406,7 @@ check("10. plugin disconnected → isError (not a protocol error)", shape === "i
 check("10b. actionable message", disc?.content[0].text.includes("Figma Desktop"), disc?.content[0].text);
 
 // ── 11. the plugin can come back after a clean disconnect
-const plugin2 = new WebSocket(wsUrl);
+let plugin2 = new WebSocket(wsUrl);
 const reconnected = await new Promise((res) => {
   plugin2.on("open", () => res(true));
   plugin2.on("error", () => res(false));
@@ -787,6 +801,74 @@ if (!grammar) {
     'FRAME#1:2 "a"\n  * op:3\n  RECT#1:3 "b"',
     "opacity"
   );
+}
+
+// ── 17. a call never runs twice, never on top of another, and survives a socket blip
+if (reconnected) {
+  const B = `http://127.0.0.1:${PORT}`;
+  const rpc = (body, signal) =>
+    fetch(`${B}/rpc`, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body), signal })
+      .then(async (r) => ({ status: r.status, ...(await r.json()) }));
+  const count = (code) => execs.filter((c) => c === code).length;
+
+  const [r1, r2] = await Promise.all([
+    rpc({ method: "exec", rid: "verify-rid-1", params: { code: "rid-once" } }),
+    rpc({ method: "exec", rid: "verify-rid-1", params: { code: "rid-once" } }),
+  ]);
+  check("17a. a call sent twice with its rid runs once, both callers answered", count("rid-once") === 1 && r1.status === 200 && r2.status === 200 && JSON.stringify(r1.result) === JSON.stringify(r2.result), `runs ${count("rid-once")}`);
+  const r3 = await rpc({ method: "exec", rid: "verify-rid-1", params: { code: "rid-once" } });
+  check("17b. a later resend gets the stored outcome, no new run", r3.replay === true && count("rid-once") === 1);
+
+  const holder = rpc({ method: "exec", params: { code: "slow" } });
+  const hangUp = new AbortController();
+  const goneCall = rpc({ method: "exec", params: { code: "gone-call" } }, hangUp.signal).catch(() => null);
+  await wait(60);
+  hangUp.abort();
+  await holder;
+  await goneCall;
+  await wait(400);
+  check("17c. a caller that hangs up while queued never has its call run", count("gone-call") === 0);
+
+  const t0 = Date.now();
+  let lateAt = 0;
+  const late = rpc({ method: "exec", params: { code: "late" } }).then((r) => ((lateAt = Date.now()), r));
+  await wait(100);
+  const [lr, nr] = await Promise.all([late, rpc({ method: "exec", params: { code: "after-late" } })]);
+  check("17d. a call past its timeout is reported at once as maybe still running", lr.status === 502 && /may still be running/.test(lr.error) && lateAt - t0 < 2300, `${lr.status} ${lr.error} after ${lateAt - t0} ms`);
+  check("17e. the next call waits until Figma answered the late one", nr.status === 200 && afterLateAt >= lateAnsweredAt && lateAnsweredAt > 0, `next at +${afterLateAt - lateAnsweredAt} ms`);
+
+  // the socket drops mid-call: the same panel back answers what it held; a reloaded one cannot
+  const dropAndReturn = (instance, answer) => async (frame) => {
+    onDrop = null;
+    plugin2.close();
+    await wait(300);
+    const back = new WebSocket(wsUrl);
+    await new Promise((r) => back.on("open", r));
+    attach(back);
+    back.send(JSON.stringify({ type: "hello", role: "plugin", version: "dev", instance }));
+    if (answer) back.send(JSON.stringify({ type: "response", id: frame.id, ok: true, result: { file: FILE, page: "Home", value: "held", images: [] } }));
+    plugin2 = back;
+  };
+  plugin2.send(JSON.stringify({ type: "hello", role: "plugin", version: "dev", instance: "verify-A" }));
+  await wait(100);
+  onDrop = dropAndReturn("verify-A", true);
+  const held = await rpc({ method: "exec", params: { code: "drop-answer" } });
+  check("17f. an answer held across a socket drop reaches the caller", held.status === 200 && held.result?.value === "held", JSON.stringify(held).slice(0, 120));
+  onDrop = dropAndReturn("verify-B", false);
+  const t1 = Date.now();
+  const lost = await rpc({ method: "exec", params: { code: "drop-answer" } });
+  check("17g. a reloaded panel fails the old calls at once, not at their timeout", lost.status === 502 && /reloaded/.test(lost.error) && Date.now() - t1 < 1400, `${lost.status} ${lost.error} after ${Date.now() - t1} ms`);
+
+  const { request: httpRequest } = await import("node:http");
+  const hostStatus = await new Promise((res) => {
+    const q = httpRequest({ host: "127.0.0.1", port: PORT, path: "/health", headers: { host: `evil.example:${PORT}` } }, (r) => {
+      r.resume();
+      res(r.statusCode);
+    });
+    q.on("error", () => res(0));
+    q.end();
+  });
+  check("17h. a request naming another host (DNS rebinding) refused 403", hostStatus === 403, String(hostStatus));
 }
 
 // ── 16. hub: hello handshake, link state, heartbeat, log, stale bridge replaced

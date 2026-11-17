@@ -18,6 +18,7 @@ import {
   surfaceLine,
 } from "./node";
 import { revOf } from "./rev";
+import { realOf, snapshot } from "./snap";
 
 const NODE_LIMIT = 20000;
 const DEPTH_LIMIT = 40;
@@ -43,7 +44,10 @@ async function tick(state: Pass): Promise<void> {
 }
 
 export interface Model {
+  /** The node itself (what a session keeps). */
   node: SceneNode;
+  /** Caching view of it: every property is fetched once for the whole pass. */
+  view: SceneNode;
   children: Model[];
   nodes: number;
   /** Estimated tokens for the full detail of this subtree. */
@@ -71,16 +75,18 @@ function nodeCost(node: SceneNode): number {
   return Math.ceil(chars / 4);
 }
 
-async function buildModel(node: SceneNode, depth: number, state: Pass): Promise<Model> {
+/** `view` is the node's caching view (see snap.ts). */
+async function buildModel(view: SceneNode, depth: number, state: Pass): Promise<Model> {
   state.visited += 1;
   await tick(state);
-  await collectShared(node, state.legend, state.mains);
-  const model: Model = { node, children: [], nodes: 1, cost: nodeCost(node) };
+  await collectShared(view, state.legend, state.mains);
+  const model: Model = { node: realOf(view), view, children: [], nodes: 1, cost: nodeCost(view) };
+  const kids = childrenOf(view);
   if (depth >= DEPTH_LIMIT || state.visited >= NODE_LIMIT) {
-    if (childrenOf(node).length) state.truncated = true;
+    if (kids.length) state.truncated = true;
     return model;
   }
-  for (const child of childrenOf(node)) {
+  for (const child of kids) {
     const built = await buildModel(child, depth + 1, state);
     model.children.push(built);
     model.nodes += built.nodes;
@@ -124,16 +130,16 @@ async function emitDetail(
   own?: Detail
 ): Promise<void> {
   await tick(state);
-  const detail = own ?? (await detailLine(model.node, session.legend, state.mains));
+  const detail = own ?? (await detailLine(model.view, session.legend, state.mains));
   out.push(indent(depth) + detail.line);
   for (const segment of detail.extra) out.push(indent(depth + 1) + "+ " + segment);
-  session.revs.set(model.node.id, await revOf(model.node, state.mains));
-  session.nodes.set(model.node.id, model.node);
+  session.revs.set(model.view.id, await revOf(model.view, state.mains));
+  session.nodes.set(model.view.id, model.node);
 
   // What the children all repeat goes out once, on a `*` line ahead of them.
   const details: Detail[] = [];
   for (const child of model.children) {
-    details.push(await detailLine(child.node, session.legend, state.mains));
+    details.push(await detailLine(child.view, session.legend, state.mains));
   }
   const shared = sharedParts(details);
   if (shared.length) out.push(indent(depth + 1) + "* " + shared.join(" "));
@@ -155,9 +161,9 @@ async function emitSurface(
   state: Pass
 ): Promise<void> {
   await tick(state);
-  out.push(indent(depth) + (await surfaceLine(model.node, session.legend, state.mains)));
-  session.revs.set(model.node.id, await revOf(model.node, state.mains));
-  session.nodes.set(model.node.id, model.node);
+  out.push(indent(depth) + (await surfaceLine(model.view, session.legend, state.mains)));
+  session.revs.set(model.view.id, await revOf(model.view, state.mains));
+  session.nodes.set(model.view.id, model.node);
 
   const children = model.children;
   if (!children.length) return;
@@ -167,10 +173,10 @@ async function emitSurface(
     const n = session.chunks.size + 1;
     const chunk: Chunk = {
       n,
-      ids: run.map((item) => item.node.id),
-      names: run.map((item) => item.node.name),
+      ids: run.map((item) => item.view.id),
+      names: run.map((item) => item.view.name),
       nodes: run.reduce((sum, item) => sum + item.nodes, 0),
-      parentId: model.node.id,
+      parentId: model.view.id,
     };
     session.chunks.set(n, chunk);
     out.push(indent(depth + 1) + holeLine(chunk));
@@ -217,7 +223,7 @@ export async function readRoots(
 ): Promise<ReadResult> {
   const state = newPass(session.legend);
   const models: Model[] = [];
-  for (const root of roots) models.push(await buildModel(root, 0, state));
+  for (const root of roots) models.push(await buildModel(snapshot(root), 0, state));
 
   const totalCost = models.reduce((sum, model) => sum + model.cost, 0);
   const nodeCount = models.reduce((sum, model) => sum + model.nodes, 0);
@@ -252,7 +258,7 @@ export async function expandChunk(
       out.push(`# missing #${id} (node removed since the read)`);
       continue;
     }
-    const model = await buildModel(node as SceneNode, 0, state);
+    const model = await buildModel(snapshot(node as SceneNode), 0, state);
     nodeCount += model.nodes;
     await emitDetail(model, 0, out, session, state);
   }

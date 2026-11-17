@@ -7,26 +7,65 @@ const FILES = ["lib/capture.js", "content.js"];
 const inject = (tabId) => chrome.scripting.executeScript({ target: { tabId }, files: FILES });
 
 chrome.action.onClicked.addListener(async (tab) => {
-  await inject(tab.id);
+  try {
+    await inject(tab.id);
+  } catch (error) {
+    // a restricted page (chrome://, the web store): nothing to inject into, say so on the icon
+    console.warn("[angelo] cannot inject here:", error?.message || error);
+    chrome.action.setBadgeText({ tabId: tab.id, text: "!" }).catch(() => {});
+    setTimeout(() => chrome.action.setBadgeText({ tabId: tab.id, text: "" }).catch(() => {}), 2500);
+  }
 });
 
 // One call to the bridge. Bounded (a bridge that accepts and never answers must not hang the
-// overlay) and retried on a refused connection only: the bridge restarts by itself when its
-// source changes, which leaves the port closed for a fraction of a second.
+// overlay). Only idempotent calls are retried (the bridge restarts by itself when its source
+// changes, which leaves the port closed for a fraction of a second): a browser cannot tell a
+// refused connection from one cut after the request went through, and a second POST /capture
+// could start a second job. A POST is sent once, after a liveness check that rides out a restart.
+// Errors: `unreachable` = nothing listening (the offline fallback may apply); `pending` = the
+// request may have reached the bridge and still be running.
 const RETRY_GAPS = [300, 700, 1200];
+const IDEMPOTENT = /^\/(hello|job)$/;
 const call = async (path, init = {}, wait = 40000) => {
+  const safe = IDEMPOTENT.test(path) || !init.method || init.method === "GET";
+  const secs = Math.round(wait / 1000);
   for (let i = 0; ; i++) {
     try {
       const res = await fetch(BRIDGE + path, { ...init, signal: AbortSignal.timeout(wait) });
-      return await res.json();
+      try {
+        return await res.json();
+      } catch (error) {
+        if (error?.name === "SyntaxError") return { error: `unreadable bridge response on ${path} (HTTP ${res.status})`, pending: !safe };
+        throw error;
+      }
     } catch (error) {
-      if (error && error.name === "TimeoutError") return { error: `bridge silent for ${Math.round(wait / 1000)} s on ${path}` };
-      if (i >= RETRY_GAPS.length) return { error: "bridge unreachable (it starts with Claude Code, or: npm run bridge)" };
+      if (error && error.name === "TimeoutError") {
+        return safe
+          ? { error: `bridge silent for ${secs} s on ${path}` }
+          : { error: `no reply from the bridge in ${secs} s on ${path}: the job may still run, check Figma`, pending: true };
+      }
+      if (!safe) return { error: `connection to the bridge lost during ${path}: it may have been received, check Figma`, pending: true };
+      if (i >= RETRY_GAPS.length) return { error: "bridge unreachable (it starts with Claude Code, or: npm run bridge)", unreachable: true };
       await new Promise((r) => setTimeout(r, RETRY_GAPS[i]));
     }
   }
 };
-const post = (path, body, wait) => call(path, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) }, wait);
+const post = async (path, body, wait) => {
+  const init = { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(body) };
+  if (!IDEMPOTENT.test(path)) {
+    const alive = await call("/hello", { method: "POST", headers: init.headers, body: JSON.stringify({ role: "extension", version: chrome.runtime.getManifest().version }) }, 3000);
+    if (alive.error) return alive;
+  }
+  return call(path, init, wait);
+};
+
+// base64 of bytes: the native encoder where the browser has it, else chunked
+const b64 = (bytes) => {
+  if (typeof bytes.toBase64 === "function") return bytes.toBase64();
+  let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+};
 
 // ---------- self-update ----------
 // The worker keeps the background.js it was registered with until the extension is reloaded,
@@ -131,12 +170,15 @@ const shoot = async (tabId, width, asked, alpha, dpr = 1) => {
     const ctx = canvas.getContext("2d");
     // a beyond-viewport shot can wait forever for a frame (cos coats: page left blank, debugger
     // attached): each tile is bounded, the capture goes on without its reference
-    const grab = (y, h) => Promise.race([
-      chrome.debugger.sendCommand(target, "Page.captureScreenshot", {
-        ...(alpha ? { format: "png" } : { format: "jpeg", quality: 90 }), captureBeyondViewport: true, clip: { x: 0, y, width, height: h, scale: 1 },
-      }),
-      new Promise((_, no) => setTimeout(() => no(new Error(`tile at y ${y} of ${height} px timed out`)), SHOT_WAIT)),
-    ]);
+    const grab = (y, h) => {
+      let timer;
+      return Promise.race([
+        chrome.debugger.sendCommand(target, "Page.captureScreenshot", {
+          ...(alpha ? { format: "png" } : { format: "jpeg", quality: 90 }), captureBeyondViewport: true, clip: { x: 0, y, width, height: h, scale: 1 },
+        }),
+        new Promise((_, no) => { timer = setTimeout(() => no(new Error(`tile at y ${y} of ${height} px timed out`)), SHOT_WAIT); }),
+      ]).finally(() => clearTimeout(timer));
+    };
     try {
       // the first beyond-viewport shot resizes the view and can come back stretched (nyt: top tile
       // drawn 2x tall): a throwaway shot first, the tiles after it are taken at the settled size
@@ -153,10 +195,7 @@ const shoot = async (tabId, width, asked, alpha, dpr = 1) => {
       if (alpha) await chrome.debugger.sendCommand(target, "Emulation.setDefaultBackgroundColorOverride", {});
     }
     const blob = await canvas.convertToBlob(alpha ? { type } : { type, quality: 0.8 });
-    const bytes = new Uint8Array(await blob.arrayBuffer());
-    let bin = "";
-    for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-    return { data: btoa(bin) };
+    return { data: b64(new Uint8Array(await blob.arrayBuffer())) };
   } finally {
     await chrome.debugger.detach(target).catch(() => {});
   }
@@ -178,38 +217,38 @@ const view = async (windowId, { x, y, w, h }, dpr = 1) => {
   for (let i = 0; i < px.length; i += 16) { const l = (px[i] + px[i + 1] + px[i + 2]) / 3; n++; sum += l; sq += l * l; }
   if (Math.sqrt(Math.max(0, sq / n - (sum / n) ** 2)) <= 10) return { data: null };
   const bytes = new Uint8Array(await (await canvas.convertToBlob({ type: "image/jpeg", quality: 0.85 })).arrayBuffer());
-  let bin = "";
-  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  return { data: "data:image/jpeg;base64," + btoa(bin) };
+  return { data: "data:image/jpeg;base64," + b64(bytes) };
 };
 
 // Reference shot by scrolling, as GoFullPage does: the page is scrolled one viewport at a time and
 // each visible tab is stitched into a canvas at 1x css. The page's own scroll-triggered reveals
 // run (a hero caption shown when it enters the view) and lazy pictures load, which a
 // beyond-viewport shot never wakes. captureVisibleTab answers at most 2 calls a second.
-let strips = null;
+// One canvas per tab: two tabs capturing must not draw into each other's shot.
+const strips = new Map();
 let lastStrip = 0;
 const STRIP_GAP = 600; // ms between two captureVisibleTab calls
-const strip = async (windowId, m) => {
-  if (m.start) strips = new OffscreenCanvas(m.width, m.height);
-  if (!strips) throw new Error("no shot started");
+const strip = async (tab, m) => {
+  const key = tab.id;
+  if (m.abort) { strips.delete(key); return {}; }
+  if (m.start) strips.set(key, new OffscreenCanvas(m.width, Math.min(m.height, MAX_SHOT)));
+  const canvas = strips.get(key);
+  if (!canvas) throw new Error("no shot started");
   if (m.y !== undefined) {
     const wait = lastStrip + STRIP_GAP - Date.now();
     if (wait > 0) await new Promise((r) => setTimeout(r, wait));
-    const url = await chrome.tabs.captureVisibleTab(windowId, { format: "png" });
+    lastStrip = Date.now();
+    const url = await chrome.tabs.captureVisibleTab(tab.windowId, { format: "png" });
     lastStrip = Date.now();
     const bmp = await createImageBitmap(await (await fetch(url)).blob());
     const s = bmp.width / m.innerWidth;
-    strips.getContext("2d").drawImage(bmp, 0, 0, bmp.width, bmp.height, 0, m.y, bmp.width / s, bmp.height / s);
+    canvas.getContext("2d").drawImage(bmp, 0, 0, bmp.width, bmp.height, 0, m.y, bmp.width / s, bmp.height / s);
     bmp.close();
     return {};
   }
-  const blob = await strips.convertToBlob({ type: "image/jpeg", quality: 0.8 });
-  strips = null;
-  const bytes = new Uint8Array(await blob.arrayBuffer());
-  let bin = "";
-  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  return { data: btoa(bin) };
+  const blob = await canvas.convertToBlob({ type: "image/jpeg", quality: 0.8 });
+  strips.delete(key);
+  return { data: b64(new Uint8Array(await blob.arrayBuffer())) };
 };
 
 // A picture as a data URL, for a capture saved to a file: the worker's fetch has no CORS, the page's has.
@@ -219,18 +258,18 @@ const imageData = async (url) => {
   if (!res.ok) return {};
   const bytes = new Uint8Array(await res.arrayBuffer());
   if (bytes.length > MAX_ATTACHED) return {};
-  let text = "";
-  for (let i = 0; i < bytes.length; i += 0x8000) text += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
-  return { data: `data:${res.headers.get("content-type")?.split(";")[0] || "image/png"};base64,${btoa(text)}` };
+  return { data: `data:${res.headers.get("content-type")?.split(";")[0] || "image/png"};base64,${b64(bytes)}` };
 };
 
 chrome.runtime.onMessage.addListener((msg, sender, reply) => {
+  // these three act on the sender's tab: a message from anywhere else has none
+  if (["shot", "strip", "view"].includes(msg.type) && !sender.tab) { reply({ error: `${msg.type}: no tab on this message` }); return; }
   if (msg.type === "shot") {
     shoot(sender.tab.id, msg.width, msg.height, msg.alpha, msg.dpr).catch((e) => ({ error: `screenshot: ${e.message || e}` })).then(reply);
     return true;
   }
   if (msg.type === "strip") {
-    strip(sender.tab.windowId, msg).catch((e) => { strips = null; return { error: `strip: ${e.message || e}` }; }).then(reply);
+    strip(sender.tab, msg).catch((e) => { strips.delete(sender.tab.id); return { error: `strip: ${e.message || e}` }; }).then(reply);
     return true;
   }
   if (msg.type === "view") {

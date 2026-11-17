@@ -22,15 +22,21 @@ const post = (body) => fetch(`http://127.0.0.1:${PORT}/rpc`, {
   method: "POST",
   headers: { "content-type": "application/json" },
   body,
-}).catch(() => {
-  throw new Error(`bridge unreachable on port ${PORT} (npm run bridge)`);
+}).catch((error) => {
+  const code = error?.cause?.code ?? error?.code ?? "";
+  throw new Error(`bridge unreachable on port ${PORT} (npm run bridge)${code ? ` [${code}]` : ""}`, { cause: error });
 });
+let ridSeq = 0;
+const RID_BASE = `${process.pid.toString(36)}-${Date.now().toString(36)}`;
 // label: optional short name shown in the plugin's activity list instead of the code's first line
 // quiet: no cursor pass after the exec (see runExec), for tools chaining many small execs
 export const makeRpc = (file, { quiet = false } = {}) => async (code, label) => {
-  const body = JSON.stringify({ method: "exec", params: { code, file, label, ...(quiet && { quiet }) } });
-  if (body.length > RPC_MAX) throw new Error(`exec too large: ${body.length} > ${RPC_MAX} (${code.trim().slice(0, 80)}…)`);
-  // a keep-alive socket closed by the bridge during a long pause (downloads) resets once
+  // rid: a resend of this exact call gets the first one's outcome from the bridge, never a second run
+  const rid = `${RID_BASE}-${++ridSeq}`;
+  const body = JSON.stringify({ method: "exec", rid, params: { code, file, label, ...(quiet && { quiet }) } });
+  if (Buffer.byteLength(body) > RPC_MAX) throw new Error(`exec too large: ${Buffer.byteLength(body)} > ${RPC_MAX} (${code.trim().slice(0, 80)}…)`);
+  // a keep-alive socket closed by the bridge during a long pause (downloads) resets once: sent again
+  // under the same rid, so a call that did reach the bridge is answered, not run twice
   const res = await post(body).catch(() => post(body));
   const p = await res.json();
   if (p.error) throw new Error(p.error);
@@ -117,7 +123,7 @@ for (const part of ${JSON.stringify(parts)}) {
   const [, name, nth] = /^(.*?)(?:#(\\d+))?$/.exec(part);
   const olds = named(host, name), news = named(tmp, name);
   const old = nth ? olds[Number(nth) - 1] : olds.length === 1 ? olds[0] : undefined;
-  if (!old || news.length !== 1) return { swapped: false, reason: "\"" + part + "\" found " + olds.length + "× in the page frame, " + news.length + "× in the new build" };
+  if (!old || news.length !== 1) return { swapped: false, reason: '"' + part + '" found ' + olds.length + "× in the page frame, " + news.length + "× in the new build" };
   pairs.push([part, old, news[0]]);
 }
 const done = [];

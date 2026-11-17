@@ -5,6 +5,7 @@
 // and relays frames both ways.
 
 import { runExec, settled } from "./exec";
+import { nodeOf } from "./lookup";
 import { exportForRpc, initNotes, onNotesMessage } from "./notes";
 import { renderAddendum, snapshot } from "./serialize/addendum";
 import { quote } from "./serialize/format";
@@ -51,9 +52,13 @@ function resizeTo(width: number, height: number, anchor: "bottom" | "top" = "bot
   uiHeight = h;
 }
 
-function newSession(budget: number, agent: string): Session {
+// Sessions hold node proxies (up to the read budget): keep the agents seen most recently
+const MAX_SESSIONS = 6;
+
+/** A fresh session, not yet registered: a read that fails keeps the agent's previous sid. */
+function newSession(budget: number): Session {
   sessionCounter += 1;
-  const session: Session = {
+  return {
     sid: sessionCounter,
     legend: new Legend(),
     chunks: new Map<number, Chunk>(),
@@ -61,8 +66,22 @@ function newSession(budget: number, agent: string): Session {
     revs: new Map<string, string>(),
     nodes: new Map<string, SceneNode>(),
   };
+}
+
+function register(agent: string, session: Session): void {
+  sessions.delete(agent);
   sessions.set(agent, session);
-  return session;
+  while (sessions.size > MAX_SESSIONS) {
+    const oldest = sessions.keys().next().value as string;
+    if (oldest === "main" && sessions.size > 1) {
+      // the main agent keeps its read; the oldest helper goes instead
+      const main = sessions.get("main") as Session;
+      sessions.delete("main");
+      sessions.set("main", main);
+      continue;
+    }
+    sessions.delete(oldest);
+  }
 }
 
 function selectionSummary(): Record<string, unknown> {
@@ -78,34 +97,6 @@ function selectionSummary(): Record<string, unknown> {
       height: "height" in node ? Math.round(node.height) : null,
     })),
   };
-}
-
-const NODE_ID = /^I?\d+:\d+(;\d+:\d+)*$/;
-
-/**
- * A node by id, for ids that come from the caller. A malformed id is refused at once:
- * Figma would otherwise wait 10 s and answer "Unable to establish connection to Figma".
- * A well-formed id the file does not hold still costs that wait; the message then says
- * what happened instead of blaming the network.
- */
-async function nodeOf(id: string): Promise<BaseNode> {
-  if (!NODE_ID.test(id)) {
-    throw new Error(
-      `invalid target "${id}" — use "selection", "page" or a node id such as 1:234 (ids come from angelo_read or angelo_status)`,
-    );
-  }
-  let node: BaseNode | null = null;
-  try {
-    node = await figma.getNodeByIdAsync(id);
-  } catch (error) {
-    throw new Error(
-      `node ${id} not found in this file (Figma gave up loading it) — use an id from angelo_read or angelo_status`,
-    );
-  }
-  if (!node || !("type" in node)) {
-    throw new Error(`unknown node: ${id} — use an id from angelo_read or angelo_status`);
-  }
-  return node;
 }
 
 async function resolveRoots(
@@ -136,7 +127,7 @@ async function handleRead(params: Record<string, unknown>): Promise<unknown> {
       ? params.budget
       : DEFAULT_BUDGET;
   const { roots, label } = await resolveRoots(params.target);
-  const active = newSession(budget, agentOf(params));
+  const active = newSession(budget);
 
   const result = await readRoots(roots, active);
   // Before the manifest: a flagged nested component registers its label there.
@@ -157,6 +148,7 @@ async function handleRead(params: Record<string, unknown>): Promise<unknown> {
     names: chunk.names,
   }));
 
+  register(agentOf(params), active);
   return {
     sid: active.sid,
     angelo: `${manifest}\n\n${warnings.length ? `# warn\n${warnings.join("\n")}\n\n` : ""}# tree\n${result.tree}`,
@@ -207,8 +199,20 @@ async function handleExpand(params: Record<string, unknown>): Promise<unknown> {
   };
 }
 
-async function dispatch(request: Request): Promise<unknown> {
-  const params = request.params ?? {};
+// One call touches the file at a time, whoever sent it (bridge, the panel's own buttons):
+// a read never sees an exec half done, and an exec the bridge gave up on still finishes
+// before the next one starts. ping and selection stay outside so the bridge can probe.
+let turn: Promise<unknown> = Promise.resolve();
+
+function dispatch(request: Request): Promise<unknown> {
+  if (request.method === "ping" || request.method === "selection") return run(request);
+  const mine = turn.then(() => run(request));
+  turn = mine.catch(() => {});
+  return mine;
+}
+
+async function run(request: Request): Promise<unknown> {
+  const params = request.params && typeof request.params === "object" ? request.params : {};
   // Previous exec still closing (cursor drain, undo commit): let it finish first
   if (request.method !== "ping" && request.method !== "selection") await settled();
   switch (request.method) {
@@ -309,6 +313,11 @@ figma.ui.onmessage = async (message: any) => {
 
   if (message.kind !== "rpc") return;
   const request = message.request as Request;
+  if (!request || typeof request !== "object" || typeof request.id !== "string" || !request.id) return;
+  if (typeof request.method !== "string") {
+    post({ kind: "rpc", response: { id: request.id, ok: false, error: "malformed request: `method` missing" } });
+    return;
+  }
   try {
     const result = await dispatch(request);
     post({ kind: "rpc", response: { id: request.id, ok: true, result } });

@@ -1459,7 +1459,10 @@
           state.textContent = "";
           links = null;
           dot.title = linkTitle();
-          ws.send(JSON.stringify({ type: "hello", role: "plugin", version: BUILD }));
+          ws.send(JSON.stringify({ type: "hello", role: "plugin", version: BUILD, instance: INSTANCE }));
+          // answers finished while the socket was down: the bridge still waits for them
+          const fresh = unsent.splice(0).filter((u) => Date.now() - u.at < UNSENT_TTL);
+          for (const u of fresh) ws.send(JSON.stringify(u.frame));
           if (window.Notes) Notes.connected(true);
           if (window.Onboarding) Onboarding.bridge();
           if (lastSelection) {
@@ -1538,6 +1541,18 @@
       function send(frame) {
         if (socket && socket.readyState === 1) socket.send(JSON.stringify(frame));
       }
+      // One id per panel load: the bridge tells a socket that dropped (same instance, answers
+      // still coming) from a reloaded plugin (its calls in flight are lost).
+      const INSTANCE = Math.random().toString(36).slice(2, 10);
+      // A call answered while the socket is down (bridge restart, heartbeat drop) has still
+      // changed the file: its answer is kept and sent on reconnect instead of dropped.
+      const unsent = [];
+      const UNSENT_TTL = 60000;
+      function sendResponse(frame) {
+        if (socket && socket.readyState === 1) return socket.send(JSON.stringify(frame));
+        unsent.push({ frame, at: Date.now() });
+        if (unsent.length > 50) unsent.shift();
+      }
 
       onmessage = (event) => {
         const message = event.data && event.data.pluginMessage;
@@ -1564,7 +1579,7 @@
           if (window.Onboarding) Onboarding.response(message.response);
           say(`→ ${message.response.ok ? "ok" : "error"}`);
           finish(message.response.id, message.response.ok && !(message.response.result && message.response.result.error));
-          send({ type: "response", ...message.response });
+          sendResponse({ type: "response", ...message.response });
           return;
         }
 
@@ -1657,19 +1672,32 @@
       // stop asked during a local build: its next exec throws, the cursor release still goes through
       let localBuild = false;
       let localStop = false;
+      // A main thread that never answers must not leave the panel busy for good
+      const LOCAL_TIMEOUT = 180000;
+      function localCall(method, params, onResponse, reject) {
+        const id = `local-${++localId}`;
+        const timer = setTimeout(() => {
+          if (!localCalls.delete(id)) return;
+          inflight = Math.max(0, inflight - 1);
+          reject(new Error(`no answer from the plugin to ${method} after ${LOCAL_TIMEOUT / 1000} s`));
+        }, LOCAL_TIMEOUT);
+        localCalls.set(id, (response) => {
+          clearTimeout(timer);
+          onResponse(response);
+        });
+        inflight += 1;
+        pulse(1);
+        parent.postMessage({ pluginMessage: { kind: "rpc", request: { id, method, params } } }, "*");
+      }
       function localExec(code, force = false) {
         if (localStop && !force) return Promise.reject(new Error("stopped"));
         return new Promise((resolve, reject) => {
-          const id = `local-${++localId}`;
-          localCalls.set(id, (response) => {
+          localCall("exec", { code }, (response) => {
             if (!response.ok) return reject(new Error(response.error));
             const r = response.result;
             if (r.error) return reject(new Error(r.error + (r.at ? ` (line ${r.at.line}: ${r.at.src})` : "")));
             resolve(r.value);
-          });
-          inflight += 1;
-          pulse(1);
-          parent.postMessage({ pluginMessage: { kind: "rpc", request: { id, method: "exec", params: { code } } } }, "*");
+          }, reject);
         });
       }
 
@@ -1721,11 +1749,7 @@
       // leaves the others (font, clip or resize, several token candidates) for review
       function localRpc(method, params) {
         return new Promise((resolve, reject) => {
-          const id = `local-${++localId}`;
-          localCalls.set(id, (response) => (response.ok ? resolve(response.result) : reject(new Error(response.error))));
-          inflight += 1;
-          pulse(1);
-          parent.postMessage({ pluginMessage: { kind: "rpc", request: { id, method, params } } }, "*");
+          localCall(method, params, (response) => (response.ok ? resolve(response.result) : reject(new Error(response.error))), reject);
         });
       }
       const ID = /\b[A-Z]+#([\w:;-]+)/g;

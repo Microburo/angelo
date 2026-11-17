@@ -39,9 +39,19 @@ import { hashFiles, importGraph, statSignature } from "./version.mjs";
 
 const PORT = Number(process.env.ANGELO_PORT ?? 8787);
 const HOST = process.env.ANGELO_HOST ?? "127.0.0.1";
+// The bridge runs code in Figma for whoever reaches it: off the loopback only when asked for
+const ALLOW_LAN = process.env.ANGELO_ALLOW_LAN === "1";
+if (!["127.0.0.1", "::1", "localhost"].includes(HOST) && !ALLOW_LAN) {
+  console.error(`ANGELO_HOST=${HOST} is not a loopback address: refused (set ANGELO_ALLOW_LAN=1 to accept)`);
+  process.exit(1);
+}
+// DNS rebinding: a web page whose name resolves to 127.0.0.1 sends its own name as Host
+const LOCAL_HOSTS = new Set(["127.0.0.1", "localhost", "[::1]"]);
+const hostAllowed = (header) =>
+  ALLOW_LAN || (typeof header === "string" && LOCAL_HOSTS.has(header.replace(/:\d+$/, "").toLowerCase()));
 const DEFAULT_TIMEOUT = 30000;
 const READ_TIMEOUT = 120000;
-const EXEC_TIMEOUT = 30000;
+const EXEC_TIMEOUT = Number(process.env.ANGELO_EXEC_TIMEOUT) || 30000;
 const OPEN = 1; // WebSocket.readyState
 const HEARTBEAT_MS = Number(process.env.ANGELO_HEARTBEAT ?? 20000);
 
@@ -149,20 +159,34 @@ const links = () => ({
   extension: peerOn("extension"),
 });
 
+// A call past its timeout may still be running in Figma: the caller hears it at once, but the
+// call keeps its place (`finished`) until the plugin answers, so the next call does not start
+// its own clock behind it. Bounded: an answer lost for good frees the line after LATE_HOLD.
+const LATE_HOLD = Number(process.env.ANGELO_LATE_HOLD) || 120000;
 function callPlugin(method, params, timeout) {
   if (!plugin || plugin.readyState !== OPEN) {
     return Promise.reject(new Error("plugin disconnected"));
   }
   const id = `${BOOT}-${nextId++}`;
   const frame = JSON.stringify({ type: "request", id, method, params: params ?? {} });
-  return new Promise((resolve, reject) => {
-    const timer = setTimeout(() => {
-      pending.delete(id);
-      reject(new Error(`timeout ${method} after ${Math.round(timeout / 1000)}s`));
+  let finish;
+  const finished = new Promise((r) => (finish = r));
+  const call = new Promise((resolve, reject) => {
+    const entry = { resolve, reject, finish, method, late: false, timer: null };
+    entry.timer = setTimeout(() => {
+      entry.late = true;
+      reject(new Error(`no answer from Figma after ${Math.round(timeout / 1000)}s on ${method} — it may still be running there: read before retrying`));
+      entry.timer = setTimeout(() => {
+        pending.delete(id);
+        log(`${method}: no late answer after ${Math.round(LATE_HOLD / 1000)}s, the line moves on`);
+        finish();
+      }, LATE_HOLD);
     }, timeout);
-    pending.set(id, { resolve, reject, timer });
+    pending.set(id, entry);
     plugin.send(frame);
   });
+  call.finished = finished;
+  return call;
 }
 
 // Notes from the panel (bridge/src/notes.mjs): its frames ride the plugin socket, its HTTP
@@ -181,6 +205,12 @@ function pushLinks() {
 }
 if (!DRY) setInterval(pushLinks, 2000).unref();
 
+// /rpc calls in progress (queued included): the bridge is not idle while one waits its turn
+let inflight = 0;
+// rid → { outcome, watchers, at }: the calls a client may resend
+const recentCalls = new Map();
+const RID_TTL = 10 * 60 * 1000;
+
 // ---------- Figma turn: one plugin call at a time ----------
 // Several agents (main and its helpers) share one plugin: each call waits for its turn in a
 // FIFO, so two agents never run code in Figma at once. An agent's call (it carries `agent`)
@@ -198,26 +228,81 @@ function pushQueue() {
     sendPlugin({ type: "figmaQueue", holder: figmaQueue.holder, waiting: [...new Set(figmaQueue.waiting)] });
   }, 150);
 }
-async function inTurn(agent, run) {
+// A call waits QUEUE_MAX at most, then says nothing ran (under the HTTP client's own 300 s).
+// `left` (an HTTP caller): a caller that hung up while waiting is dropped from the line, its
+// call never runs behind its back.
+const QUEUE_MAX = Number(process.env.ANGELO_QUEUE_MAX) || 150000;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+async function waitTurn(previous, deadline, left) {
+  let timer;
+  const expired = new Promise((r) => (timer = setTimeout(() => r("timeout"), Math.max(0, deadline - Date.now()))));
+  const turn = previous.then(() => "turn");
+  let watchLeft = Boolean(left);
+  try {
+    for (;;) {
+      const outcome = await Promise.race([turn, expired, ...(watchLeft ? [left.promise.then(() => "left")] : [])]);
+      // another request carries the same call now (a retry with its rid): keep its place
+      if (outcome === "left" && !left.gone()) {
+        watchLeft = false;
+        continue;
+      }
+      return outcome;
+    }
+  } finally {
+    clearTimeout(timer);
+  }
+}
+class NotRun extends Error {}
+async function inTurn(agent, run, left = null) {
   const label = agent || "tool";
   figmaQueue.waiting.push(label);
   pushQueue();
-  let release;
+  let release = null;
+  let call = null;
+  let holding = false;
+  const deadline = Date.now() + QUEUE_MAX;
   try {
-    if (agent) while (job || staging) await new Promise((r) => setTimeout(r, 400));
+    // (a model job works through the MCP itself: its calls are an agent's, waiting for it to end
+    // would be waiting for themselves)
+    if (agent) {
+      while ((job && !jobAgent) || staging) {
+        if (left?.gone()) throw new NotRun("caller left while a build held Figma — nothing ran");
+        if (Date.now() > deadline) throw new NotRun(`Figma busy with ${job ?? "a staged frame"} for ${Math.round(QUEUE_MAX / 1000)}s — nothing ran, retry later`);
+        await sleep(400);
+      }
+    }
     const previous = figmaTail;
     figmaTail = new Promise((r) => (release = r));
-    await previous;
+    const outcome = await waitTurn(previous, deadline, left);
+    if (outcome !== "turn") {
+      // the line keeps its order: this place frees once the one before it has
+      const free = release;
+      release = null;
+      previous.then(free);
+      throw new NotRun(
+        outcome === "left"
+          ? "caller left before its turn — nothing ran"
+          : `Figma held by ${figmaQueue.holder ?? "another call"} for ${Math.round(QUEUE_MAX / 1000)}s — nothing ran, retry later`,
+      );
+    }
     figmaQueue.waiting.splice(figmaQueue.waiting.indexOf(label), 1);
     figmaQueue.holder = label;
+    holding = true;
     pushQueue();
-    return await run();
+    call = run();
+    return await call;
   } finally {
-    const at = figmaQueue.waiting.indexOf(label);
-    if (figmaQueue.holder === label) figmaQueue.holder = null;
-    else if (at >= 0) figmaQueue.waiting.splice(at, 1);
-    if (release) release();
-    pushQueue();
+    if (!holding) {
+      const at = figmaQueue.waiting.indexOf(label);
+      if (at >= 0) figmaQueue.waiting.splice(at, 1);
+    }
+    const done = () => {
+      if (holding && figmaQueue.holder === label) figmaQueue.holder = null;
+      if (release) release();
+      pushQueue();
+    };
+    if (call?.finished) call.finished.then(done);
+    else done();
   }
 }
 
@@ -233,15 +318,18 @@ function settle(response) {
   if (!entry) return;
   pending.delete(response.id);
   clearTimeout(entry.timer);
-  if (response.ok) entry.resolve(response.result);
+  if (entry.late) log(`${entry.method}: late answer from Figma (${response.ok ? "ok" : "error"}), the line moves on`);
+  else if (response.ok) entry.resolve(response.result);
   else entry.reject(new Error(response.error || "plugin error"));
+  entry.finish();
 }
 
 function dropPending(reason) {
   for (const [id, entry] of pending) {
     pending.delete(id);
     clearTimeout(entry.timer);
-    entry.reject(new Error(reason));
+    if (!entry.late) entry.reject(new Error(reason));
+    entry.finish();
   }
 }
 
@@ -260,6 +348,12 @@ const handle = async (request, response) => {
     response.writeHead(status, { "content-type": type, "content-length": buf.length, "cache-control": "no-store" });
     response.end(buf);
   };
+
+  if (!hostAllowed(request.headers.host)) {
+    log(`${request.method} ${url.pathname}: host refused (${request.headers.host ?? "missing"})`);
+    json(403, { error: "host refused" });
+    return;
+  }
 
   // an image file downloaded by a web tool, read by the plugin itself (raw bytes, never inside
   // an exec): only img-* files of a web-build-img directory in this repo
@@ -291,25 +385,29 @@ const handle = async (request, response) => {
     return;
   }
 
-  const readJson = async (limit) => {
-    let body = "";
-    request.setEncoding("utf8");
+  const readJson = async (limit, hint = "split the call") => {
+    // Bytes, not characters: the limit is what crosses the wire, and a multi-byte character
+    // split across two chunks is decoded whole once the body is in
+    const parts = [];
+    let size = 0;
     // An oversized body is read to its end and dropped: leaving the loop early destroys the
     // request, and the next call on the same kept-alive connection then waits 6 s and fails.
     let tooLarge = false;
     for await (const chunk of request) {
       if (tooLarge) continue;
-      body += chunk;
-      if (body.length > limit) {
+      size += chunk.length;
+      if (size > limit) {
         tooLarge = true;
-        body = "";
-      }
+        parts.length = 0;
+      } else parts.push(chunk);
     }
     if (tooLarge) {
       log(`${url.pathname}: body too large (> ${limit} bytes)`);
-      json(413, { error: `body too large (over ${Math.round(limit / 1000)} KB) — split the call` });
+      const cap = limit >= 1_000_000 ? `${Math.round(limit / 1_000_000)} MB` : `${Math.round(limit / 1000)} KB`;
+      json(413, { error: `body too large (over ${cap}) — ${hint}` });
       return null;
     }
+    const body = Buffer.concat(parts).toString("utf8");
     try {
       return JSON.parse(body || "{}");
     } catch {
@@ -368,7 +466,7 @@ const handle = async (request, response) => {
       return;
     }
     if (request.method === "POST" && url.pathname === "/capture") {
-      const payload = await readJson(MAX_CAPTURE);
+      const payload = await readJson(MAX_CAPTURE, "pick fewer blocks, or send the page without its screenshot");
       if (!payload) return;
       const result = await onCapture(payload);
       if (result.error) log(`capture refused: ${result.error}`);
@@ -402,8 +500,53 @@ const handle = async (request, response) => {
       json(200, { result: selection, cached: true, at: selectionAt });
       return;
     }
+    // `rid`: a client that resends a call it is not sure went through (connection reset) gets
+    // the first one's outcome, the call never runs twice
+    const rid = typeof payload.rid === "string" && payload.rid ? payload.rid.slice(0, 80) : null;
+    const seen = rid ? recentCalls.get(rid) : null;
+    if (seen) {
+      seen.watchers++;
+      const { status: code, body } = await seen.outcome;
+      json(code, { ...body, replay: true });
+      return;
+    }
+    let gone = false;
+    let hungUp;
+    const record = rid ? { watchers: 0, at: Date.now(), outcome: null } : null;
+    const left = {
+      promise: new Promise((r) => (hungUp = r)),
+      gone: () => gone && !(record && record.watchers > 0),
+    };
+    response.on("close", () => {
+      if (!response.writableFinished) {
+        gone = true;
+        hungUp();
+      }
+    });
+    const outcome = rpcOutcome(method, payload.params, left);
+    if (record) {
+      record.outcome = outcome;
+      recentCalls.set(rid, record);
+      for (const [key, r] of recentCalls) if (Date.now() - r.at > RID_TTL) recentCalls.delete(key);
+      // a call that never ran may be sent again for real
+      outcome.then((o) => o.notRun && recentCalls.get(rid) === record && recentCalls.delete(rid));
+    }
+    const { status: code, body } = await outcome;
+    json(code, body);
+    return;
+  }
+
+  if (await notes.http(request, url, json, readJson)) return;
+
+  json(404, { error: "unknown: " + url.pathname });
+};
+
+// The outcome of one /rpc call, as { status, body, notRun }
+async function rpcOutcome(method, rawParams, left) {
+  inflight++;
+  try {
     // a note id on a write: the plugin captures a revert, stored behind the note's Undo
-    let params = payload.params;
+    let params = rawParams;
     const noteId = params && typeof params === "object" && (method === "apply" || method === "exec" || method === "text") && params.note != null ? String(params.note) : null;
     // `revert: true` with no note: the caller keeps the patch itself (tools/stress, scripts)
     const ownRevert = !noteId && params && typeof params === "object" && params.revert === true;
@@ -422,7 +565,7 @@ const handle = async (request, response) => {
       await pluginSoon();
       const result = FREE_METHODS.has(method)
         ? await callPlugin(method, params, timeout)
-        : await inTurn(agent, () => callPlugin(method, params, timeout));
+        : await inTurn(agent, () => callPlugin(method, params, timeout), left);
       if (result && typeof result === "object" && "revert" in result) {
         if (noteId) {
           // Say what really happened: an agent told "kept" stops worrying about Undo
@@ -441,18 +584,16 @@ const handle = async (request, response) => {
         }
         if (!ownRevert) delete result.revert;
       }
-      json(200, { result });
+      return { status: 200, body: { result } };
     } catch (error) {
       const message = String(error.message || error);
-      json(message === "plugin disconnected" ? 503 : 502, { error: message });
+      const notRun = error instanceof NotRun || message === "plugin disconnected";
+      return { status: notRun ? 503 : 502, body: { error: message }, notRun };
     }
-    return;
+  } finally {
+    inflight--;
   }
-
-  if (await notes.http(request, url, json, readJson)) return;
-
-  json(404, { error: "unknown: " + url.pathname });
-};
+}
 
 // One bad request (unparsable path, client gone mid-upload, unwritable file) ends in an answer:
 // an unhandled rejection would kill the bridge, and every client with it
@@ -475,6 +616,8 @@ let job = null;
 // the running job's process group (its own tools run under it) and whether a stop was asked
 let jobChild = null;
 let jobStopped = false;
+// the running job is a model run (tools/autofix.mjs), not a build: agents' calls go through
+let jobAgent = false;
 let lastStatus = null;
 // frames built and waiting for their self-correction
 const toCorrect = [];
@@ -484,9 +627,13 @@ function status(text, done = false) {
   sendPlugin({ type: "status", text, done });
 }
 
+// A model run (tools/autofix.mjs) has no end of its own: past this it is killed, the slot freed
+const AUTOFIX_LIMIT = Number(process.env.ANGELO_AUTOFIX_TIMEOUT) || 10 * 60 * 1000;
+
 // Runs one repo tool against the file open in Figma; null when started, else the reason.
 // `next`: a job to start once this one ends unstopped (desktop then phone)
-async function runJob(name, args, next) {
+// `limit`: ms after which the job is killed with its tools; what was queued behind it still runs
+async function runJob(name, args, next, limit) {
   if (job) return `busy: ${job}`;
   let file;
   try {
@@ -502,6 +649,7 @@ async function runJob(name, args, next) {
   // the npm package ships the bridge without the repo's tools
   if (!existsSync(join(ROOT, argv[0]))) return `${name}: only in the Angelo repository`;
   job = name;
+  jobAgent = argv[0] === "tools/autofix.mjs";
   log(job);
   status(`${name}…`);
   const t0 = Date.now();
@@ -513,27 +661,50 @@ async function runJob(name, args, next) {
   let error = "";
   let ended = false;
   let built = null;
-  const onLines = (chunk) => {
-    for (const line of String(chunk).split("\n").map((l) => l.trim()).filter(Boolean)) {
-      log(`  ${line}`);
-      const frame = /^frame (\d+:\d+) in Figma/.exec(line);
-      if (frame) built = frame[1];
-      // a crash ends on node's version line: the thrown error is the line worth showing
-      if (/^\w*Error\b/.test(line)) error = line;
-      status((last = line));
-    }
+  let timedOut = false;
+  let timer = null;
+  const kills = [];
+  const onLine = (raw) => {
+    const line = raw.trim();
+    if (!line) return;
+    log(`  ${line}`);
+    const frame = /^frame (\d+:\d+) in Figma/.exec(line);
+    if (frame) built = frame[1];
+    // a crash ends on node's version line: the thrown error is the line worth showing
+    if (/^\w*Error\b/.test(line)) error = line;
+    status((last = line));
   };
-  child.stdout.on("data", onLines);
-  child.stderr.on("data", onLines);
+  // a chunk can end mid-line: the rest waits for the next chunk (or the end)
+  const reader = () => {
+    let carry = "";
+    const read = (chunk) => {
+      const parts = (carry + String(chunk)).split("\n");
+      carry = parts.pop();
+      parts.forEach(onLine);
+    };
+    read.flush = () => {
+      if (carry) onLine(carry);
+      carry = "";
+    };
+    return read;
+  };
+  const out = reader();
+  const err = reader();
+  child.stdout.on("data", out);
+  child.stderr.on("data", err);
   // a spawn that fails may never reach "close": the job slot must free itself either way
   const end = (code) => {
     if (ended) return;
     ended = true;
+    out.flush();
+    err.flush();
+    clearTimeout(timer);
+    kills.forEach(clearTimeout);
     job = null;
     jobChild = null;
-    log(`${name} exit ${code}${jobStopped ? " (stopped)" : ""}`);
+    log(`${name} exit ${code}${jobStopped ? " (stopped)" : timedOut ? " (timeout)" : ""}`);
     // a job that dies before its build leaves the staged frame's cursor held
-    if (code !== 0) callPlugin("exec", { code: "H.release();" }, DEFAULT_TIMEOUT).catch(() => {});
+    if (code !== 0) releaseCursor();
     const s = ((Date.now() - t0) / 1000).toFixed(1);
     // self-correction is part of web-to-figma (skill step 6): every built frame is checked then
     // fixed in place once the build chain (desktop, then phone) is over; a stop drops the queue
@@ -541,7 +712,7 @@ async function runJob(name, args, next) {
     else if (built && name.startsWith("web-to-figma")) toCorrect.push({ id: built, name });
     const chained = next && !jobStopped;
     const correct = !chained && !jobStopped && toCorrect.length > 0;
-    status(jobStopped ? `stopped after ${s} s` : code === 0 ? `done in ${s} s` : `failed (${code}): ${error || last}`, !chained && !correct);
+    status(jobStopped ? `stopped after ${s} s` : timedOut ? `${name.split(" ")[0]} timed out after ${Math.round(limit / 1000)} s: killed, the frame stays as it was` : code === 0 ? `done in ${s} s` : `failed (${code}): ${error || last}`, !chained && !correct);
     if (chained) next().then((refused) => refused && status(refused, true));
     else if (correct) onCheck(toCorrect.shift(), null).catch((e) => status(`autofix: ${e.message || e}`, true));
   };
@@ -550,8 +721,26 @@ async function runJob(name, args, next) {
     end(1);
   });
   child.on("close", end);
+  if (limit > 0) {
+    timer = setTimeout(() => {
+      if (ended) return;
+      timedOut = true;
+      log(`${name}: no end after ${Math.round(limit / 1000)} s, killing its process group`);
+      const group = -child.pid;
+      try { process.kill(group, "SIGTERM"); } catch {}
+      // deaf to SIGTERM, or a grandchild keeping the pipes open ("close" never comes): killed for
+      // good, and the slot freed whatever the streams do
+      kills.push(setTimeout(() => {
+        try { process.kill(group, "SIGKILL"); } catch {}
+        kills.push(setTimeout(() => end(null), 1000));
+      }, 3000));
+    }, limit);
+  }
   return null;
 }
+
+// The cursor a staged frame or a dead job left held: freed in turn, never on top of a running call
+const releaseCursor = () => inTurn(null, () => callPlugin("exec", { code: "H.release();" }, DEFAULT_TIMEOUT)).catch(() => {});
 
 // Stop from the plugin: the running job and every tool under it, the bridge stays up. A frame
 // being staged (capture still in the page) only gets its cursor released
@@ -567,7 +756,7 @@ async function onStop() {
     return;
   }
   if (staging) await staging;
-  callPlugin("exec", { code: "H.release();" }, DEFAULT_TIMEOUT).catch(() => {});
+  releaseCursor();
   status("nothing running in the bridge (a capture in the page stops from the page)", true);
 }
 
@@ -619,7 +808,7 @@ async function onCheck({ id, name }, ws) {
       const code = `const n = await figma.getNodeByIdAsync(${JSON.stringify(id)}); let t = n; while (t.parent && t.parent.type !== "PAGE") t = t.parent;
 const a = n.absoluteBoundingBox, b = t.absoluteBoundingBox;
 return { id: t.id, name: t.name, box: a && b ? [a.x - b.x, a.y - b.y, a.width, a.height].map(Math.round) : null };`;
-      top = (await callPlugin("exec", { code, label: "check · reference" }, DEFAULT_TIMEOUT)).value || null;
+      top = (await inTurn(null, () => callPlugin("exec", { code, label: "check · reference" }, DEFAULT_TIMEOUT))).value || null;
     } catch {}
   }
   const dir = top && webCaseOf(top.name);
@@ -636,7 +825,7 @@ return { id: t.id, name: t.name, box: a && b ? [a.x - b.x, a.y - b.y, a.width, a
     try {
       left = JSON.parse(readFileSync(join(dir, "fix.json"), "utf8")).rest || [];
     } catch {}
-    if (left.length) return runJob(`autofix ${name}`, (file) => ["tools/autofix.mjs", "--file", file, "--root", top.id, "--case", dir, "--issues", JSON.stringify(left.slice(0, FIX_REST_MAX))]);
+    if (left.length) return runJob(`autofix ${name}`, (file) => ["tools/autofix.mjs", "--file", file, "--root", top.id, "--case", dir, "--issues", JSON.stringify(left.slice(0, FIX_REST_MAX))], null, AUTOFIX_LIMIT);
     if (toCorrect.length) return onCheck(toCorrect.shift(), null).then(() => null);
     status(`${top.name}: matches the capture`, true);
     return null;
@@ -649,7 +838,7 @@ return { id: t.id, name: t.name, box: a && b ? [a.x - b.x, a.y - b.y, a.width, a
 async function onFix({ id, name, issues }) {
   if (typeof id !== "string" || !Array.isArray(issues) || !issues.length) return status("fix: nothing to send", true);
   const list = JSON.stringify(issues.map(String).slice(0, 60));
-  const refused = await runJob(`fix ${name}`, (file) => ["tools/autofix.mjs", "--file", file, "--root", id, "--issues", list]);
+  const refused = await runJob(`fix ${name}`, (file) => ["tools/autofix.mjs", "--file", file, "--root", id, "--issues", list], null, AUTOFIX_LIMIT);
   if (refused) status(refused, true);
 }
 
@@ -675,7 +864,7 @@ async function onStage({ url, part, width, cancel }) {
     // the stage exec may still be placing the frame: a release sent before its hold() would be
     // a no-op and leave the cursor held for good
     if (staging) await staging;
-    callPlugin("exec", { code: "H.release();" }, DEFAULT_TIMEOUT).catch(() => {});
+    releaseCursor();
     status("capture cancelled in the page", true);
     return { ok: true };
   }
@@ -725,8 +914,20 @@ async function onCapture({ url, part, capture, shot: given, shotError, mobile })
     shot = undefined;
   }
   if (job) return { error: `busy: ${job}` };
+  if (capturing) return { error: "busy: a capture is being saved" };
+  capturing = true;
+  try {
+    return await saveAndBuild({ url, part, capture, shot, host, mobile });
+  } finally {
+    capturing = false;
+  }
+}
+
+let capturing = false;
+async function saveAndBuild({ url, part, capture, shot, host, mobile }) {
   // the frame staged at Go is still being placed: the build takes it over once it is there
   if (staging) await staging;
+  if (job) return { error: `busy: ${job}` };
   // a frozen case (expect.json, guarded by web-check) keeps its capture: the run goes beside it
   const base = join(ROOT, "tests/web", caseName(host));
   const dir = existsSync(join(base, "expect.json")) ? join(base, "last") : base;
@@ -741,6 +942,9 @@ async function onCapture({ url, part, capture, shot: given, shotError, mobile })
 }
 
 const sockets = new WebSocketServer({ noServer: true });
+const RECONNECT_GRACE = 8000;
+let dropTimer = null;
+let pluginInstance = null;
 
 server.on("upgrade", (request, socket, head) => {
   let pathname;
@@ -748,6 +952,12 @@ server.on("upgrade", (request, socket, head) => {
     pathname = new URL(request.url ?? "/", `http://${HOST}:${PORT}`).pathname;
   } catch {}
   if (pathname !== "/plugin") {
+    socket.destroy();
+    return;
+  }
+  if (!hostAllowed(request.headers.host)) {
+    log(`connection refused (Host: ${request.headers.host ?? "missing"})`);
+    socket.write("HTTP/1.1 403 Forbidden\r\nConnection: close\r\n\r\n");
     socket.destroy();
     return;
   }
@@ -802,10 +1012,20 @@ server.on("upgrade", (request, socket, head) => {
       } catch {
         return;
       }
+      if (!frame || typeof frame !== "object") return;
       if (frame.type === "response") settle(frame);
       else if (frame.type === "hello") {
         pluginVersion = typeof frame.version === "string" ? frame.version.slice(0, 40) : null;
         log(`hello plugin${pluginVersion ? " " + pluginVersion : ""}`);
+        // the same panel back after a drop sends the answers it held; another one (reloaded)
+        // never will: the calls of the old one fail now instead of at their timeout
+        const instance = typeof frame.instance === "string" ? frame.instance.slice(0, 40) : null;
+        clearTimeout(dropTimer);
+        dropTimer = null;
+        if (pending.size && (!instance || instance !== pluginInstance)) {
+          dropPending("plugin reloaded during the call — it may have run in Figma: read before retrying");
+        }
+        pluginInstance = instance;
         pushLinks();
       } else if (frame.type === "event" && frame.event === "selection") {
         selection = frame.data;
@@ -830,7 +1050,12 @@ server.on("upgrade", (request, socket, head) => {
         pluginSince = null;
         droppedAt = Date.now();
         log("plugin disconnected");
-        dropPending("plugin disconnected during the call");
+        // a panel that comes back at once (socket blip, bridge-side reset) answers what it holds
+        clearTimeout(dropTimer);
+        dropTimer = setTimeout(() => {
+          dropTimer = null;
+          if (!pluginOpen()) dropPending("plugin disconnected during the call — it may have run in Figma: read before retrying");
+        }, RECONNECT_GRACE);
         linksSent = "";
       }
     });
@@ -841,7 +1066,7 @@ server.on("upgrade", (request, socket, head) => {
 
 // ---------- life cycle: one bridge per port, replaced cleanly ----------
 
-const busy = () => Boolean(job || staging || pending.size);
+const busy = () => Boolean(job || staging || capturing || pending.size || inflight);
 
 // Stop without leaving anyone hanging: the running job and its tools end, calls in flight get
 // a clear error, the plugin is told why its socket closes (it reconnects by itself).
